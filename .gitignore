@@ -1,3 +1,8 @@
 _site/
 .sass-cache/
 .jekyll-metadata
+
+# for Eclipse and its web development environment
+.project
+.org.eclipse.*
+.jsdtscope
