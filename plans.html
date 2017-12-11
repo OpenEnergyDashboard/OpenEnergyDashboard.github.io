@@ -29,7 +29,21 @@ title: OED Release Notes
 		<li>Improved meter import process.</li>
 		<li>Other minor improvements and fixes.</li>
 	</ul>
-
+<h5>Known issues of significance</h5>
+<ul>
+<li>The weekly comparison graphs use daily data to calculate usage to date. This can lead to large errors
+when you are later in a day and earlier  in the week. We are converting to use hour data to avoid this issue.</li>
+<li>All graphs show and are labeled as kW. This can be confusing since the bar/comparison charts are for a given time period so you
+might expect kWh. This should not change the height of a bar but it does change the value. This has been confusing to some users but
+kWh will change as you change the time frame of the bar and make line graphs have different units. 
+Thus, we are trying to determine what is best to do and how to label graphs. We welcome input from others and plan to have this settled
+by version 0.4 when we introduce more unit types in OED.</li>
+<li>A careful user may notice that the values on graphs in OED are actually averages of nearby points and not actual meter readings.
+This was done to control the number of points a user receives without undue effort during initial development. We are currently
+converting OED to use actual meter points where we select the spacing based on the time frame to show and the number of points to
+send to the user. We believe this is better but is more complex for the system so hang in there until it is complete. It is hoped to make
+version 0.3 and is certain for version 0.4.</li>
+</ul>
 	<h4>Upcoming</h4>
 	<p>
 		You can visit our <a
