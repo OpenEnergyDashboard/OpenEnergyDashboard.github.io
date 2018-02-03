@@ -29,48 +29,74 @@ title: OED Release Notes
 		<li>Improved meter import process.</li>
 		<li>Other minor improvements and fixes.</li>
 	</ul>
-<h5>Known issues of significance</h5>
-<ul>
-<li>The weekly comparison graphs use daily data to calculate usage to date. This can lead to large errors
-when you are later in a day and earlier  in the week. We are converting to use hour data to avoid this issue.</li>
-<li>All graphs show and are labeled as kW. This can be confusing since the bar/comparison charts are for a given time period so you
-might expect kWh. This should not change the height of a bar but it does change the value. This has been confusing to some users but
-kWh will change as you change the time frame of the bar and make line graphs have different units. 
-Thus, we are trying to determine what is best to do and how to label graphs. We welcome input from others and plan to have this settled
-by version 0.4 when we introduce more unit types in OED.</li>
-<li>A careful user may notice that the values on graphs in OED are actually averages of nearby points and not actual meter readings.
-This was done to control the number of points a user receives without undue effort during initial development. We are currently
-converting OED to use actual meter points where we select the spacing based on the time frame to show and the number of points to
-send to the user. We believe this is better but is more complex for the system so hang in there until it is complete. It is hoped to make
-version 0.3 and is certain for version 0.4.</li>
-</ul>
+	<h5>Known issues of significance</h5>
+	<ul>
+		<li>The weekly comparison graphs use daily data to calculate
+			usage to date. This can lead to large errors when you are later in a
+			day and earlier in the week. We are converting to use hour data to
+			avoid this issue.</li>
+		<li>All graphs show and are labeled as kW. This can be confusing
+			since the bar/comparison charts are for a given time period so you
+			might expect kWh. This should not change the height of a bar but it
+			does change the value. This has been confusing to some users but kWh
+			will change as you change the time frame of the bar and make line
+			graphs have different units. Thus, we are trying to determine what is
+			best to do and how to label graphs. We welcome input from others and
+			plan to have this settled by version 0.4 when we introduce more unit
+			types in OED.</li>
+		<li>A careful user may notice that the values on graphs in OED
+			are actually averages of nearby points and not actual meter readings.
+			This was done to control the number of points a user receives without
+			undue effort during initial development. We are currently converting
+			OED to use actual meter points where we select the spacing based on
+			the time frame to show and the number of points to send to the user.
+			We believe this is better but is more complex for the system so hang
+			in there until it is complete. It is hoped to make version 0.3 and is
+			certain for version 0.4.</li>
+	</ul>
 	<h4>Upcoming</h4>
 	<p>
 		You can visit our <a
 			href="https://github.com/OpenEnergyDashboard/OED/" target="_blank">GitHub
 			repository</a> to see issues and find the ongoing status for each issue.
 		What follows is a summary of our plans for upcoming releases and, for
-		some items, the status of that effort. This was last updated on 14 December 2017.
+		some items, the status of that effort. This was last updated on 14
+		December 2017.
 	</p>
 	<h5>0.3 Release plans with a release planned for early February
 		2018</h5>
 	<ul>
 		<li>Installs via Docker (done)</li>
-		<li>Improved checking of meter data to exclude potentially bad data. OED also continues on to other meters after any issues 
-		encountered. (done)</li>
+		<li>Improved checking of meter data to exclude potentially bad
+			data. OED also continues on to other meters after any issues
+			encountered. (done)</li>
 		<li>An admin panel to allow someone responsible for the OED
-			system to enter information needed and generally
-			control the way OED functions at their site. (in beta release)</li>
-			<li>Allow for addition of meters via a CSV file in the admin panel (in testing)</li> 
-		<li>Make the OED website controls and basic wording multilingual.
-			(in testing)</li>
-			<li>Enhance comparison graphic to allow comparing day, week and four week periods of time. 
-			Improve labeling of graphic based on user feedback of initial setup on week periods. (in beta release)</li>
-			<li>Allow admins to import meter data from a CSV file. This will allow MAMAC logs, data that existed before meters
-			were read by OED, and data from other systems to be imported into OED. (in testing)</li>
-		<li>Provide email warnings of system issues (in development and nearing testing)</li>
+			system to enter basic information needed and generally control the
+			way OED functions at their site. (done)</li>
+		<li>Enhance comparison graphic to allow comparing day, week and
+			four week periods of time. Improve labeling of graphic based on user
+			feedback of initial setup on week periods. (done)</li>
+		<li>Allow admins to import meter data from a CSV file. This will
+			allow MAMAC logs, data that existed before meters were read by OED,
+			and data from other systems to be imported into OED. (done)</li>
 	</ul>
-	<h5>0.4 Release plans with a target release sometime around March/April
+	<h5>0.4 Release plans with a target release sometime around early
+		March 2018</h5>
+	<ul>
+		<li>Enhanced admin panel to allow greater control of OED</li>
+		<li>Allow for addition of meters via a CSV file in the admin
+			panel (in development)</li>
+		<li>Make the OED website controls and basic wording multilingual.
+			(well into development)</li>
+		<li>Enhance comparison graphs to allow arbitrary time width and
+			arbitrary shift in time between current and previous.</li>
+		<li>Provide email warnings of system issues (in development and
+			nearing testing)</li>
+		<li>Speed up getting meter data for users. This will also allow
+			users to download the raw meter data from a graph rather than just
+			the points shown on the graph.</li>
+	</ul>
+	<h5>0.5 Release plans with a target release sometime around April
 		2018</h5>
 	<ul>
 		<li>Generalization of energy types beyond electricity including
@@ -83,19 +109,21 @@ version 0.3 and is certain for version 0.4.</li>
 			baselines of the meters involved. You will be allowed to have
 			multiple baselines for a given meter so it can vary with time. All
 			graphics will take baselines into account. (in development)</li>
-			<li>Allow admin to apply a multiplicitive factor to each meter added to a group.
-			This will allow for negative values for production meters and correction of meter values or units.</li>
-			<li>Allow anyone to see what meters and groups are included in a group. Currently only admins can do this.</li>
-			<li>Enhance the admin panel including input of new meter information from
-			the generalization of meter types</li>
-			<li>Speed up getting meter data for users. This will also allow users to download the raw meter data from a graph rather than 
-			just the points shown on the graph.</li>
+		<li>Allow admin to apply a multiplicitive factor to each meter
+			added to a group. This will allow for negative values for production
+			meters and correction of meter values or units.</li>
+		<li>Allow anyone to see what meters and groups are included in a
+			group. Currently only admins can do this.</li>
+		<li>Enhance the admin panel including input of new meter
+			information from the generalization of meter types.</li>
 	</ul>
 	<h5>Actively under development but time frame unknown</h5>
 	<ul>
-		<li>Ability to read from more meter types including Modbus and BACnet. This is likely to be through third party hardware at this
-		time but we welcome anyone interested in creating another solution to contact us.</li>
-		</ul>
+		<li>Ability to read from more meter types including Modbus and
+			BACnet. This is likely to be through third party hardware at this
+			time but we welcome anyone interested in creating another solution to
+			contact us.</li>
+	</ul>
 	<p>
 		You can influence our upcoming features by <a href="involved.html">becoming
 			involved</a>. We also have a list of feature requests that we have yet to
