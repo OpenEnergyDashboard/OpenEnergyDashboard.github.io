@@ -9,8 +9,23 @@ title: OED Release Notes
 			href="features.html">feature page</a>.
 	</p>
 
-
-	<h4>Version 0.2</h4>
+	<h4>0.3 Release (released 13 February 2018)</h4>
+	<ul>
+	<li>Enhance comparison graphic to allow comparing day, week and
+			four week periods of time. Improve labeling of graphic based on user
+			feedback of initial setup on week periods.</li>
+		<li>An admin panel to allow someone responsible for the OED
+			system to enter basic information needed and generally control the
+			way OED functions at their site.</li>
+		<li>Installs via Docker</li>
+		<li>Improved checking of meter data to exclude potentially bad
+			data. OED also continues on to other meters after any issues
+			encountered.</li>
+		<li>Allow admins to import meter data from a CSV file. This will
+			allow MAMAC logs, data that existed before meters were read by OED,
+			and data from other systems to be imported into OED.</li>
+	</ul>
+	<h4>Version 0.2 (released 8 November 2017)</h4>
 	<p>Version 0.2 is the first major release of the software and adds
 		the ability to acquire, store, and display information about electric
 		meter data. Specifically:</p>
@@ -42,7 +57,7 @@ title: OED Release Notes
 			will change as you change the time frame of the bar and make line
 			graphs have different units. Thus, we are trying to determine what is
 			best to do and how to label graphs. We welcome input from others and
-			plan to have this settled by version 0.4 when we introduce more unit
+			plan to have this settled by version 0.5 when we introduce more unit
 			types in OED.</li>
 		<li>A careful user may notice that the values on graphs in OED
 			are actually averages of nearby points and not actual meter readings.
@@ -52,7 +67,7 @@ title: OED Release Notes
 			the time frame to show and the number of points to send to the user.
 			We believe this is better but is more complex for the system so hang
 			in there until it is complete. It is hoped to make version 0.3 and is
-			certain for version 0.4.</li>
+			certain for version 0.5.</li>
 	</ul>
 	<h4>Upcoming</h4>
 	<p>
@@ -63,48 +78,32 @@ title: OED Release Notes
 		some items, the status of that effort. This was last updated on 14
 		December 2017.
 	</p>
-	<h5>0.3 Release plans with a release planned for early February
-		2018</h5>
-	<ul>
-		<li>Installs via Docker (done)</li>
-		<li>Improved checking of meter data to exclude potentially bad
-			data. OED also continues on to other meters after any issues
-			encountered. (done)</li>
-		<li>An admin panel to allow someone responsible for the OED
-			system to enter basic information needed and generally control the
-			way OED functions at their site. (done)</li>
-		<li>Enhance comparison graphic to allow comparing day, week and
-			four week periods of time. Improve labeling of graphic based on user
-			feedback of initial setup on week periods. (done)</li>
-		<li>Allow admins to import meter data from a CSV file. This will
-			allow MAMAC logs, data that existed before meters were read by OED,
-			and data from other systems to be imported into OED. (done)</li>
-	</ul>
+
 	<h5>0.4 Release plans with a target release sometime around early
 		March 2018</h5>
 	<ul>
-		<li>Enhanced admin panel to allow greater control of OED</li>
+		<li>Enhanced admin panel to allow greater control of OED (in development)</li>
 		<li>Allow for addition of meters via a CSV file in the admin
 			panel (in development)</li>
 		<li>Make the OED website controls and basic wording multilingual.
-			(well into development)</li>
+			(in development)</li>
 		<li>Enhance comparison graphs to allow arbitrary time width and
 			arbitrary shift in time between current and previous.</li>
 		<li>Provide email warnings of system issues (in development and
 			nearing testing)</li>
 		<li>Speed up getting meter data for users. This will also allow
 			users to download the raw meter data from a graph rather than just
-			the points shown on the graph.</li>
+			the points shown on the graph. (in development)</li>
 		<li>Ability to read from more meter types including Modbus and
 			BACnet. This is planned through third party hardware at this
 			time but we welcome anyone interested in creating another solution to
-			contact us.</li>
+			contact us. (in design)</li>
 	</ul>
 	<h5>0.5 Release plans with a target release sometime around April
 		2018</h5>
 	<ul>
 		<li>Generalization of energy types beyond electricity including
-			steam, gas, water, garbage/recycling, etc. (being designed)</li>
+			steam, gas, water, garbage/recycling, etc. (in designed)</li>
 		<li>Allow energy to be represented in other units such as CO<sub>2</sub>,
 			laundry loads, etc. (in design as part of more energy types)
 		</li>
