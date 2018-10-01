@@ -22,8 +22,6 @@ title: OED Release Notes
 			URI reproduces the look/settings from when it was created with the
 			most recent data. This is still a live OED view so the user can make
 			changes once the initial view is loaded.</li>
-		<li>Bar and comparison charts now have preset time intervals
-			(day, week, four week) that can be selected.</li>
 		<li>Improved support for mobile devices</li>
 		<li>Installs via Docker</li>
 		<li>Improved checking of meter data to exclude potentially bad
@@ -58,24 +56,29 @@ title: OED Release Notes
 			usage to date. This can lead to large errors when you are later in a
 			day and earlier in the week. We are converting to use hour data to
 			avoid this issue.</li>
-		<li>All graphs show and are labeled as kW. This can be confusing
+		<li>The calculations used to create the comparison graphs are
+			sometimes a little off. This is due to how they are done. This should
+			automatically be fixed when the new methods of getting data is
+			incorporated in the next release.</li>
+		<li>All graphs shown and are labeled as kW. This can be confusing
 			since the bar/comparison charts are for a given time period so you
 			might expect kWh. This should not change the height of a bar but it
 			does change the value. This has been confusing to some users but kWh
 			will change as you change the time frame of the bar and make line
-			graphs have different units. Thus, we are trying to determine what is
-			best to do and how to label graphs. We welcome input from others and
-			plan to have this settled by version 0.5 when we introduce more unit
-			types in OED.</li>
+			graphs have different units. We have decided that overall it would be
+			best to convert to KWh and will make that switch as part of the
+			generalization of units planned for an upcoming release.</li>
 		<li>A careful user may notice that the values on graphs in OED
 			are actually averages of nearby points and not actual meter readings.
-			This was done to control the number of points a user receives without
-			undue effort during initial development. We are currently converting
-			OED to use actual meter points where we select the spacing based on
-			the time frame to show and the number of points to send to the user.
-			We believe this is better but is more complex for the system so hang
-			in there until it is complete. It is hoped to make version 0.3 and is
-			certain for version 0.5.</li>
+			This was done to control the number of points a user receives. We are
+			in the process of changing our graphics package so we will allow for
+			zooming in on data. This will allow for people to see smaller scale
+			data as they zoom. We will also be adding a feature to allow the user
+			to dump the actual data from the meters that each graph is showing
+			(currently it only allows the averaged data points shown on the
+			graph). Finally, we hope to allow the user to see the variance in the
+			averaged data on a line graph (such as the max/min value and/or
+			25/75% range values) at a future date.</li>
 	</ul>
 	<h4>Upcoming</h4>
 	<p>
@@ -87,29 +90,27 @@ title: OED Release Notes
 		December 2017.
 	</p>
 
-	<h5>0.4 Release plans with a target release sometime around early
-		March 2018</h5>
+	<h5>0.5 Release plans with a target release in October 2018
+		(significant features that user can observe)</h5>
 	<ul>
-		<li>Enhanced admin panel to allow greater control of OED (in
-			development)</li>
+		<li>Enhanced admin panel to allow greater control of OED (done)</li>
 		<li>Allow for addition of meters via a CSV file in the admin
-			panel (in development)</li>
-		<li>Make the OED website controls and basic wording multilingual.
-			(in development)</li>
-		<li>Enhance comparison graphs to allow arbitrary time width and
-			arbitrary shift in time between current and previous.</li>
-		<li>Provide email warnings of system issues (in development and
-			nearing testing)</li>
-		<li>Speed up getting meter data for users. This will also allow
-			users to download the raw meter data from a graph rather than just
-			the points shown on the graph. (in development)</li>
+			panel (done)</li>
+		<li>Make the OED web site controls and basic wording multilingual
+			(done)</li>
+		<li>Provide email warnings of system issues including when meters
+			data acquisition fails (done)</li>
+		<li>Speed up getting meter data for user (in quality check)</li>
 		<li>Ability to read from more meter types including Modbus and
-			BACnet. This is planned through third party hardware at this time but
-			we welcome anyone interested in creating another solution to contact
-			us. (in design)</li>
+			BACnet. This will be to allow acquisition of Obvius system data. (in
+			development/testing)</li>
+		<li>Automated database migration tool to allow for easier
+			upgrades of sites (done)</li>
+		<li>Show when system waiting on data request on graphics pages
+			(done)</li>
 	</ul>
-	<h5>0.5 Release plans with a target release sometime around April
-		2018</h5>
+	<h5>0.6 Release plans with a target release sometime around
+		December 2018 (significant features that user can observe)</h5>
 	<ul>
 		<li>Generalization of energy types beyond electricity including
 			steam, gas, water, garbage/recycling, etc. (in designed)</li>
@@ -117,17 +118,45 @@ title: OED Release Notes
 			laundry loads, etc. (in design as part of more energy types)
 		</li>
 		<li>Add the ability for OED to calculate baseline of a meter on a
-			user selectable date range. Groups will automatically combine
-			baselines of the meters involved. You will be allowed to have
-			multiple baselines for a given meter so it can vary with time. All
-			graphics will take baselines into account. (in development)</li>
-		<li>Allow admin to apply a multiplicitive factor to each meter
+			user selected date range indicated on a graph. (in development)</li>
+		<li>Allow for user to scroll and zoom on line graphs (in design)</li>
+		<li>Allow admin to apply a multiplicative factor to each meter
 			added to a group. This will allow for negative values for production
-			meters and correction of meter values or units.</li>
+			meters and correction of meter values or units. (awaiting
+			development)</li>
 		<li>Allow anyone to see what meters and groups are included in a
-			group. Currently only admins can do this.</li>
+			group. Currently only admins can do this. (in development)</li>
 		<li>Enhance the admin panel including input of new meter
-			information from the generalization of meter types.</li>
+			information from the generalization of meter types. (waiting for
+			generalization to move forward)</li>
+		<li>Verify a site is responding to web requests in an automated
+			way and notify if not working (in development)</li>
+		<li>Allow hotlinking to hide menus (similar to a small screen
+			device) so it does not show up on a monitor or device without mouse
+			(in development)</li>
+		<li>Change bar graphics to the KWh (awaiting generalization of
+			units)</li>
+		<li>Building pages to include descriptions, picture and OED
+			graphic with usage including admin tool for inputting this
+			information (in design)</li>
+		<li>Support HTTPS connects to OED sites we host (in development
+			and may be released sooner for those needing it)</li>
+		<li>Help system with OED system (in design)</li>
+		<li>Make bar charts use hourly data when for shorter time intervals and correct times when values are slightly off (awaiting development)</li>
+	</ul>
+	<h5>0.7 Release plans with a target release sometime around April
+		2019 (significant features that user can observe)</h5>
+	<ul>
+		<li>Allow user to choose if want baseline subtracted from any
+			meter/group displayed (might make 0.6 release).</li>
+		<li>Allow user to dump raw meter data behind any graph. Currently
+			it gives the data points in the graph that represent averaging of the
+			data. This will include a warning if the file will be large. We also
+			want to rate limit this to avoid slowing down the system for other
+			requests. (might make 0.6 release if people make this a priority)</li>
+		<li>All graphics will incorporate new resources so they can be
+			displayed in OED.</li>
+			<li>Include new graphics such as pie charts and radar representations of data.</li>
 	</ul>
 	<h5>Actively under development but time frame unknown</h5>
 	<ul>
