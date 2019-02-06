@@ -1,4 +1,10 @@
+@font-face {
+  font-family: BitterRegular;
+  src: url(/fonts/bitter.woff);
+}
+
 body {
+    font-family: BitterRegular, serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Symbola';
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
