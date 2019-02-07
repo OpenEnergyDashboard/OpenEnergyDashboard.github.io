@@ -1,3 +1,26 @@
+@font-face {
+  font-family: BitterRegular;
+  src: url(/fonts/bitter.woff);
+}
+
+body {
+    font-family: BitterRegular, serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Symbola';
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2, h3, h4, h5 {
+    text-align: center;
+}
+
+p img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 nav ul, footer ul {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
