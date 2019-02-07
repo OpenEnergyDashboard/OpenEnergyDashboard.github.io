@@ -61,6 +61,7 @@
 		comparisons are easier across buildings and expected published values.
 
 
+
 	
 	<h5>Detailed description</h5>
 	<p>
@@ -113,8 +114,9 @@
 	<p>Sites want to subtract the baseline associated with meters or
 		building from what is displayed to users.
 	<h5>Detailed description</h5>
-	<p>A resource baseline is the amount of that resource used when
-		nobody is in/using the building and cannot be impacted by the building
+	<p>
+		A resource baseline is the amount of that resource used when nobody is
+		in/using the building and cannot be impacted by the building
 		occupants. For occupants and energy managers to better understand
 		usage that can be changed, we are adding a feature to allow the
 		baseline to be subtracted from a usage graphic. The first goal is to
@@ -122,7 +124,8 @@
 		is to allow the baseline to vary with time (as happens after
 		renovation or equipment change). OED will have a semiautomatic method
 		for calculating baselines before the summer begins so they will be
-		available in the database.
+		available in the database. <a href="baseline.html">Further details</a>
+		are available.
 	<h5>Outcomes</h5>
 	<p>OED will better support energy competitions, normalized
 		representation of resource data, and have greater utility to energy
@@ -194,16 +197,17 @@
 	<p>Users have a desire to have the raw and analyzed data in OED
 		exported to a CSV file.
 	<h5>Detailed description</h5>
-	<p>As an open source project, we want the data in OED to be open
-		and available. Currently, OED can dump the data from any graph as a
-		CSV file but this data has been averaged to reduce the number of
-		points. People wishing to analyze the data outside OED generally want
-		the underlying meter data (raw data). The quantity of data can be 10s
-		or 100s of MB. A complicating factor is that a class of students may
-		do downloads all around the same time and thereby overload an OED
-		server. Thus, we wish to rate limit the processing and I/O associated
-		with doing this. <a
-			href="rawData.html">Further details</a> are available.
+	<p>
+		As an open source project, we want the data in OED to be open and
+		available. Currently, OED can dump the data from any graph as a CSV
+		file but this data has been averaged to reduce the number of points.
+		People wishing to analyze the data outside OED generally want the
+		underlying meter data (raw data). The quantity of data can be 10s or
+		100s of MB. A complicating factor is that a class of students may do
+		downloads all around the same time and thereby overload an OED server.
+		Thus, we wish to rate limit the processing and I/O associated with
+		doing this. <a href="rawData.html">Further details</a> are available.
+	
 	<h5>Outcomes</h5>
 	<p>People will be able to download raw OED data without impacting
 		other server functions.
