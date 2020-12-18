@@ -4,4 +4,4 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       layout: "default"
-      title: "Open Energy Dashboard (OED)""
+      title: "Open Energy Dashboard (OED)"
