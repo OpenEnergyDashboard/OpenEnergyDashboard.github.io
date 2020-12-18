@@ -1,4 +1,4 @@
 name: Open Energy Dashboard (OED)
 markdown: kramdown
 
-theme: jekyll-theme-minimal
+theme: jekyll-theme-slate
