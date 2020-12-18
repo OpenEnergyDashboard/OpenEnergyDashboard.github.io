@@ -21,17 +21,27 @@ p img {
     margin-right: auto;
 }
 
-nav ul, footer ul {
+nav ul {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
 }
 
-nav ul li, footer ul li {
+nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 8px;
 }
+
+/* Color background when hover. Nice but may be harder for visually impaired. */
+/* nav ul li a {
+    display: inline-block;
+    text-align: center;
+} 
+
+nav ul li a:hover:not(.active) {
+    background-color: rgb(172, 173, 170);
+} */
 
 footer {
     border-top: 1px solid #d5d5d5;
