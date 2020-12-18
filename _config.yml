@@ -2,9 +2,7 @@ defaults:
   -
     scope:
       path: "" # an empty string here means all files in the project
-      type: "pages"
+      type: ""
     values:
       layout: "default"
-      name: Open Energy Dashboard (OED)
-      markdown: kramdown
-      theme: jekyll-theme-slate
+      title: Open Energy Dashboard (OED)
