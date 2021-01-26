@@ -1,0 +1,63 @@
+---
+layout: developer
+title: OED PRs
+---
+<div>
+	<h1>OED Pull Request</h1>
+	<p>While developing your code, we suggest you do the following:</p>
+	<ul>
+		<li>Create a branch of development branch (the main OED branch that is the default when you clone OED) and give
+			it a name that indicates the work you intend to do.</li>
+		<li>Write test cases for your code. We use Mocha/Chai for testing and a <a href="testing.html">description of it
+				location and use in OED</a> is available. We need to have all code carefully tested to know it is
+			working when created but also stays working as future changes are made to OED. Writing good test code takes
+			real effort but it needs to be done.</li>
+		<li>Make sure you run OED in a web browser and it works as expected. Please check any feature that might have
+			been impacted by your work and do a quick general check of the system so you know it works.</li>
+		<li>Run our lint checks. Lint is a system that verifies that your code does not have certain syntax or running
+			issues along with making sure it follows our expectations for code style. It also verifies that each file
+			has the needed license at the top and that TypeScript is used where expected. You will likely find it easier
+			if
+			you run this check early to find any issues so you don't repeat them many times. The checks are run in a
+			terminal. The safest way is to do it inside Docker but then you cannot be running OED at the same time. To
+			do this do (from the main OED directory as needed for all docker-compose commands):
+			<br><code>docker-compose run --service-ports --rm web npm run check</code><br>
+			You can run the check outside of Docker with:<br><code>npm run check</code><br>where you need to have npm
+			installed on your system outside the Docker OED system. Note that the checks use certain Unix commands that
+			may not run or may not run as expected on your system so even though this is faster we recommend doing it
+			inside of Docker.
+		</li>
+		<li>Run our code checks. These run all the test cases to verify the code is running correctly. It is similar to
+			running lint where you use:
+			<br><code>docker-compose run --service-ports --rm web npm run test</code><br>
+			This can take several minutes. A summary will be given at the bottom. If you see any errors then they should
+			be checked out. Let us know if you need help. You will do the same command to check any new tests you add.
+			Please note that it is difficult to run the tests outside Docker (with the full OED install) so you should
+			not do that (unlike using it with the lint check). See <a href="devDetails.html#singleTest">other info</a>
+			for faster running of single tests for debugging.
+		</li>
+		<li>Make sure you keep your fork up to date with development on the main OED GitHub. Other people may integrate
+			new code into OED and your work needs to be in sync with that work.</li>
+	</ul>
+	<p>When your fork has code that is ready to add to the OED code base, create a pull request from your branch into
+		development on the main OED GitHub repository (<a
+			href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork"
+			rel="noopener noreferrer">GitHub
+			documentation</a>). Check to see if
+		you are addressing any open issues. If so, please note in the pull request description. If your pull request
+		completely fixes/addresses an open issue then put the words "Fixes #XXX", where XXX is the issue number.
+		You will then see the a note in the pull request indicating it will close this issue when merged and there is
+		also a related note in the issue.</p>
+	<p>When your pull request is submitted, automated tests will run including static code checks and Travis that will
+		do the checks and tests. If they pass then a green check mark will be put next to them and your pull request can
+		be considered. If they fail, you should see why and fix the issue on your branch. When you push the change to
+		your GitHub account (with the fork of OED), your pull request will automatically be updated and recheck. Note
+		one exception to dealing with errors is if OED is having an issue with Travis. When this is the case we post an
+		issue and/or notify developers.</p>
+	<p>Once your pull request is passing all automated checks, it needs to be reviewed by at least one OED team
+		member with that privilege. The review might make suggestions and may request changes. Once that process is
+		complete, a senior member of the team will either approve the pull request of make other comments. Once
+		approved, the pull request can be merged into development for inclusion into the OED code base.</p>
+	<p>As always, if you have questions about this process or run into issues, you can contact the development team
+		using the link at the bottom of this page.</p>
+</div>

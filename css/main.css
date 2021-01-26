@@ -37,6 +37,14 @@ nav ul li a:hover:not(.active) {
     background-color: rgb(172, 173, 170);
 } */
 
+table, th, td {
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 5px;
+}
+
 footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
