@@ -6,3 +6,6 @@ _site/
 .project
 .org.eclipse.*
 .jsdtscope
+
+# Mac file info
+.DS_Store
