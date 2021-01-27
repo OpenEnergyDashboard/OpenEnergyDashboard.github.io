@@ -20,6 +20,8 @@ nav ul {
     padding: 0px;
     list-style: none;
     font-weight: bold;
+    /* Make font smaller since too many items in nav to fit in one line for now. */
+    font-size: 14px;
 }
 
 nav ul li {
