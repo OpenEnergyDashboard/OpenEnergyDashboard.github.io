@@ -1,0 +1,81 @@
+---
+layout: developer
+title: OED dev details
+---
+<div>
+	<h1>OED Developer Information (detailed)</h1>
+	<p>There are many details and good ideas to use as an OED developer. This page tries to give you some of them.</p>
+
+	<h2>Faster OED installation</h2>
+	<p>The easiest way to install OED is to use:
+		<br><code>docker-compose up</code><br>
+		This is equivalent to the full OED install command of
+		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh</code><br>
+	</p>
+
+	<p>When you do this it does a complete npm package install by first removing the node_modules/ directory.
+		Downloading all the needed packages for OED can take many minutes. You can avoid the package download by using
+		<br><code>install_args="--keep_node_modules" docker-compose up</code><br>
+		or the full install of
+		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh --keep_node_modules</code><br>
+		It is <strong>very important</strong> to note that this skips updating packages. If you change package.json or
+		package-lock.json directly or by pulling in code that does this, you <strong>should not</strong> use this option
+		but do the full install above after this and then you can use this faster process. If you do not then you will
+		see errors and/or unexpected behavior when OED installs/runs.
+	</p>
+
+	<h2>Resetting the Postgres database</h2>
+	<p>During the initial install of OED, Postgres detects that you have not run before for this install and initializes
+		the database system. It keeps the information in the postgres-data/ directory in the main OED directory. If you
+		or a pull changes the database configuration, it will not automatically be changed on the next OED install. When
+		we change versions of OED we use a migration system to upgrade the database but this may not be available during
+		the development cycle. Given this, it is often easiest to force Postgres to reinitialize the database. Note that
+		doing this will wipe out any data (meter, readings, preferences, etc.) that you have for this instance of OED.
+		If you wish to force Postgres to reinitialize then do the following:
+	<ol>
+		<li>Remove the postgres-data/ directory from the main OED directory. While you can delete it, it is probably
+			safer to move the entire directory somewhere else outside your OED directory. That way, if something goes
+			wrong, you can remove the new postgres-data/ directory and put this one back.</li>
+		<li>Do an install of OED. Remember if package changes were made then you need to reinstall the node_modules. In
+			this case, do not use the keep_node_module option. Note the install will take longer do to the extra
+			initialization.</li>
+		<li>Sometimes the first attempt at installation will fail when you do this. Try it one or two times more to see
+			if it will work. (We are trying to determine why this happens.) If not, replace the postgres-data/ directory
+			with the one removed and this should get you
+			running but will not give you a new version of the database. If you have this issue then contact us for
+			help (see link at bottom of page).</li>
+	</ol>
+	</p>
+
+	<h2>Having multiple versions of OED</h2>
+	<p>Most developers keep one clone of the OED software. They switch between branches as needed. However, if you are
+		working on multiple versions of OED, esp. where the node modules are changing or the database configuration
+		changes, then you can avoid having to do a full install (see above) by cloning separate copies of OED. When you
+		install it will do the clone you are currently located in (the current directory in your terminal). The database
+		information and all code is kept separate for each installation as part of the Docker containerization.</p>
+
+	<h2 id="singleTest">Rapid testing of a single test</h2>
+	<p>When you make changes to OED or develop new tests, it may be the case that only one test fails when you run
+		testing (or you want to focus on one test at a time that fails). Running all the tests is much slower than
+		running a single test. Thus, to run a single test, edit the package.json file in the main OED directory.
+		Duplicate the line inside the "scripts" section near the top that tell npm how to run the test (so you have this
+		line twice in a row):
+		<br><code>test": "./node_modules/.bin/mocha --timeout 15000 \"src/server/test/**/*.js\"",</code><br>
+		Now edit one of the duplicated lines to rename the test (whatever you want) and indicate which test file you
+		want to run. For
+		example, to name the way to run the test as "testone" and to run the test file "compressedReadingsRouteTests.js"
+		in routes you would edit the line to be:
+		<br><code>"testone": "./node_modules/.bin/mocha --timeout 15000 \"src/server/test/routes/compressedReadingsRouteTests.js\"",</code><br>
+		Now change how you run the test to
+		<br><code>docker-compose run --service-ports --rm web npm run testone</code><br>
+		and just that test file should run. You can edit this new line to run another test file or create another line
+		for that one. Please be sure you remove the lines you added to package.json before creating a pull request to
+		place changes into the OED code base.
+	</p>
+
+	<h2>Database timeout on testing</h2>
+	<p>Sometimes when you run the OED tests for the first time in a while, you get an error about the database timing
+		out. If this happens, rerun the test command. It normally works the next time (or within a total or three
+		tries). We are working to change our testing and installation so Postgres is ready before operations continue so
+		this problem will go away.</p>
+</div>

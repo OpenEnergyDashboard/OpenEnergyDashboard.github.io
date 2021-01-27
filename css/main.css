@@ -1,10 +1,4 @@
-/* @font-face {
-  font-family: BitterRegular;
-  src: url(fonts/bitter.woff);
-} */
-
 body {
-    /* font-family: BitterRegular, serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Symbola'; */
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
@@ -26,6 +20,8 @@ nav ul {
     padding: 0px;
     list-style: none;
     font-weight: bold;
+    /* Make font smaller since too many items in nav to fit in one line for now. */
+    font-size: 14px;
 }
 
 nav ul li {
@@ -42,6 +38,14 @@ nav ul li {
 nav ul li a:hover:not(.active) {
     background-color: rgb(172, 173, 170);
 } */
+
+table, th, td {
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 5px;
+}
 
 footer {
     border-top: 1px solid #d5d5d5;

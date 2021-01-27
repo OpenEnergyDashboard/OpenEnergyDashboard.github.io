@@ -1,0 +1,2 @@
+id,name,ipaddress,enabled,displayable,meter_type,identifier
+200,XXX,123.45.6.0,FALSE,TRUE,mamac,XXX
