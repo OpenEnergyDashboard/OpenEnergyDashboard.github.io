@@ -6,7 +6,7 @@ title: OED dev details
 	<h1>OED Developer Information (detailed)</h1>
 	<p>There are many details and good ideas to use as an OED developer. This page tries to give you some of them.</p>
 
-	<h2>Faster OED installation</h2>
+	<h2 id="fastInstall">Faster OED installation</h2>
 	<p>The easiest way to install OED is to use:
 		<br><code>docker-compose up</code><br>
 		This is equivalent to the full OED install command of
@@ -24,7 +24,7 @@ title: OED dev details
 		see errors and/or unexpected behavior when OED installs/runs.
 	</p>
 
-	<h2>Resetting the Postgres database</h2>
+	<h2 id="resetDB">Resetting the Postgres database</h2>
 	<p>During the initial install of OED, Postgres detects that you have not run before for this install and initializes
 		the database system. It keeps the information in the postgres-data/ directory in the main OED directory. If you
 		or a pull changes the database configuration, it will not automatically be changed on the next OED install. When
