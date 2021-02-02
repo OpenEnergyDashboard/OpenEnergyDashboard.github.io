@@ -14,7 +14,14 @@ title: OED PRs
 			real effort but it needs to be done.</li>
 		<li>Make sure you run OED in a web browser and it works as expected. Please check any feature that might have
 			been impacted by your work and do a quick general check of the system so you know it works.</li>
-		<li>Run our lint checks. Lint is a system that verifies that your code does not have certain syntax or running
+		<li>Consider if your changes impacted code or documentation that needs updating. For example, did your code
+			change OED usage so the help pages needed updating? Did you add a script so the <a
+				href="codeOrganization">Code Organization</a> web page needs update? Did you change database usage or a
+			function used elsewhere in OED so other code update is needed? It is impossible to give a full list but
+			checking this out helps the
+			project. In some cases you can note the needed changes in your pull request to make sure they get done
+			outside your work.</li>
+		<li>Run our checks. Lint is a system that verifies that your code does not have certain syntax or running
 			issues along with making sure it follows our expectations for code style. It also verifies that each file
 			has the needed license at the top and that TypeScript is used where expected. You will likely find it easier
 			if

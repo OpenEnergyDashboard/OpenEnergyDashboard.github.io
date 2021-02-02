@@ -6,7 +6,7 @@ title: OED dev details
 	<h1>OED Developer Information (detailed)</h1>
 	<p>There are many details and good ideas to use as an OED developer. This page tries to give you some of them.</p>
 
-	<h2>Faster OED installation</h2>
+	<h2 id="fastInstall">Faster OED installation</h2>
 	<p>The easiest way to install OED is to use:
 		<br><code>docker-compose up</code><br>
 		This is equivalent to the full OED install command of
@@ -24,7 +24,7 @@ title: OED dev details
 		see errors and/or unexpected behavior when OED installs/runs.
 	</p>
 
-	<h2>Resetting the Postgres database</h2>
+	<h2 id="resetDB">Resetting the Postgres database</h2>
 	<p>During the initial install of OED, Postgres detects that you have not run before for this install and initializes
 		the database system. It keeps the information in the postgres-data/ directory in the main OED directory. If you
 		or a pull changes the database configuration, it will not automatically be changed on the next OED install. When
@@ -46,6 +46,12 @@ title: OED dev details
 			help (see link at bottom of page).</li>
 	</ol>
 	</p>
+
+	<h2 id=migrate>Migrating OED</h2>
+	The script <code>src/scripts/updateOED.sh</code> should update all dependencies and migrate the OED database if
+	changes are needed. This may not work (see ideas above) if migrations are not yet available or this has been done
+	before for the same version of OED.
+	<p></p>
 
 	<h2>Having multiple versions of OED</h2>
 	<p>Most developers keep one clone of the OED software. They switch between branches as needed. However, if you are
@@ -78,4 +84,40 @@ title: OED dev details
 		out. If this happens, rerun the test command. It normally works the next time (or within a total or three
 		tries). We are working to change our testing and installation so Postgres is ready before operations continue so
 		this problem will go away.</p>
+
+	<h2 id=typescript>TypeScript Wisdom</h2>
+	<p>TypeScript is great, but sometimes it requires some rather strange incantations, especially when working with
+		external libraries. We cannot provide information on everything you need to know but here is one of interest:
+	</p>
+
+	<h3>Regarding <code>InjectedIntlProps</code> from <code>react-intl</code></h3>
+	<p>When using <code>react-intl</code>'s higher order component functionality, some incantations are required. When
+		defining a component, it's necessary to express that the component's props are actually (your props) ∪
+		(internationalization injector). This can be done via the <code>&amp;</code> operator, as follows:</p>
+	<pre>
+interfaceSomeProps {
+    prop1: number;
+}
+
+interfaceSomeState {
+    state1: number;
+}
+
+class SomeComponent extends React.Component&lt;SomeProps &amp; InjectedIntlProps, SomeState&gt; {
+    constructor(props: SomeProps: &amp; InjectedIntlProps) {
+        super(props);
+        // ...
+    }
+    // ...
+}
+
+export default injectIntl&lt;SomeProps&gt;(SomeComponent);
+</pre>
+
+	<p>If the union type is used often, it might be cleaner to create a type alias:</p>
+
+	<pre>
+type SomePropsWithIntl = SomeProps &amp; InjectedIntlProps;
+</pre>
+
 </div>
