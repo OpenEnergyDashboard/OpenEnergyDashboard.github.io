@@ -1,19 +1,26 @@
-<p>We appreciate documentation contributions, especially if they follow the common format. We acknowledge that these
-    suggestions are far from complete and welcome input from developers.</p>
-<p>Each file should begin with a short summary of its contents; for instance:</p>
+---
+layout: developer
+title: OED documentation expectations
+---
+<div>
+    <h1>OED Code Documentation Expectations</h1>
 
-<pre>
+    <p>We appreciate documentation contributions, especially if they follow the common format. We acknowledge that these
+        suggestions are far from complete and welcome input from developers.</p>
+    <p>Each file should begin with a short summary of its contents; for instance:</p>
+
+    <pre>
 /* This file contains the React component which lists and allows 
  * selections of pairs of {id, name}, e.g. for groups and meters
  * in the chart UI. */
 </pre>
 
-<p>Every function should have JSDoc comments, beginning with <code>/**</code>, which should include the
-    <code>@param</code> and <code>@return</code> tags to describe parameters and functions.
-</p>
-<p>In TypeScript code, it's unnecessary to declare types for <code>@param</code> tags.</p>
+    <p>Every function should have JSDoc comments, beginning with <code>/**</code>, which should include the
+        <code>@param</code> and <code>@return</code> tags to describe parameters and functions.
+    </p>
+    <p>In TypeScript code, it's unnecessary to declare types for <code>@param</code> tags.</p>
 
-<pre>
+    <pre>
 /**
  * Converts pairs of timestamps into an array of TimeIntervals.
  * @param tspairs {[[number, number]]} the pairs of timestamps to be processed
@@ -22,8 +29,8 @@
 function tspairsToTimeIntervals(tspairs) {
 </pre>
 
-<p>Do your best to use full English sentences. For example, the following could be rewritten:</p>
-<pre>
+    <p>Do your best to use full English sentences. For example, the following could be rewritten:</p>
+    <pre>
 /**
  * Middleware function to force authentication
  * Requires a route to have a valid token or 401
@@ -31,12 +38,13 @@ function tspairsToTimeIntervals(tspairs) {
 async function authenticate(req, res, next) {
 </pre>
 
-<p>as the more readable:</p>
+    <p>as the more readable:</p>
 
-<pre>
+    <pre>
 /**
  * This middleware function forces requests to provide a valid
  * token. Requests without a valid token will reject with a 401.
  */
 async function authenticate(req, res, next) {
 </pre>
+</div>
