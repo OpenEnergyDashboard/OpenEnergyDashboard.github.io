@@ -1,0 +1,235 @@
+---
+layout: developer
+title: OED full install
+---
+<div>
+	<h1>Full Install Output</h1>
+	<p>When you install OED without already have a database or node modules, it does all the steps. Below is typical
+		output for this process. Please note:
+	<ul>
+		<li>This output was created on 5 Feb 2021 on a Mac. The exact output will vary with machine type and changes to
+			OED.</li>
+		<li>There are often colors in the output but that is not shown.</li>
+		<li>There may be a delay of many minutes before the line<br>
+			web_1 | > fsevents@1.2.12 install /usr/src/app/node_modules/fsevents<br>
+			due to the install process downloading all the needed packages. The time needed varies by internet
+			connection, your machine speed and the speed that the repos respond.</li>
+		<li>The warning:<br>
+			WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
+			may or may not show up. It also shows up at other times. The complete answer is not known but it appears to
+			be a transient error in PostgreSQL writing log information. It has never caused any problems.</li>
+	</ul>
+	</p>
+
+	<pre>
+$ docker-compose up
+Starting oed_database_1 ... done
+Starting oed_web_1      ... done
+Attaching to oed_database_1, oed_web_1
+database_1  | The files belonging to this database system will be owned by user "postgres".
+database_1  | This user must also own the server process.
+database_1  | 
+database_1  | The database cluster will be initialized with locale "en_US.utf8".
+database_1  | The default database encoding has accordingly been set to "UTF8".
+database_1  | The default text search configuration will be set to "english".
+database_1  | 
+database_1  | Data page checksums are disabled.
+database_1  | 
+database_1  | fixing permissions on existing directory /var/lib/postgresql/data/pgdata ... ok
+database_1  | creating subdirectories ... ok
+database_1  | selecting default max_connections ... 100
+database_1  | selecting default shared_buffers ... 128MB
+database_1  | selecting default timezone ... Etc/UTC
+database_1  | selecting dynamic shared memory implementation ... posix
+database_1  | creating configuration files ... ok
+web_1       | NPM install...
+web_1       | npm WARN prepare removing existing node_modules/ before installation
+database_1  | running bootstrap script ... ok
+database_1  | performing post-bootstrap initialization ... ok
+database_1  | syncing data to disk ... ok
+database_1  | 
+database_1  | Success. You can now start the database server using:
+database_1  | 
+database_1  |     pg_ctl -D /var/lib/postgresql/data/pgdata -l logfile start
+database_1  | 
+database_1  | 
+database_1  | WARNING: enabling "trust" authentication for local connections
+database_1  | You can change this by editing pg_hba.conf or using the option -A, or
+database_1  | --auth-local and --auth-host, the next time you run initdb.
+database_1  | waiting for server to start....2021-02-05 17:58:09.541 UTC [46] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database_1  | 2021-02-05 17:58:09.657 UTC [47] LOG:  database system was shut down at 2021-02-05 17:58:02 UTC
+database_1  | 2021-02-05 17:58:09.725 UTC [46] LOG:  database system is ready to accept connections
+database_1  |  done
+database_1  | server started
+database_1  | 
+database_1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+database_1  | CREATE ROLE
+database_1  | psql:/docker-entrypoint-initdb.d/init.sql:6: NOTICE:  database "oed" does not exist, skipping
+database_1  | DROP DATABASE
+database_1  | CREATE DATABASE
+database_1  | DROP DATABASE
+database_1  | psql:/docker-entrypoint-initdb.d/init.sql:8: NOTICE:  database "oed_testing" does not exist, skipping
+database_1  | CREATE DATABASE
+database_1  | ALTER ROLE
+database_1  | 
+database_1  | 
+database_1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/nuke.sql
+database_1  | DROP DATABASE
+database_1  | DROP DATABASE
+database_1  | CREATE DATABASE
+database_1  | CREATE DATABASE
+database_1  | 
+database_1  | 
+database_1  | 2021-02-05 17:58:38.398 UTC [46] LOG:  received fast shutdown request
+database_1  | waiting for server to shut down....2021-02-05 17:58:38.406 UTC [46] LOG:  aborting any active transactions
+database_1  | 2021-02-05 17:58:38.409 UTC [46] LOG:  worker process: logical replication launcher (PID 53) exited with exit code 1
+database_1  | 2021-02-05 17:58:38.420 UTC [48] LOG:  shutting down
+database_1  | 2021-02-05 17:58:38.605 UTC [46] LOG:  database system is shut down
+database_1  |  done
+database_1  | server stopped
+database_1  | 
+database_1  | PostgreSQL init process complete; ready for start up.
+database_1  | 
+database_1  | 2021-02-05 17:58:38.687 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+database_1  | 2021-02-05 17:58:38.687 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+database_1  | 2021-02-05 17:58:38.699 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database_1  | 2021-02-05 17:58:38.841 UTC [73] LOG:  database system was shut down at 2021-02-05 17:58:38 UTC
+database_1  | 2021-02-05 17:58:38.914 UTC [1] LOG:  database system is ready to accept connections
+database_1  | 2021-02-05 18:00:39.112 UTC [77] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
+database_1  | 2021-02-05 18:02:39.177 UTC [83] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
+web_1       | 
+web_1       | > fsevents@1.2.12 install /usr/src/app/node_modules/fsevents
+web_1       | > node-gyp rebuild
+web_1       | 
+web_1       | gyp info it worked if it ends with ok
+web_1       | gyp info using node-gyp@5.0.3
+web_1       | gyp info using node@12.9.1 | linux | x64
+web_1       | gyp info find Python using Python version 2.7.13 found at "/usr/bin/python"
+web_1       | gyp http GET https://nodejs.org/download/release/v12.9.1/node-v12.9.1-headers.tar.gz
+web_1       | gyp http 200 https://nodejs.org/download/release/v12.9.1/node-v12.9.1-headers.tar.gz
+web_1       | gyp http GET https://nodejs.org/download/release/v12.9.1/SHASUMS256.txt
+web_1       | gyp http 200 https://nodejs.org/download/release/v12.9.1/SHASUMS256.txt
+web_1       | gyp info spawn /usr/bin/python
+web_1       | gyp info spawn args [
+web_1       | gyp info spawn args   '/usr/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py',
+web_1       | gyp info spawn args   'binding.gyp',
+web_1       | gyp info spawn args   '-f',
+web_1       | gyp info spawn args   'make',
+web_1       | gyp info spawn args   '-I',
+web_1       | gyp info spawn args   '/usr/src/app/node_modules/fsevents/build/config.gypi',
+web_1       | gyp info spawn args   '-I',
+web_1       | gyp info spawn args   '/usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi',
+web_1       | gyp info spawn args   '-I',
+web_1       | gyp info spawn args   '/root/.cache/node-gyp/12.9.1/include/node/common.gypi',
+web_1       | gyp info spawn args   '-Dlibrary=shared_library',
+web_1       | gyp info spawn args   '-Dvisibility=default',
+web_1       | gyp info spawn args   '-Dnode_root_dir=/root/.cache/node-gyp/12.9.1',
+web_1       | gyp info spawn args   '-Dnode_gyp_dir=/usr/local/lib/node_modules/npm/node_modules/node-gyp',
+web_1       | gyp info spawn args   '-Dnode_lib_file=/root/.cache/node-gyp/12.9.1/<(target_arch)/node.lib',
+web_1       | gyp info spawn args   '-Dmodule_root_dir=/usr/src/app/node_modules/fsevents',
+web_1       | gyp info spawn args   '-Dnode_engine=v8',
+web_1       | gyp info spawn args   '--depth=.',
+web_1       | gyp info spawn args   '--no-parallel',
+web_1       | gyp info spawn args   '--generator-output',
+web_1       | gyp info spawn args   'build',
+web_1       | gyp info spawn args   '-Goutput_dir=.'
+web_1       | gyp info spawn args ]
+web_1       | gyp info spawn make
+web_1       | gyp info spawn args [ 'BUILDTYPE=Release', '-C', 'build' ]
+web_1       | make: Entering directory '/usr/src/app/node_modules/fsevents/build'
+web_1       |   SOLINK_MODULE(target) Release/obj.target/.node
+web_1       |   COPY Release/.node
+web_1       | make: Leaving directory '/usr/src/app/node_modules/fsevents/build'
+web_1       | gyp info ok 
+web_1       | 
+web_1       | > core-js@2.6.11 postinstall /usr/src/app/node_modules/core-js
+web_1       | > node -e "try{require('./postinstall')}catch(e){}"
+web_1       | 
+web_1       | Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+web_1       | 
+web_1       | The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+web_1       | > https://opencollective.com/core-js 
+web_1       | > https://www.patreon.com/zloirock 
+web_1       | 
+web_1       | Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+web_1       | 
+web_1       | 
+web_1       | > nodemon@1.18.11 postinstall /usr/src/app/node_modules/nodemon
+web_1       | > node bin/postinstall || exit 0
+web_1       | 
+web_1       | Love nodemon? You can now support the project via the open collective:
+web_1       |  > https://opencollective.com/nodemon/donate
+web_1       | 
+web_1       | added 1711 packages in 409.022s
+web_1       | NPM install finished.
+web_1       | Attempting to create database...
+web_1       | 
+web_1       | -----start of npm run createdb output-----
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 createdb /usr/src/app
+web_1       | > node ./src/server/services/createDB.js
+web_1       | 
+web_1       | -----end of npm run createdb output-----
+web_1       | 
+web_1       |   database creation had no errors so assume schema creation worked.
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 createUser /usr/src/app
+web_1       | > node ./src/server/services/user/createUser.js "test@example.com" "password"
+web_1       | 
+web_1       | [INFO@2021-02-05T18:04:25.852Z] User created or already exists
+web_1       | 
+web_1       | User creation had no errors so default user 'test@example.com' with password 'password' should exist
+web_1       | OED install finished
+web_1       | Starting OED in development mode
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 start:dev /usr/src/app
+web_1       | > nodemon --inspect=0.0.0.0 ./src/bin/www
+web_1       | 
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 webpack:dev /usr/src/app
+web_1       | > webpack -d --watch --color --progress
+web_1       | 
+web_1       | [nodemon] 1.18.11
+web_1       | [nodemon] to restart at any time, enter `rs`
+web_1       | [nodemon] watching: /usr/src/app/src/server/**/* /usr/src/app/src/bin/**/* /usr/src/app/src/common/**/*
+web_1       | [nodemon] starting `node --inspect=0.0.0.0 ./src/bin/www`
+web_1       | Debugger listening on ws://0.0.0.0:9229/b832e662-4efb-4af6-a4b1-4fabc6cadc2b
+web_1       | For help, see: https://nodejs.org/en/docs/inspector
+database_1  | 2021-02-05 18:04:40.264 UTC [87] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
+web_1       |  10% building 0/0 modules 0 active
+web_1       | webpack is watching the files…
+web_1       | 
+web_1       | [INFO@2021-02-05T18:04:42.098Z] Listening on port 3000
+web_1       | 
+ 10% building 0/1 modules 1 active ...s!/usr/src/app/src/client/app/index.tsx
+web_1       | [at-loader] Using typescript@3.5.3 from typescript and "tsconfig.json" from /usr/src/app/tsconfig.json (in a forked process).
+web_1       | 
+ 95% emitting                                                                       
+web_1       | [at-loader] Checking started in a separate process...
+wHash: 617247ab0ef1d20cb236          
+web_1       | Version: webpack 4.30.0
+web_1       | Time: 98861ms
+web_1       | Built at: 02/05/2021 6:06:20 PM
+web_1       |     Asset      Size  Chunks                    Chunk Names
+web_1       | bundle.js  27.2 MiB    main  [emitted]  [big]  main
+web_1       | Entrypoint main [big] = bundle.js
+web_1       | [./node_modules/css-loader/dist/cjs.js!./src/client/app/styles/index.css] 413 bytes {main} [built]
+web_1       | [./src/client/app/actions/barReadings.ts] 10.1 KiB {main} [built]
+web_1       | [./src/client/app/actions/graph.ts] 7.77 KiB {main} [built]
+web_1       | [./src/client/app/containers/RouteContainer.ts] 906 bytes {main} [built]
+web_1       | [./src/client/app/index.tsx] 1.27 KiB {main} [built]
+web_1       | [./src/client/app/reducers/admin.ts] 2.88 KiB {main} [built]
+web_1       | [./src/client/app/reducers/barReadings.ts] 5.44 KiB {main} [built]
+web_1       | [./src/client/app/reducers/compareReadings.ts] 5.53 KiB {main} [built]
+web_1       | [./src/client/app/reducers/graph.ts] 3.43 KiB {main} [built]
+web_1       | [./src/client/app/reducers/groups.ts] 8.16 KiB {main} [built]
+web_1       | [./src/client/app/reducers/index.ts] 1 KiB {main} [built]
+web_1       | [./src/client/app/reducers/lineReadings.ts] 4.62 KiB {main} [built]
+web_1       | [./src/client/app/reducers/meters.ts] 2.52 KiB {main} [built]
+web_1       | [./src/client/app/reducers/notifications.ts] 1.21 KiB {main} [built]
+web_1       | [./src/client/app/styles/index.css] 1.03 KiB {main} [built]
+web_1       |     + 2076 hidden modules
+web_1       | 
+web_1       | [at-loader] Ok, 22.565 sec.
+	</pre>
+</div>

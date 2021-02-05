@@ -1,0 +1,104 @@
+---
+layout: developer
+title: OED quick install
+---
+<div>
+	<h1>No NPM or Database Install Output</h1>
+	<p>If you have previously installed the PostgreSQL database and tell OED to skip installing the node modules then it
+		will be faster and skip a number of steps. Below is typical
+		output for this process. Please note:
+	<ul>
+		<li>This output was created on 5 Feb 2021 on a Mac. The exact output will vary with machine type and changes to
+			OED.</li>
+		<li>There are often colors in the output but that is not shown.</li>
+		<li>The warning:<br>
+			WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
+			may or may not show up. It also shows up at other times. The complete answer is not known but it appears to
+			be a transient error in PostgreSQL writing log information. It has never caused any problems.</li>
+	</ul>
+	</p>
+
+	<pre>
+$  install_args="--keep_node_modules" docker-compose up
+Starting oed_database_1 ... done
+Starting oed_web_1      ... done
+Attaching to oed_database_1, oed_web_1
+web_1       | skipping NPM install as requested
+database_1  | 
+database_1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+database_1  | 
+database_1  | 2021-02-05 18:51:54.097 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+database_1  | 2021-02-05 18:51:54.098 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+database_1  | 2021-02-05 18:51:54.109 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database_1  | 2021-02-05 18:51:54.283 UTC [26] LOG:  database system was shut down at 2021-02-05 18:51:43 UTC
+database_1  | 2021-02-05 18:51:54.352 UTC [1] LOG:  database system is ready to accept connections
+web_1       | Attempting to create database...
+web_1       | 
+web_1       | -----start of npm run createdb output-----
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 createdb /usr/src/app
+web_1       | > node ./src/server/services/createDB.js
+web_1       | 
+web_1       | -----end of npm run createdb output-----
+web_1       | 
+web_1       |   database creation had no errors so assume schema creation worked.
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 createUser /usr/src/app
+web_1       | > node ./src/server/services/user/createUser.js "test@example.com" "password"
+web_1       | 
+web_1       | [INFO@2021-02-05T18:52:00.211Z] User created or already exists
+web_1       | 
+web_1       | User creation had no errors so default user 'test@example.com' with password 'password' should exist
+web_1       | OED install finished
+web_1       | Starting OED in development mode
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 webpack:dev /usr/src/app
+web_1       | > webpack -d --watch --color --progress
+web_1       | 
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.5.0 start:dev /usr/src/app
+web_1       | > nodemon --inspect=0.0.0.0 ./src/bin/www
+web_1       | 
+web_1       | [nodemon] 1.18.11
+web_1       | [nodemon] to restart at any time, enter `rs`
+web_1       | [nodemon] watching: /usr/src/app/src/server/**/* /usr/src/app/src/bin/**/* /usr/src/app/src/common/**/*
+web_1       | [nodemon] starting `node --inspect=0.0.0.0 ./src/bin/www`
+web_1       | Debugger listening on ws://0.0.0.0:9229/d7a10f7e-14f5-4d12-9663-ef5a572891f6
+web_1       | For help, see: https://nodejs.org/en/docs/inspector
+web_1       |  10% building 0/0 modules 0 active
+web_1       | webpack is watching the files…
+web_1       | 
+web_1       | [INFO@2021-02-05T18:52:13.553Z] Listening on port 3000
+web_1       | 
+ 10% building 0/1 modules 1 active ...s!/usr/src/app/src/client/app/index.tsx
+web_1       | [at-loader] Using typescript@3.5.3 from typescript and "tsconfig.json" from /usr/src/app/tsconfig.json (in a forked process).
+web_1       | 
+ 95% emitting                                                                       
+web_1       | [at-loader] Checking started in a separate process...
+wHash: 617247ab0ef1d20cb236          
+web_1       | Version: webpack 4.30.0
+web_1       | Time: 72498ms
+web_1       | Built at: 02/05/2021 6:53:25 PM
+web_1       |     Asset      Size  Chunks                    Chunk Names
+web_1       | bundle.js  27.2 MiB    main  [emitted]  [big]  main
+web_1       | Entrypoint main [big] = bundle.js
+web_1       | [./node_modules/css-loader/dist/cjs.js!./src/client/app/styles/index.css] 413 bytes {main} [built]
+web_1       | [./src/client/app/actions/barReadings.ts] 10.1 KiB {main} [built]
+web_1       | [./src/client/app/actions/graph.ts] 7.77 KiB {main} [built]
+web_1       | [./src/client/app/containers/RouteContainer.ts] 906 bytes {main} [built]
+web_1       | [./src/client/app/index.tsx] 1.27 KiB {main} [built]
+web_1       | [./src/client/app/reducers/admin.ts] 2.88 KiB {main} [built]
+web_1       | [./src/client/app/reducers/barReadings.ts] 5.44 KiB {main} [built]
+web_1       | [./src/client/app/reducers/compareReadings.ts] 5.53 KiB {main} [built]
+web_1       | [./src/client/app/reducers/graph.ts] 3.43 KiB {main} [built]
+web_1       | [./src/client/app/reducers/groups.ts] 8.16 KiB {main} [built]
+web_1       | [./src/client/app/reducers/index.ts] 1 KiB {main} [built]
+web_1       | [./src/client/app/reducers/lineReadings.ts] 4.62 KiB {main} [built]
+web_1       | [./src/client/app/reducers/meters.ts] 2.52 KiB {main} [built]
+web_1       | [./src/client/app/reducers/notifications.ts] 1.21 KiB {main} [built]
+web_1       | [./src/client/app/styles/index.css] 1.03 KiB {main} [built]
+web_1       |     + 2076 hidden modules
+web_1       | 
+web_1       | [at-loader] Ok, 16.051 sec.
+	</pre>
+</div>
