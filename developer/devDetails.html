@@ -14,14 +14,16 @@ title: OED dev details
 	</p>
 
 	<p>When you do this it does a complete npm package install by first removing the node_modules/ directory.
-		Downloading all the needed packages for OED can take many minutes. You can avoid the package download by using
+		Downloading all the needed packages for OED can take many minutes. (<a href="fullInstallOutput.html">full
+			install output</a>) You can avoid the package download by using
 		<br><code>install_args="--keep_node_modules" docker-compose up</code><br>
 		or the full install of
 		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh --keep_node_modules</code><br>
 		It is <strong>very important</strong> to note that this skips updating packages. If you change package.json or
 		package-lock.json directly or by pulling in code that does this, you <strong>should not</strong> use this option
 		but do the full install above after this and then you can use this faster process. If you do not then you will
-		see errors and/or unexpected behavior when OED installs/runs.
+		see errors and/or unexpected behavior when OED installs/runs. (<a href="noNPMInstallOutput.html">skipping NPM
+			install output</a>)
 	</p>
 
 	<h2 id="resetDB">Resetting the Postgres database</h2>
@@ -47,11 +49,49 @@ title: OED dev details
 	</ol>
 	</p>
 
+	<h2 id=goingOn>Seeing what is happening with OED</h2>
+	<p>Sometimes OED will not act as you expect and you want to know what is going on. There are two normal ways to do
+		this:
+	</p>
+	<ul>
+		<li>The terminal where you started OED should show any errors, messages, etc. that are produced while it is
+			running. It is a good idea to be able to see this while you are running a version you are developing so you
+			can tell when something significant happens. The messages can be informational where these are
+			normal and not an indication of a problem.</li>
+		<li>OED has the log file "log.txt" in the main OED directory. All message should be placed in this file. The
+			newest messages are at the end. This file can get large over time so you probably want to focus on lines in
+			the time frame you are interested (they should be timestamped).</li>
+	</ul>
+	<p>The warning:<br>
+		WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
+		may or may not show up in the output. The complete answer is not known but it appears to
+		be a transient error in PostgreSQL writing log information. It has never caused any problems.</p>
+
+	<h2 id=codeChange>Getting a running OED to recognize code changes</h2>
+	<p>As a developer, you are often changing the code to see what impact it has on a running version of OED. In
+		general, the system should recognize these changes and update the running version. When that happens, in the
+		terminal where you started OED, you see:
+	</p>
+	<pre>
+web_1       |  94% after seal                                                                 
+web_1       | [at-loader] Checking started in a separate process...
+95% emitting 
+web_1       | [at-loader] Ok, 0.006 sec.
+	</pre>
+	<p>Where the % shown will vary and sometimes it says "seal" instead of "emitting". The update can start almost
+		immediately after a saved file or it can take a modest amount of time. If it does not happen, you can restart
+		the system (forces the update) by typing "rs" in the terminal where the output from OED is showing and you
+		started OED. This is indicated during the install from the line:<br>
+		[nodemon] to restart at any time, enter `rs`<br>
+		Note that once the at-loader ok line is seen, you may need to reload your web page to see changes. Whether this
+		is necessary depends on what was changed (normally server vs client code).</p>
+
 	<h2 id=migrate>Migrating OED</h2>
-	The script <code>src/scripts/updateOED.sh</code> should update all dependencies and migrate the OED database if
-	changes are needed. This may not work (see ideas above) if migrations are not yet available or this has been done
-	before for the same version of OED.
-	<p></p>
+	<p>The script <code>src/scripts/updateOED.sh</code> should update all dependencies and migrate the OED database if
+		changes are needed. This may not work (see ideas above) if migrations are not yet available or this has been
+		done
+		before for the same version of OED.
+	</p>
 
 	<h2>Having multiple versions of OED</h2>
 	<p>Most developers keep one clone of the OED software. They switch between branches as needed. However, if you are
