@@ -15,29 +15,57 @@ p img {
     margin-right: auto;
 }
 
-nav ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-    padding: 0px;
-    list-style: none;
-    font-weight: bold;
-    /* Make font smaller since too many items in nav to fit in one line for now. */
-    font-size: 14px;
+.navbar {
+    overflow: hidden;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 8px;
-}
-
-/* Color background when hover. Nice but may be harder for visually impaired. */
-/* nav ul li a {
-    display: inline-block;
+.navbar a {
+    float: left;
     text-align: center;
-} 
+    padding: 6px 6px;
+    text-decoration: none;
+}
 
-nav ul li a:hover:not(.active) {
-    background-color: rgb(172, 173, 170);
-} */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    padding: 6px 6px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(177, 173, 173);
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 table, th, td {
     border: 2px solid black;
@@ -49,7 +77,7 @@ th, td {
 
 footer {
     border-top: 1px solid #d5d5d5;
-    font-size: .8em;
+    font-size: 0.9em;
 }
 
 #logo {
