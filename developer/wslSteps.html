@@ -21,9 +21,9 @@ title: Steps for WSL
         </li>
         <li>
             <h2><code>chmod: changing permissions of '/var/lib/postgresql/data/pgdata': Operation not permitted</code></h2><br>
-            Edit the following lines in <code>docker-compose.yml</code> (note the addition of the <code>:z</code>):<br>
-            <code>15:             - PGDATA=/var/lib/postgresql/data/pgdata:z</code><br>
-            <code>18:             - ./postgres-data:/var/lib/postgresql/data/pgdata:z</code><br>
+            Edit the following paths in <code>docker-compose.yml</code> under the <code>database:</code> tag (note the addition of the <code>:z</code>):<br>
+            <code>- PGDATA=/var/lib/postgresql/data/pgdata:z</code><br>
+            <code>- ./postgres-data:/var/lib/postgresql/data/pgdata:z</code><br>
             <br>
             An explanation can be found <a href=https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux/>here</a>.
         </li>
