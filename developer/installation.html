@@ -1,0 +1,335 @@
+---
+layout: developer
+title: OED installation
+---
+<div>
+	<h1>OED Installation</h1>
+
+	<h1>Quick Start With Docker</h1>
+	<p>If using Docker, you first need to install <a href="https://docs.docker.com/engine/installation/"
+			rel="nofollow">Docker</a>
+		and <a href="https://docs.docker.com/compose/install/" rel="nofollow">docker-compose</a>.</p>
+	<p>On Ubuntu, you can do this via:</p>
+	<code>sudo apt install docker.io docker-compose</code>
+	<p>You can then install and start OED with:</p>
+	<code>docker-compose up</code>
+	<p>Go to <code>localhost:3000</code> in your web browser and enjoy!</p>
+	<p>You probably want to read the rest of this document to learn about the technologies we
+		use and how to add meters and read data from them.</p>
+
+	<h1>Requirements</h1>
+	<p>The Open Energy Dashboard uses <strong>PostgreSQL</strong> version 9.6 or higher for data storage, and
+		runs on <strong>Node.js</strong> version 8.11 or higher. These are the version shipped in the Ubuntu
+		repositories, meaning that Windows users can easily use the Windows Subsystem for Linux
+		in order to work on the project.</p>
+	<p>OED can also be installed using the Docker containerization tool. This allows it to be
+		segregated from the rest of the system, and makes updates easier to perform, since the
+		dependencies are all taken care of through the container definitions.</p>
+	<p>The is the only supported method for production deployments.</p>
+	<p>Under Docker, OED is installed and administered using the <code>docker-compose</code> command. You
+		will need Docker version 18.06 CE or higher and <code>docker-compose</code> version 1.21 or higher.
+		If you want to install OED so you can contribute code, see the "Development" section. If
+		you are setting up OED in order to gather data from power meters and display it, see the
+		"Production" section.</p>
+
+	<h2>Notes</h2>
+
+	<h3>On The Terminal</h3>
+	<p>This guide requires that you enter some commands into an operating system shell, or
+		terminal.</p>
+	<ul>
+		<li>On Windows, this is the "Command Line" (<code>cmd.exe</code>).</li>
+		<li>On MacOS, you can use Terminal.app (the default), iTerm2, or any other terminal program.</li>
+		<li>On Linux, your distribution will provide a terminal; it can generally be opened with
+			Ctrl+Shift+T or by searching for "Terminal" in your application menu.</li>
+	</ul>
+
+	<h3>On OED and Non-UNIX Operating Systems</h3>
+	<p>OED uses Unix, including Linux, features to work. Mac-OS X is based on Unix and Docker can installed directly as
+		an application. Windows OS is not based on Unix so other steps are necessary. Given that Windows 10+ is
+		generally needed to install OED and the fact that most systems run at least Windows 10, these directions assume
+		your system is at that level of Windows (and use the OS name Windows 10). If you have Windows 10 Professional,
+		Enterprise or Education, you should be able to directly install Docker via the Hyper-V though it may need to be
+		enabled. If you have Windows 10 Home then you can use WSL 2 to enable Linux and then install Docker. Once you
+		have Docker installed and working, you can follow the direction given here since they only depend on
+		Docker/docker-compose.
+
+	<h1>Installation</h1>
+	<p>The following guides relate how to install, configure, and run OED for the first time, for development
+		and for production usage.</p>
+
+	<h2>Development</h2>
+
+	<h3>With Docker</h3>
+	<p>When using OED via Docker, most commands should be issued in the form:</p>
+	<p><code>docker-compose exec web [COMMAND]</code></p>
+	<p>In other words:</p>
+	<ul>
+		<li><code>docker-compose exec</code> - Execute a command in a Docker container managed by Docker-Compose</li>
+		<li><code>web</code> - Run the command in the <code>web</code> container (the container with Node and NPM)</li>
+	</ul>
+	<p>This only works if the system is running (started via <code>docker-compose up</code>). If, for some
+		reason, you have to execute a command without starting the system, use
+		<code>docker-compose run --rm web [COMMAND]</code>, which will start a new <code>web</code> container and then
+		remove it
+		once finished.
+	</p>
+	<p>Follow the instructions in the Docker Quickstart section at the top of the document.</p>
+
+	<h3>Without Docker</h3>
+	<p>If you are not using Docker, you need to install the dependencies yourself. Specifically,
+		install Node.js version 8.11 or higher; NPM, the Node package manager; and PostgreSQL
+		version 9.6 or higher.</p>
+	<p>Docker also manages configuration. If you are not using Docker, you will need to create a
+		.env file (a file whose name is <code>.env</code> and nothing else) in the root directory of the project
+		with the following contents, with any changes needed for your system.</p>
+	<p>See below for more on what each variable does.</p>
+	<pre><code>OED_PRODUCTION=no
+OED_SERVER_PORT=3000
+OED_TOKEN_SECRET=asdf
+OED_DB_USER=oed
+OED_DB_DATABASE=oed
+OED_DB_TEST_DATABASE=oed_testing
+OED_DB_PASSWORD=opened
+OED_DB_HOST=localhost
+POSTGRES_PASSWORD=xxx
+OED_DB_PORT=5432
+OED_LOG_FILE=log.txt
+OED_MAIL_METHOD=none
+OED_MAIL_IDENT=
+OED_MAIL_CREDENTIAL=
+OED_MAIL_FROM=
+OED_MAIL_TO=
+OED_MAIL_ORG=
+</code></pre>
+
+	<h3>Installation Steps</h3>
+	<p>Set up Node environment and the database by running <code>src/scripts/installOED.sh</code> in the main directory.
+		Wait for the Webpack build to finish and then access the app at <a href="http://localhost:3000"
+			rel="nofollow">localhost:3000</a>.</p>
+	<p>You can log into the app with email: <code>test@example.com</code>, password: <code>password</code>.</p>
+	<h3>Adding Meters</h3>
+	<p>If you have network-connected MAMAC meters, create a CSV file with a single column called "ip"
+		with your meter IP addresses and copy it into the directory in which the project resides.
+		It should look something like this:</p>
+	<pre lang="csv"><code>ip
+127.0.0.1
+127.0.0.2
+</code></pre>
+	<p>Add meters from the ips.csv file with
+		<code>docker-compose exec web npm run addMamacMeters ips.csv</code>,
+		then fetch data from the meters you just added with
+		<code>docker-compose exec web npm run updateMamacMeters</code>.
+		Finally, update aggregate readings with
+		<code>docker-compose exec web npm run refreshReadingViews</code>.
+	</p>
+	<h3>Environment Variables</h3>
+	<p>The OED server is configured via environment variables, as follows.</p>
+	<ul>
+		<li>OED_PRODUCTION: 'yes' if running "for realsies" on a server, 'no' otherwise.</li>
+		<li>OED_SERVER_PORT: The port that the server should run on. 3000 is a good default choice</li>
+		<li>OED_TOKEN_SECRET: Token for authentication. Generate something secure and random</li>
+		<li>OED_DB_USER: The user that should be used to connect to postgres</li>
+		<li>OED_DB_DATABASE: The database you just created, so likely oed</li>
+		<li>OED_DB_TEST_DATABASE: The test database you just created, so likely oed_testing</li>
+		<li>OED_DB_PASSWORD: The password for your postgres user</li>
+		<li>POSTGRES_PASSWORD: The password for the postgres running in the container. You might want to change its
+			value for security reasons.</li>
+		<li>OED_DB_HOST: The host for your postgres db, likely localhost</li>
+		<li>OED_DB_PORT: The port for your postgres db, likely 5432</li>
+		<li>OED_LOG_FILE: Path to the log file, defaults to ./log.txt</li>
+		<li>OED_MAIL_METHOD: Method of sending mail. Supports "gmail", "mailgun", "none". Case insensitive.</li>
+		<li>OED_MAIL_IDENT: Username for gmail, domain for mailgun. Ex: <a
+				href="mailto:user@example.com">user@example.com</a></li>
+		<li>OED_MAIL_CREDENTIAL: Password for gmail, or API key for mailgun.</li>
+		<li>OED_MAIL_FROM: From address for email. If using GMail, make sure this is set</li>
+		<li>OED_MAIL_TO: Who gets error e-mail. Ex: <a href="mailto:admin@example.com">admin@example.com</a></li>
+		<li>OED_MAIL_ORG: Organization name, used in e-mail subject line</li>
+	</ul>
+
+	<h2>Production</h2>
+
+	<h3>Installation</h3>
+	<ol>
+		<li>These directions assume someone with access to the server where OED is being installed and a working
+			knowledge of doing Unix shell commands. This is generally someone within the IT department of your
+			organization.</li>
+		<li>These directions assume you are on a Unix-based system. Please contact us if you want help in installing on
+			other OSes.</li>
+		<li>
+			<p>Install <a href="https://docs.docker.com/engine/installation/" rel="nofollow">Docker</a> and <a
+					href="https://docs.docker.com/compose/install/" rel="nofollow">docker-compose</a>.</p>
+		</li>
+		<li>
+			<p>Clone this repository. <code>git clone https://github.com/OpenEnergyDashboard/OED.git [directory]</code>
+			</p>
+		</li>
+		<li>
+			<p>Create a CSV file with a single column called "ip" with your meter IP addresses and copy it into the
+				directory where the project resides. These are the IPs of Mamac meters from which this OED instance will
+				pull data. If the site has no Mamac meters, you may skip this step.</p>
+		</li>
+		<p>cd into the directory that has the cloned version of OED. This is know as the root directory of OED. What
+			follows assumes you are in the root directory of OED.</p>
+		<li>
+			<p>Edit <code>docker-compose.yml</code> to change</p>
+			<ol>
+				<li>OED_PRODUCTION (in <code>services: -&gt; web: -&gt; environment: -&gt; OED_TOKEN_SECRET</code>) to
+					<code>yes</code> so it becomes: <code>- OED_PRODUCTION=yes</code>.
+				</li>
+				<li>the secret key (in <code>services: -&gt; web: -&gt; environment: -&gt; OED_TOKEN_SECRET</code>) to a
+					random value. Keep it secret. It will be: <code>- OED_TOKEN_SECRET=whatevertokenyouchoose</code>
+				</li>
+				<li>the port (in <code>services: -&gt; web: -&gt; ports</code>) to a mapping from host to container;
+					e.g.,
+					to host on your computer's port 80, set it to <code>80:3000</code>. This assumes you want to serve
+					is up on the standard web port. It is possible to use a different port. It will be:
+					<code> "80:3000"</code>
+				</li>
+			</ol>
+		</li>
+		<li>For the remaining steps you need to the superuser/root to have sufficient permission to modify system files.
+		</li>
+		<li>
+			<p>Set up the daily cron job to email the OED admin with any issues that occurred in the past day.</p>
+			<ol>
+				<li>in the root OED directory do:
+					<code>cp src/scripts/sendLogEmailCron.bash /etc/cron.daily/sendLogEmailCron.bash</code>
+				</li>
+				<li>Edit /etc/cron.daily/sendLogEmailCron.bash to make the necessary modifications to the
+					script. See the script for more detail.</li>
+				<li>Do: <code>chmod +x /etc/cron.daily/sendLogEmailCron.bash</code> to make the script executable.</li>
+			</ol>
+		</li>
+		<li>
+			<p>Set up the daily cron job to aggregate the daily readings needed for the fast data access OED does to the
+				database.</p>
+			<ol>
+				<li>in the root OED directory do:
+					<code>cp src/scripts/refreshReadingViewsCron.bash /etc/cron.daily/refreshReadingViewsCron.bash</code>
+				</li>
+				<li>Edit /etc/cron.daily/refreshReadingViewsCron.bash to make the necessary modifications to the
+					script. See the script for more detail.</li>
+				<li>Do: <code>chmod +x /etc/cron.daily/refreshReadingViewsCron.bash</code> to make the script
+					executable.</li>
+			</ol>
+		</li>
+		<li>
+			<p>Set up the service so OED runs regularly on your system. There is a change that your version of Unix
+				requires a modification of these steps. These steps should work on a Red Hat/Centos Unix.</p>
+			<ol>
+				<li>in the root OED directory do:
+					<code>cp src/scripts/oed.service /etc/systemd/system/oed.service</code>
+				</li>
+				<li>Edit /etc/systemd/system/oed.service to make the necessary modifications to the
+					script. See the script for more detail.??edit this file in repo to indicate should also modify the
+					WorkingDirectory??</li>
+				<li>Do: <code>systemctl enable oed.service</code> to make the service start on server boot.</li>
+				<li>Assuming you want to start OED at this time do: <code>systemctl start oed.service</code>. Stop the
+					app at any time by doing:
+					<code>systemctl stop oed.service</code> but note it will restart on the next reboot unless you
+					disable this service.
+				</li>
+				<li>To check the status of the OED service do: systemctl list-units --type=service|grep -i oed</li>
+				<li>It would be a good idea to go to a web browser to verify that OED is actually serving up web pages.
+				</li>
+			</ol>
+		<li>The following steps are only needed if you having OED acquire data from MAMAC meter</li>
+		<ol>
+			<li>Set up the hourly cron job to update MAMAC meters data on OED.</li>
+			<ol>
+				<li><code>cp src/scripts/updateMamacMetersOEDCron.bash /etc/cron.hourly/updateMamacMetersOEDCron.bash</code>
+				</li>
+				<li>Edit /etc/cron.hourly/updateMamacMetersOEDCron.bash to make the necessary modifications to the
+					script. See the script for more detail.</li>
+				<li>Do: <code>chmod +x /etc/cron.hourly/updateMamacMetersOEDCron.bash</code> to make the script
+					executable.</li>
+			</ol>
+			</li>
+		</ol>
+		<li>Update your meters to get data for the first time. Refer to the Administration section below.??</li>
+		</li>
+		<li>
+			<p>To import meters, visit the admin page and upload the CSV file.??</p>
+		</li>
+	</ol>
+
+	<h1>Administration</h1>
+
+	<h2>Data Storage</h2>
+	<p>PostgreSQL stores its data in <code>postgres-data</code>. This and <code>node_modules</code> will be owned by
+		root, becuase the user in the Docker continer is root; to uninstall the app, you need to
+		delete them from inside the container (or as root on your own machine):
+		<code>docker-compose run --rm web rm -r postgres-data node_modules</code>.
+	</p>
+	<p>You can access the PostgreSQL database through the <code>database</code> service. Given that the app
+		is running, you can:</p>
+	<ul>
+		<li>Get a Postgres shell with <code>docker-compose exec database psql -U oed</code></li>
+		<li>Take a database dump with
+			<code>docker-compose exec database pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
+		</li>
+		<li>Restore a database dump by first copying the dump into the container with
+			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the database
+			with <code>docker-compose exec database psql -U oed -f /dump.sql</code>.
+		</li>
+		<li>Change an admin's password with <code>docker-compose run --rm web npm run editUser</code> and follow the
+			directions.</li>
+		<li>Nuke the database by running <code>docker-compose exec database psql -U postgres database/nuke.sql</code>.
+			<g-emoji class="g-emoji" alias="warning"
+				fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png">⚠</g-emoji> THIS WILL
+			DELETE ALL DATA. <g-emoji class="g-emoji" alias="warning"
+				fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png">⚠</g-emoji>
+		</li>
+	</ul>
+
+	<h3>NPM Scripts</h3>
+	<p>These can be run by executing <code>npm run [SCRIPT]</code> in the <code>web</code> Docker-Compose service
+		(e.g. <code>docker-compose run --rm web npm run [SCRIPT] [args]</code>).</p>
+	<p>For non-Docker installs, simply issue <code>npm run [SCRIPT]</code>.</p>
+	<p>App actions:</p>
+	<ul>
+		<li><code>start</code> starts the NodeJS webserver.</li>
+		<li><code>start:dev</code> starts the NodeJS webserver with Nodemon, so it restarts automatically.</li>
+		<li><code>webpack:dev</code> runs Webpack in development mode and dynamically rebuilding the client-side
+			application when files change.</li>
+		<li><code>webpack:build</code> runs Webpack once in production mode.</li>
+		<li><code>webpack</code> runs Webpack once in development mode.</li>
+	</ul>
+	<p>Validation and CI actions:</p>
+	<ul>
+		<li><code>check</code> runs all the below non-test checks (that is, all static checks)</li>
+		<li><code>check:header</code> ensures that there are no source files without MPL headers.</li>
+		<li><code>check:typescript</code> ensures that there are no JavaScript source files in the TypeScript portion of
+			the project.</li>
+		<li><code>check:lint</code> runs TSLint against the project to ensure style conformity.</li>
+		<li><code>check:types</code> runs the TypeScript compiler without emitting code (i.e. just checks for type
+			errors).</li>
+		<li><code>test</code> runs the automated test suite on the server.</li>
+	</ul>
+	<p>Administration:</p>
+	<ul>
+		<li><code>createdb</code> creates the database schema in an uninitialized database. It will not update the
+			schema.</li>
+		<li><code>addMamacMeters</code> adds meters from a CSV file (see above).</li>
+		<li><code>updateMamacMeters</code> fetches new data from previously imported Mamac meters.</li>
+		<li><code>refreshReadingViews</code> aggregates readings data in the database.</li>
+		<li><code>createUser</code> creates a new user. If given no arguments, it is interactive; you can also pass the
+			username and password as command line arguments.</li>
+		<li><code>editUser</code> edits the password of an existing user.</li>
+	</ul>
+
+	<h3>Upgrading the App</h3>
+	<p>To upgrade the app:</p>
+	<ol>
+		<li>Stop the app (<code>systemctl stop oed.service</code>)</li>
+		<li>Store your local config changes with <code>git stash</code></li>
+		<li>Update with <code>git pull</code>.</li>
+		<li>Replace your local changes with <code>git stash pop</code></li>
+		<li>Re-build the app (<code>docker-compose run --rm web ./src/scripts/updateOED.sh</code>)</li>
+		<li>Restart the app (<code>systemctl start oed.service</code>)</li>
+	</ol>
+	<p>Some old installations (from 0.3.0 or before) need to upgrade their PostgreSQL user to
+		superuser.</p>
+
+</div>

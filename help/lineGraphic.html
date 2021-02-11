@@ -1,20 +1,155 @@
---- 
-layout: help 
-title: OED line graphic help 
+---
+layout: help
+title: OED line graphic help
 ---
 <div>
 	<h1>Line Graphic (Help)</h1>
-	<p>Coming soon</p>
 
 	<h2 id="overview">Overview</h2>
-	<p></p>
+	<p>A line graphic shows each meter and group as a unique line showing usage across time. The following figure shows
+		a line graphic of two meters (??names) and two groups (??names).</p>
+	<img alt="sample line graphic for two meters and two groups" src="../images/comingSoon.png">
+	<p>A line graphic can show an arbitrary choice and number of meters and groups. As described below, you can control
+		the time frame (dates shown) on the line graphic.</p>
 
 	<h2 id="usage">Usage</h2>
-	<p></p>
+	<p>You select the <a href="graphingMeters.html">meters</a> and/or <a href="graphingGroups.html">groups</a> to graph
+		in the usual way. OED will display each meter and group as an individual line as shown in the figure above. The
+		time frame (days) shown on the x-axis will be the maximum time for all all meters and groups. If different
+		meters and group have data for different time ranges then some lines will not span the entire length of the
+		x-axis. The next figure shows this where the meters??. (Note we will often use meters in these sample figures
+		but the same ideas apply equally to graphs.)</p>
+	<img alt="sample line graphic where the meters data is different time frames" src="../images/comingSoon.png">
+	<p>This graphic also demonstrates another potential issue. If the values of one or more meters are substantially
+		less than another meter then the values for these meters will be very close to the x-axis. You can see the these
+		values by removing the values for the meters or groups with larger values. One way to do this is to remove a
+		meter from graphing by clicking the "X" next to its name in the list (details on the meter/group viewing help
+		pages). This works but is slower since OED must recalculate the value via the server (see <a
+			href="#details">details</a> below). It also means you won't see these meters/groups in other graphics since
+		they were removed. A nice solution is to click on the name of the meter/group at the top of the line graphic. In
+		the next figure, the ?? meters names were clicked (highlighted with blue boxes) and the graph quickly redrew to
+		what is shown with the y-axis scale re-calibrated for the remaining meters. The meters not being show are in
+		shadow font?? and have a line through the name.</p>
+	<img alt="removing meters from a line graphic" src="../images/comingSoon.png">
+	<p>You can click on a meter/group with a line through it to get it to quickly reappear on the line graphic.</p>
+
+	<h3>Scrolling and zooming</h3>
+	<p>Initially, OED shows the line graphic across all time that is available. Sometimes you want to look at a smaller
+		time range. You can achieve this by zooming in the time (or x) axis. This is done by clicking and dragging the
+		black rectangles below the x-axis. These are highlighted in the figure below with blue boxes. As you slide the
+		black rectangle, the parts of the x-axis (time) that is removed from the graph is show by a gray filled
+		rectangle (highlighted in light blue). The white area between the gray rectangles is the time being shown. In
+		the figure below the original time from of ?? was reduced to ??.</p>
+	<img alt="reducing time shown in a line graphic" src="../images/comingSoon.png">
+	<p>Once you are zoomed in so gray areas are shown for the removed time, you can click within these areas to modify
+		the time range shown but the behavior is a little more complex and likely to take time to learn to use.</p>
+	<p>If only part of the time is shown, then you can scroll to see the other times. The total time displayed remains
+		the same but the times included change as you scroll. You do this by clicking and dragging in the white area
+		below the x-axis
+		that shows the time being displayed (highlighted in blue in the next figure). The next figure shows the process
+		of dragging where the time displayed has now changed to ??.</p>
+	<img alt="scrolling time in a line graphic" src="../images/comingSoon.png">
+
+	<p>If you zoom in significantly so the time range is much smaller than the original time range, the graph can become
+		jagged due to having too few points. Also, you might want to return the graphic to its original, full time
+		range. Both of these are discussed in the next section on the "Redraw" and "Restore" buttons.
+	</p>
 
 	<h3 id="redrawRestore">Redraw and Restore buttons</h3>
-	<p></p>
-	
+	<p>The next figure shows the result of zooming in even farther so a limited time range is shown:</p>
+	<img alt="zooming to a limited time range on a line graphic" src="../images/comingSoon.png">
+	<p>As you can see, the lines have become jagged. This happens due to the limited number of points available. (see <a
+			href="#redrawDetails">below</a> for the detals of why)</p>. If you want to see this time range with more
+	points then click the "Redraw" button (hightlighted in blue) below the graph. The figure below shows the result of
+	doing this.
+	<img alt="result of redrawing a line graphic" src="../images/comingSoon.png">
+	<p>Note that once you do this, the time range is reset so you cannot zoom outward nor scroll to times outside the
+		new range. If you want to see other time ranges, you can click the "Restore" button (highlighted with a blue
+		box) and the graph will return to its original view with the time range including all meters. The result of
+		doing this is shown in the next figure.</p>
+	<img alt="restoring time in a line graphic" src="../images/comingSoon.png">
+
 	<h2 id="details">Details</h2>
-	<p></p>
+
+	<h3>Exporting graph data</h3>
+	<p>You can export the data represented on a line graphic. You can use the line graph to et the time range and
+		meters/groups you want. See the <a href="export.html">export help page</a> for further information.</p>
+
+		<h3>Plotly graph controls</h3>
+<p>As shown in the next figure (highlighted by a blue box), the Plotly (the underlying graphic package) graphical controls are available for usage. ?????????</p>
+
+	<h3>Colors of lines</h3>
+	<p>The color of lines is always the same for a given meter or group. This means everyone sees the same color
+		for a
+		given meter or group whenever it is graphed. The line colors are chosen to try to provide contrast
+		between
+		different lines. They are also designed to
+		give some differentiation between meters and groups when possible. OED tries to show meters in ?? colors
+		and
+		groups in ?? colors. This is not guaranteed as colors are reused between groups and meters if the number
+		in
+		either category becomes large. OED also tries to give a unique color to each line but that may not
+		happen when
+		the number of meters and groups is large. Note both of these depend on the number of meters and groups
+		at the
+		OED site and not the number being shown. Finally, a given meter or group will have the same color on the
+		line,
+		bar and map graphic.</p>
+
+	<h3 id="redrawDetails">Why do I need to Redraw and Restore?</h3>
+	<p>OED is designed to be fast on any reasonable device. When you are zooming and scrolling within a line
+		graphic,
+		the work is all done in your web browser so it will have a very fast response rate. If OED recalculated
+		the
+		points shown as you zoomed/scrolled then it would be substantially slower, esp. if it needed to access
+		the
+		site's server to get new
+		data. OED could try to determine when you are done zooming/scrolling and then recalculate the point but
+		it is
+		very difficult to determine when that has happened given users often pause during these operations.
+		Thus, to be
+		fast and allow you to get high quality line graphs, OED needs you to let it know when you are done and
+		need the
+		point displayed to be reset. The "Redraw" button is how you do that. You can also tell OED when you want
+		to go
+		back to the original graphic via the "Restore" button. This allows you to see all the data and/or
+		zoom/scroll to
+		other areas of the graph.</p>
+
+	<h3 id="averaging">Why doesn't OED show all the meter/group data?</h3>
+	<p>First, meters often get a new data point every 15 to 60 minutes and groups inherit that value. This means
+		a given
+		group or meter can have a lot of data points. For example, a meter reading every 20 minutes for a year
+		has over
+		26,000 data points. OED refers to these points as the original or raw meter data. There would be two
+		main issues
+		in showing you all the raw data. First, it would be
+		significantly slower. All that data needs to be located in the OED database and then transferred across
+		the
+		network to your device. If you are on a mobile device you may be paying to transfer the data. Second,
+		you would
+		not be able to see all the points even if OED tried to graph them. Screen resolutions are in the
+		hundreds to
+		thousands of pixels (a single point on the screen) and the line graphics only get a subset of those
+		pixels. That
+		means OED cannot show more than hundreds to a few thousand points (if you have an HD screen). A massive
+		number
+		of points would be lost in viewing. Thus, OED averages the data on the site server to reduce the number
+		of
+		points it sends to your web browser for graphing. Thus, a point is the average energy usage across that time.
+		Typically it averages across a day of data to be
+		highly
+		responsive. If you have limited data points for day averages then it will use smaller time intervals
+		between
+		points and will go to the original meter data when the number is small enough. This is still fast since
+		the
+		number of points to get is small and the number transmitted is also small. OED will average together
+		multiple
+		days if you have too many days to represent (if you are showing multiple years of data). These details
+		are
+		generally not important to you except to know that you are often looking at averaged data. Zooming in to
+		a
+		smaller time frame and redrawing or downloading the raw meter data for a graph are ways to see the
+		original
+		meter data.</p>
 </div>
