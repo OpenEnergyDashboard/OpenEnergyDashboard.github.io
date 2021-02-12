@@ -1,0 +1,41 @@
+---
+layout: developer
+title: Steps for WSL
+---
+<div>
+    <h1>Prerequisite steps for WSL on Windows</h1>
+    <ol>
+        <li>Make sure your WSL is fully installed correctly, following <a
+                href=https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps
+                rel="noopener noreferrer">these steps</a>.</li>
+        <li>Make sure Docker is correctly configured to work with WSL, following <a
+                href=https://docs.docker.com/docker-for-windows/wsl rel="noopener noreferrer">these steps</a>.</li>
+    </ol>
+    <h1>Errors running <code>docker-compose up</code> might throw:</h1>
+    <ol>
+        <li>
+            <h2><code>FileNotFoundError: [Errno 2] No such file or directory</code></h2><br>
+            Ensure that docker is installed correctly and running - the Docker system tray icon's tooltip should specify
+            that Docker Desktop is running.
+        </li>
+        <li>
+            <h2><code>$'\r': command not found</code> or
+                <code>/bin/sh^M: bad interpreter: No such file or directory</code>
+            </h2><br>
+            Run <code>dos2unix &lt;filename&gt;</code> on the <code>.sh</code> file that causes this error.<br>
+            For example: <code>dos2unix installOED.sh</code> and <code>dos2unix src/scripts/devstart.sh</code>
+        </li>
+        <li>
+            <h2><code>chmod: changing permissions of '/var/lib/postgresql/data/pgdata': Operation not permitted</code>
+            </h2><br>
+            Edit the following paths in <code>docker-compose.yml</code> under the <code>database:</code> tag (note the
+            addition of the <code>:z</code>):<br>
+            <code>- PGDATA=/var/lib/postgresql/data/pgdata:z</code><br>
+            <code>- ./postgres-data:/var/lib/postgresql/data/pgdata:z</code><br>
+            <br>
+            An explanation can be found <a
+                href=https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux
+                rel="noopener noreferrer">here</a>.
+        </li>
+    </ol>
+</div>
