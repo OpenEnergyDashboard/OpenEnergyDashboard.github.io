@@ -38,9 +38,12 @@ title: OED code organization
     </ul>
     <h3>For Development Tools</h3>
     <ul>
+        <li><strong>client.js</strong> does database setup for GitHub Action CI.</li>
         <li>
             <strong>.editorconfig</strong> conveys some of our basic style rules to most common code editors.
         </li>
+        <li><strong>.github/workflows/</strong> has two .yml files for GitHub Actions: one for CI and one for static
+            code analysis.</li>
         <li>
             <strong>.gitignore</strong> informs the Git Version Control System about files that it should not track.
         </li>
@@ -48,7 +51,8 @@ title: OED code organization
             <strong>.gitattributes</strong> informs Git about how to properly show diffs for our files.
         </li>
         <li>
-            <strong>.travis.yml</strong> configures the Travis Continuous Integration service.
+            <strong>.travis.yml</strong> configures the Travis Continuous Integration service. We are now using GitHub
+            Actions for CI but this file is left.
         </li>
         <li>
             <strong>tslint.json</strong> configures the TSLint code quality tool and style checker
