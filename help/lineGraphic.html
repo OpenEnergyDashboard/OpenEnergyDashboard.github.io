@@ -3,11 +3,13 @@ layout: help
 title: OED line graphic help
 ---
 <div>
-	<h1>Line Graphic (Help)</h1>
+	<h1>OED Line Graphic (Help)</h1>
 
 	<h2 id="overview">Overview</h2>
 	<p>A line graphic shows each meter and group as a unique line showing usage across time. The following figure shows
-		a line graphic of two meters (??names) and two groups (??names).</p>
+		a line graphic of two meters (??names) and two groups (??names). To get this graphic, you click the "Line"
+		choice
+		(highlighted with a blue box).</p>
 	<img alt="sample line graphic for two meters and two groups" src="../images/comingSoon.png">
 	<p>A line graphic can show an arbitrary choice and number of meters and groups. As described below, you can control
 		the time frame (dates shown) on the line graphic.</p>
@@ -17,28 +19,31 @@ title: OED line graphic help
 		in the usual way. OED will display each meter and group as an individual line as shown in the figure above. The
 		time frame (days) shown on the x-axis will be the maximum time for all all meters and groups. If different
 		meters and group have data for different time ranges then some lines will not span the entire length of the
-		x-axis. The next figure shows this where the meters??. (Note we will often use meters in these sample figures
+		x-axis. The next figure shows this where the meters ?? do not span the full range of time on the graph. (Note we
+		will often use meters in these sample figures
 		but the same ideas apply equally to graphs.)</p>
 	<img alt="sample line graphic where the meters data is different time frames" src="../images/comingSoon.png">
 	<p>This graphic also demonstrates another potential issue. If the values of one or more meters are substantially
-		less than another meter then the values for these meters will be very close to the x-axis. You can see the these
+		less than another meter then the values for these meters will be very close to the x-axis. You can see these
 		values by removing the values for the meters or groups with larger values. One way to do this is to remove a
-		meter from graphing by clicking the "X" next to its name in the list (details on the meter/group viewing help
-		pages). This works but is slower since OED must recalculate the value via the server (see <a
+		meter from graphing by clicking the "X" next to its name in the list (details on the <a
+			href="graphingMeters.html">meters</a>/<a href="graphingGroups.html">groups</a> viewing help
+		pages). This works but is slower since OED must recalculate the values via the server (see <a
 			href="#details">details</a> below). It also means you won't see these meters/groups in other graphics since
 		they were removed. A nice solution is to click on the name of the meter/group at the top of the line graphic. In
-		the next figure, the ?? meters names were clicked (highlighted with blue boxes) and the graph quickly redrew to
+		the next figure, the ?? meter names were clicked (highlighted with blue boxes) and the graph quickly redrew to
 		what is shown with the y-axis scale re-calibrated for the remaining meters. The meters not being show are in
 		shadow font?? and have a line through the name.</p>
 	<img alt="removing meters from a line graphic" src="../images/comingSoon.png">
 	<p>You can click on a meter/group with a line through it to get it to quickly reappear on the line graphic.</p>
 
-	<h3>Scrolling and zooming</h3>
+	<h3 id="scrollZoom">Scrolling and zooming</h3>
 	<p>Initially, OED shows the line graphic across all time that is available. Sometimes you want to look at a smaller
-		time range. You can achieve this by zooming in the time (or x) axis. This is done by clicking and dragging the
-		black rectangles below the x-axis. These are highlighted in the figure below with blue boxes. As you slide the
+		time range. You can achieve this by zooming in the time (x) axis. This is done by clicking and dragging the
+		black rectangles below the x-axis (highlighted with blue boxes in the figure below). As you slide the
 		black rectangle, the parts of the x-axis (time) that is removed from the graph is show by a gray filled
-		rectangle (highlighted in light blue). The white area between the gray rectangles is the time being shown. In
+		rectangle (highlighted in light blue box). The white area between the gray rectangles is the time being shown.
+		In
 		the figure below the original time from of ?? was reduced to ??.</p>
 	<img alt="reducing time shown in a line graphic" src="../images/comingSoon.png">
 	<p>Once you are zoomed in so gray areas are shown for the removed time, you can click within these areas to modify
@@ -46,7 +51,8 @@ title: OED line graphic help
 	<p>If only part of the time is shown, then you can scroll to see the other times. The total time displayed remains
 		the same but the times included change as you scroll. You do this by clicking and dragging in the white area
 		below the x-axis
-		that shows the time being displayed (highlighted in blue in the next figure). The next figure shows the process
+		that shows the time being displayed (highlighted with blue box in the next figure). The next figure shows the
+		process
 		of dragging where the time displayed has now changed to ??.</p>
 	<img alt="scrolling time in a line graphic" src="../images/comingSoon.png">
 
@@ -59,9 +65,10 @@ title: OED line graphic help
 	<p>The next figure shows the result of zooming in even farther so a limited time range is shown:</p>
 	<img alt="zooming to a limited time range on a line graphic" src="../images/comingSoon.png">
 	<p>As you can see, the lines have become jagged. This happens due to the limited number of points available. (see <a
-			href="#redrawDetails">below</a> for the detals of why)</p>. If you want to see this time range with more
-	points then click the "Redraw" button (hightlighted in blue) below the graph. The figure below shows the result of
-	doing this.
+			href="#redrawDetails">below</a> for the details of why). If you want to see this time range with more
+		points then click the "Redraw" button (highlighted with a blue box) below the graph. The figure below shows the
+		result of
+		doing this.</p>
 	<img alt="result of redrawing a line graphic" src="../images/comingSoon.png">
 	<p>Note that once you do this, the time range is reset so you cannot zoom outward nor scroll to times outside the
 		new range. If you want to see other time ranges, you can click the "Restore" button (highlighted with a blue
@@ -72,21 +79,25 @@ title: OED line graphic help
 	<h2 id="details">Details</h2>
 
 	<h3>Exporting graph data</h3>
-	<p>You can export the data represented on a line graphic. You can use the line graph to et the time range and
+	<p>You can export the data represented on a line graphic. You can use the line graph to get the time range and
 		meters/groups you want. See the <a href="export.html">export help page</a> for further information.</p>
 
-		<h3>Plotly graph controls</h3>
-<p>As shown in the next figure (highlighted by a blue box), the Plotly (the underlying graphic package) graphical controls are available for usage. ?????????</p>
+	<h3>Plotly graph controls</h3>
+	<p>As shown in the next figure, the Plotly (the underlying graphic package) graphical
+		controls (highlighted by a blue box) are available for usage. The most useful might be the camera that allows
+		you to download a PNG for the graph. Note that using some of the other controls (zoom, pan, etc.) may cause
+		unexpected behavior as OED is also using those features.</p>
+	<img alt="Plotly cotrols" src="../images/comingSoon.png">
 
-	<h3>Colors of lines</h3>
+	<h3 id="colors">Colors of lines</h3>
 	<p>The color of lines is always the same for a given meter or group. This means everyone sees the same color
 		for a
 		given meter or group whenever it is graphed. The line colors are chosen to try to provide contrast
 		between
 		different lines. They are also designed to
-		give some differentiation between meters and groups when possible. OED tries to show meters in ?? colors
+		give some differentiation between meters and groups when possible. OED tries to show meters in lighter colors
 		and
-		groups in ?? colors. This is not guaranteed as colors are reused between groups and meters if the number
+		groups in darker colors. This is not guaranteed as colors are reused between groups and meters if the number
 		in
 		either category becomes large. OED also tries to give a unique color to each line but that may not
 		happen when
@@ -104,22 +115,22 @@ title: OED line graphic help
 		points shown as you zoomed/scrolled then it would be substantially slower, esp. if it needed to access
 		the
 		site's server to get new
-		data. OED could try to determine when you are done zooming/scrolling and then recalculate the point but
+		data. OED could try to determine when you are done zooming/scrolling and then recalculate the points but
 		it is
 		very difficult to determine when that has happened given users often pause during these operations.
 		Thus, to be
 		fast and allow you to get high quality line graphs, OED needs you to let it know when you are done and
 		need the
-		point displayed to be reset. The "Redraw" button is how you do that. You can also tell OED when you want
+		points displayed to be reset. The "Redraw" button is how you do that. You can also tell OED when you want
 		to go
 		back to the original graphic via the "Restore" button. This allows you to see all the data and/or
 		zoom/scroll to
 		other areas of the graph.</p>
 
 	<h3 id="averaging">Why doesn't OED show all the meter/group data?</h3>
-	<p>First, meters often get a new data point every 15 to 60 minutes and groups inherit that value. This means
+	<p>Meters often get a new data point every 15 to 60 minutes and groups inherit that value. This means
 		a given
-		group or meter can have a lot of data points. For example, a meter reading every 20 minutes for a year
+		meter or group can have a lot of data points. For example, a meter reading every 20 minutes for a year
 		has over
 		26,000 data points. OED refers to these points as the original or raw meter data. There would be two
 		main issues

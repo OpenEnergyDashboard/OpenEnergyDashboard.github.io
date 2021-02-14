@@ -164,11 +164,6 @@ OED_MAIL_ORG=
 			<p>Clone this repository. <code>git clone https://github.com/OpenEnergyDashboard/OED.git [directory]</code>
 			</p>
 		</li>
-		<li>
-			<p>Create a CSV file with a single column called "ip" with your meter IP addresses and copy it into the
-				directory where the project resides. These are the IPs of Mamac meters from which this OED instance will
-				pull data. If the site has no Mamac meters, you may skip this step.</p>
-		</li>
 		<p>cd into the directory that has the cloned version of OED. This is know as the root directory of OED. What
 			follows assumes you are in the root directory of OED.</p>
 		<li>
@@ -234,8 +229,20 @@ OED_MAIL_ORG=
 				<li>It would be a good idea to go to a web browser to verify that OED is actually serving up web pages.
 				</li>
 			</ol>
-		<li>The following steps are only needed if you having OED acquire data from MAMAC meter</li>
+		<li>The following steps are only needed if you having OED acquire data from MAMAC meter. Commands are all done
+			in a terminal in the main OED directory.</li>
 		<ol>
+			<li>Add the MAMAC meters to OED:</li>
+			<ol>
+				<li>Create a CSV file with a single column called "ip" with your meter IP addresses and copy it into the
+					directory where the project resides. These are the IPs of Mamac meters from which this OED instance
+					will pull data.</li>
+				<li>Do: <code>docker-compose exec web npm run addMamacMeters &lt;IPFileName&gt;.csv</code><br>where you
+					replace &lt;IPFileName&gt; with whatever you named the file above with the IP addresses.
+				</li>
+				<li>You will need to wait for the hourly job (described next) to run or manually the update for the data
+					as described in the Administration section below.??</li>
+			</ol>
 			<li>Set up the hourly cron job to update MAMAC meters data on OED.</li>
 			<ol>
 				<li><code>cp src/scripts/updateMamacMetersOEDCron.bash /etc/cron.hourly/updateMamacMetersOEDCron.bash</code>
@@ -247,11 +254,6 @@ OED_MAIL_ORG=
 			</ol>
 			</li>
 		</ol>
-		<li>Update your meters to get data for the first time. Refer to the Administration section below.??</li>
-		</li>
-		<li>
-			<p>To import meters, visit the admin page and upload the CSV file.??</p>
-		</li>
 	</ol>
 
 	<h1>Administration</h1>

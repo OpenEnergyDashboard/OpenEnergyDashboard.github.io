@@ -1,20 +1,87 @@
---- 
-layout: help 
-title: OED bar graphic help 
+---
+layout: help
+title: OED bar graphic help
 ---
 <div>
-	<h1>Bar Graphic (Help)</h1>
-	<p>Coming soon</p>
+	<h1>OED Bar Graphic (Help)</h1>
 
 	<h2 id="overview">Overview</h2>
-	<p></p>
+	<p>A bar graphic shows each meter and group as a series of fixed time interval bars showing usage across time. The
+		following figure shows
+		a bar graphic of two meters (??names) and two groups (??names). Each bar represents four weeks of data so it is
+		the total usage of the indicated meter/group for those four weeks. Since it is total usage, the units are for
+		power??, e.g., kWh for electricity. To get this graphic, you click the "Bar" choice
+		(highlighted with a blue box).</p>
+	<img alt="sample bar graphic for two meters and two groups" src="../images/comingSoon.png">
+	<p>A bar graphic can show an arbitrary choice and number of meters and groups. As described below, you can control
+		the time frame (dates shown) on the bar graphic.</p>
 
 	<h2 id="usage">Usage</h2>
-	<p></p>
+	<p>You select the <a href="graphingMeters.html">meters</a> and/or <a href="graphingGroups.html">groups</a> to graph
+		in the usual way. OED will display each meter and group as a series of uniquely colored bars. Each bar
+		represents the chosen time interval for the bars where the dates are shown below each set of bars. The bars for
+		all meters and groups are kept together for the same range of time. If different
+		meters and group have data for different time ranges then some bar may not be shown in some time range(s). The
+		next figure shows this where the meters ?? do not span the full range of time on the graph. (Note we
+		will often use meters in these sample figures
+		but the same ideas apply equally to graphs.) In the figure below, you have ?? time ranges from ?? to ?? where
+		each range is 28 days/four weeks. The first time range is ?? to ?? and the next is ?? to ?? and this continues
+		for all the
+		time ranges.</p>
+	<img alt="sample line graphic where the meters data is different time frames" src="../images/comingSoon.png">
+	<p>You can select the time range in days for each bar displayed in two ways. The first involves clicking one of the
+		predefined time ranges (highlighted with a blue box in the next figure) where the choices are "Day", "Week" or
+		"4 Weeks". The figure below is the result of clicking on the "Week" choice (it was "4 Weeks" in the figures
+		above).</p>
+	<img alt="sample week bar graphic" src="../images/comingSoon.png">
+	<p>The second way to change the bar time range is to click on the "Toggle custom slider" button (highlighted with a
+		light blue box in the next figure) to reveal the slider. You can then click and hold the circle (highlighted
+		with a blue box) to drag it to the number of days desired where the allowed range is 1 to 365 days. In the
+		figure below, the "Toggle custom slider" button was clicked and the circle dragged to 10 days.</p>
+	<img alt="using custom slider to set bar time range to 10 days" src="../images/comingSoon.png">
+	<p>The range of dates used in the bar graphic correspond to the ones selected/used in the line graphic. Thus, if you
+		want to change the range of dates included, you need to follow the <a href="lineGraphic.html#scrollZoom">
+			steps</a> and do it on the line graphic page.</p>
 
 	<h3 id="barStacking">Bar Stacking</h3>
-	<p></p>
+	<p>There are two types of bar graphics supported. The first is where each meter/group is its own bar. That is what
+		has been discussed so far. The second is a stacked bar graphic. In this case, each time interval has a single
+		bar with all the meters/groups represented inside this bar as sub-bars. The height of each sub-bar for a given
+		meter/group is the proportion of the usage for this meter/group compared to the total for all meters/groups
+		displayed. The following figure shows bar stacking where you get this option by checking the box next to the
+		"Bar Stacking" label (highlighted with a blue box).</p>
+	<img alt="example of bar stacking" src="../images/comingSoon.png">
 
 	<h2 id="details">Details</h2>
-	<p></p>
+
+	<h3>Colors of bars</h3>
+	<p>The color of each bar or sub-bar is the same as that used in the line and map graphic. The color choice is <a
+			href="lineGraphic.html#colors">described here</a>.</p>
+
+	<h3>Exporting graph data</h3>
+	<p>You can export the data represented on a bar graphic. See the <a href="export.html">export help page</a> for
+		further information.</p>
+
+	<h3>Why 4 weeks?</h3>
+	<p>See the <a href="compareGraphic.html#fourWeeks">discussion</a> in compare graphics about why OED uses 4 weeks
+		rather than one month.</p>
+
+	<h3>Graphic time range</h3>
+	<p>You can set the time range of each bar to any allowed range. This means it may be possible to create a bar
+		graphic with a single bar for each meter/group where it is longer than the time of available data. In a somewhat
+		related item, note that if
+		a bar contains time where the meter/group is missing data then the total usage is likely to be lower than usual.
+	</p>
+
+	<h3>Bars with limited data</h3>
+	<p>Since the time range for each bar is fixed, the last/latest time bar may partly include time for which there is
+		no data.
+		For example, if you have a meter with 10 weeks of data and use 4 week time intervals for each bar, the
+		third/last bar will have 2 weeks of data (the first two bars took up 8 eights) in the final bar of 4 weeks time
+		interval. This can be confusing to the user. We are working on this issue and will address it in a future
+		release of OED.</p>
+
+	<h3>Default bar type</h3>
+	<p>By default, a bar graphic will begin by not being stacked. The site administrator can change this behavior so the
+		default is stacked. In either case the user of OED can change the default during usage.</p>
 </div>
