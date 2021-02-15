@@ -27,6 +27,21 @@ title: Steps for WSL
             that Docker Desktop is running.
         </li>
         <li>
+            <h2><code>Docker-credential-desktop.exe executable file not found ...</code></h2>
+            If you get a message similar to the one above then it may be <a
+                href="https://forums.docker.com/t/docker-credential-desktop-exe-executable-file-not-found-in-path-using-wsl2/100225"
+                rel="noopener noreferrer">known issue</a> (This link was not responding recently but hopefully it is a
+            temporary issue as all forums.docker.com are unreachable). As discussed on that page, you should edit the
+            ~/.docker/config.json and change <code>credsStore</code> to <code></code>credStore</code>. It is not clear
+            why this works but it did help at least one OED developer. A <a
+                href="https://github.com/docker/for-win/issues/6652">Docker GitHub issue</a> discusses this and some
+            found adding an _ worked so <code>credsStore</code> to <code></code>_credsStore</code>. There are also
+            proposed changes to the PATH to help. (This <a href="https://github.com/docker/compose/issues/7495">Docker
+                GitHub issue</a> also discusses this issue.) Overall, this problem seems to be related to changes in
+            Docker that impacted its running on multiple system types. Hopefully Docker will resolve this soon (issue
+            noticed in February 2021 for OED developers).
+        </li>
+        <li>
             <h2><code>$'\r': command not found</code> or
                 <code>/bin/sh^M: bad interpreter: No such file or directory</code>
             </h2><br>
