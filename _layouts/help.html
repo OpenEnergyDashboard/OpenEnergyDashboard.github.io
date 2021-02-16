@@ -10,29 +10,61 @@
 </head>
 
 <body>
-	<nav>
-		<ul>
-			<li><a href="../index.html"> <img id="logo" alt="OED logo" src="../images/logo.png" /></a></li>
-			<li><a href="../index.html">OED Website</a></li>
-			<li><a href="general.html">General Help</a></li>
-			<li><a href="metersAndGroups.html">Meters/Groups Help</a></li>
-			<li><a href="graphs.html">Graph Type Help</a></li>
-			<li><a href="graphing.html">Graphing Help</a></li>
-			<li><a href="admins.html">Admin Help</a></li>
-		</ul>
-	</nav>
-	<p>These pages are under active development and will continue to be as we integrate help into OED version 0.7.</p>
+	<div class="navbar">
+		<a href="../index.html"> <img id="logo" alt="OED logo" src="../images/logo.png" /></a>
+		<a href="../index.html">OED Website</a>
+		<a href="index.html">help: </a>
+		<div class="dropdown">
+			<button class="dropbtn">Navigation &#x25BC</button>
+			<div class="dropdown-content">
+				<a href="home.html">Home</a>
+				<a href="pageChoices.html">Page Choices</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Graphing &#x25BC</button>
+			<div class="dropdown-content">
+				<a href="graphType.html">Graph Type</a>
+				<a href="graphingMeters.html">Graphing Meters</a>
+				<a href="graphingGroups.html">Graphing Groups</a>
+				<a href="lineGraphic.html">Line Graphic</a>
+				<a href="barGraphic.html">Bar Graphic</a>
+				<a href="compareGraphic.html">Compare Graphic</a>
+				<a href="mapGraphic.html">Map Graphic</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Meters/Groups &#x25BC</button>
+			<div class="dropdown-content">
+				<a href="meterViewing.html">Meter Viewing</a>
+				<a href="groupViewing.html">Group Viewing</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Other Features &#x25BC</button>
+			<div class="dropdown-content">
+				<a href="export.html">Exporting Data</a>
+				<a href="chartLink.html">Chart Link</a>
+				<a href="hideOptions.html">Hide Options</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Other &#x25BC</button>
+			<div class="dropdown-content">
+				<a href="admin.html">Admin User</a>
+			</div>
+		</div>
+	</div>
+	<p>These pages are under active development and will continue to be as we integrate help into OED version 0.7.
+	</p>
+	<p>All features have been present since OED version 0.7 unless noted.</p>
 	<div class="container">{{ content }}</div>
-	<!-- /.container -->
 	<footer>
-		<nav>
-			<ul>
-				<li><a href="mailto:help@OpenEnergyDashboard.org">Email</a></li>
-				<li><a href="https://github.com/OpenEnergyDashboard/OED" target="_blank"
-						rel="noopener noreferrer">GitHub
-						Repository</a></li>
-			</ul>
-		</nav>
+		<div class="navbar">
+			<a href="mailto:help@OpenEnergyDashboard.org">Email</a>
+			<a href="https://github.com/OpenEnergyDashboard/OED" target="_blank" rel="noopener noreferrer">GitHub
+				Repository</a>
+		</div>
 		<p>This page is part of the Open Energy Dashboard and is subject to the terms of the Mozilla Public License,
 			v. 2.0. If a copy of the MPL was not distributed with this file, you can obtain one at <a
 				href="http://mozilla.org/MPL/2.0/" rel="nofollow">http://mozilla.org/MPL/2.0/</a>.</p>

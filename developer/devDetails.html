@@ -33,7 +33,7 @@ title: OED dev details
 		we change versions of OED we use a migration system to upgrade the database but this may not be available during
 		the development cycle. Given this, it is often easiest to force Postgres to reinitialize the database. Note that
 		doing this will wipe out any data (meter, readings, preferences, etc.) that you have for this instance of OED.
-		If you wish to force Postgres to reinitialize then do the following:
+		If you wish to force Postgres to reinitialize then do the following:</p>
 	<ol>
 		<li>Remove the postgres-data/ directory from the main OED directory. While you can delete it, it is probably
 			safer to move the entire directory somewhere else outside your OED directory. That way, if something goes
@@ -47,7 +47,12 @@ title: OED dev details
 			running but will not give you a new version of the database. If you have this issue then contact us for
 			help (see link at bottom of page).</li>
 	</ol>
-	</p>
+	<p>OED runs in the containerized Docker environment. This means the software and files created are within this
+		container and disappear when you stop running OED (shut the container down). The one exception to this rule is
+		the information stored in the PostgreSQL database. Because this information needs to exist between OED runs to
+		keep the database initialization and OED data, the information is kept within your OED installation in the
+		postgres-data/ directory on your machine's file system. This is why removing the postgres-data/ directory resets
+		the database within the Docker container.</p>
 
 	<h2 id=goingOn>Seeing what is happening with OED</h2>
 	<p>Sometimes OED will not act as you expect and you want to know what is going on. There are two normal ways to do
@@ -124,6 +129,22 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		out. If this happens, rerun the test command. It normally works the next time (or within a total or three
 		tries). We are working to change our testing and installation so Postgres is ready before operations continue so
 		this problem will go away.</p>
+
+	<h2>Running without the database container</h2>
+	<p>On rare occasions, you may get a database failure during the startup of the database container during the
+		install/startup of OED. (This is not the transient issues noted during the install where the script reports it
+		is continuing). Generally OED will tell you an issue happened in the console output and Docker indicates the
+		database container is not running. In general, the underlying issue should be addressed so you have a correct
+		OED installation. (This happened, for example, during Windows WSL installs until an file permission issue was
+		resolved.) In rare circumstances, you still want to run the OED web container knowing that any
+		operations that touch the database will fail. There is a parameter to the install script that allows this and
+		can be done with:
+		<br><code>install_args="---continue_on_db_error" docker-compose up</code><br>
+		or the full install script (not using docker-compose up) of
+		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh --continue_on_db_error</code><br>
+		OED will still try to install the DB, fail and then continue to try to install the web container. You should see
+		the regular messages in the console indicating the web container is running as expected.
+	</p>
 
 	<h2 id=typescript>TypeScript Wisdom</h2>
 	<p>TypeScript is great, but sometimes it requires some rather strange incantations, especially when working with

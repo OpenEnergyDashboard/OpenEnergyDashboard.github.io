@@ -1,138 +1,125 @@
---- 
-layout: default 
-title: OED features 
 ---
-<div> 
+layout: default
+title: OED features
+---
+<div>
 	<h1>Features of the Open Energy Dashboard</h1>
 	<p>
-		The OED system has a number of features. This page highlights some of
-		the more important ones. A nice way to see many of these features is
-		to try looking at our released/production system at
-		 <a href="http://oed.beloit.edu/beloit" target="_blank" rel="noopener noreferrer">production system</a> 
-		 or you can look at our demo system that has features that are almost ready 
-		 for production release at
-		<a href="http://oed.beloit.edu:3020" target="_blank" rel="noopener noreferrer"> demo system</a>.
-	We also have a development system with features that are being prepared for release. People interested in seeing these features and providing feedback should contact the project.</p>
-	<h2>Graphical display of data</h2>
-	<p>
-		The OED system can display the energy data it has acquired. You can
-		choose what meter(s) and/or site defined group(s) that you want to
-		graph. Currently the data can be displayed as a line or bar chart 
-		where you can select the time duration represented by each bar.<br>
-		<img alt="OED line graph" src="images/OEDLineGraph.png" /><br> <img
-			alt="OED line graph" src="images/OEDBarGraph.png" />
-	</p>
-	<p>The system can also show comparison of current usage over a
-		specified period of time to the past. When you are only part way
-		through a time period, e.g., one week, then an estimate is given of
-		expected usage for the whole time period based on usage to
-		date. This is under development and currently compares the current week to the
-		previous week.<br>
-		<img alt="OED line graph" src="images/OEDComparisonGraph.png" /><br>
-	<h2>Groups</h2>
-	<p>The OED system allows a site to define any arbitrary combination
-		of meters or other groups and save this by an administrator of the system.
-		For example, you might have three floors in a building named DormOne
-		with each one having a (sub)meter. You could create a group named
-		Dorm1 and select these three meters to include in this group. If you
-		now select Dorm1 to graph you would see the total energy used by these
-		three meters as a single line or bar. Suppose you do the same thing
-		for DormTwo which has four meters. Graphing Dorm2 would show the total
-		for these four meters. You could also select to graph Dorm1 and Dorm2
-		at the same time and that would show two lines/bars where each showed the total usage for one dorm.</p>
-	<p>Groups can also be used the same as meters. Let's assume you have
-		a total of three dorms where Dorm3 only has a single floor with a
-		meter named meterDorm3. You could create another group and name it
-		AllDorms where you place the groups Dorm1 and Dorm2 and the meter
-		meterDorm3 into this group. Now, if you graph AllDorms you see the
-		total energy for these three dorms. You could also graph Dorm1, Dorm2,
-		meterDorm3 and AllDorms on a single graph to see the usage level of
-		each dorm along with the total for all the dorms.</p>
-	<p>This system is very general. Thus, you can create a group of all
-		the first floor meters if you wanted. If you then combined this with
-		the AllDorms group you would be including the first floor meters two
-		times. Don't worry, the system will automatically figure this out and
-		only count each unique meter.</p>
-	<p>There are many requests for meter groupings that this addresses
-		(it should do them all). For example, you could have a group for
-		renewable energy, food service energy, athletic energy, etc. You can
-		then combine them to get all residential usage or the entire campus
-		usage. The difference in OED is that you can decide, create, and use 
-		any grouping of meters at any time so it is all under your control. 
-		This means you don't need to ask OED to do what you want. The flexibility 
-		is built into the system.</p>
-		<p>OED allows for creation, editing and deletion of groups.</p>
-		<p>Here is the system editing groups where you can see there are three types of floors
-		(first, second and third). The figure shows the members of the first and second floors containing
-		meters and the three floor (first, second and third) groups combined
-		to form a new group of all the floors in all three buildings:<br>
-		<img alt="OED Groups of all floors" src="images/OEDGroupsAllFloors.png" /><br>
-		Here is a graph combining the three floors (first, second and third) groups and all floor group
-		 with the Aldrich Ground meter. This was needed since the ground floor is not
-		 included in the other three floors. This also demonstrates you can graph any
-		 arbitrary combination of groups and meters:<br>
-		<img alt="OED Groups of all floors" src="images/OEDGroupsAllFloorsGraph.png" /></p>
-	<h2>Import/export of data</h2>
-	<p>We are committed to making our system open. That goes beyond
-		just the software to the information inside of our system. Thus, you
-		can export the data represented on any graph as a CSV file (a
-		non-proprietary file similar to a spreadsheet and readable by all
-		spreadsheet programs). If you want all the data then you can simply
-		graph a wide range of dates to get that. We have worked hard to make the graphing system fast and responsive so graphing large date ranges with lots of meters will not be an issue. We feel this is a nice
-		feature since you can look at the data visually before you decide to
-		export it. This will allow you to do your own analysis of the data or
-		import it into other systems. The figures above show the button to 
-		click to export the graph data.</p>
-	<p>We also support import of data into our system. You can create a
-		CSV file (can use a standard spreadsheet program to do this) with one
-		column as the data/time and another with the energy reading. You can
-		then import that file into the system via a web page on the OED
-		system. The data will now be available in the same way as if it was
-		read from a meter. You can import data for a meter that is not
-		automatically read or to add missing data from a meter already in the
-		system. This has been used to bring in historical data before the
-		system was in place.</p>
-	<p>We can read in certain types of data from Johnson Control's
-		Metasys export. This allows you to transfer information from that
-		system into our system. This is somewhat trickier than a straight CSV
-		file since the data may be the energy usage from the previous reading,
-		cumulative and/or reset at midnight. If you have data from another
-		system then please contact us as we are willing to try to import it
-		into our system. Also, since this is an open source project, either
-		you or another vendor could create the software to do this.</p>
-	<h2>Support of lots of devices</h2>
-	<p>OED is built on a modern framework of software that
-		automatically adjusts to the screen resolution. Thus, menus will
-		adjust size and ultimately become dropdown as the screen size (really
-		the browser window) gets smaller. This means the system will work on
-		everything from a large monitor to a tablet to a cell phone. We are working to make 
-		this even more responsive, 
-		but here is a screen shot on a lower end smart phone with 480x800 pixel 
-		resolution:<br>
-		<img alt="Cell phone screen shot" src="images/OEDCellPhone.png" /><br>
-		and if you click on the options button a menu will appear (this would be visible
-		on a higher resolution screen as shown in the images above):
-		<img alt="Cell phone menu screen shot" src="images/OEDCellPhoneMenu.png" /></p>
-	<h2>Other features</h2>
-	There are other features that we mention here. Please let us know if
-	you want more details on them.
+		The OED system has a number of features. This page gives a brief description of the feature along with a link to
+		the help pages with more information and pictures.</p>
+	<p>OED acquires, permanently stores and analyzes data it receives. While this is important in allowing OED to have
+		the features on this page, it is no normally visible to the user and is not discussed here. If you are
+		interested in how OED
+		does this work then please contact the project.</p>
+
 	<ul>
-		<li>Automatic meter reading. OED can probe meters to get the
-			energy data. At the current time we can only do this for MAMAC meters
-			for electrical usage but are interested in expanding this list. We
-			are about to expand the system to read other types of energy usage
-			such as steam, gas, etc. If you want to help or have specific types
-			of meters in mind then let us know. We are certainly interested in
-			BACnet and Modbus.</li>
-		<li>Integration with Tableau. Some sites use Tableau for data
-			analysis. Instead of having to export OED data and then importing
-			into Tableau, we have been able to configure Tableau to directly read
-			the OED data. This means you get the latest data inside Tableau
-			without having to update.</li>
+		<li>OED has two types of items it displays in graphical representations of the data:
+			<ul>
+				<li><a href="help/graphingMeters.html">Meters</a>. A meter is generally a hardware device that provides
+					information on usage. For example, it might measure electrical usage or water consumption in a
+					building. OED aids the OED administrator in adding new meters and lets you control them via web
+					interfaces.</li>
+				<li><a href="help/graphingGroups.html">Groups</a>. A group represents the sum of data from other meters
+					or groups. For example, you could have a group with all the electrical meters for your organization
+					to get total electrical usage. This allows sites to combine data however they want. For example, a
+					college campus might have groups for each dorm, all dorms, athletic facilities, renewable
+					generation,
+					academic buildings,
+					etc. Since groups can contain groups, you could use the groups for each dorm to get the total
+					usage across all dorms rather than having to include all the meters again. The site administrator
+					can create any desired group via a web interface so each site can do this without needing external
+					help (or paying someone to do it). This is a unique and powerful feature of OED.</li>
+			</ul>
+		</li>
+		<li><a href="help/graphType.html">Graphical display of data</a>. OED currently provides four unique views of the
+			data. In each view you can pick any meters or groups you want to include. (Images of each graphical type are
+			coming when version 0.7 is released.)
+			<ul>
+				<li><a href="help/lineGraphic.html">Line Graphic</a>. Each meter/group is represented by a
+					line graph of usage versus time where you can control the time frame shown.</li>
+				<li><a href="help/barGraphic.html">Bar Graphic</a>. Each meter/group is represented by a
+					series of bars over the total time chosen of the total usage over the chosen number of days for each
+					bar.
+				</li>
+				<li><a href="help/compareGraphic.html">Compare Graphic</a>. Each meter/group is represented by its own
+					bar group comparing the current usage to the previous usage over day, week or four weeks. OED
+					supports sorting the graphs alphabetically and by how much they improved between the current and
+					previous time period. Typically this graphic is used to see how usage is changing and to compare
+					between different areas of an organization. For example, on a college campus you could run an energy
+					competition to see how each dorm is doing in saving energy.
+				</li>
+				<li><a href="help/mapGraphic.html">Map Graphic</a>. Each meter/group is represented by a
+					circle on a map where the size of the circle represents usage. This representation is useful in
+					getting a visual sense of how much energy different areas (often buildings) of an organization use.
+					A site can have as many maps as they wish and maps can overlap (for example, a larger map with the
+					entire organization and ones that zoom in on specific areas).
+					The site administrator can upload any graphical image of the organization and they use a web
+					interface to define GPS coordinates for all meters/groups. This requires no additional software nor
+					knowledge of GIS graphing.
+				</li>
+			</ul>
+		</li>
+		<li><a href="help/export.html">Data Export</a>. You can export the data of the line and bar graphics which
+			includes all meters and groups for the specified time frame of the graphic. This means you can use OED to
+			inspect the data, including its ability to sum data into groups, and if you decide you would like to work on
+			that data outside OED you simply click a button. This also gives you the ability to export all meter data
+			that resides in OED for a full
+			data dump. OED feels you should always have easy access to your data
+			from the web pages. After all, it is your data. OED believes in being open in many ways.</li>
+		<li><a href="help/chartLink.html">Chart Links</a>. Sometimes you want to post a specific graphic from OED so
+			others
+			can easily see it. For example, you might want to have a link on your website to let the public easily see
+			how you are reducing your energy usage. You also might want to easily get back a graphic that is interesting
+			and took time to produce. For any graphic, you can click a button to get a URL that you can either use as a
+			link in a website or put into the address bar in your web browser to recreate that graphic. While the same
+			graphic is reproduced, you are in a full featured version of OED so you can continue to interact with the
+			system as you wish.</li>
+		<li><a href="help/hideOptions.html">Hiding Options</a>. OED is designed to work on any reasonable device from a
+			cell
+			phone to large monitor. If you are on a small screen or a monitor that is not interactive, you might want to
+			only have the graphics on the screen. You can hide the options normally shown on the page so they are docked
+			in the top, left corner where popup menu gives access to all the OED controls that were docked.</li>
+		<li>OED provides help within the web pages that contain links to context sensitive help pages.</li>
+		<li><a href="help/meterViewing.html">Meter</a> and <a href="help/groupViewing.html">Group</a> Viewing. There is
+			a page to see details on meters and another for groups. This allows users to see information about the data
+			they are graphing. If you are an administrator of the site then you can use these pages to create new groups
+			and edit the
+			information for a meter or group.</li>
+		<li><a href="help/admin.html">Admin pages</a>. OED believes that a non-IT person should be able to get a site
+			running
+			and control the site with just a web browser. OED provides web pages to control many aspects including meter
+			information, site language, default graphic shown and the site name. There are also features to allow admins
+			to input new meters and manually add meter data via a CSV file.</li>
+		<li>OED has an interface that allows acquisition of data from many sources. At the current time we can
+			automatically accept data from <a href="http://www.obvius.com/" rel="noopener noreferrer">Obvius
+				AcquiSuite</a>, which can collect
+			data from many meter types, and <a href="http://mamacsys.com/" rel="noopener noreferrer">MAMAC meters</a>.
+			Release 0.8 will include
+			upload of files in CSV format to
+			add to a meter. This will allow for loading historical data as well as sending data from other devices where
+			the data can be placed in a CSV file. If the current methods for acquiring meter data do not meet your
+			needs, you can produce code to have OED accept the new meter format through our API or contact OED to see if
+			we will do the
+			necessary modifications.</li>
+		<li>Easy site installation via the Docker containerized system. The automated installation process takes care of
+			all needed software. It also isolates OED from other software running on your system so it should not impact
+			other applications on your server.</li>
+		<li>A site can change the default language displayed on all web pages. OED currently supports English, Spanish
+			(Latin American variation) and French. (Some newer parts, such as the help system, are awaiting translation
+			from English.) Any site wishing to add an additional language should contact us.
+			Once the list of phrases used is translated, we can easily include them in OED.</li>
+		<li>OED has the ability to send the site administrator a regular email to inform them of any issues OED has
+			encountered including failures to acquire meter data.</li>
+		<li>OED supports sites using HTTPS (encrypted) connections.</li>
+		<li>Unlike some energy dashboards, OED is designed to allow users to interact with the data. If the dashboard
+			takes significant time to respond then the user will not want to use interactive features. OED has invested
+			significant effort in making the system very responsive by sophisticated data management techniques and
+			limiting network transfers.</li>
+		<li>OED is based on modern, free, maintained and reliable software. This means OED will be a viable dashboard
+			for many years
+			to come while still supporting current and future computers, cell phones, etc.</li>
+		<li>OED is constantly maintaining and enhancing our dashboard. We actively encourage any type of user to report
+			issues or ideas for enhancements to OED. We are driven by the user community and their input decides the
+			directions we go in.</li>
 	</ul>
-	<h2>Planned enhancements</h2>
-	<p>
-		There are many features that are planned in the coming months and in
-		the longer-term. Please visit the <a href="plans.html">release page</a> for more information.
-	</p>
 </div>

@@ -28,20 +28,25 @@ title: OED PRs
 			you run this check early to find any issues so you don't repeat them many times. The checks are run in a
 			terminal. The safest way is to do it inside Docker but then you cannot be running OED at the same time. To
 			do this do (from the main OED directory as needed for all docker-compose commands):
-			<br><code>docker-compose run --service-ports --rm web npm run check</code><br>
+			<br><code>docker-compose run --rm web npm run check</code><br>
 			You can run the check outside of Docker with:<br><code>npm run check</code><br>where you need to have npm
 			installed on your system outside the Docker OED system. Note that the checks use certain Unix commands that
 			may not run or may not run as expected on your system so even though this is faster we recommend doing it
-			inside of Docker.
+			inside of Docker. Note that unlike doing an install, you do not include --service-ports since it is not
+			needed and allows you to run this even while the instance of OED is active.
 		</li>
 		<li>Run our code checks. These run all the test cases to verify the code is running correctly. It is similar to
 			running lint where you use:
-			<br><code>docker-compose run --service-ports --rm web npm run test</code><br>
+			<br><code>docker-compose run --rm web npm run test</code><br>
 			This can take several minutes. A summary will be given at the bottom. If you see any errors then they should
 			be checked out. Let us know if you need help. You will do the same command to check any new tests you add.
 			Please note that it is difficult to run the tests outside Docker (with the full OED install) so you should
 			not do that (unlike using it with the lint check). See <a href="devDetails.html#singleTest">other info</a>
-			for faster running of single tests for debugging.
+			for faster running of single tests for debugging. Also note that the tests deliberately try to do invalid
+			operations to test OED. This causes warning/errors in the log.txt file as well as in the PostgreSQL log that
+			will be shown in the next install. Finally, note that unlike doing an install, you do not include
+			--service-ports since it is not
+			needed and allows you to run this even while the instance of OED is active.
 		</li>
 		<li>Make sure you keep your fork up to date with development on the main OED GitHub. Other people may integrate
 			new code into OED and your work needs to be in sync with that work.</li>
@@ -55,12 +60,11 @@ title: OED PRs
 		completely fixes/addresses an open issue then put the words "Fixes #XXX", where XXX is the issue number.
 		You will then see the a note in the pull request indicating it will close this issue when merged and there is
 		also a related note in the issue.</p>
-	<p>When your pull request is submitted, automated tests will run including static code checks and Travis that will
+	<p>When your pull request is submitted, automated GitHub Actions will run including static code checks and the OED
+		test code that will
 		do the checks and tests. If they pass then a green check mark will be put next to them and your pull request can
 		be considered. If they fail, you should see why and fix the issue on your branch. When you push the change to
-		your GitHub account (with the fork of OED), your pull request will automatically be updated and recheck. Note
-		one exception to dealing with errors is if OED is having an issue with Travis. When this is the case we post an
-		issue and/or notify developers.</p>
+		your GitHub account (with the fork of OED), your pull request will automatically be updated and recheck.</p>
 	<p>Once your pull request is passing all automated checks, it needs to be reviewed by at least one OED team
 		member with that privilege. The review might make suggestions and may request changes. Once that process is
 		complete, a senior member of the team will either approve the pull request of make other comments. Once

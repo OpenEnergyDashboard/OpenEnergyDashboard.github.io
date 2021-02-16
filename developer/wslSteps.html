@@ -6,17 +6,40 @@ title: Steps for WSL
     <h1>Prerequisite steps for WSL on Windows</h1>
     <ol>
         <li>Make sure your WSL is fully installed correctly, following <a
-                href=https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps
+                href="https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps"
                 rel="noopener noreferrer">these steps</a>.</li>
         <li>Make sure Docker is correctly configured to work with WSL, following <a
-                href=https://docs.docker.com/docker-for-windows/wsl rel="noopener noreferrer">these steps</a>.</li>
+                href="https://docs.docker.com/docker-for-windows/wsl" rel="noopener noreferrer">these steps</a>.</li>
     </ol>
+    <p>According to the best practices given in the <a
+            href="https://docs.docker.com/docker-for-windows/wsl/#best-practices" rel="noopener noreferrer">Docker WSL
+            information</a>, it is best to work in the Linux container rather than the Windows file system. This means
+        you should clone OED into the Linux container and run your code environment (such as Visual Studio Code)
+        there as well. The information below assumes you have done this and the commands given are run in a Linux
+        shell.</p>
+
     <h1>Errors running <code>docker-compose up</code> might throw:</h1>
     <ol>
         <li>
             <h2><code>FileNotFoundError: [Errno 2] No such file or directory</code></h2><br>
-            Ensure that docker is installed correctly and running - the Docker system tray icon's tooltip should specify
+            Ensure that docker is installed correctly and running - the Docker system tray icon's tooltip should
+            specify
             that Docker Desktop is running.
+        </li>
+        <li>
+            <h2><code>Docker-credential-desktop.exe executable file not found ...</code></h2>
+            If you get a message similar to the one above then it may be <a
+                href="https://forums.docker.com/t/docker-credential-desktop-exe-executable-file-not-found-in-path-using-wsl2/100225"
+                rel="noopener noreferrer">known issue</a> (This link was not responding recently but hopefully it is a
+            temporary issue as all forums.docker.com are unreachable). As discussed on that page, you should edit the
+            ~/.docker/config.json and change <code>credsStore</code> to <code></code>credStore</code>. It is not clear
+            why this works but it did help at least one OED developer. A <a
+                href="https://github.com/docker/for-win/issues/6652">Docker GitHub issue</a> discusses this and some
+            found adding an _ worked so <code>credsStore</code> to <code></code>_credsStore</code>. There are also
+            proposed changes to the PATH to help. (This <a href="https://github.com/docker/compose/issues/7495">Docker
+                GitHub issue</a> also discusses this issue.) Overall, this problem seems to be related to changes in
+            Docker that impacted its running on multiple system types. Hopefully Docker will resolve this soon (issue
+            noticed in February 2021 for OED developers).
         </li>
         <li>
             <h2><code>$'\r': command not found</code> or
@@ -28,13 +51,14 @@ title: Steps for WSL
         <li>
             <h2><code>chmod: changing permissions of '/var/lib/postgresql/data/pgdata': Operation not permitted</code>
             </h2><br>
-            Edit the following paths in <code>docker-compose.yml</code> under the <code>database:</code> tag (note the
+            Edit the following paths in <code>docker-compose.yml</code> under the <code>database:</code> tag
+            (note the
             addition of the <code>:z</code>):<br>
             <code>- PGDATA=/var/lib/postgresql/data/pgdata:z</code><br>
             <code>- ./postgres-data:/var/lib/postgresql/data/pgdata:z</code><br>
             <br>
             An explanation can be found <a
-                href=https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux
+                href="https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux"
                 rel="noopener noreferrer">here</a>.
         </li>
     </ol>
