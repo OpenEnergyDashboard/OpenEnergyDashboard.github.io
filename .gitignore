@@ -11,4 +11,4 @@ _site/
 .jsdtscope
 
 # Mac file info
-.DS_Store
+**/.DS_Store
