@@ -59,7 +59,18 @@ title: OED PRs
 		you are addressing any open issues. If so, please note in the pull request description. If your pull request
 		completely fixes/addresses an open issue then put the words "Fixes #XXX", where XXX is the issue number.
 		You will then see the a note in the pull request indicating it will close this issue when merged and there is
-		also a related note in the issue.</p>
+		also a related note in the issue. Also, other developers and reviewers like to know if this pull request
+		requires any changes in the OED environment. To let others know, please put the following in your pull request
+		description as is appropriate:</p>
+	<ul>
+		<li>"Note merging this changes the node modules." This indicates you changed package.json so that new packages
+			or versions are needed. This indicates to others that is it not safe to use the "--keep_node_modules" option
+			when installing OED.</li>
+		<li>"Note merging this changes the database configuration." This indicates that the database needs to be updated
+			for these changes to work correctly. Normally there will be migration files to update the database. However,
+			many developers will choose to reinitialize the database to do a clean install to be sure everything works
+			correctly.</li>
+	</ul>
 	<p>When your pull request is submitted, automated GitHub Actions will run including static code checks and the OED
 		test code that will
 		do the checks and tests. If they pass then a green check mark will be put next to them and your pull request can
