@@ -9,16 +9,19 @@ title: OED compare graphic help
 	<p>A compare graphic shows each meter and group as its own bar graphic with two bars where one is for past usage and
 		one is for current usage. The past usage immediately precedes the current period. The title of each bar graphic
 		indicates the percentage change in usage between these
-		two bars. The common usage allows for the section of multiple meters/groups to see the trend in usage and to
-		compare across them to see which ones are improving more than others. The
-		following figure shows
+		two bars. The common usage allows for the selection of multiple meters/groups to see the trend in usage and to
+		compare across them to see which ones are improving more than others.
+		The following figure shows a compare graphic for Meter 7 and Meter 8.
+		<!-- The following figure shows
 		a compare graphic for four groups. It would work equally well with meters but it is common to use groups to
-		combine the data to represent a given area in the organization (building, etc.) Each bar represents four weeks
-		of data so it is
-		the total usage of the indicated meter/group for those four weeks. Since it is total usage, the units are for
+		combine the data to represent a given area in the organization (building, etc.)  -->
+		Each bar represents one week of data so it is
+		the total usage of the indicated meter for that week. Since it is total usage, the units are for
 		energy, e.g., kWh for electricity. To get this graphic, you click the "Compare" choice
-		(highlighted with a blue box).</p>
-	<img alt="sample compare graphic for four groups" src="../images/comingSoon.png">
+		(highlighted with a blue box).
+	</p>
+	<img alt="sample compare graphic for four groups" src="../images/OEDCompareGraphicRealDataHelp.png"
+		style="width: 75vw; min-width: 700px;">
 	<p>A compare graphic can show an arbitrary choice and number of meters and groups. As described below, you can
 		control
 		the time frame for the comparison on the compare graphic.</p>
@@ -29,14 +32,16 @@ title: OED compare graphic help
 		current usage period ("Today", "This week" or "These four weeks"). As
 		seen in the figure above, the title displays the meter/group involved and the percentage change in usage from
 		the
-		previous to current period. For example, the group named ?? has a percentage change of ?? because the ratio of
-		the current to previous is ??.</p>
+		previous to current period. For example, Meter 8 has a percentage change of 1% because the ratio of
+		the current to previous is 6746 / 6688 = 1.009 and OED rounds to the nearest whole number as a percentage. OED
+		colors the tile green if usage went down (negative percentage) and red if usage went up (positive percentage) or stayed the same (0%).
+	</p>
 	<p>You can select the time range in days for comparison by clicking one of the
 		predefined time ranges (highlighted with a blue box in the next figure) where the choices are "Day", "Week"
 		(default) or
-		"4 Weeks". The figure below is the result of clicking on the "Week" choice (it was "4 Weeks" in the figure
+		"4 Weeks". The figure below is the result of clicking on the "4 Week" choice (it was "Week" in the figure
 		above).</p>
-	<img alt="sample week compare graphic" src="../images/comingSoon.png">
+	<img alt="sample week compare graphic" src="../images/OEDCompare4Weeks.png" style="width: 75vw; min-width: 700px;">
 	<p>When you hover over one of the bars, it says "used this time yesterday" or "used so far today" (in the case of
 		"Day"). This is meant to indicate that OED is giving you data for as much of the time period you have used up to
 		this point in time. This means that the values generally change if you look at them at a later time. Keep in

@@ -32,22 +32,33 @@ title: OED features
 			</ul>
 		</li>
 		<li><a href="help/graphType.html">Graphical display of data</a>. OED currently provides four unique views of the
-			data. In each view you can pick any meters or groups you want to include. (Images of each graphical type are
-			coming when version 0.7 is released.)
+			data. In each view you can pick any meters or groups you want to include.
 			<ul>
 				<li><a href="help/lineGraphic.html">Line Graphic</a>. Each meter/group is represented by a
-					line graph of usage versus time where you can control the time frame shown.</li>
+					line graph of usage versus time where you can control the time frame shown. An example is shown in
+					the
+					next figure where Meter 1 and Meter 2 are meter readings and Group 1 & 2 is a group that sums these
+					value which can be verified for one sample time point from the hover values shown on the graphic.
+				</li>
+				<img alt="line graphic with two meters and a group of those meters"
+					src="images/OEDLineGraphicRealData.png" style="width: 75vw; min-width: 700px;">
 				<li><a href="help/barGraphic.html">Bar Graphic</a>. Each meter/group is represented by a
 					series of bars over the total time chosen of the total usage over the chosen number of days for each
-					bar.
+					bar. An example of four weeks is shown in the next figure for the same meters/group for the line
+					graphic. Again the group is the sum of the two meters.
 				</li>
+				<img alt="bar graphic with two meters and a group of those meters"
+					src="images/OEDBarGraphicRealData.png" style="width: 75vw; min-width: 700px;">
 				<li><a href="help/compareGraphic.html">Compare Graphic</a>. Each meter/group is represented by its own
 					bar group comparing the current usage to the previous usage over day, week or four weeks. OED
 					supports sorting the graphs alphabetically and by how much they improved between the current and
 					previous time period. Typically this graphic is used to see how usage is changing and to compare
 					between different areas of an organization. For example, on a college campus you could run an energy
-					competition to see how each dorm is doing in saving energy.
+					competition to see how each dorm is doing in saving energy. An example comparing the current week to
+					the previous week is shown in the next figure for the two meters from the line and bar graphics.
 				</li>
+				<img alt="compare graphic with two meters and a group of those meters"
+					src="images/OEDCompareGraphicRealData.png" style="width: 75vw; min-width: 700px;">
 				<li><a href="help/mapGraphic.html">Map Graphic</a>. Each meter/group is represented by a
 					circle on a map where the size of the circle represents usage. This representation is useful in
 					getting a visual sense of how much energy different areas (often buildings) of an organization use.
@@ -55,8 +66,11 @@ title: OED features
 					entire organization and ones that zoom in on specific areas).
 					The site administrator can upload any graphical image of the organization and they use a web
 					interface to define GPS coordinates for all meters/groups. This requires no additional software nor
-					knowledge of GIS graphing.
+					knowledge of GIS graphing. An example is shown in the following figure for the same two meters used
+					in the compare graphic above.
 				</li>
+				<img alt="map graphic with two meters"
+					src="images/OEDMap.png" style="width: 75vw; min-width: 700px;">
 			</ul>
 		</li>
 		<li><a href="help/export.html">Data Export</a>. You can export the data of the line and bar graphics which
