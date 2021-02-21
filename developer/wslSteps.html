@@ -11,12 +11,16 @@ title: Steps for WSL
         <li>Make sure Docker is correctly configured to work with WSL, following <a
                 href="https://docs.docker.com/docker-for-windows/wsl" rel="noopener noreferrer">these steps</a>.</li>
     </ol>
-    <p>According to the best practices given in the <a
-            href="https://docs.docker.com/docker-for-windows/wsl/#best-practices" rel="noopener noreferrer">Docker WSL
-            information</a>, it is best to work in the Linux container rather than the Windows file system. This means
-        you should clone OED into the Linux container and run your code environment (such as Visual Studio Code)
-        there as well. The information below assumes you have done this and the commands given are run in a Linux
-        shell.</p>
+    <p><strong>According to the best practices given in the <a
+                href="https://docs.docker.com/docker-for-windows/wsl/#best-practices" rel="noopener noreferrer">Docker
+                WSL
+                information</a>, it is best to work in the Linux container rather than the Windows file system. This
+            means
+            you should clone OED into the Linux file system and run your code environment (such as Visual Studio Code)
+            there as well. The information below assumes you have done this and the commands given are run in a Linux
+            shell.</strong></p>
+    <p>We now suspect that all but the first issue may be due to using the Windows rather than the Linux file system
+        (see above). We are working to verify this but most of what is listed may not be needed.</p>
 
     <h1>Errors running <code>docker-compose up</code> might throw:</h1>
     <ol>
