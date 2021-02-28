@@ -1,2 +1,2 @@
-id,name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,identifier
-200,XXX,123.45.6.0,FALSE,TRUE,mamac,,XXX
+id,name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier
+200,XXX,123.45.6.0,FALSE,TRUE,mamac,,,XXX

@@ -1,5 +1,5 @@
-id,name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,identifier
-100,test100,123.45.6.0,FALSE,TRUE,mamac,,test100
-101,test101,123.45.6.1,FALSE,TRUE,mamac,,test101
-102,test102,123.45.6.2,FALSE,TRUE,mamac,,test102
-103,test103,123.45.6.3,FALSE,TRUE,mamac,,test103
+id,name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier
+100,test100,123.45.6.0,FALSE,TRUE,mamac,,,test100
+101,test101,123.45.6.1,FALSE,TRUE,mamac,,,test101
+102,test102,123.45.6.2,FALSE,TRUE,mamac,,,test102
+103,test103,123.45.6.3,FALSE,TRUE,mamac,,,test103

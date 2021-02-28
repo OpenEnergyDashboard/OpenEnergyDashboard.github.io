@@ -1,17 +1,18 @@
 ---
-layout: help
+layout: admin
 title: OED admin help
 ---
 <div>
 	<h1>Admin User (Help)</h1>
-	<p>Under construction</p>
 	<p>Note: These features are only available to select people who oversee the OED site (called admins) so these
 		features are not usually of
 		interest to a general user.</p>
 
 	<h2 id="overview">Overview</h2>
-	<p>There are two other admin help pages available:</p>
+	<p>There are several other admin help pages available:</p>
 	<ul>
+		<li><a href="adminPreferences.html">Admin Preferences & Upload</a>. This describes how admins can set the site
+			preferences as well as upload meter info and meter readings via a CSV file.</li>
 		<li><a href="adminMeterViewing.html"></href>Admin Meter Viewing</a>. This describes the abilities given to
 			admins on the meters page that are not available
 			to general users.</li>
@@ -20,6 +21,8 @@ title: OED admin help
 			to general users.</li>
 		<li><a href="adminMap.html">Admin Map control</a>. This describes the abilities given to admins to set up and
 			manage maps.</li>
+		<li><a href="adminDataAcquisition.html">Admin Data Acquisition</a>. This describes the types of meters supported
+			and how to control them in OED. This includes uploading meter or readings via a CSV file.</li>
 	</ul>
 
 	<h2 id="usage">Usage</h2>
@@ -35,53 +38,13 @@ title: OED admin help
 		additional help.</p>
 	<img alt="admin login page" src="../images/OEDLoginScreen.png" style="width: 75vw; min-width: 700px;">
 
-	<p>Once you are logged in, the main OED will change as show in the next figure. Click the "Admin Panel" button in
-		the top,
-		right (highlighted with a blue box) to go to the main admin page. Note you can click the "Log out" button in the
+	<p>Note you can click the "Log out"
+		button in the
 		top, right if you want to stop being an admin.
 		OED will automatically log you out after a set period of time.</p>
-	<img alt="main OED page for admin" src="../images/OEDMainPageForAdmin.png" style="width: 75vw; min-width: 700px;">
-	<p>You will now be on the main admin page as shown in the next figure. Each area of the page is described below.
-		<strong>It is important that you click the "Submit" button at the bottom of the page to save your changes to the
-			database. If you do not do this, other users will not see the change and it will be gone the next time you
-			visit your site or refresh your web browser page with OED.</strong>
-	</p>
-	<img alt="admin page" src="../images/OEDAdminPage.png" style="width: 75vw; min-width: 700px;">
-
-	<h3>Default Site Title</h3>
-	<p>Clicking the box below this label will allow you to enter or edit the OED site title shown at the top of each
-		page. You should try to keep the title fairly short so that it does not take up too much space on each page. The
-		title will remain blank until you enter one.</p>
-
-	<h3>Default Graph Type</h3>
-	<p>When a user first loads OED, you can control the <a href="graphType.html">graph type</a> that will appear. The
-		user can still change to another graph type if they wish. The types of graphs you can choose mirror the ones
-		allowed. Simply click the circle next to your choice. The default will be "Line" unless you change it.</p>
-
-	<h3>Default Bar Stacking</h3>
-	<p>The <a href="barGraphic.html#barStacking">bar stacking</a> option allows the bar graphic to show as single,
-		stacked bar for each time frame. By default this is off. You can make it default to on by clicking the box next
-		to "Bar Stacking". If checked, you can click to remove this choice.</p>
-
-	<h3>Default Language</h3>
-	<p>Clicking one of the languages below this label will set OED to use that language for its strings within the
-		application for all users. The default language is "English" until you change it.</p>
-
-	<h3>Import Meter Readings</h3>
-	<p>This allows loading of a CSV file to add readings to an existing meter. We are in the process of creating a new
-		system for doing this and will document it when it is generally available. If you need information on loading
-		reading before then, please contact us.</p>
-
-	<h3>Add new meters</h3>
-	<p>The new system that allows for adding readings will also support meters. Thus, treat adding new meters the same
-		as readings and contact us.</p>
+	<p>The pages linked above have information on what you can do as an admin and now to get to each page.</p>
 
 	<h2 id="details">Details</h2>
-	<p>The map graphic cannot be made the default graphic type at this time. We expect that will change soon.</p>
-	<p>The popup help is set to be language settable but the translations are not yet done. The help pages on the web
-		(linked from within the app help) are not translated but may be in the future.</p>
-	<p>It is not difficult to include additional languages within OED. If you are willing to translate the strings, we
-		can provide a file to type them in that can then be permanently stored with our source code so your site and
-		other sites will always have that language. We will also modify OED to show that language choice on the admin
-		page. We welcome the addition of languages to OED. If interested then please contact us.</p>
+	<p>When your session times out as an admin, the next action you take will redirect you to the login page. After you
+		log in you are returned to the main OED page. Then you can click to get back to where you were.</p>
 </div>
