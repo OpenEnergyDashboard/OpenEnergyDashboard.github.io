@@ -1,0 +1,58 @@
+---
+layout: developer
+title: OED map data
+---
+
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+</head>
+
+<div>
+	<h1>OED developer map data</h1>
+	<p>The following assumes you have loaded the <a href="testData.html">test data</a> into your development OED system.
+		You can use other meter data but the size of the circles cannot be guaranteed in version 0.6.</p>
+	<p>Version 0.6 has several issues with maps that impact the size and value displayed. The following accounts for
+		these issues. As they are addressed in OED, you will likely find a need to change how you test maps. This page
+		should be updated as this happens.</p>
+	<p>Please use the <a href="../help/adminMap.html">admin map help</a> for information on how to load and calibrate a
+		map. This page only describes the necessary details of the test map. You need to be logged in as an admin to
+		complete these steps.</p>
+	<p>Use the sample <a href="testData/goodPlace.png" download>Good Place map</a> by downloading it. This
+		is the map
+		you upload into OED. We will call it "Good Place" and you can use that name in OED or some other name.</p>
+	<p>During the calibration step, you will use a mythical GPS coordinate system of (0-30, 0-50) which are real GPS
+		values but not usual for a map. This large area works because we will make a perfect calibration with no error.
+		This means the lower, left corner of the map has GPS coordinate (0, 0) and the top, right has GPS coordinate
+		(50, 30). The Plotly grid has values of (0, 0) for lower, left and (300, 500) for the top, right. This means the
+		coordinates are reversed for GPS (latitude, longitude) compared to the grid (x, y) and are a factor of 10
+		smaller.
+		During calibration, click on three places on the map. In principle it does not matter where but I normally click
+		in three spread out places on the map. When you do that, OED will tell you the grid coordinate you clicked on.
+		As just explained, you need to reverse the coordinates and divide by 10. Thus, if you are told "input GPS
+		coordinate that corresponds to the point: x: 277, y: 461 in this format -> latitude,longitude" then you enter
+		"46.1, 27.7" for the GPS value in the box and submit. Repeat this 3 times and you should then see an error of 0%
+		for both directions. If not, start over. If yes, then save changes to the database.
+	</p>
+	<p>Next go to mater page to edit the meters for the desired GPS locations. These values will work where you don't
+		input the location on map but that tells you where it will show up.</p>
+	<ul>
+		<li>test100, GPS: 41.8, 8.5, Location on map: Place Place</li>
+	</ul>
+	<ul>
+		<li>test101, GPS: 26.9, 24.8, Location on map: Theater</li>
+	</ul>
+	<ul>
+		<li>for another meter, GPS: 42.7, 23.0, Location on map: Swimming Pool</li>
+	</ul>
+	<ul>
+		<li>for another meter, GPS: 20.2, 8.5, Location on map: Cafeteria</li>
+	</ul>
+	<ul>
+		<li>for another meter, GPS: 5.7, 18.2, Location on map: Housing</li>
+	</ul>
+	<p>Note the three labeled "for another meter" are given in case you want to put other meters on the map. Note that
+		test102 and test103 will give very large circles until we fix the size issue. If all went well, you should now
+		see the following on the map page (I used a different map name due to ones already in my system).</p>
+	<img src="../images/developerMap.png" alt="what the developer map should look like"
+		style="width: 75vw; min-width: 700px;">
+</div>

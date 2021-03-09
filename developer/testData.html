@@ -17,6 +17,8 @@ title: OED test data
 		by that same period in the past. Since the test data has static dates, they will not include dates near the
 		current time. This means that you cannot see comparison data. We will be posting directions to import test data
 		that will allow comparison graphs.</p>
+	<h2>Maps</h2>
+	<p>For using the following data with maps, please see the <a href="testMap.html">test map page</a>.</p>
 	<h2>Future plans</h2>
 	<p>OED has developed code to generate mathematically-based meter data that is easy to tell visually if it is
 		correct. That data will be coming and allow developers to generate the test data on their own machine rather
@@ -104,7 +106,11 @@ title: OED test data
 <ol>
 	<li><code>docker-compose exec database psql -U oed -c "COPY meters FROM '...Meters.csv' CSV HEADER"</code><br>
 		This will load the meter information into the database. The output should be a count of rows that equals the
-		number of meters being added.</li>
+		number of meters being added.<ul>
+			<li>If this fails and you have the file in the correct location, then it may be due
+				to a database issue <a href="#dbIssue">described below</a>.</li>
+		</ul>
+	</li>
 	<li>Go to the web browser displaying OED. Refresh this page. Go to the drop down menu for "Meters:" where you should
 		now see the meters included with this test data (included in table above). If you don't see them then something
 		is wrong and you should not continue this process and instead ask us for help. (See link at bottom of page)</li>
@@ -150,6 +156,23 @@ title: OED test data
 		unexpected results when you graph that meter in OED.</li>
 	<li>Import the data as described above.</li>
 </ol>
+<h2 id="dbIssue">Database issue</h2>
+<p>If you cannot load the data into the database or it disappears after shutting down OED, then you likely have a
+	database issue. To test you can do the following:
+<ol>
+	<li>Log in as the admin.</li>
+	<li>Change the default graph type to something else (say bar) and <strong>save the change</strong>. Make sure it
+		gives the green popup that it saved okay.</li>
+	<li>Refresh the web browser and go tho the main OED page. It should have preselected the bar choice for graphic
+		indicating that it is the default choice. If this does not work then verify the admin preference change was
+		actually saved without error because it seems your installation is not saving to the database.</li>
+	<li>Shut OED down and bring it back up (keeping the database and you can also skip the npm install).</li>
+	<li>When OED is done installing, go to the web page and refresh the page. Again, you should see the bar as the
+		default selection. If this
+		fails then the database changes are not being saved between runs of OED. This indicates an install issue. If you
+		don't know what to do then contact us.</li>
+</ol>
+</p>
 <h2>Help</h2>
 <p>You should now be done and have the test data in your OED development system. If something did not work then you
 	can seek help from the project by <a href="mailto:developer@openenergydashboard.org">contacting us</a>.</p>
