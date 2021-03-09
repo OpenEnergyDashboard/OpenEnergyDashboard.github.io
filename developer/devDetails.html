@@ -129,6 +129,14 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		use:<br><code>docker-compose run --rm web npm run testsome -- src/server/test/web/groups.js src/server/test/db/baselineTests.js</code>
 	</p>
 
+	<h2>Accessing the database</h2>
+	<p>You can access the Postgres database that OED uses within the docker container. In a second terminal (the first
+		should have OED running), do <code>docker-compose exec database psql -U oed</code>. You will now be in the
+		Postgres command line for the OED database. Note this is the live system so you can make changes that the
+		running application will see (and damage the information too!). It is assumed you know some SQL and Postgres
+		command line commands if you are doing this. One important one is <code>\q</code> which will get you back to the
+		terminal by leaving the Postgres command system.</p>
+
 	<h2>Database timeout on testing</h2>
 	<p>Sometimes when you run the OED tests for the first time in a while, you get an error about the database timing
 		out. The message is normally something similar to "Error: Timeout of 15000ms
