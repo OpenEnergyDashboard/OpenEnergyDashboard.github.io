@@ -54,6 +54,15 @@ title: OED dev details
 		postgres-data/ directory on your machine's file system. This is why removing the postgres-data/ directory resets
 		the database within the Docker container.</p>
 
+	<h2>Stopping OED</h2>
+	<p>If you go to the terminal where OED is running, you can type ^-c (control and letter c) together to stop OED.
+		Note it is best to only do this once since a second time causes a force stop. An alternative is to use
+		<code>docker-compose down</code> in a second terminal that is in the same directory as where the install is
+		happening. This can also be useful if you are having an issue with your docker container(s) since it cleans them
+		all up.
+	</p>
+	<p>Normally, doing ^-z will put the process into the background. This does not work with a running OED.</p>
+
 	<h2 id=goingOn>Seeing what is happening with OED</h2>
 	<p>Sometimes OED will not act as you expect and you want to know what is going on. There are two normal ways to do
 		this:
