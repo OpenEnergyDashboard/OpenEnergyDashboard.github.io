@@ -37,7 +37,8 @@ title: Steps for WSL
             while for the npm install to finish but wait and hopefully this will happen. You will likely then get a
             message
             about trying to start to database but nothing after that one line. At this point, stop the install (a
-            <strong>single ^c</strong> (control and letter c) or <code>docker-compose down</code> in a second terminal where it is in the same
+            <strong>single ^c</strong> (control and letter c) or <code>docker-compose down</code> in a second terminal
+            where it is in the same
             OED
             directory as the install is happening). You should now be back at the command line. Do
             <code>install_args="--keep_node_modules" docker-compose up</code> which will try the install again but keep
@@ -51,4 +52,10 @@ title: Steps for WSL
             other issues then please contact us.
         </li>
     </ol>
+
+    <h2>Script errors</h2>
+    <p>If you have the OED files stored on the Windows file system, then issues will likely occur. It can happen on
+        install, when you run checks (linting) and for other OED scripts. This is because the file format is a little
+        different. The best solution is to keep all files on the Linux file system (as suggested above). It is possible
+        to modify the scripts with but this is not the recommended solution.</p>
 </div>
