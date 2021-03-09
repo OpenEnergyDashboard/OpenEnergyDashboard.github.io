@@ -131,9 +131,12 @@ web_1       | [at-loader] Ok, 0.006 sec.
 
 	<h2>Database timeout on testing</h2>
 	<p>Sometimes when you run the OED tests for the first time in a while, you get an error about the database timing
-		out. If this happens, rerun the test command. It normally works the next time (or within a total or three
+		out. The message is normally something similar to "Error: Timeout of 15000ms
+		exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves." If
+		this happens, rerun the test command. It normally works the next time (or within a total or three
 		tries). We are working to change our testing and installation so Postgres is ready before operations continue so
-		this problem will go away.</p>
+		this problem will go away. The current fix is to allow a test to take up toe 15,000 ms or 15 seconds to complete
+		so Postgres has time to start up and that is why you see "15000ms" in the error message.</p>
 
 	<h2>Running without the database container</h2>
 	<p>On rare occasions, you may get a database failure during the startup of the database container during the
