@@ -19,8 +19,6 @@ title: Steps for WSL
             you should clone OED into the Linux file system and run your code environment (such as Visual Studio Code)
             there as well. The information below assumes you have done this and the commands given are run in a Linux
             shell.</strong></p>
-    <p>We now suspect that all but the first issue may be due to using the Windows rather than the Linux file system
-        (see above). We are working to verify this but most of what is listed may not be needed.</p>
 
     <h1>Errors running <code>docker-compose up</code> might throw:</h1>
     <ol>
@@ -31,39 +29,26 @@ title: Steps for WSL
             that Docker Desktop is running.
         </li>
         <li>
-            <h2><code>Docker-credential-desktop.exe executable file not found ...</code></h2>
-            If you get a message similar to the one above then it may be <a
-                href="https://forums.docker.com/t/docker-credential-desktop-exe-executable-file-not-found-in-path-using-wsl2/100225"
-                rel="noopener noreferrer">known issue</a> (This link was not responding recently but hopefully it is a
-            temporary issue as all forums.docker.com are unreachable). As discussed on that page, you should edit the
-            ~/.docker/config.json and change <code>credsStore</code> to <code></code>credStore</code>. It is not clear
-            why this works but it did help at least one OED developer. A <a
-                href="https://github.com/docker/for-win/issues/6652">Docker GitHub issue</a> discusses this and some
-            found adding an _ worked so <code>credsStore</code> to <code></code>_credsStore</code>. There are also
-            proposed changes to the PATH to help. (This <a href="https://github.com/docker/compose/issues/7495">Docker
-                GitHub issue</a> also discusses this issue.) Overall, this problem seems to be related to changes in
-            Docker that impacted its running on multiple system types. Hopefully Docker will resolve this soon (issue
-            noticed in February 2021 for OED developers).
-        </li>
-        <li>
-            <h2><code>$'\r': command not found</code> or
-                <code>/bin/sh^M: bad interpreter: No such file or directory</code>
-            </h2><br>
-            Run <code>dos2unix &lt;filename&gt;</code> on the <code>.sh</code> file that causes this error.<br>
-            For example: <code>dos2unix installOED.sh</code> and <code>dos2unix src/scripts/devstart.sh</code>
-        </li>
-        <li>
-            <h2><code>chmod: changing permissions of '/var/lib/postgresql/data/pgdata': Operation not permitted</code>
-            </h2><br>
-            Edit the following paths in <code>docker-compose.yml</code> under the <code>database:</code> tag
-            (note the
-            addition of the <code>:z</code>):<br>
-            <code>- PGDATA=/var/lib/postgresql/data/pgdata:z</code><br>
-            <code>- ./postgres-data:/var/lib/postgresql/data/pgdata:z</code><br>
-            <br>
-            An explanation can be found <a
-                href="https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux"
-                rel="noopener noreferrer">here</a>.
+            When you first install OED, you get some sort of error message (often about not being able to write the
+            pg_wal file). This leads to the database going into a panic stop and the database container exiting. When
+            this
+            has been seen, the web container continues to run and the npm install continues/completes. Note it can take
+            a
+            while for the npm install to finish but wait and hopefully this will happen. You will likely then get a
+            message
+            about trying to start to database but nothing after that one line. At this point, stop the install (a
+            <strong>single ^c</strong> or <code>docker-compose down</code> in a second terminal where it is in the same
+            OED
+            directory as the install is happening). You should now be back at the command line. Do
+            <code>install_args="--keep_node_modules" docker-compose up</code> which will try the install again but keep
+            the
+            node modules (node_modules/ directory) and the Postgres installation (in postgres-data/ directory). Normally
+            this will complete the installation fairly quickly without further issues. For now, we encourage you to do
+            these exact steps as deviations have been known to cause it to fail. Please note we are looking into
+            why
+            this is happening but are glad the fix has been working for Windows/WSL developers. If it does not or you
+            have
+            other issues then please contact us.
         </li>
     </ol>
 </div>
