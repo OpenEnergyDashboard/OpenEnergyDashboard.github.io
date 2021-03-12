@@ -88,6 +88,18 @@ title: OED PRs
 		do the checks and tests. If they pass then a green check mark will be put next to them and your pull request can
 		be considered. If they fail, you should see why and fix the issue on your branch. When you push the change to
 		your GitHub account (with the fork of OED), your pull request will automatically be updated and recheck.</p>
+	<p>You can tell if there were any issues with the automated GitHub Actions by looking at the commit on the pull
+		request. Toward the right side of the line with the commit there will either be a green check mark (everything
+		is
+		okay) or a red x (indicating issues). (It could be yellow of the checks have not finished which normally takes
+		1-4 minutes.) If you click on either, a popup has a link to the "details". Normally the
+		issue is with the OED tests (and not from the automated testing setup). To see these, open up the section
+		labeled "node tests". This will show all the checks (lint, typescript, etc.) and the automated unit tests.
+		Normally there will be an error message (either at the end or in several places). This should indicate where the
+		error occurred and help in tracking it down. Note that an error can cause the testing to stop so it is possible
+		there are more errors that will show up once the earlier one is fixed. See above about running the tests on your
+		machine and the developer
+		details page has information on running a limited number of tests.</p>
 	<p>Once your pull request is passing all automated checks, it needs to be reviewed by at least one OED team
 		member with that privilege. The review might make suggestions and may request changes. Once that process is
 		complete, a senior member of the team will either approve the pull request of make other comments. Once
