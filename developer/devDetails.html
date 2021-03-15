@@ -144,7 +144,11 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		this happens, rerun the test command. It normally works the next time (or within a total or three
 		tries). We are working to change our testing and installation so Postgres is ready before operations continue so
 		this problem will go away. The current fix is to allow a test to take up toe 15,000 ms or 15 seconds to complete
-		so Postgres has time to start up and that is why you see "15000ms" in the error message.</p>
+		so Postgres has time to start up and that is why you see "15000ms" in the error message. If the problem
+		persists, you can go into package.json and change the 15000 to be a larger value (such as 30000). This means
+		mocha will not terminate a test until 30 seconds have passed. The only known negative of doing this is that a
+		test that will not complete due to an error will take longer for mocha to terminate. However, this is uncommon
+		in OED tests so the change should be fine.</p>
 
 	<h2>Running without the database container</h2>
 	<p>On rare occasions, you may get a database failure during the startup of the database container during the
