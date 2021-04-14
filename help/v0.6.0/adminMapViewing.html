@@ -3,6 +3,9 @@ layout: admin
 title: OED admin map help
 ---
 <div>
+	<!-- Add version info at top of page. Would be nice if could put in layout but then relative link does not work. -->
+	{% include_relative _version.html %}
+	<!-- Page content -->
 	<h1>Admin Map Viewing (Help)</h1>
 
 	<h2 id="overview">Overview</h2>
@@ -29,7 +32,7 @@ title: OED admin map help
 			here. See the <a href="adminMap.html">admin map help</a> for more information on maps.</li>
 		<li>Meter Updates. This tells if OED tries to automatically gather this meter's data (assuming the site was
 			properly set up the do meter updates). At the current time, OED only does this for MAMAC meters. (Obvius
-			pushes the data to OED so OED does not need to start that process.) If you have a MAAMC meter in your site
+			pushes the data to OED so OED does not need to start that process.) If you have a MAMAC meter in your site
 			that you no longer want to collect data, then click the "Disable" button next to the green "Updates Enabled"
 			string. The string will change to "Updates Disabled" and go red. The button will become "Enable". Clicking
 			that button will reverse the process. (This is also visible to a regular user but they cannot change

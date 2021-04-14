@@ -3,6 +3,9 @@ layout: help
 title: OED time help
 ---
 <div>
+	<!-- Add version info at top of page. Would be nice if could put in layout but then relative link does not work. -->
+	{% include_relative _version.html %}
+	<!-- Page content -->
 	<h1>How OED Deals With Time (Help)</h1>
 
 	<h2 id="overview">Overview</h2>
@@ -47,7 +50,7 @@ title: OED time help
 	<h2 id="details">Details</h2>
 	<p>OED recognized that users might want to know the original time zone associated with data when it is exported for
 		use outside of OED. If the admin has set the time zone then we plan to give the option to include it in exported
-		data. This will be coming in a future release and will be more valuable once sites have had the opprotunity to
+		data. This will be coming in a future release and will be more valuable once sites have had the opportunity to
 		properly set
 		time zone information. Note this information will be most valuable for the small fraction of sites that might
 		have data that crosses time zones.</p>
