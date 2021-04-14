@@ -1,1 +1,13 @@
 This repository holds the Open Energy Dashboard (OED) website including help and developer pages.
+
+## Creating help files for new versions of OED
+
+1) Copy the latest help version directory, e.g. v0.7.0/, into the new directory with the name of the new version, e.g., v0.8.0/.
+
+    - Since any updates that apply to previous versions will need to be manually edited, it is best to do this once the previous version of help files is as close to done as possible.
+
+2) Edit the version information in the new help directory, e.g. help/v0.8.0/_version.html. Change the version listed, e.g. 0.7.0 to 0.8.0.
+3) Edit _layouts/help.html (off main website directory and **not** in the help directories) to add a new menu item for the new version. Simply follow the lines already there in the Help versions menu.
+4) Edit \_includes/helpLinkMainDir.html  (off main website directory and **not** in the help directories) to change the version from the current one to the new one. For example, help/v0.7.0/index.html becomes help/v0.8.0/index.html. This makes the default help on the main directory go to the new version.
+5) Edit \_includes/helpLinkSubDir.html in a similar way to \_includes/helpLinkMainDir.html. This makes the default help on subdirectories go to the new version.
+6) Edit the new help files for whatever changes are needed. Be careful to do new screenshots if the look of OED has changed.
