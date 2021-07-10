@@ -31,7 +31,7 @@ title: OED map help
 	<p>If you click on the "Maps" button in the top, right of the main OED screen you will go to the maps page shown
 		below. This shows the page when no maps are on the site. Click the blue "Create a Map" button to begin the
 		process of uploading a map.</p>
-	<img alt="admin map page without maps" src="../images/OEDAdminMapViewingEmpty.png"
+	<img alt="admin map page without maps" src="./images/OEDAdminMapViewingEmpty.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>You should now be on the page shown below. Click on the "Browse ..." button (highlighted with a blue box) to open
 		a standard web browser pop up to select a file. Choose the graphical image of your map. Note the image can be of
@@ -42,9 +42,9 @@ title: OED map help
 		immediately below (labeled "Define a name for the map:") to name your map. Note this is the name that a user
 		will see (it can be edited later). When
 		you are ready, click the "Save and continue" button to complete this step.</p>
-	<img alt="admin map loading page" src="../images/OEDAdminLoadMap.png" style="width: 75vw; min-width: 700px;">
+	<img alt="admin map loading page" src="./images/OEDAdminLoadMap.png" style="width: 75vw; min-width: 700px;">
 	<p>You should then see the confirmation popup shown below. Click "OK" to continue the process.</p>
-	<img alt="admin map loading completion popup" src="../images/OEDAdminMapUploadComplete.png"
+	<img alt="admin map loading completion popup" src="./images/OEDAdminMapUploadComplete.png"
 		style="width: 20vw; min-width: 250px;">
 	<p>You should now be on the map calibration page shown below. This page allows you to enter the GPS coordinates for
 		places on the map so OED can map locations on the map to locations on the globe (world map). You should place
@@ -55,7 +55,7 @@ title: OED map help
 		cursor was placed at grid coordinate (277, 461) and then the mouse was clicked. (Unfortunately the image cannot
 		pick up the "+" where the cursor was located.) This point was chosen since we assume that in a real situation we
 		knew the GPS coordinate for the top, right corner of the "Swimming Pool" building in the image.</p>
-	<img alt="admin map calibration point entry" src="../images/OEDAdminMapCalibrationStepOne.png"
+	<img alt="admin map calibration point entry" src="./images/OEDAdminMapCalibrationStepOne.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>As shown in the figure above, when that point was clicked, a message appeared below the map (inside the blue box
 		used for highlighting) that says "input GPS coordinate that corresponds to the point: x: 277, y: 461
@@ -68,7 +68,7 @@ title: OED map help
 		entered
 		is inside the blue box used for highlighting as shown in the next figure.
 	</p>
-	<img alt="admin map GPS entry for a calibration point" src="../images/OEDAdminMapCalibrationStepTwo.png"
+	<img alt="admin map GPS entry for a calibration point" src="./images/OEDAdminMapCalibrationStepTwo.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>Once complete, you click the "Submit" button below the box for GPS (inside the blue box used for highlighting).
 		This leads to the figure below. The text at the bottom of the web browser window, "result: Need more points"
@@ -79,7 +79,7 @@ title: OED map help
 		in this format -> latitude,longitude" after you submit a point. This is to indicate that a new point has yet to
 		be chosen.
 	</p>
-	<img alt="admin map showing need more calibration points" src="../images/OEDAdminMapCalibrationStepThree.png"
+	<img alt="admin map showing need more calibration points" src="./images/OEDAdminMapCalibrationStepThree.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>You now need to repeat the steps above to enter more calibration points. You can click anywhere on the map where
 		you know the GPS coordinates. It is okay to click more than once to replace the point clicked with a new one as
@@ -89,7 +89,7 @@ title: OED map help
 			the GPS coordinates</a> for
 		points on the map. Once you have entered at least three calibration points, OED will give you an estimate of the
 		overall calibration result (inside the blue box used for highlighting in the figure below).</p>
-	<img alt="admin map showing result of current calibration points" src="../images/OEDAdminMapCalibrationStepFour.png"
+	<img alt="admin map showing result of current calibration points" src="./images/OEDAdminMapCalibrationStepFour.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>In this example, the result is "result: x: 0.003% y: 0.007%" (inside the blue box used for highlighting in the
 		figure above). If you are satisfied with the result, you click the "Save changes to
@@ -104,7 +104,7 @@ title: OED map help
 		map. If you want users to be able to see the map then make sure "Display Enabled" is shown. It is best to verify
 		that items are showing up in the correct places before you reveal the map to users. Note you can recalibrate
 		a map from this page.</p>
-	<img alt="admin map viewing page after calibration" src="../images/OEDAdminMapViewingAfterCalibration.png"
+	<img alt="admin map viewing page after calibration" src="./images/OEDAdminMapViewingAfterCalibration.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>Once you set the GPS of meters, you can see their values on the map. (See the <a href="mapGraphic.html">map
 			graphing</a> page for more information.) If you find that the circles are not showing up at the desired
@@ -137,14 +137,14 @@ title: OED map help
 		which is a smaller percent error than the deviation of any x or y value (0.05%). This is the example used in the
 		figure below. If you map circles that should
 		be directly on "Play Place" and "Theater" you get the following.</p>
-	<img alt="admin map small calibration error result" src="../images/OEDAdminMapResultOne.png"
+	<img alt="admin map small calibration error result" src="./images/OEDAdminMapResultOne.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>As shown, the circles are a little below the building but still clear about their placement. If we change so that
 		the each value is +/- 0.1 then the result is much worse. This would mean that the GPS value is uncertain in the
 		first decimal place so the error magnitude is the same for each point (not the percent). This means
 		that the value 2.7 is either 2.8 or 2.6. The result is "result: x:
 		299% y: 0.002%". The result of mapping is shown in the next figure where "Play Place" is now off the map.</p>
-	<img alt="admin map larger calibration error result" src="../images/OEDAdminMapResultTwo.png"
+	<img alt="admin map larger calibration error result" src="./images/OEDAdminMapResultTwo.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>What should be noted is that modest percent errors (here 0.299%) in any coordinate is likely to lead to
 		significant placement issues. When this happens, you need to recalibrate the map.</p>
@@ -168,7 +168,7 @@ title: OED map help
 		0.019%"). The next
 		figure shows that "Place Play" is now a little low but way too far to the right and "Theater" is a little low
 		and to the right.</p>
-	<img alt="admin map larger calibration error result" src="../images/OEDAdminMapCalibrationOff.png"
+	<img alt="admin map larger calibration error result" src="./images/OEDAdminMapCalibrationOff.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>We begin by trying to fix "Theater" that is not as far off. Its actual GPS value is "26.67, 25.0". By using the
 		<a href="adminMapViewing.html">Admin Map Viewing</a> page, the GPS value was changed. The fact that the circle
@@ -181,7 +181,7 @@ title: OED map help
 		A few tries found that (42.2, -145) worked well. As expected the latitude only needed a small change but the
 		longitude needed a significant change. The final result is show in the next figure.
 	</p>
-	<img alt="admin map larger calibration error fixed result" src="../images/OEDAdminMapCalibrationFixed.png"
+	<img alt="admin map larger calibration error fixed result" src="./images/OEDAdminMapCalibrationFixed.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>One thing to note is that this process is only done once when a new map is loaded. After that, any user will see
 		the correct result.</p>
