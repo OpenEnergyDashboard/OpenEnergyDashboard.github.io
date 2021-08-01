@@ -38,13 +38,16 @@ title: OED admin csv import help
     <h4>CSV file upload via direct file upload</h4>
     <p>Direct file upload is accomplished via HTTP POST request that is often done using the curl command via a
         script. A sample line to upload a meter is:</p>
-    <code>curl myuniv.edu:3000/api/csv/meters -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>
+    <code>curl https://myuniv.edu:3000/api/csv/meters -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>
     <p>where the command can be understood as follows:</p>
     <ul>
         <li><code>curl</code>: The command to mimic an HTTP request.</li>
-        <li><code>myuniv.edu:3000/api/csv/meters</code>: myuniv.edu would be replaced with the URL of where your OED
+        <li><code>https://myuniv.edu:3000/api/csv/meters</code>: https://myuniv.edu would be replaced with the URL of
+            where your OED
             site is located. This specifies where the HTTP request is sent and how it is routed within the OED
-            application (in this case to the api for csv for meters). Note you would replace "meters" with "readings" if
+            application (in this case to the api for csv for meters). OED encourages you to use https (assuming you site
+            is set up to accept secure connections) so the transmission of user and password is secure. You can use
+            http: if that is necessary for your site. Note you would replace "meters" with "readings" if
             you were sending a reading CSV.</li>
         <li><code>-X POST</code>: Indicates the type of HTTP request being made. This is required and always the same.
         </li>
