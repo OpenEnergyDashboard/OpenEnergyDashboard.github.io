@@ -194,23 +194,23 @@ title: OED admin meter import help
     <p>What follows are the common messages returned from a meter upload along with their meaning:</p>
     <ul>
         <li>
-            &lth1&gtFAILURE&lt/h1&gtCSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
+            <code>&lth1&gtFAILURE&lt/h1&gtCSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
             pipe41
             seems to exist when inserting new meters and got DB error of: duplicate key value violates unique constraint
-            "meters_name_key"<br>
+            "meters_name_key"</code><br>
             This normally happens when the name (or similarly identifier) of the meter already exists. It may be the
             case that you wanted to update this meter but did not specify this.
         </li>
         <li>
-            &lth1&gtFAILURE&lt/h1&gtCSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
+            <code>&lth1&gtFAILURE&lt/h1&gtCSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
             pipe42
-            does not seem to exist with update for meters and got DB error of: No data returned from the query.<br>
+            does not seem to exist with update for meters and got DB error of: No data returned from the query.</code><br>
             Request indicated to update meter(s) but at least one did not exist. All meters must exist on update.
         </li>
         <li>
-            &lth1&gtSUCCESS&lt/h1&gtSuccessfully inserted the meters.&lth1>FAILURE&lt/h1>CSVPipelineError: Failed to
+            <code>&lth1&gtSUCCESS&lt/h1&gtSuccessfully inserted the meters.&lth1>FAILURE&lt/h1>CSVPipelineError: Failed to
             upload meters due to internal OED Error: Meter name provided (pipe40) in request with update for meters but
-            more than one meter in CSV so not processing<br>
+            more than one meter in CSV so not processing</code><br>
             When you want to change a meter name you specify the name in the request as well as the CSV file. It then
             uses the name in the request to find the meter and the value in the CSV as the new meter name. However, you
             can only have a single meter in the CSV file for this to work. This indicates more than one meter was
