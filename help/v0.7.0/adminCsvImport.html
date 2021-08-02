@@ -57,14 +57,27 @@ title: OED admin csv import help
             key/value, the email address ("email" parameter) of an admin with CSV rights is being supplied with the
             value "csvadmin@myuniv.edu". The next key/value pair is for the "password" (parameter) and "something"
             (assumed password for the OED user csvadmin@myuniv.edu). These two parameters must always be provided so OED
-            knows that only appropriate people are submitting requests.</li>
+            knows that only appropriate people are submitting requests. Note that if the user email is not in the OED
+            system then OED will return the message:<br>
+            <code><pre>
+        &lth1&gtFAILURE&lt/h1&gtQueryResultError {
+            code: queryResultErrorCode.noData
+            message: "No data returned from the query."
+            received: 0
+            query: "SELECT id, email, password_hash, role FROM users WHERE email='csvuser@myorg.com';"
+        }
+    </pre></code> where csvuser@myorg.com would be the email you actually provided. If the user password is incorrect
+            then OED will return the message:<br>
+            <code>&lth1&gtFAILURE&lt/h1&gtError: Invalid credentials</code>
+        </li>
         <li><code></code>-F 'csvfile=@meterinfo.csv.gz': This supplies the name of the CSV file with the information for
             uploading. The parameter name is "csvfile" and the value is "@meterinfo.csv.gz". Note the file information
             must be preceded with an @ sign. In this example the file is in the same directory as where the curl
             command runs. If there was a path to the file then it would precede the file name using the format for the
             OS for the computer running the curl command. For example, if it was in the "csv" folder under the directory
             where the curl was run then on a Linux system you would use "-F 'csvfile=@csv/meterinfo.csv.gz'". Note that
-            in this case the CSV file is gzipped so it has a .csv.gz file extension.</li>
+            in this case the CSV file is gzipped so it has a .csv.gz file extension. Note the csvfile parameter must be
+            the last one given on direct file upload.</li>
         <p>There are many more parameters that can be used and they are described on the pages for readings and meters
             upload (see links below). Note that to upload readings you use
             <code>curl myuniv.edu:3000/api/csv/readings -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>

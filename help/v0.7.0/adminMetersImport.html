@@ -182,8 +182,15 @@ title: OED admin meter import help
 
     <h3>Sample file</h3>
     <p>Below are the lines for a CSV meter import file with a header row. It will import two meters (Meter 1 and Meter
-        2) where the meters are not enabled but are displayable. Most values that are optional are unspecified so the
-        default values are used.</p>
+        2) where the meters are not enabled but are displayable. Most values that are optional and unspecified so the
+        default values are used. This <a href="files/meters.csv" download>meters.csv</a> was loaded
+        using the curl command of:<br>
+        <code>curl https://myoedserver.come:3000/api/csv/meters -X POST -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@meters.csv'</code><br>
+        assuming the shown URL, user email and password. (See <a href="adminReadingsImport.html#sampleFiles">admin
+            reading sample files</a> for more information on URL, email and password.) You need to reload the OED web
+        page so your browser is aware of the new meters but you will get an empty graphic if used since they don't have
+        any data.
+    </p>
     <pre>
         name,ipaddress,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset end,gap,variation,duplicates,timesort,end only,reading,start time,end time
         Meter 1,,FALSE,TRUE,other,,,Student Dorm,This dorm has 20 students,13418,,,,,,,,,,,,

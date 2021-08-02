@@ -171,10 +171,36 @@ title: OED admin reading import help
         </li>
     </ol>
 
-    <h3>Sample files</h3>
+    <h3 id="sampleFiles">Sample files</h3>
+    <p>For each sample given, there is a link to the CSV file and the curl parameters used to upload that CSV file. The
+        same parameters could be set via the web upload. The
+        curl command you will use will be:<br>
+        <code>curl &ltyourOedServer&gt:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=&ltmeterName&gt' &ltcurlParameters&gt -F 'email=&ltloginEmail&gt' -F 'password=&ltloginPassword&gt' -F 'csvfile=@&ltcsvFilename&gt'</code><br>
+        where you replace &ltyourOedServer&gt with your OED server URL address (same as when you go to your OED site),
+        &ltmeterName&gt with the name you want OED to use for this meter, &ltcurlParameters&gt with the curl parameters
+        listed for each sample file, &ltloginEmail&gt with the user email
+        with CSV user login privileges for OED, &ltloginPassword&gt with the password for that
+        user and &ltcsvFilename&gt with the CSV file name listed for the sample file. Note the curl command must be run
+        in the directory containing the CSV file or include the path to that file. As an example for the first sample
+        file, you might have<br>
+        <code>curl https://myoedserver.come:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=regAsc' -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@regAsc.csv'</code><br>
+        assuming the shown URL, user email and password and making the meter name be the base of the CSV file name (file
+        name
+        without .csv). Note that meters created by OED are not visible to non-admin users so you will either need to be
+        logged in as an admin or get an admin user to make the meter(s) visible. Also, an admim user needs to refresh
+        the readings for them to be able to be graphed (often happens automatically somewhat after midnight on a site).
+        As an alternative (if it is okay for your server) you can add the parameter
+        <code>-F 'refreshReadings=true'</code> so
+        OED will do the refresh as part of the upload.
+        Finally, you need to reload the OED web page so your browser is aware of the new meters and data. Please see <a
+            href="#valueShown">CSV vs graphic value</a> discussion about expected values in OED graphs.
+    </p>
     <p>Below are the lines for a CSV readings import file with a header row where end only is false and the data is not
         cumulative. It will import three readings with values of 24, 48 and 72 for 1-3 June 2021. Note that the end
-        date/time is at midnight of the next day.</p>
+        date/time is at midnight of the next day. (This <a href="files/regAsc.csv" download>regAsc.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'headerRow=true' -F 'gzip=false'</code>.)
+    </p>
     <pre>
         reading,start_timestamp,end_timestamp
         24,2021-06-01 00:00:00,2021-06-02 00:00:00
@@ -182,8 +208,12 @@ title: OED admin reading import help
         72,2021-06-03 00:00:00,2021-06-04 00:00:00
     </pre>
     <p>Below are the lines for a CSV readings import file with a header row where end only is true and the data is not
-        cumulative. The readings are the same as the last one if we assume the previous reading from the last upload had
-        an end date/time of 2021-06-01 00:00:00 so the start date/time of the first reading is the same.</p>
+        cumulative. The readings are the same as the last one but OED will drop the first ever reading for end only data
+        (assuming the meter does not already exist) with an appropriate error message returned by OED. (This <a
+            href="files/regAscEndonly.csv" download>regAscEndonly.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'endOnly=true' -F 'headerRow=true' -F 'gzip=false'</code>.)
+    </p>
     <pre>
         reading,end_timestamp
         24,2021-06-02 00:00:00
@@ -198,7 +228,14 @@ title: OED admin reading import help
         date for the previous reading with end only times in the following examples. The third row of the CSV will
         modify (update) the current reading
         for 1 June 2021 to change the value from 24 to 36. The fourth row of the CSV will update the reading for 2 June
-        2021 but since the reading provided is the same as the one already in OED you cannot see that this was done.</p>
+        2021 but since the reading provided is the same as the one already in OED you cannot see that this was done.
+        Note you get a warning returned by OED since the first reading is before the last upload for this meter but this
+        does not change the outcome.
+        (This <a href="files/regAscUpdate.csv" download>regAscUpdate.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'update=true' -F 'headerRow=true' -F 'gzip=false'</code> where you reuse the same meter name that was
+        used in the first sample [likely regAsc].)
+    </p>
     <pre>
         reading,start_timestamp,end_timestamp
         0,2021-05-31 00:00:00,2021-06-01 00:00:00
@@ -206,9 +243,13 @@ title: OED admin reading import help
         48,2021-06-02 00:00:00,2021-06-03 00:00:00
     </pre>
     <p>Below are the lines for a CSV readings import file without a header row where end only is false and the data is
-        cumulative. The readings are the same as the last one if you assume the previous reading had a value of zero.
-        The first reading calculated by OED to be 24 - 0 = 24, the second as 72 - 24 = 48 and the third as 144 - 72 =
-        72.</p>
+        cumulative. The readings are the same as regAscEndonly since the first ever reading must be dropped and OED
+        returns an error message about that.
+        The second row is calculated by OED to be 72 - 24 = 48 and the third as 144 - 72 =
+        72. (This <a href="files/cumAsc.csv" download>cumAsc.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'cumulative=true' -F 'gzip=false'</code>.)
+    </p>
     <pre>
         24,2021-06-01 00:00:00,2021-06-02 00:00:00
         72,2021-06-02 00:00:00,2021-06-03 00:00:00
@@ -217,10 +258,13 @@ title: OED admin reading import help
     <p>Below are the lines for a CSV readings import file with a header row where end only is false and the data is
         cumulative with reset as true. The readings are the same as the last one with one more reading at the end. This
         reading will have an OED value of 96 since 96 is less than 144 so a reset is assumed to have happened. The
-        other readings all have the row reading greater than or equal to the previous row reading so no reset occurred
-        (with the first row assuming the previous was 0). Note the request could set the reset time start and end to be
+        other readings all have the row reading greater than or equal to the previous row reading so no reset occurred.
+        Note the request could set the reset time start and end to be
         close to midnight (23:55 & 00:05 if must be within 5 minutes of midnight) if you want to avoid OED assuming a
-        reset at another time is okay.</p>
+        reset at another time is okay. (This <a href="files/cumAscReset.csv" download>cumAscReset.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'cumulative=true' -F 'cumulativeReset=true' -F 'headerRow=true' -F 'gzip=false'</code>.)
+    </p>
     <pre>
         reading,start_timestamp,end_timestamp
         24,2021-06-01 00:00:00,2021-06-02 00:00:00
@@ -229,10 +273,12 @@ title: OED admin reading import help
         96,2021-06-04 00:00:00,2021-06-05 00:00:00
     </pre>
     <p>Below are the lines for a CSV readings import file with a header row where end only is false, the data is
-        cumulative and time sort is "decreasing". The readings are the same as the one two above. The CSV file is the
+        cumulative and time sort is "decreasing". The readings are the same as the two above (cumAsc). The CSV file is the
         same except all rows past the first header row are in reverse order so time decreases as you go down the rows.
         An example without cumulative is not shown but it would be similar but have reading values of 72, 48 & 24 for
-        rows 2-4.
+        rows 2-4 (but here the first reading of 24 would not be dropped). (This <a href="files/cumDsc.csv" download>cumDsc.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'cumulative=true' -F 'timeSort=decreasing' -F 'headerRow=true' -F 'gzip=false'</code>.)
     </p>
     <pre>
         reading,start_timestamp,end_timestamp
@@ -242,17 +288,22 @@ title: OED admin reading import help
     </pre>
     <p>Below are the lines for a CSV readings import file with a header row where end only is true, the data is
         cumulative, time sort is "decreasing". The readings are the same as the one above. This again shows that you can
-        use many possibilities in combination where here it is both cumulative and end only.
+        use many possibilities in combination where here it is both cumulative and end only. (This <a href="files/cumDscEndonly.csv" download>cumDscEndonly.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'endOnly=true' -F 'cumulative=true' -F 'timeSort=decreasing' -F 'headerRow=true' -F 'gzip=false'</code>.)
     </p>
     <pre>
-        reading,start_timestamp,end_timestamp
+        reading,end_timestamp
         144,2021-06-04 00:00:00
         72,2021-06-03 00:00:00
         24,2021-06-02 00:00:00
     </pre>
     <p>Below are the lines for a CSV readings import file with a header row where end only is false, the data is
-        cumulative and duplication is 3. The readings are the same as the first cumulative example (four above) where each line is duplicated three
-        times.</p>
+        cumulative and duplication is 3. The readings are the same as the one above where
+        each line is duplicated three
+        times. (This <a href="files/cumAscDuplication.csv" download>cumAscDuplication.csv</a> was loaded
+        using the curl parameters of
+        <code>-F 'cumulative=true' -F 'duplications=3' -F 'headerRow=true' -F 'gzip=false'</code>.)</p>
     <pre>
         reading,start_timestamp,end_timestamp
         24,2021-06-01 00:00:00,2021-06-02 00:00:00
@@ -317,14 +368,16 @@ title: OED admin reading import help
             negative for cumulative readings. Since OED subtracts readings, a negative value will make a reading larger
             and this is not normal. As a result, OED is cautious and assumes an error and rejects all readings as a
             result.
-            Note that OED will let you know if the previous reading was from the meter (this is used in the first reading in the
+            Note that OED will let you know if the previous reading was from the meter (this is used in the first
+            reading in the
             CSV) by giving the message as
             <code>The last meter reading (logical previous reading) was negative with value -1 with cumulative readings the previous reading cannot be negative so all reading are rejected.</code>
         </li>
         <li>
             <code>For meter pipe13: Warning parsing Reading #2. Reading value gives 48 with warning message:<br>The previous reading has a different time length than the current reading and exceeds the tolerance of 0 seconds. Note this is treated only as a warning since this may be expected for certain meters.</code><br>
             The time length of a reading is the end time minus the start time. If this exceeds the value for the
-            lengthVariation parameter than a warning is generated. In this case the lengths varied and the allowed time length
+            lengthVariation parameter than a warning is generated. In this case the lengths varied and the allowed time
+            length
             variation was zero so the message was given. This is only a warning for several reasons. First, some meters
             vary in when values are acquired so some variation in the reading time length is expected. Second, changes
             in variation still allow OED to determine all needed values. Note that OED detects when the previous reading
@@ -363,7 +416,8 @@ title: OED admin reading import help
         </li>
         <li>
             <code>For meter pipe43: Error parsing Reading #2 The start and/or end time provided did not parse into a valid date/time so all reading are rejected.</code><br>
-            OED checks that the dates/times provided for the current reading are in a valid format. If not, this error is
+            OED checks that the dates/times provided for the current reading are in a valid format. If not, this error
+            is
             generated. To make sure that incorrect values are not added to OED, no
             reading from this CSV are added to OED and this is indicated in the message.
         </li>
@@ -385,7 +439,8 @@ title: OED admin reading import help
             <code>For meter pipe52: Error parsing Reading #2. Reading value gives 48 with error message:<br>The reading end time is not after the start time so we must drop the reading. The start time came from the previous readings end time.</code><br>
             This is for endOnly as true. The current reading's start time comes from the previous reading's end time. As
             above, this means that the current reading's end time must be after the previous reading's end time and the
-            reading is dropped. Note that you may get warnings about reading length variation and/or gaps for the next two
+            reading is dropped. Note that you may get warnings about reading length variation and/or gaps for the next
+            two
             points due to this one being off. This includes the fact that the next reading will use the this end reading
             so it may span the wrong amount of time.
         </li>
@@ -397,7 +452,8 @@ title: OED admin reading import help
             values. To avoid returning a message of excessive size, OED limits the total message to about 75,000
             characters which is normally 75 or more unique messages. This should give sufficient information about what
             is going on but any remaining messages that are truncated will be seen once the earlier issues are resolved
-            but note they are always present in the OED log file on your OED server. You will see something similar to the
+            but note they are always present in the OED log file on your OED server. You will see something similar to
+            the
             message above except "The current message" will be replaced by the message OED is currently issuing for that
             row of the CSV file.
         </li>
@@ -409,11 +465,13 @@ title: OED admin reading import help
 
     <h3 id="first">First reading ever seen by a meter</h3>
     <p>OED uses the previous value to validate reading length and the gap to the previous reading. It also uses the
-        previous reading to determine the current reading's value for cumulative readings. There is a startup issue when a meter is first
+        previous reading to determine the current reading's value for cumulative readings. There is a startup issue when
+        a meter is first
         created concerning what the previous reading will be. As described on the <a href="adminMetersImport.html">CSV
             meter import</a> page, OED sets the previous reading to have start/end dates/times of 1970-01-01 00:00:00
         and a reading of zero. This should make it the case that this is well before any actual meter reading and
-        OED uses this special value to detect when a meter has never had a reading added. Due to this, if the reading is either
+        OED uses this special value to detect when a meter has never had a reading added. Due to this, if the reading is
+        either
         cumulative and/or end only date/time then it must be discarded. This is because there is no real previous
         point to use to get the needed values. OED will report that the CSV upload failed and tell you it dropped
         the first reading as needed. Note that OED will be fine after the first ever reading since it will use the
@@ -432,7 +490,7 @@ title: OED admin reading import help
         on the <a href="adminCsvImport.html">general CSV import</a> page, OED returns messages to let you know that
         an issue occurred and direct file upload will return an error code.</p>
 
-    <h3>Reading value in CSV vs what is seen in OED</h3>
+    <h3 id=valueShown>Reading value in CSV vs what is seen in OED</h3>
     <p>OED displays data per unit time in a line graph. In the CSV example files above, each reading spans one day
         or 24 hours. Thus, if this was electricity readings in KW, OED would graph KW/hour and each value in the CSV
         will show up as 1/24 of the value provided when graphed by OED. In the sample values, 24, 48 and 72 (KW for
