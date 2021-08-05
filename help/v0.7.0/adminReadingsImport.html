@@ -146,7 +146,7 @@ title: OED admin reading import help
             is false.</li>
     </ul>
 
-    <h3>Meter CSV file format</h3>
+    <h3>Reading CSV file format</h3>
     <p>If the file has a header row then it should be:<br>
         reading, start_timestamp, end_timestamp<br>
         Each following line should contain the values for one reading which are:
@@ -154,8 +154,6 @@ title: OED admin reading import help
         <li><i>reading value</i>: This is the usage between the start date/time and end data/time in the units expected
             for this meter. Note a reading that is not an integer or real number will cause an error where OED then
             rejects all readings in the CSV file.</li>
-    </ol>
-    <ol>
         <li><i>start_timestamp</i>: (This assumes end only time is false.) This is the start date/time stamp for this
             readings. (The name of the column is
             historical and is not just time). OED accepts any format that our date/time package can accept where most
@@ -165,11 +163,10 @@ title: OED admin reading import help
             incorrect formats/dates/times and this causes OED to reject all readings
             in the CSV file. For example, 2021-06-32 00:00:00 will cause an error since there are not 32 days in June.
         </li>
-    </ol>
-    <ol>
         <li><i>end_timestamp</i>: Similar to start_timestamp but specifies the end date/time stamp for this reading.
         </li>
     </ol>
+    <p>Note the start_timestamp column will not be present if end only is specified.</p>
 
     <h3 id="sampleFiles">Sample files</h3>
     <p>For each sample given, there is a link to the CSV file and the curl parameters used to upload that CSV file. The
@@ -457,6 +454,7 @@ title: OED admin reading import help
             message above except "The current message" will be replaced by the message OED is currently issuing for that
             row of the CSV file.
         </li>
+        <li>You can get a variety of error messages if the gzip is improperly set. These include "TypeError", "invalid message format" and others. This is because OED is incorrectly reading the CSV file and receives garbled information.</li>
     </ul>
 
     <h2 id="details">Details</h2>
