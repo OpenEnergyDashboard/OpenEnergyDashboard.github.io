@@ -53,6 +53,21 @@ title: OED map graphic help
 		you can see the underlying map image. If you look at the color the rectangle that pops up when you hover on the
 		graph you will see it is the same as the color used for this item in other graphics.</p>
 
+	<h3>Map circle size</h3>
+	<p>The size of a circle is based on its area (not the diameter) so the circle area scales with usage. This was chosen since
+		a study indicated that area is the better choice for user perception.</p>
+	<p>OED makes the circle size be from an internally set minimum and maximum size so that it ranges within a set
+		percentage of the map size. Note this has a couple of important implications:</p>
+	<ul>
+		<li>The size of circles can change as you select new items to place on the map. This only happens if a new item
+			has greater usage than any previously chosen item. This occurs because OED makes the item with the highest
+			usage have the maximum size allowed and scales all the other items appropriately. This allows circles to be
+			as large as possible.</li>
+		<li>The minimum size of the circle means that items with low usage do not become so small that they cannot be
+			seen. However, it does mean that items with small circles will not accurately represent the actual usage.
+			Hovering over a cicle will cause a popup that displays the actual usage.</li>
+	</ul>
+
 	<h3 id="limitations">Limitations</h3>
 	<p>Maps are a new and complex feature added in version 0.7. It was designed to show what they can do and allow
 		people to begin to incorporate them into their sites. There are several current limitations on maps that should
@@ -65,13 +80,5 @@ title: OED map graphic help
 			This means if you change the date range on the line graphic, the bar graphic changes to those dates and the
 			map graphic also changes the circle size. In the future we will allow other time
 			ranges (probably similar to bar graphs).</li>
-		<li>Clicking the button to get the map graphic. Depending on the size of your screen, you may not see the button
-			to select the map graphic when the current graphic is too large. You can normally get around this by
-			clicking the "Bar" graphic button to see the "Map" graphic button. This works because the bar graphic is
-			normally smaller than other graphics. If this does not work, you can deselect the chosen meters/groups to
-			make graphics smaller to get the the "Map" button. We will likely fix this by making the graphic selection
-			be a dropdown menu similar to Groups and Meters.</li>
-		<li>Circle size. While the circle size represents the average usage, its overall size is not yet optimized. This
-			means it might be too large and extend well beyond the item it represents on the map.</li>
 	</ul>
 </div>
