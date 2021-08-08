@@ -54,6 +54,7 @@ title: OED admin meter import help
             href="adminReadingsImport.html">admin reading import</a> page.<br>
         Each following line should contain the values for one meter. Most values can be skipped where the default value
         for OED will be used. A brief description of each value is in the following table:
+    </p>
     <table>
         <thead>
             <tr>
@@ -178,7 +179,6 @@ title: OED admin meter import help
             </tr>
         </tbody>
     </table>
-    </p>
 
     <h3>Sample file</h3>
     <p>Below are the lines for a CSV meter import file with a header row. It will import two meters (Meter 1 and Meter
@@ -201,7 +201,7 @@ title: OED admin meter import help
     <p>What follows are the common messages returned from a meter upload along with their meaning:</p>
     <ul>
         <li>
-            <code>&lth1&gtFAILURE&lt/h1&gtCSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
+            <code>&lt;h1&gt;FAILURE&lt;/h1&gt;CSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
             pipe41
             seems to exist when inserting new meters and got DB error of: duplicate key value violates unique constraint
             "meters_name_key"</code><br>
@@ -209,13 +209,13 @@ title: OED admin meter import help
             case that you wanted to update this meter but did not specify this.
         </li>
         <li>
-            <code>&lth1&gtFAILURE&lt/h1&gtCSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
+            <code>&lt;h1&gt;FAILURE&lt;/h1&gt;CSVPipelineError: Failed to upload meters due to internal OED Error: Meter name of
             pipe42
             does not seem to exist with update for meters and got DB error of: No data returned from the query.</code><br>
             Request indicated to update meter(s) but at least one did not exist. All meters must exist on update.
         </li>
         <li>
-            <code>&lth1&gtSUCCESS&lt/h1&gtSuccessfully inserted the meters.&lth1>FAILURE&lt/h1>CSVPipelineError: Failed to
+            <code>&lt;h1&gt;SUCCESS&lt;/h1&gt;Successfully inserted the meters.&lt;h1&gt;FAILURE&lt;/h1&gt;CSVPipelineError: Failed to
             upload meters due to internal OED Error: Meter name provided (pipe40) in request with update for meters but
             more than one meter in CSV so not processing</code><br>
             When you want to change a meter name you specify the name in the request as well as the CSV file. It then

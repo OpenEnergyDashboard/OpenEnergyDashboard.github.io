@@ -172,12 +172,12 @@ title: OED admin reading import help
     <p>For each sample given, there is a link to the CSV file and the curl parameters used to upload that CSV file. The
         same parameters could be set via the web upload. The
         curl command you will use will be:<br>
-        <code>curl &ltyourOedServer&gt:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=&ltmeterName&gt' &ltcurlParameters&gt -F 'email=&ltloginEmail&gt' -F 'password=&ltloginPassword&gt' -F 'csvfile=@&ltcsvFilename&gt'</code><br>
-        where you replace &ltyourOedServer&gt with your OED server URL address (same as when you go to your OED site),
-        &ltmeterName&gt with the name you want OED to use for this meter, &ltcurlParameters&gt with the curl parameters
-        listed for each sample file, &ltloginEmail&gt with the user email
-        with CSV user login privileges for OED, &ltloginPassword&gt with the password for that
-        user and &ltcsvFilename&gt with the CSV file name listed for the sample file. Note the curl command must be run
+        <code>curl &lt;yourOedServer&gt;:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=&lt;meterName&gt;' &lt;curlParameters&gt; -F 'email=&lt;loginEmail&gt;' -F 'password=&lt;loginPassword&gt;' -F 'csvfile=@&lt;csvFilename&gt;'</code><br>
+        where you replace &lt;yourOedServer&gt; with your OED server URL address (same as when you go to your OED site),
+        &lt;meterName&gt; with the name you want OED to use for this meter, &lt;curlParameters&gt; with the curl parameters
+        listed for each sample file, &lt;loginEmail&gt; with the user email
+        with CSV user login privileges for OED, &lt;loginPassword&gt; with the password for that
+        user and &lt;csvFilename&gt; with the CSV file name listed for the sample file. Note the curl command must be run
         in the directory containing the CSV file or include the path to that file. As an example for the first sample
         file, you might have<br>
         <code>curl https://myoedserver.come:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=regAsc' -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@regAsc.csv'</code><br>
@@ -317,8 +317,8 @@ title: OED admin reading import help
     <h3>Return messages</h3>
     <p>Most messages end with some standard information that can help you (and if needed the OED project)
         understand what happened. If there are issues, the beginning of the message will have:<br>
-        <code>&lth1&gtFAILURE&lt/h1&gt&lth2&gtIt looks like the insert of the readings had issues with some or all of the
-        readings where the processing of the readings returned these warning(s)/error(s):&lt/h2&gt</code><br>
+        <code>&lt;h1&gt;FAILURE&lt;/h1&gt;&lt;h2&gt;It looks like the insert of the readings had issues with some or all of the
+        readings where the processing of the readings returned these warning(s)/error(s):&lt;/h2&gt;</code><br>
         The later part of the message will normally include what OED thought was the
         previous and current reading along with the parameter values it is using for processing. This is an
         example:<br>
@@ -334,8 +334,8 @@ title: OED admin reading import help
         Additional information included in all messages will be a list of dropped readings at the end of the
         message. Note these are not given if all readings are dropped (indicated in message). An example where the first
         reading is dropped is:<br>
-        <code>&lth2&gtReadings Dropped and should have previous messages&lt/h2&gt&ltol&gt&ltli&gtDropped Reading #1 for
-        meter pipe3&lt/li&gt&lt/ol&gt</code><br>
+        <code>&lt;h2&gt;Readings Dropped and should have previous messages&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;Dropped Reading #1 for
+        meter pipe3&lt;/li&gt;&lt;/ol&gt;</code><br>
     </p>
     <p>What follows are the common messages returned from a reading upload along with their meaning. The standard
         information in messages just described is not included in what is given.</p>
@@ -442,8 +442,8 @@ title: OED admin reading import help
             so it may span the wrong amount of time.
         </li>
         <li>
-            <code>&lth1&gtWARNING - The total number of messages was stopped due to size.' +
-                ' The log file has all the messages.&lt/h1&gt The current message &lth1&gtMessage lost starting now.&lt/h1&gt</code><br>
+            <code>&lt;h1&gt;WARNING - The total number of messages was stopped due to size.' +
+                ' The log file has all the messages.&lt;/h1&gt; The current message &lt;h1&gt;Message lost starting now.&lt;/h1&gt;</code><br>
             When processing a CSV file, it is possible that there will be a large number of messages (warnings and/or
             errors). For example, forgetting to make cumulative true can cause many lines to be rejected for negative
             values. To avoid returning a message of excessive size, OED limits the total message to about 75,000

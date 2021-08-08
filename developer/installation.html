@@ -163,9 +163,9 @@ OED_MAIL_ORG=
 		<li>
 			<p>Clone this repository. <code>git clone https://github.com/OpenEnergyDashboard/OED.git [directory]</code>
 			</p>
+			<p>cd into the directory that has the cloned version of OED. This is know as the root directory of OED. What
+				follows assumes you are in the root directory of OED.</p>
 		</li>
-		<p>cd into the directory that has the cloned version of OED. This is know as the root directory of OED. What
-			follows assumes you are in the root directory of OED.</p>
 		<li>
 			<p>Edit <code>docker-compose.yml</code> to change</p>
 			<ol>
@@ -229,37 +229,49 @@ OED_MAIL_ORG=
 				<li>It would be a good idea to go to a web browser to verify that OED is actually serving up web pages.
 				</li>
 			</ol>
-		<li>The following steps are only needed if you having OED acquire data from MAMAC meter. Commands are all done
-			in a terminal in the main OED directory.</li>
-		<ol>
-			<li>Add the MAMAC meters to OED:</li>
+		</li>
+		<li>The following steps are only needed if want OED to acquire data from MAMAC meter. Commands are all done
+			in a terminal in the main OED directory.
 			<ol>
-				<li>Create a CSV file with a single column called "ip" with your meter IP addresses and copy it into the
-					directory where the project resides. These are the IPs of Mamac meters from which this OED instance
-					will pull data.</li>
-				<li>Do: <code>docker-compose exec web npm run addMamacMeters &lt;IPFileName&gt;.csv</code><br>where you
-					replace &lt;IPFileName&gt; with whatever you named the file above with the IP addresses.
+				<li>Add the MAMAC meters to OED:
+					<ol>
+						<li>Create a CSV file with a single column called "ip" with your meter IP addresses and copy it
+							into
+							the
+							directory where the project resides. These are the IPs of Mamac meters from which this OED
+							instance
+							will pull data.</li>
+						<li>Do:
+							<code>docker-compose exec web npm run addMamacMeters &lt;IPFileName&gt;.csv</code><br>where
+							you
+							replace &lt;IPFileName&gt; with whatever you named the file above with the IP addresses.
+						</li>
+						<li>You will need to wait for the hourly job (described next) to run or manually the update for
+							the
+							data
+							as described in the Administration section below.??</li>
+					</ol>
 				</li>
-				<li>You will need to wait for the hourly job (described next) to run or manually the update for the data
-					as described in the Administration section below.??</li>
-			</ol>
-			<li>Set up the hourly cron job to update MAMAC meters data on OED.</li>
-			<ol>
-				<li><code>cp src/scripts/updateMamacMetersOEDCron.bash /etc/cron.hourly/updateMamacMetersOEDCron.bash</code>
+				<li>Set up the hourly cron job to update MAMAC meters data on OED.
+					<ol>
+						<li><code>cp src/scripts/updateMamacMetersOEDCron.bash /etc/cron.hourly/updateMamacMetersOEDCron.bash</code>
+						</li>
+						<li>Edit /etc/cron.hourly/updateMamacMetersOEDCron.bash to make the necessary modifications to
+							the
+							script. See the script for more detail.</li>
+						<li>Do: <code>chmod +x /etc/cron.hourly/updateMamacMetersOEDCron.bash</code> to make the script
+							executable.</li>
+					</ol>
 				</li>
-				<li>Edit /etc/cron.hourly/updateMamacMetersOEDCron.bash to make the necessary modifications to the
-					script. See the script for more detail.</li>
-				<li>Do: <code>chmod +x /etc/cron.hourly/updateMamacMetersOEDCron.bash</code> to make the script
-					executable.</li>
 			</ol>
-			</li>
-		</ol>
+		</li>
 	</ol>
 
 	<h1>Administration</h1>
 
 	<h2>Data Storage</h2>
-	<p>PostgreSQL stores its data in <code>postgres-data</code>. This and <code>node_modules</code> will be owned by
+	<p>PostgreSQL stores its data in <code>postgres-data</code>. This and <code>node_modules</code> will be
+		owned by
 		root, becuase the user in the Docker continer is root; to uninstall the app, you need to
 		delete them from inside the container (or as root on your own machine):
 		<code>docker-compose run --rm web rm -r postgres-data node_modules</code>.
@@ -272,21 +284,26 @@ OED_MAIL_ORG=
 			<code>docker-compose exec database pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
 		</li>
 		<li>Restore a database dump by first copying the dump into the container with
-			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the database
+			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the
+			database
 			with <code>docker-compose exec database psql -U oed -f /dump.sql</code>.
 		</li>
-		<li>Change an admin's password with <code>docker-compose run --rm web npm run editUser</code> and follow the
+		<li>Change an admin's password with <code>docker-compose run --rm web npm run editUser</code> and follow
+			the
 			directions.</li>
-		<li>Nuke the database by running <code>docker-compose exec database psql -U postgres database/nuke.sql</code>.
+		<li>Nuke the database by running
+			<code>docker-compose exec database psql -U postgres database/nuke.sql</code>.
 			<g-emoji class="g-emoji" alias="warning"
-				fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png">⚠</g-emoji> THIS WILL
+				fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png">⚠</g-emoji>
+			THIS WILL
 			DELETE ALL DATA. <g-emoji class="g-emoji" alias="warning"
 				fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png">⚠</g-emoji>
 		</li>
 	</ul>
 
 	<h3>NPM Scripts</h3>
-	<p>These can be run by executing <code>npm run [SCRIPT]</code> in the <code>web</code> Docker-Compose service
+	<p>These can be run by executing <code>npm run [SCRIPT]</code> in the <code>web</code> Docker-Compose
+		service
 		(e.g. <code>docker-compose run --rm web npm run [SCRIPT] [args]</code>).</p>
 	<p>For non-Docker installs, simply issue <code>npm run [SCRIPT]</code>.</p>
 	<p>App actions:</p>
@@ -302,21 +319,25 @@ OED_MAIL_ORG=
 	<ul>
 		<li><code>check</code> runs all the below non-test checks (that is, all static checks)</li>
 		<li><code>check:header</code> ensures that there are no source files without MPL headers.</li>
-		<li><code>check:typescript</code> ensures that there are no JavaScript source files in the TypeScript portion of
+		<li><code>check:typescript</code> ensures that there are no JavaScript source files in the TypeScript
+			portion of
 			the project.</li>
 		<li><code>check:lint</code> runs TSLint against the project to ensure style conformity.</li>
-		<li><code>check:types</code> runs the TypeScript compiler without emitting code (i.e. just checks for type
+		<li><code>check:types</code> runs the TypeScript compiler without emitting code (i.e. just checks for
+			type
 			errors).</li>
 		<li><code>test</code> runs the automated test suite on the server.</li>
 	</ul>
 	<p>Administration:</p>
 	<ul>
-		<li><code>createdb</code> creates the database schema in an uninitialized database. It will not update the
+		<li><code>createdb</code> creates the database schema in an uninitialized database. It will not update
+			the
 			schema.</li>
 		<li><code>addMamacMeters</code> adds meters from a CSV file (see above).</li>
 		<li><code>updateMamacMeters</code> fetches new data from previously imported Mamac meters.</li>
 		<li><code>refreshReadingViews</code> aggregates readings data in the database.</li>
-		<li><code>createUser</code> creates a new user. If given no arguments, it is interactive; you can also pass the
+		<li><code>createUser</code> creates a new user. If given no arguments, it is interactive; you can also
+			pass the
 			username and password as command line arguments.</li>
 		<li><code>editUser</code> edits the password of an existing user.</li>
 	</ul>

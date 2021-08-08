@@ -59,18 +59,19 @@ title: OED admin csv import help
             (assumed password for the OED user csvadmin@myuniv.edu). These two parameters must always be provided so OED
             knows that only appropriate people are submitting requests. Note that if the user email is not in the OED
             system then OED will return the message:<br>
-            <code><pre>
-        &lth1&gtFAILURE&lt/h1&gtQueryResultError {
+            <pre><code>
+        &lt;h1&gt;FAILURE&lt;/h1&gt;QueryResultError {
             code: queryResultErrorCode.noData
             message: "No data returned from the query."
             received: 0
             query: "SELECT id, email, password_hash, role FROM users WHERE email='csvuser@myorg.com';"
         }
-    </pre></code> where csvuser@myorg.com would be the email you actually provided. If the user password is incorrect
+        </code></pre> where csvuser@myorg.com would be the email you actually provided. If the user password is
+            incorrect
             then OED will return the message:<br>
-            <code>&lth1&gtFAILURE&lt/h1&gtError: Invalid credentials</code>
+            <code>&lt;h1&gt;FAILURE&lt;/h1&gt;Error: Invalid credentials</code>
         </li>
-        <li><code></code>-F 'csvfile=@meterinfo.csv.gz': This supplies the name of the CSV file with the information for
+        <li><code>-F 'csvfile=@meterinfo.csv.gz'</code>: This supplies the name of the CSV file with the information for
             uploading. The parameter name is "csvfile" and the value is "@meterinfo.csv.gz". Note the file information
             must be preceded with an @ sign. In this example the file is in the same directory as where the curl
             command runs. If there was a path to the file then it would precede the file name using the format for the
@@ -78,11 +79,12 @@ title: OED admin csv import help
             where the curl was run then on a Linux system you would use "-F 'csvfile=@csv/meterinfo.csv.gz'". Note that
             in this case the CSV file is gzipped so it has a .csv.gz file extension. Note the csvfile parameter must be
             the last one given on direct file upload.</li>
-        <p>There are many more parameters that can be used and they are described on the pages for readings and meters
-            upload (see links below). Note that to upload readings you use
-            <code>curl myuniv.edu:3000/api/csv/readings -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>
-        </p> where many more parameters are allowed.
     </ul>
+    <p>There are many more parameters that can be used and they are described on the pages for readings and meters
+        upload (see links below). Note that to upload readings you use
+        <code>curl myuniv.edu:3000/api/csv/readings -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>
+        where many more parameters are allowed.
+    </p>
 
     <h3>Returned information</h3>
     <p>Whenever a CSV upload is requested, OED returns information about the request. This information is in HTML format
@@ -93,8 +95,9 @@ title: OED admin csv import help
         returned. In the case of direct file upload, the information is returned to the command that sent the request.
         This generally means it comes back to the script/command you used. OED also returns a valid HTTP code where it
         sends code 200 if all data was processed and stored and code 500 if any data was not accepted. If all data was
-        accepted then the returned message will begin with "&lth1&gtSUCCESS&lt/h1&gt</pre>" and if there was an issue it
-        will begin with "&lth1&gtFAILURE&lt/h1&gt". These are generally followed by
+        accepted then the returned message will begin with "&lt;h1&gt;SUCCESS&lt;/h1&gt;" and if there was an
+        issue it
+        will begin with "&lt;h1&gt;FAILURE&lt;h1&gt;". These are generally followed by
         additional information. Note OED can return a different error code and message under unusual errors but the code
         is
         always something different from 200.</p>

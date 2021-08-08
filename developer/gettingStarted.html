@@ -49,39 +49,48 @@ title: OED developer startup
                 <li>If you are using WSL, you might need to follow <a href="wslSteps.html">these extra steps</a>.</li>
                 <li>Open a terminal on your computer (it is the "command prompt" on some Windows systems).
                     In the terminal do the following:
+                    <ol>
+                        <li><code>cd "directory with cloned OED"</code><br>You need to replace "directory with cloned
+                            OED"
+                            with
+                            the location
+                            of the cloned copy of OED. This is where the "README.md" and other main OED files are
+                            located.
+                            Some people find it easiest to locate that directory using the file
+                            manager on their OS and then use that information to get to the needed directory. As an
+                            example,
+                            you
+                            might do<br><code>cd /home/username/projects/OED</code><br>if you cloned OED in the
+                            /home/username/projects/
+                            directory.</li>
+                        <li><code>docker-compose up</code><br>This will run the entire OED install process. Note that on
+                            some systems (mostly some Linux systems), depending on how you installed Docker, you may get
+                            a
+                            permission error so you will need to do:<br><code>sudo docker-compose up</code><br>which
+                            runs
+                            the process with root privileges. If this is
+                            the case then you need to do sudo before all docker commands on your system.<br>
+                            Depending on the speed of your machine and internet
+                            connection, this can take a few to ten minutes. It should go faster after the first install
+                            if
+                            you follow the <a href="devDetails.html">developer details</a> elsewhere. You will see a lot
+                            of
+                            output about installing
+                            the database (Postgres), getting needed packages (<strong>this can take a while so you may
+                                not
+                                see
+                                output for a while</strong>) and starting up the web system. When you see the
+                            line:<br>
+                            + 2073 hidden modules<br>
+                            where the actual number will likely be different then OED should be running normally unless
+                            there was an error in the output.
+                        </li>
+                        <li id="sendConsole">If you have any issues please copy all the output from your terminal and <a
+                                href="mailto:developer@OpenEnergyDashboard.org">email</a> it to us. We will look it over
+                            and
+                            get back to you. We try to do that quickly.</li>
+                    </ol>
                 </li>
-                <ol>
-                    <li><code>cd "directory with cloned OED"</code><br>You need to replace "directory with cloned OED"
-                        with
-                        the location
-                        of the cloned copy of OED. This is where the "README.md" and other main OED files are located.
-                        Some people find it easiest to locate that directory using the file
-                        manager on their OS and then use that information to get to the needed directory. As an example,
-                        you
-                        might do<br><code>cd /home/username/projects/OED</code><br>if you cloned OED in the
-                        /home/username/projects/
-                        directory.</li>
-                    <li><code>docker-compose up</code><br>This will run the entire OED install process. Note that on
-                        some systems (mostly some Linux systems), depending on how you installed Docker, you may get a
-                        permission error so you will need to do:<br><code>sudo docker-compose up</code><br>which runs
-                        the process with root privileges. If this is
-                        the case then you need to do sudo before all docker commands on your system.<br>
-                        Depending on the speed of your machine and internet
-                        connection, this can take a few to ten minutes. It should go faster after the first install if
-                        you follow the <a href="devDetails.html">developer details</a> elsewhere. You will see a lot of
-                        output about installing
-                        the database (Postgres), getting needed packages (<strong>this can take a while so you may not
-                            see
-                            output for a while</strong></this>) and starting up the web system. When you see the
-                        line:<br>
-                        + 2073 hidden modules<br>
-                        where the actual number will likely be different then OED should be running normally unless
-                        there was an error in the output.
-                    </li>
-                    <li id="sendConsole">If you have any issues please copy all the output from your terminal and <a
-                            href="mailto:developer@OpenEnergyDashboard.org">email</a> it to us. We will look it over and
-                        get back to you. We try to do that quickly.</li>
-                </ol>
                 <li>Open a web browser. It should not matter which one you use. (Some developers prefer to work with
                     Chrome when debugging code due to their debugging tools but other web browsers have good tools.)
                     Enter the address:<br>localhost:3000<br>and load the page. "localhost" indicates the page is being
@@ -137,6 +146,6 @@ title: OED developer startup
             of work and major initiatives.</li>
         <li>The <a href="work.html">What to Work on in OED</a> page can help you figure out what to do.</li>
         <li>If you want help or have questions about running OED, then see the <a href="../index.html">website</a> or
-                the help pages in the links at the top of the page.</li>
+            the help pages in the links at the top of the page.</li>
     </ol>
 </div>
