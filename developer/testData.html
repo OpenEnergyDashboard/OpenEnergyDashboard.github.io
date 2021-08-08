@@ -16,170 +16,348 @@ title: OED test data
 	<h2>Maps</h2>
 	<p>For using the following data with maps, please see the <a href="testMap.html">test map page</a>.</p>
 	<h2>Future plans</h2>
-	<p>OED has developed code to generate mathematically-based meter data that is easy to tell visually if it is
-		correct. That data will be coming and allow developers to generate the test data on their own machine rather
-		than download it. Also, we will soon update OED to allow for upload of both meters and meter readings
+	<p>We will soon update OED to allow for upload of both meters and meter readings
 		information
-		via a CSV file. We will combine both of these by providing scripts to generate and load desired test data into
-		OED. This will greatly simplify the process. When it is available, this page will be updated and it will be
-		announced to developers.</p>
-
-	<h2>Prerequisites</h2>
-	<p>What follows assumes you have a properly installed and working OED but you may not yet have any meters in OED. At
-		a minimum you should be able to see the main OED page in a web browser (normally URL of localhost:3000).
-		Normally the database is automatically created and works fine. If you get errors about the database then you
-		need to address them before you can do this or get the test data in (if you get errors during this process).
-		Finally, these directions are written assuming you are using Docker. It should be possible to do these outside
-		Docker. Please let the project know if you are interested in directions for doing that.</p>
-	<p>The data sets use a fixed meter_id in the database starting at 100 and larger values. It is assumed you have not
-		added enough meters to get to this value. Having a fixed id makes debugging easier as you know the value in the
-		database. You can modify the meter_id in the CSV but that is not normally done. If you happen to have an overlap
-		then you will get an error during loading of the meter data and no meter data will be added to OED.</p>
-	<h2>Test Data</h2>
-	<p>The meter CSV file is always small but some readings CSV files can be large so the size is given for those.</p>
-	<p>Here are the types of test data we have (these files are compatible with the OED database in development as of 25
-		February 2021 (through PRs #502 & #517 with Timezone and gps added to meters) and we try update them whenever
-		changes are needed):</p>
-	<table>
-		<thead>
-			<tr>
-				<th>Description</th>
-				<th>Meter CSV</th>
-				<th>Readings CSV</th>
-				<th>Size of Readings File</th>
-				<th>Meters included</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Contains actual electric data for four meters on an hourly basis for about 3.5 years (Oct. 2016-Apr.
-					2020)</td>
-				<td><a href="testData/threeYearMeters.csv" title="Three year meters CSV"
-						download>threeYearMeters.csv</a>
-				</td>
-				<td><a href="testData/threeYearReadings.csv" title="Three year readings CSV"
-						download>threeYearReadings.csv</a>
-				</td>
-				<td>5.8MB</td>
-				<td>test100-103</td>
-			</tr>
-			<tr>
-				<td>Sample file to edit for your own data</td>
-				<td><a href="testData/sampleMeters.csv" title="Three year meters CSV" download>sampleMeters.csv</a></td>
-				<td><a href="testData/sampleReadings.csv" title="Three year readings CSV"
-						download>sampleReadings.csv</a>
-				</td>
-				<td>0 MB</td>
-				<td>XXX</td>
-			</tr>
-		</tbody>
-	</table>
-	<p>You will need to download two files in one row for this process: a meter CSV and a readings CSV. Clicking
-		on the link in a web browser will download that file.
-		Note you can load as many test data files as you want into a single OED instance.</p>
-	<h2>Loading the data into your OED</h2>
-	<p>You will want to have OED running during this process. Start it with Docker as you should have previously done.
-		You
-		will need
-		a second terminal/shell window to run the commands given.</p>
-	<h3>Where to put the CSV files
-	</h3>
-	<p>When you run Docker, it containerizes the work. In order to make the database changes last between runs, the OED
-		setup has the database information stored into a file in your OED installation. This is located at &lt;your OED
-		main directory&gt;/postgres-data/. The OED main directory is the one with the README.md, etc. When PostgreSQL
-		looks for files to load when you use Docker with OED it will look in this directory (&lt;your OED main
-		directory&gt;/postgres-data/). Thus, you need to place all the CSV files you will load there. Note that
-		depending on your setup (so far only seen on some Linux-based systems), the postgres-data/ directory may not be
-		owned by your user and you may not have permission to write on this directory. If this is the case you will need
-		to use the superuser (su or sudo) to move the CSV files into that directory.</p>
-	<h3>How to run the docker-compose commands</h3>
-	<p>All commands are run in a terminal/shell. You need to be in your main OED directory (the one with README.md,
-		etc.) in this terminal/shell.</p>
-	<p>Note that on some systems you need to do sudo before each docker-compose command. If you needed to do that when
-		installing OED then you will need to do that here. It is not shown in the commands given.</p>
-	<h3>Meters data</h3>
-	<p>Before you can load in readings, OED needs to have the meters associated with the readings added. These files all
-		have ...Meters.csv as the name where ... is the part of the file name that describes the specific test data set.
-		Make sure to replace ... with the name of your specific file in each command. The steps are:</p>
-	<ol>
-		<li><code>docker-compose exec database psql -U oed -c "COPY meters FROM '...Meters.csv' CSV HEADER"</code><br>
-			This will load the meter information into the database. The output should be a count of rows that equals the
-			number of meters being added.<ul>
-				<li>If this fails and you have the file in the correct location, then it may be due
-					to a database issue <a href="#dbIssue">described below</a>.</li>
-			</ul>
-		</li>
-		<li>Go to the web browser displaying OED. Refresh this page. Go to the drop down menu for "Meters:" where you
-			should
-			now see the meters included with this test data (included in table above). If you don't see them then
-			something
-			is wrong and you should not continue this process and instead ask us for help. (See link at bottom of page)
-		</li>
-	</ol>
-	<h3>Readings data</h3>
-	<p>You will now add readings data for the meters you just added. These files all have ...Readings.csv as the name
-		where ... is the part of the file name that describes the specific test data set and the ... should be the same
-		as it was for ...Meters.csv . The steps are:</p>
-	<ol>
-		<li><code>docker-compose exec database psql -U oed -c "COPY readings FROM '...Readings.csv' CSV HEADER"</code><br>This
-			will load the readings into the database. The output should be a count of rows that equals the number of
-			readings being added for all the meters.</li>
-		<li><code>docker-compose run --rm web npm run refreshReadingViews</code><br>This processes the readings within
-			the
-			database to optimize for rapid display of data. Note that if you do not do this
-			then you will not see the new readings even though they were added to the database.</li>
-		<li>Go to the web browser displaying OED. Go to the drop down menu for "Meters:" and select any (or all) of the
-			meters
-			included with this test data (included in table above). You should see a graphic with the data. For example,
-			the
-			threeYear test data currently is shown in OED as:</li>
-	</ol>
-	<p><img src="./images/threeYearGraphic.png" alt="Sample line graphic of three year electric test data"><br>
-		If you don't see this then something is wrong and you should not continue this process and instead ask us for
-		help.
-		(See link at bottom of page)
-	</p>
-	<h2>Creating own data
-	</h2>
-	<p>You can download the sample data from the table above. It is important as you edit the files to leave the first
-		header line unchanged. Here is how to edit these files:</p>
-	<ol>
-		<li>metersSample.csv: You can set id to anything you want as long as it is not a number of a current meter in
-			the database. If it is, you will get an error during the process and the meters will not be added. Make name
-			whatever you want to show in the meter list. Give each meter a unique ipaddress but it does not matter what
-			it is as long as it is unique. Set the name and identifer to what you want OED to display as the name of
-			this meter (both can be the same). The enabled, displayable and meter_type values should stay as they are.
-			You can duplicate the second line as many times as you want more meters and edit appropriately.</li>
-		<li>readingsSample.csv: Set meter_id to match the id from metersSample.csv for the meter for this reading. Set
-			the reading column to the value you want for this reading. Set start_timestamp and end_timestamp to be the
-			beginning and end time of the reading. Note that normally the end time of the previous point is equal to the
-			start time of the next point in real meter data. You can put in as many lines as you want with readings and
-			for any number of valid meters. There are
-			two readings in the sample file to show that multiple values are common. Please note that if you don't put
-			in
-			readings for a meter then you may get
-			unexpected results when you graph that meter in OED.</li>
-		<li>Import the data as described above.</li>
-	</ol>
-	<h2 id="dbIssue">Database issue</h2>
-	<p>If you cannot load the data into the database or it disappears after shutting down OED, then you likely have a
-		database issue. To test you can do the following:
-	</p>
-	<ol>
-		<li>Log in as the admin.</li>
-		<li>Change the default graph type to something else (say bar) and <strong>save the change</strong>. Make sure it
-			gives the green popup that it saved okay.</li>
-		<li>Refresh the web browser and go tho the main OED page. It should have preselected the bar choice for graphic
-			indicating that it is the default choice. If this does not work then verify the admin preference change was
-			actually saved without error because it seems your installation is not saving to the database.</li>
-		<li>Shut OED down and bring it back up (keeping the database and you can also skip the npm install).</li>
-		<li>When OED is done installing, go to the web page and refresh the page. Again, you should see the bar as the
-			default selection. If this
-			fails then the database changes are not being saved between runs of OED. This indicates an install issue. If
-			you
-			don't know what to do then contact us.</li>
-	</ol>
-	<h2>Help</h2>
-	<p>You should now be done and have the test data in your OED development system. If something did not work then you
-		can seek help from the project by <a href="mailto:developer@openenergydashboard.org">contacting us</a>.</p>
+		via a CSV file. This will avoid any issues with meter IDs and make this process cleaner, esp. for the
+		non-mathematical data.</p>
 </div>
+
+<h2>Prerequisites</h2>
+<p>What follows assumes you have a properly installed and working OED but you may not yet have any meters in OED. At
+	a minimum you should be able to see the main OED page in a web browser (normally URL of localhost:3000).
+	Normally the database is automatically created and works fine. If you get errors about the database then you
+	need to address them before you can do this or get the test data in (if you get errors during this process).
+	Finally, these directions are written assuming you are using Docker. It should be possible to do these outside
+	Docker. Please let the project know if you are interested in directions for doing that.</p>
+<p>The data sets use a fixed meter_id in the database starting at 100 and larger values. It is assumed you have not
+	added enough meters to get to this value. Having a fixed id makes debugging easier as you know the value in the
+	database. You can modify the meter_id in the CSV but that is not normally done. If you happen to have an overlap
+	then you will get an error during loading of the meter data and no meter data will be added to OED.</p>
+<p> What is described and the files available are compatible with the OED database in development as of 30
+	March 2021 (through PR #614 that added automatic test data generation) and we try update them whenever
+	changes are needed.</p>
+
+<h2>Mathematical Test Data</h2>
+<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
+<ul>
+	<li>You can create on your own machine without needing to download anything.</li>
+	<li>The provided script will generate the data and load it into your OED database for use within the system.</li>
+	<li>Since it has a regular pattern, it is often easy to see issues in graphed data.</li>
+	<li>Different datasets can be used to focus on different types of testing.</li>
+</ul>
+<p>It is easy to use this data. First, make sure you have OED running so the database is available. Next, run the
+	command
+	<code>npm run testData</code>. This may take a few minutes but when it completes there should be new meters
+	available in OED (you will need to refresh the web page to see them) and the CSV files used will be removed unless
+	there
+	was an error. This generates all the standard test data except the one where readings are every minute since that is
+	very large.
+</p>
+<p>The following table gives a list of the available data and information about it. The meter name assumes you use the
+	provided script to load the data. The &ltcommand name&gt is what you
+	use to create this dataset manually with
+	<code>docker-compose run --rm web npm run &ltcommand name&gt</command></code>. You will then need to load the data
+	into OED as described below. The file will have the name indicated and is located in the
+	<code>src/server/test/db/data/automatedTests/</code> directory. Normally you create a group that contains the
+	testSqSin and testSqCos meters since the value should be constant at 2.5.
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Meter name</th>
+			<th># points/file size</th>
+			<th>
+				<command>&ltcommand name&gt</command>
+			</th>
+			<th>File produced</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Sine function with a period of 45 days and amplitude 3 for 1 year with points every 4 days</td>
+			<td>test4DaySin</td>
+			<td>92 points/5kB</td>
+			<td>generateFourDayTestingData</td>
+			<td>fourDayFreqTestData.csv</td>
+		</tr>
+		<tr>
+			<td>Sine function with a period of 45 days and amplitude 3 for 1 year with points every 4 hours</td>
+			<td>test4HourSin</td>
+			<td>2196 points/129kB</td>
+			<td>generateFourHourTestingData</td>
+			<td>fourHourFreqTestData.csv</td>
+		</tr>
+		<tr>
+			<td>Sine function with a period of 45 days and amplitude 3 for 1 year with points every 23 minutes</td>
+			<td>test23MinSin</td>
+			<td>22915 points/1.4MB</td>
+			<td>generateTwentyThreeMinuteTestingData</td>
+			<td>twentyThreeMinuteFreqTestData.csv.</td>
+		</tr>
+		<tr>
+			<td>Sine function with a period of 45 days and amplitude 3 for 1 year with points every 15 minutes</td>
+			<td>test15MinSin</td>
+			<td>35136 points/2.1MB</td>
+			<td>generateFifteenMinuteTestingData</td>
+			<td>fifteenMinuteFreqTestData.csv</td>
+		</tr>
+		<tr>
+			<td>Cosine function with a period of 45 days and amplitude 3 for 1 year with points every 23 minutes</td>
+			<td>test23MinCos</td>
+			<td>22915 points/1.4MB</td>
+			<td>generateCosineTestingData</td>
+			<td>23FreqCosineTestData.csv</td>
+		</tr>
+		<tr>
+			<td>Sine squared function with a period of 45 days and amplitude 2.5 for 1 year with points every 1 day</td>
+			<td>testSqSin</td>
+			<td>366 points/21kB</td>
+			<td>generateSineSquaredTestingData</td>
+			<td>2.5AmpSineSquaredTestData.csv</td>
+		</tr>
+		<tr>
+			<td>Cosine squared function with a period of 45 days and amplitude 2.5 for 1 year with points every 1 day
+			</td>
+			<td>testSqCos</td>
+			<td>366 points/21kB</td>
+			<td>generateCosineSquaredTestingData</td>
+			<td>2.5AmpCosineSquaredTestData.csv</td>
+		</tr>
+		<tr>
+			<td>Sine function with a period of 45 days and amplitudes 1-7 for 2 years with points every 15 minutes</td>
+			<td>testAmp1Sin, testAmp2Sin, ...</td>
+			<td>70176 points/4.2MB each; 29.4MB total</td>
+			<td>generateVariableAmplitudeTestingData</td>
+			<td>15Freq1AmpSineTestData.csv, 15Freq2AmpSineTestData.csv, ...</td>
+		</tr>
+		<tr>
+			<td>Sine function with a period of 45 days and amplitude 3 for 1 year with points every 1 minute. This is
+				normally used for specialized testing of a large number of readings and not automatically generated by
+				the script.</td>
+			<td>test1MinSin</td>
+			<td>527040 points/32MB</td>
+			<td>generateOneMinuteTestingData</td>
+			<td>oneMinuteFreqTestData.csv</td>
+		</tr>
+	</tbody>
+</table>
+<p>The following picture shows the meters test4DaySin, test4HourSin, test23MinSin & test15MinSine. It is designed to
+	show how the number of points impact the line quality in OED and verify that varied reading rates do not impact the
+	OED code. What you see is that the 4 day line is stair step because each group of 4 day points have the same value.
+	The other meters are very similar in value. This shows that the daily averaging in OED is accurate. Note that in
+	this and all line graphics, you will see the same value as you zoom in to see hourly or even minute level points.
+	This is because the data is kW. The only change you will see is in the quality of the graphic if you zoom in so
+	tight that you have limited points to graph.
+	<img src="../images/testLineStd.png" alt="Sample line graphic of sine with readings at various rates">
+</p>
+<p>The following picture shows the same meters as above but as a bar graph with 4 week bars. In a perfect world, all the
+	bars would have the same value for a given date range. As can be seen, there are small differences where the value
+	varies more as the frequency of the readings goes down. This variation is due to the inaccuracy of low frequency
+	readings as is normal. Note the last set of bars varies more due to a known issue in how the bar lengths are
+	created.
+	<img src="../images/testBarStd.png" alt="Sample bar graphic of sine with readings at various rates">
+</p>
+<p>The following picture shows a line graphic of the sin values for the 7 different amplitudes (1-7). As expected, they
+	have the same period with a different amplitude. Plus, it looks nice!
+	<img src="../images/testLineAmp.png" alt="Sample line graphic of sine with readings at various amplitudes">
+</p>
+<p>The following picture is the same meters as above but for a bar graphic of 1 day that is stacked. It shows some stair
+	step features due to only having one bar per day but has the same shape as the line graphic. Plus, it also looks nice!
+	<img src="../images/testBarAmpStack.png"
+		alt="Sample bar graphic of sine with readings at various amplitudes and 1 day bars">
+</p>
+<p>The following picture shows a sin and cos with the same amplitude. It should be noted that normally sin and cos and
+	phase shifted so the high of one is the low of the other. You do not see that because the values were shifted to all
+	be positive.
+	<img src="../images/testLineSinCos.png" alt="Sample line graphic of sine and cosine">
+</p>
+<p>The following picture shows the meters testSqSin & testSqCos along with a group containing both meters (c2s2). If OED is
+	working properly then the group should have a constant value since sin^2 + cos^1 = 1 or the value of the amplitude
+	in this case. This is a good test of whether groups work (for simple groups of only two meters).
+	<img src="../images/testLineSquared.png"
+		alt="Sample line graphic of sin^2 and cos^2 along with a group combining them.">
+</p>
+<p>The following image shows sin with readings every minute. It is a very high quality version of the first picture with
+	points that are less frequent. This data is not automatically generated and is normally only used to test OED's
+	speed when there is lots of reading points.
+	<img src="../images/testLine1Min.png" alt="Sample line graphic of sine with readings every one minute">
+</p>
+
+
+<h2>Real World Test Data</h2>
+<p>This data can show what happens with actual data. However, it is harder to see when things are off. It is
+	provided as
+	an alternative to the mathematical data but will probably be used less now that that data exists.</p>
+<p>The meter CSV file is always small but some readings CSV files can be large so the size is given for those.
+</p>
+<p>Here are the types of test data we have:</p>
+<table>
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Meter CSV</th>
+			<th>Readings CSV</th>
+			<th>Size of Readings File</th>
+			<th>Meters included</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Contains actual electric data for four meters on an hourly basis for about 3.5 years (Oct.
+				2016-Apr.
+				2020)</td>
+			<td><a href="testData/threeYearMeters.csv" title="Three year meters CSV" download>threeYearMeters.csv</a>
+			</td>
+			<td><a href="testData/threeYearReadings.csv" title="Three year readings CSV"
+					download>threeYearReadings.csv</a>
+			</td>
+			<td>5.8MB</td>
+			<td>test100-103</td>
+		</tr>
+		<tr>
+			<td>Sample file to edit for your own data</td>
+			<td><a href="testData/sampleMeters.csv" title="Three year meters CSV" download>sampleMeters.csv</a>
+			</td>
+			<td><a href="testData/sampleReadings.csv" title="Three year readings CSV" download>sampleReadings.csv</a>
+			</td>
+			<td>0 MB</td>
+			<td>XXX</td>
+		</tr>
+	</tbody>
+</table>
+<p>You will need to download two files in one row for this process: a meter CSV and a readings CSV. Clicking
+	on the link in a web browser will download that file.
+	Note you can load as many test data files as you want into a single OED instance.</p>
+<h2>Loading the data into your OED</h2>
+<p>You will want to have OED running during this process. Start it with Docker as you should have previously
+	done. You
+	will need
+	a second terminal/shell window to run the commands given.</p>
+<h3>Where to put the CSV files
+</h3>
+<p>When you run Docker, it containerizes the work. In order to make the database changes last between runs, the
+	OED
+	setup has the database information stored into a file in your OED installation. This is located at &lt;your
+	OED
+	main directory&gt;/postgres-data/. The OED main directory is the one with the README.md, etc. When
+	PostgreSQL
+	looks for files to load when you use Docker with OED it will look in this directory (&lt;your OED main
+	directory&gt;/postgres-data/). Thus, you need to place all the CSV files you will load there. Note that
+	depending on your setup (so far only seen on some Linux-based systems), the postgres-data/ directory may not
+	be
+	owned by your user and you may not have permission to write on this directory. If this is the case you will
+	need
+	to use the superuser (su or sudo) to move the CSV files into that directory.</p>
+<h3>How to run the docker-compose commands</h3>
+<p>All commands are run in a terminal/shell. You need to be in your main OED directory (the one with README.md,
+	etc.) in this terminal/shell.</p>
+<p>Note that on some systems you need to do sudo before each docker-compose command. If you needed to do that
+	when
+	installing OED then you will need to do that here. It is not shown in the commands given.</p>
+<h3>Meters data</h3>
+<p>Before you can load in readings, OED needs to have the meters associated with the readings added. These files
+	all
+	have ...Meters.csv as the name where ... is the part of the file name that describes the specific test data
+	set.
+	Make sure to replace ... with the name of your specific file in each command. The steps are:</p>
+<ol>
+	<li><code>docker-compose exec database psql -U oed -c "COPY meters FROM '...Meters.csv' CSV HEADER"</code><br>
+		This will load the meter information into the database. The output should be a count of rows that equals
+		the
+		number of meters being added.<ul>
+			<li>If this fails and you have the file in the correct location, then it may be due
+				to a database issue <a href="#dbIssue">described below</a>.</li>
+		</ul>
+	</li>
+	<li>Go to the web browser displaying OED. Refresh this page. Go to the drop down menu for "Meters:" where
+		you should
+		now see the meters included with this test data (included in table above). If you don't see them then
+		something
+		is wrong and you should not continue this process and instead ask us for help. (See link at bottom of
+		page)</li>
+</ol>
+<h3>Readings data</h3>
+<p>You will now add readings data for the meters you just added. These files all have ...Readings.csv as the
+	name
+	where ... is the part of the file name that describes the specific test data set and the ... should be the
+	same
+	as it was for ...Meters.csv . The steps are:</p>
+<ol>
+	<li><code>docker-compose exec database psql -U oed -c "COPY readings FROM '...Readings.csv' CSV HEADER"</code><br>This
+		will load the readings into the database. The output should be a count of rows that equals the number of
+		readings being added for all the meters.</li>
+	<li><code>docker-compose run --rm web npm run refreshReadingViews</code><br>This processes the readings
+		within the
+		database to optimize for rapid display of data. Note that if you do not do this
+		then you will not see the new readings even though they were added to the database.</li>
+	<li>Go to the web browser displaying OED. Go to the drop down menu for "Meters:" and select any (or all) of
+		the
+		meters
+		included with this test data (included in table above). You should see a graphic with the data. For
+		example, the
+		threeYear test data currently is shown in OED as:</li>
+</ol>
+<p><img src="./images/threeYearGraphic.png" alt="Sample line graphic of three year electric test data"><br>
+	If you don't see this then something is wrong and you should not continue this process and instead ask us
+	for help.
+	(See link at bottom of page)
+</p>
+<h2>Creating own data
+</h2>
+<p>You can download the sample data from the table above. It is important as you edit the files to leave the
+	first
+	header line unchanged. Here is how to edit these files:</p>
+<ol>
+	<li>metersSample.csv: You can set id to anything you want as long as it is not a number of a current meter
+		in
+		the database. If it is, you will get an error during the process and the meters will not be added. Make
+		name
+		whatever you want to show in the meter list. Give each meter a unique ipaddress but it does not matter
+		what
+		it is as long as it is unique. Set the name and identifer to what you want OED to display as the name of
+		this meter (both can be the same). The enabled, displayable and meter_type values should stay as they
+		are.
+		You can duplicate the second line as many times as you want more meters and edit appropriately.</li>
+	<li>readingsSample.csv: Set meter_id to match the id from metersSample.csv for the meter for this reading.
+		Set
+		the reading column to the value you want for this reading. Set start_timestamp and end_timestamp to be
+		the
+		beginning and end time of the reading. Note that normally the end time of the previous point is equal to
+		the
+		start time of the next point in real meter data. You can put in as many lines as you want with readings
+		and
+		for any number of valid meters. There are
+		two readings in the sample file to show that multiple values are common. Please note that if you don't
+		put in
+		readings for a meter then you may get
+		unexpected results when you graph that meter in OED.</li>
+	<li>Import the data as described above.</li>
+</ol>
+<h2 id="dbIssue">Database issue</h2>
+<p>If you cannot load the data into the database or it disappears after shutting down OED, then you likely have
+	a
+	database issue. To test you can do the following:
+<ol>
+	<li>Log in as the admin.</li>
+	<li>Change the default graph type to something else (say bar) and <strong>save the change</strong>. Make
+		sure it
+		gives the green popup that it saved okay.</li>
+	<li>Refresh the web browser and go tho the main OED page. It should have preselected the bar choice for
+		graphic
+		indicating that it is the default choice. If this does not work then verify the admin preference change
+		was
+		actually saved without error because it seems your installation is not saving to the database.</li>
+	<li>Shut OED down and bring it back up (keeping the database and you can also skip the npm install).</li>
+	<li>When OED is done installing, go to the web page and refresh the page. Again, you should see the bar as
+		the
+		default selection. If this
+		fails then the database changes are not being saved between runs of OED. This indicates an install
+		issue. If you
+		don't know what to do then contact us.</li>
+</ol>
+</p>
+<h2>Help</h2>
+<p>You should now be done and have the test data in your OED development system. If something did not work then
+	you
+	can seek help from the project by <a href="mailto:developer@openenergydashboard.org">contacting us</a>.</p>
