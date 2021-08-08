@@ -26,6 +26,14 @@ title: OED map help
 			href="#circlePlacementIssues">circle placement below</a> on making this work. Note that you can have
 		different maps that are very
 		far apart without any issue. It is only a single map covering a large area that causes issues.</p>
+	<p>For this system to work, OED needs to know the rotation of each map from true north. This allows OED to align the
+		real world longitude and latitude (used in GPS) with the map graphic. OED internally stores this rotation as the
+		angle from true north on the map graphic to straight up on the map graphic going in the counterclockwise
+		direction. OED can then use this angle to properly calibrate the map and place items on the map (see below).
+		While this is fully functional within OED, there is not yet an admin interface to set the rotation angle. We
+		plan to soon add the needed interface so the admin can set the rotation angle for each map. When
+		that is done, this help page will be enhanced to explain how to get the rotation angle and place it in OED for a
+		given map. Until that time you should contact OED for help in dealing with rotated maps.</p>
 
 	<h2 id="usage">Usage</h2>
 	<p>If you click on the "Maps" button in the top, right of the main OED screen you will go to the maps page shown
@@ -200,11 +208,14 @@ title: OED map help
 		in
 		upcoming releases. The known limitations are:</p>
 	<ul>
-		<li>You cannot place a group on a map. The planned changes will give admins the ability to give a group GPS coordinates
+		<li>You cannot place a group on a map. The planned changes will give admins the ability to give a group GPS
+			coordinates
 			and
 			users to place on a map.</li>
-		<li>The map graphic must be oriented so true north (not magnetic north) is perfectly vertical so there is no
-			angle between the map image and true north. We plan to rectify this soon and allow a map with any rotation
-			angle to true north.</li>
+		<li> OED internally supports the setting of the maximum circle size. This is specified as a fraction of the
+			total map size and currently defaults to 0.15 or 15% of the map size. This generally works well. However, it
+			can be suboptimal if items being placed on the map are close together or you want to have larger circles for
+			viewing. OED plans to add an admin interface in the near future to allow admins to set this value for each
+			map. Until then, please contact us if you need to modify the circle sizes on your maps.</li>
 	</ul>
 </div>
