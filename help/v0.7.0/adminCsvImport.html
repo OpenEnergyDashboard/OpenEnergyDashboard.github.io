@@ -92,7 +92,9 @@ title: OED admin csv import help
         file with the extension ".html" and then open that file in a web browser so it is nicely formatted. In the case
         of the web page, the returned information is shown as a popup window on the CSV web page. You need to click "OK"
         to close the window even if there are no issues. This is done to be sure you can easily see and copy anything
-        returned. In the case of direct file upload, the information is returned to the command that sent the request.
+        returned. Some web browsers limit the number of lines you see so there will be something like "..." at the end.
+        In this case you need to look at the log to see them all. In the case of direct file upload, the information is
+        returned to the command that sent the request.
         This generally means it comes back to the script/command you used. OED also returns a valid HTTP code where it
         sends code 200 if all data was processed and stored and code 500 if any data was not accepted. If all data was
         accepted then the returned message will begin with "&lt;h1&gt;SUCCESS&lt;/h1&gt;" and if there was an
