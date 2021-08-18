@@ -7,6 +7,7 @@ title: OED quick install
 	<p>If you have previously installed the PostgreSQL database and tell OED to skip installing the node modules then it
 		will be faster and skip a number of steps. Below is typical
 		output for this process. Please note:
+	</p>
 	<ul>
 		<li>This output was created on 5 Feb 2021 on a Mac. The exact output will vary with machine type and changes to
 			OED.</li>
@@ -15,11 +16,11 @@ title: OED quick install
 			WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
 			may or may not show up. It also shows up at other times. The complete answer is not known but it appears to
 			be a transient error in PostgreSQL writing log information. It has never caused any problems.</li>
-		<li>You may also see the log messages from the last time PostgreSQL ran in the earlier parts of the output. These
+		<li>You may also see the log messages from the last time PostgreSQL ran in the earlier parts of the output.
+			These
 			could be short or long lists. They might seem to indicate issues but are not related to this attempt to
 			install OED.</li>
 	</ul>
-	</p>
 
 	<pre>
 $  install_args="--keep_node_modules" docker-compose up

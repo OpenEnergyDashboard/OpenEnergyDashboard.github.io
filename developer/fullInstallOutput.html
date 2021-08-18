@@ -5,7 +5,7 @@ title: OED full install
 <div>
 	<h1>Full Install Output</h1>
 	<p>When you install OED without already have a database or node modules, it does all the steps. Below is typical
-		output for this process. Please note:
+		output for this process. Please note:</p>
 	<ul>
 		<li>This output was created on 5 Feb 2021 on a Mac. The exact output will vary with machine type and changes to
 			OED.</li>
@@ -19,7 +19,6 @@ title: OED full install
 			may or may not show up. It also shows up at other times. The complete answer is not known but it appears to
 			be a transient error in PostgreSQL writing log information. It has never caused any problems.</li>
 	</ul>
-	</p>
 
 	<pre>
 $ docker-compose up
@@ -125,7 +124,7 @@ web_1       | gyp info spawn args   '-Dlibrary=shared_library',
 web_1       | gyp info spawn args   '-Dvisibility=default',
 web_1       | gyp info spawn args   '-Dnode_root_dir=/root/.cache/node-gyp/12.9.1',
 web_1       | gyp info spawn args   '-Dnode_gyp_dir=/usr/local/lib/node_modules/npm/node_modules/node-gyp',
-web_1       | gyp info spawn args   '-Dnode_lib_file=/root/.cache/node-gyp/12.9.1/<(target_arch)/node.lib',
+web_1       | gyp info spawn args   '-Dnode_lib_file=/root/.cache/node-gyp/12.9.1/&lt;(target_arch)/node.lib',
 web_1       | gyp info spawn args   '-Dmodule_root_dir=/usr/src/app/node_modules/fsevents',
 web_1       | gyp info spawn args   '-Dnode_engine=v8',
 web_1       | gyp info spawn args   '--depth=.',
