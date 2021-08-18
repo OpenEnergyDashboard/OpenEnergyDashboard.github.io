@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<title>{{ page.title }}</title>
 	<!-- link to main stylesheet -->
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
 </head>
 
 <body>
 	<div class="navbar">
-		<a href="../index.html"> <img id="logo" alt="OED logo" src="../images/logo.png" /></a>
-		<a href="../index.html">OED Website</a>
+		<a href="../../index.html"> <img id="logo" alt="OED logo" src="../../images/logo.png" /></a>
+		<a href="../../index.html">OED Website</a>
 		<a href="index.html">help: </a>
 		<div class="dropdown">
 			<button class="dropbtn">Navigation &#x25BC</button>
@@ -47,6 +47,7 @@
 				<a href="export.html">Exporting Data</a>
 				<a href="chartLink.html">Chart Link</a>
 				<a href="hideOptions.html">Hide Options</a>
+				<a href="language.html">Language selection</a>
 			</div>
 		</div>
 		<div class="dropdown">
@@ -61,14 +62,20 @@
 				<a href="admin.html">Admin User</a>
 			</div>
 		</div>
-		<a href="../contact.html">Contact Us</a>
+		<div class="dropdown">
+			<button class="dropbtn">Help versions &#x25BC</button>
+			<div class="dropdown-content">
+				<a href="../v0.6.0/{{page.name}}">OED version 0.6.0 Help</a>
+				<a href="../v0.7.0/{{page.name}}">OED version 0.7.0 Help</a>
+			</div>
+		</div>
+		<a href="../../contact.html">Contact Us</a>
 	</div>
 	<div class="navbar">
 		<a href="#overview">Overview section</a>
 		<a href="#usage">Usage section</a>
 		<a href="#details">Details section</a>
 	</div>
-	<p>All features have been present since OED version 0.7 unless noted.</p>
 	<div class="container">{{ content }}</div>
 	<footer>
 		<div class="navbar">

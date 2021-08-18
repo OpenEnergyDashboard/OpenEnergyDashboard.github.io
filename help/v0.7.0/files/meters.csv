@@ -1,0 +1,3 @@
+name,ipaddress,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset end,gap,variation,duplicates,timesort,end only,reading,start time,end time
+Meter 1,,FALSE,TRUE,other,,,Student Dorm,This dorm has 20 students,13418,,,,,,,,,,,,
+Meter 2,,FALSE,TRUE,other,,,Athletic facility,,,,,,,,,,,,,,

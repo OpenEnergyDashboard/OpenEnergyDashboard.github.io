@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<title>{{ page.title }}</title>
@@ -13,7 +13,8 @@
 	<div class="navbar">
 		<a href="../index.html"> <img id="logo" alt="OED logo" src="../images/logo.png" /></a>
 		<a href="../index.html">OED Website</a>
-		<a href="../help/index.html">OED Help</a>
+		<!-- Adds help link to most current version. -->
+		{% include helpLinkSubDir.html %}
 		<a href="index.html">Developer Home</a>
 		<a href="gettingStarted.html">Getting Started</a>
 		<div class="dropdown">
@@ -25,6 +26,7 @@
 				<a href="work.html">Ideas for What to Work On</a>
 				<a href="codeDocumentation.html">Code Documentation Guidelines</a>
 				<a href="pr.html">Pull Requests</a>
+				<a href="installation.html">Full site installation information</a>
 			</div>
 		</div>
 		<div class="dropdown">
