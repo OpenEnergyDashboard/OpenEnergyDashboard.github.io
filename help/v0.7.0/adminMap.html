@@ -48,10 +48,12 @@ title: OED map help
 		will find the file image does not appear on the next step. There are many programs/apps that will allow you to
 		convert to one of these two types of graphical images. Once you have uploaded the map image, use the box
 		immediately below (labeled "Define a name for the map:") to name your map. Note this is the name that a user
-		will see (it can be edited later). When
+		will see (it can be edited later). In this example, "Happy Place" was used. When
 		you are ready, click the "Save and continue" button to complete this step.</p>
 	<img alt="admin map loading page" src="./images/OEDAdminLoadMap.png" style="width: 75vw; min-width: 700px;">
-	<p>You should then see the confirmation popup shown below. Click "OK" to continue the process.</p>
+	<p>You should then see the confirmation popup shown below. The exact look differs depending on your web browser. It
+		may or may not show the URL and it will definitely differ from localhost:3000 (special URL for development).
+		Click "OK" to continue the process.</p>
 	<img alt="admin map loading completion popup" src="./images/OEDAdminMapUploadComplete.png"
 		style="width: 20vw; min-width: 250px;">
 	<p>You should now be on the map calibration page shown below. This page allows you to enter the GPS coordinates for
@@ -71,7 +73,7 @@ title: OED map help
 		states, you need to enter the GPS coordinate for this point on the map as a latitude, longitude pair separated
 		by a comma. This is a common format for GPS coordinates but do not include parentheses when you enter the GPS
 		value such as they are written above. You enter the GPS value in the box below this message.
-		For this example, the GPS coordinate entered was 27.704475876832863, 85.31428805756381. The box where this
+		For this example, the GPS coordinate entered was 40.00461, -87.99723. The box where this
 		was
 		entered
 		is inside the blue box used for highlighting as shown in the next figure.
@@ -99,11 +101,12 @@ title: OED map help
 		overall calibration result (inside the blue box used for highlighting in the figure below).</p>
 	<img alt="admin map showing result of current calibration points" src="./images/OEDAdminMapCalibrationStepFour.png"
 		style="width: 75vw; min-width: 700px;">
-	<p>In this example, the result is "result: x: 0.003% y: 0.007%" (inside the blue box used for highlighting in the
-		figure above). If you are satisfied with the result, you click the "Save changes to
+	<p>In this example, the result is "result: x: 1.202% y: 0.25%" (inside the blue box used for highlighting in the
+		figure above). (Note the points used were deliberately shifted a little bit so a small error is shown.) If you
+		are satisfied with the result, you click the "Save changes to
 		database" (inside the blue box used for highlighting). See below for a discussion of the <a
 			href="#calibrationResult">Calibration Result</a>. If at any time you want to begin the calibration process
-		again, you can click the "Restart" button. If the calibration is a little worse than you want, you can try to
+		again, you can click the "Reset" button. If the calibration is a little worse than you want, you can try to
 		add more points to improve the error but this is not guaranteed to work. Once you save the
 		calibration, you are taken to the <a href="adminMapViewing.html">Admin Map Viewing</a> page that is shown below
 		for
@@ -136,26 +139,33 @@ title: OED map help
 		Whatever technique you use, it is important to get accurate values so your calibration is of high quality.</p>
 
 	<h3 id="calibrationResult">Calibration result</h3>
-	<p>OED gives a result that gives an idea of how far off the calibration points are from each other. This can give
+	<p>OED gives a result that provides an idea of how far off the calibration points are from each other. This may give
 		you an idea of how accurately OED will place circles on the map. For example, three calibration points were
-		entered on the map above where each one was changed by +/- 5 in the fourth digit. Thus, 27.2 became either 26.15
-		(27.2 - 0.05) or 27.25 (27.2 + 0.05). Another example would be 2.7 would become either 2.605 (2.7 - 0.005) or
-		2.705
-		(2.7 + 0.005). This is a 5 part in 10,000 error or 0.05%. This lead to a result of "result: x: 0.003% y: 0.007%"
-		which is a smaller percent error than the deviation of any x or y value (0.05%). This is the example used in the
+		entered on the map above where each one was changed by +/- 0.0001, which is changes in the 6th digit. This was
+		done so the first calibration point had latitude and longitude increased by this amount, the second subtracted
+		by this amount and the third had latitude increased and longitude decreased by this amount. As such, it was
+		somewhat random if the value increased or decreased. For example, 40.00461, -87.99723 for the first point became
+		40.00471, -87.99713. This lead to a result of "result: x: 15.471%, y: 4.356%". This is the example used in the
 		figure below. If you map circles that should
-		be directly on "Play Place" and "Theater" you get the following.</p>
+		be directly on "Play Place" and "Theater" you get the following. As seen, they have moved a little to the more
+		accurate calibration above but are in the correct general place.</p>
 	<img alt="admin map small calibration error result" src="./images/OEDAdminMapResultOne.png"
 		style="width: 75vw; min-width: 700px;">
-	<p>As shown, the circles are a little below the building but still clear about their placement. If we change so that
-		the each value is +/- 0.1 then the result is much worse. This would mean that the GPS value is uncertain in the
-		first decimal place so the error magnitude is the same for each point (not the percent). This means
-		that the value 2.7 is either 2.8 or 2.6. The result is "result: x:
-		299% y: 0.002%". The result of mapping is shown in the next figure where "Play Place" is now off the map.</p>
+	<p>If we change so that
+		the each value is +/- 0.001 as done above then the result is much worse. The result is "result: x: 76.423%, y:
+		31.293%". The result of mapping is shown in the next figure where there are much more noticeable shifts.</p>
 	<img alt="admin map larger calibration error result" src="./images/OEDAdminMapResultTwo.png"
 		style="width: 75vw; min-width: 700px;">
-	<p>What should be noted is that modest percent errors (here 0.299%) in any coordinate is likely to lead to
-		significant placement issues. When this happens, you need to recalibrate the map.</p>
+	<p>If we increased the change even further then the circles would shift even more and might eventually be off the
+		map. When placement is poor, you need to recalibrate the map.</p>
+	<p>Note that the error may not always indicate how poor placement will be. If every point was shifted a positive
+		amount of +0.001 then OED will not find a calibration error due to the systematic shift but items placed on the
+		map will be changed (assuming there is not a similar error in where meters are located). This example gives a
+		result of "result: x: 0%, y: 0%" and the graphic shown next. Here the "Play Place" meter is no longer on the
+		map.
+	</p>
+	<img alt="admin map larger shift in one direction but no error" src="./images/OEDAdminMapResultThree.png"
+		style="width: 75vw; min-width: 700px;">
 	<p>There are many possible reasons that the calibration might be off and we discuss several now. First, it is easy
 		to type in the wrong value for a point. If this happens then correctly reentering the calibration values again
 		will fix the issue. Second, a value for a calibration point is wrong. While a similar result to the first issue,
@@ -171,28 +181,25 @@ title: OED map help
 	<h3 id="circlePlacementIssues">Circle placement issues</h3>
 	<p>If you have done the best you can to calibrate the map but you still have circle(s) in the wrong place then you
 		can manually fix them in the meter GPS value. OED only uses the GPS value for placing items on maps so fudging
-		this value does not have other consequences or lead to incorrect results. The calibration for the map above was
-		changed to deliberately enter errors by using four calibration points that were off ("result x: 0.413% y:
-		0.019%"). The next
-		figure shows that "Place Play" is now a little low but way too far to the right and "Theater" is a little low
-		and to the right.</p>
-	<img alt="admin map larger calibration error result" src="./images/OEDAdminMapCalibrationOff.png"
-		style="width: 75vw; min-width: 700px;">
-	<p>We begin by trying to fix "Theater" that is not as far off. Its actual GPS value is "26.67, 25.0". By using the
-		<a href="adminMapViewing.html">Admin Map Viewing</a> page, the GPS value was changed. The fact that the circle
-		is too low indicates the latitude needs to be larger and the fact that it is to the right indicates the
-		longitude needs to be smaller. A handful of tries found a pretty good GPS value was (29.25, 12.0). Note that
-		once
-		you update a meter GPS, you can go the the map graphing page and it will show the updated location of any
-		circles. Figuring out the needed change in this GPS value gave an
-		idea of how much changing each value moved the circle. For "Play Place", the actual GPS value was (41.67, 8.33).
-		A few tries found that (42.2, -145) worked well. As expected the latitude only needed a small change but the
-		longitude needed a significant change. The final result is show in the next figure.
+		this value does not have other consequences or lead to incorrect results. This is usually easiest if the circles
+		are reasonably close to the desired location on the map. Going back to the first calibration error example where
+		it was +/-0.0001, we can see that "Play Place" is a little off but "Theater" seems fine. We notice it is
+		somewhat to the down and right from the middle of that building. Looking at GPS values for this map indicates
+		that as you go up the longitude gets larger and as you go left the longitude gets smaller (more negative). The
+		correct meter GPS for "Play Place" is (40.00419, -87.99916). Noting that the GPS for "Theater" is (40.0027,
+		-87.9975) we know that the changes needed are small so we start with (40.00469, -87.99966) (changed by 0.0005).
+		By using the
+		<a href="adminMapViewing.html">Admin Map Viewing</a> page, the GPS value was changed for "Place Place" to this
+		value. This moved "Play Place"
+		much too far up and left so we now tried (40.00420, -87.99917) but the shift was too small. Next we tried
+		(40.00429, -87.99926) and this worked fairly well as shown in the next figure. We could have done some more
+		adjustment to slightly shift the "Play Place" circle if we wanted.
 	</p>
 	<img alt="admin map larger calibration error fixed result" src="./images/OEDAdminMapCalibrationFixed.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>One thing to note is that this process is only done once when a new map is loaded. After that, any user will see
-		the correct result.</p>
+		the correct result. Also, once you move one point on the map it becomes clearer the amount needed for other
+		circles so it usually takes less time.</p>
 	<p>There are circumstance that can make it impossible to modify the meter GPS to get it in the correct place on the
 		map. One is if the needed correction means the GPS value goes outside allowed values then OED will not allow the
 		entry of this GPS value. This should only happen if the calibration is off significantly and should be rectified
@@ -202,12 +209,10 @@ title: OED map help
 
 	<h2 id="details">Details</h2>
 	<h3>Current limitations</h3>
-	<p>OED version 0.6 introduced maps. To get them out to sites, we rolled them out even though they have some
-		known
-		limitations. We are actively working to implement the desired features and expect them to be available
-		in
-		upcoming releases. The known limitations are:</p>
 	<ul>
+		<li>OED internally supports maps with any rotation from true north. There is not currently an admin interface to
+			allow entering this value. The plan is to add this soon. If you need rotated maps then contact us for how
+			you can do it at the current time.</li>
 		<li>You cannot place a group on a map. The planned changes will give admins the ability to give a group GPS
 			coordinates
 			and
@@ -218,4 +223,9 @@ title: OED map help
 			viewing. OED plans to add an admin interface in the near future to allow admins to set this value for each
 			map. Until then, please contact us if you need to modify the circle sizes on your maps.</li>
 	</ul>
+
+	<h3>Previous versions</h3>
+	<p>The first version of maps (OED v0.6.0) calculated the error from calibration in a poor way. The new method gives
+		more
+		information but yields significantly different values.</p>
 </div>
