@@ -5,6 +5,37 @@ title: OED news
 <div>
 	<h1>Open Energy Dashboard News</h1>
 
+	<h2>Release of OED version 0.7.0</h2>
+	<h3>15 September 2021 (planned)</h3>
+	<p>OED is pleased to announce the release of version 0.7.0. This is the fairly major release that
+		contains these new features:</p>
+	<h3>Data acquisition</h3>
+	<ul>
+		<li>OED now accepts both meter and reading upload via CSV files.</li>
+		<li>CSV uploads can either be done via a drop zone on an admin page or through a script</li>
+		<li>OED accepts readings in many new ways including cumulative with or without reset, only having end only
+			date/time, either chronological order, control over gaps between readings and variation in the length a
+			reading spans and files with duplicated readings.</li>
+		<li>CSV files can be either gziped or not and can have a header row or not.</li>
+		<li>Significant enhancements in error checking and reporting for acquired readings.</li>
+		<li>Acquisition of MAMAC and Obvius data go through the enhanced data acquisition pipeline so these have all the
+			new features.</li>
+	</ul>
+	<h3>Other changes</h3>
+	<ul>
+		<li>Map enhancements include correct calculation of circle size and allowing arbitrarily rotated maps (admin
+			interface coming on that).</li>
+		<li>You can now export the raw meter data on a graphic and not just the graphic points.</li>
+		<li>OED now supports multiple types of users so you can grant access for admin, CSV upload & Obvius upload, and
+			ability to export larger quantities of data
+			rights individually.</li>
+		<li>Anyone using OED can now change to another supported language to override default language.</li>
+		<li>Color of lines, bars and circles were improved.</li>
+		<li>Hovering over a graphic now shows fewer digits so more user friendly.</li>
+		<li>User warned if JavaScript is not enables since site will not function properly.</li>
+		<li>A number of general issues/bugs were addressed.</li>
+	</ul>
+
 	<h2>Release of OED version 0.6.0</h2>
 	<h3>2 March 2021</h3>
 	<p>OED is pleased to announce the release of version 0.6.0. This is the first major release in a while. It
