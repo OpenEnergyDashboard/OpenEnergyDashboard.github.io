@@ -150,6 +150,14 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		test that will not complete due to an error will take longer for mocha to terminate. However, this is uncommon
 		in OED tests so the change should be fine.</p>
 
+	<h2 id=npmPermission>check permission error</h2>
+	<p>A few developers have reported that when they run <code>docker-compose run --rm web npm run check</code> they get
+		an error similar to "Error: EACCES: permission denied, scandir '/root/.npm/_logs". The only current fix is to
+		run outside of docker by doing <code>npm run check</code>. It is believed that this issue is due to doing
+		installs as root and then not being root when inside docker but this is not certain. However, at least one
+		developer found that changing the file permissions did not fix the issue. If anyone has this issue or finds a
+		solution then please let us know.</p>
+
 	<h2>Running without the database container</h2>
 	<p>On rare occasions, you may get a database failure during the startup of the database container during the
 		install/startup of OED. (This is not the transient issues noted during the install where the script reports it
