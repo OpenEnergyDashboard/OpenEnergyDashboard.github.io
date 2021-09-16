@@ -91,13 +91,17 @@ title: OED admin meter import help
             </tr>
             <tr>
                 <td>timezone</td>
-                <td>The timezone of this meter</td>
-                <td>none, ?? how input</td>
+                <td>The timezone of this meter as text. OED can accept most standard time zone names such as <a
+                        href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+                        rel="noopener noreferrer">this Wikipedia one</a>
+                    where the "TZ database name" is used, e.g., Pacific/Galapagos for the Galápagos Islands</td>
+                <td>none</td>
             </tr>
             <tr>
                 <td>gps</td>
-                <td>The GPS coordinates of this meter</td>
-                <td>none, ?? how input</td>
+                <td>The GPS coordinates of this meter input as latitude, longitude pair (without parentheses or quotes
+                    but separated by a comma)</td>
+                <td>none</td>
             </tr>
             <tr>
                 <td>identifier</td>
@@ -182,7 +186,10 @@ title: OED admin meter import help
 
     <h3>Sample file</h3>
     <p>Below are the lines for a CSV meter import file with a header row. It will import two meters (Meter 1 and Meter
-        2) where the meters are not enabled but are displayable. Most values that are optional and unspecified so the
+        2) where the meters are not enabled but are displayable. Please note that "1.2, -3.4" is a pair of values
+        separated by a comma that would be in a single column of the CSV file and input without the quotes, i.e., 1.2,
+        -3.4. The quotes are added when such a CSV is saved to make it clear that the comma is not a new column. Most
+        values that are optional and unspecified so the
         default values are used. This <a href="files/meters.csv" download>meters.csv</a> was loaded
         using the curl command of:<br>
         <code>curl https://myoedserver.come:3000/api/csv/meters -X POST -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@meters.csv'</code><br>
@@ -194,7 +201,7 @@ title: OED admin meter import help
     <pre>
         name,ipaddress,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset end,gap,variation,duplicates,timesort,end only,reading,start time,end time
         Meter 1,,FALSE,TRUE,other,,,Student Dorm,This dorm has 20 students,13418,,,,,,,,,,,,
-        Meter 2,,FALSE,TRUE,other,,,Athletic facility,,,,,,,,,,,,,,
+        Meter 2,,FALSE,TRUE,other,America/Halifax,"1.2, -3.4",Athletic facility,,,,,,,,,,,,,,
     </pre>
 
     <h3>Return messages</h3>
@@ -223,7 +230,9 @@ title: OED admin meter import help
             can only have a single meter in the CSV file for this to work. This indicates more than one meter was
             provided.
         </li>
-        <li>You can get a variety of error messages if the gzip is improperly set. These include "TypeError", "invalid message format" and others. This is because OED is incorrectly reading the CSV file and receives garbled information.</li>
+        <li>You can get a variety of error messages if the gzip is improperly set. These include "TypeError", "invalid
+            message format" and others. This is because OED is incorrectly reading the CSV file and receives garbled
+            information.</li>
     </ul>
 
     <h2 id="details">Details</h2>

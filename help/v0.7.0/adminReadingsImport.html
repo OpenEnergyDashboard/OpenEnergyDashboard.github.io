@@ -174,10 +174,12 @@ title: OED admin reading import help
         curl command you will use will be:<br>
         <code>curl &lt;yourOedServer&gt;:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=&lt;meterName&gt;' &lt;curlParameters&gt; -F 'email=&lt;loginEmail&gt;' -F 'password=&lt;loginPassword&gt;' -F 'csvfile=@&lt;csvFilename&gt;'</code><br>
         where you replace &lt;yourOedServer&gt; with your OED server URL address (same as when you go to your OED site),
-        &lt;meterName&gt; with the name you want OED to use for this meter, &lt;curlParameters&gt; with the curl parameters
+        &lt;meterName&gt; with the name you want OED to use for this meter, &lt;curlParameters&gt; with the curl
+        parameters
         listed for each sample file, &lt;loginEmail&gt; with the user email
         with CSV user login privileges for OED, &lt;loginPassword&gt; with the password for that
-        user and &lt;csvFilename&gt; with the CSV file name listed for the sample file. Note the curl command must be run
+        user and &lt;csvFilename&gt; with the CSV file name listed for the sample file. Note the curl command must be
+        run
         in the directory containing the CSV file or include the path to that file. As an example for the first sample
         file, you might have<br>
         <code>curl https://myoedserver.come:3000/api/csv/readings -X POST -F 'createMeter=true' -F 'meterName=regAsc' -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@regAsc.csv'</code><br>
@@ -270,10 +272,12 @@ title: OED admin reading import help
         96,2021-06-04 00:00:00,2021-06-05 00:00:00
     </pre>
     <p>Below are the lines for a CSV readings import file with a header row where end only is false, the data is
-        cumulative and time sort is "decreasing". The readings are the same as the two above (cumAsc). The CSV file is the
+        cumulative and time sort is "decreasing". The readings are the same as the two above (cumAsc). The CSV file is
+        the
         same except all rows past the first header row are in reverse order so time decreases as you go down the rows.
         An example without cumulative is not shown but it would be similar but have reading values of 72, 48 & 24 for
-        rows 2-4 (but here the first reading of 24 would not be dropped). (This <a href="files/cumDsc.csv" download>cumDsc.csv</a> was loaded
+        rows 2-4 (but here the first reading of 24 would not be dropped). (This <a href="files/cumDsc.csv"
+            download>cumDsc.csv</a> was loaded
         using the curl parameters of
         <code>-F 'cumulative=true' -F 'timeSort=decreasing' -F 'headerRow=true' -F 'gzip=false'</code>.)
     </p>
@@ -285,7 +289,8 @@ title: OED admin reading import help
     </pre>
     <p>Below are the lines for a CSV readings import file with a header row where end only is true, the data is
         cumulative, time sort is "decreasing". The readings are the same as the one above. This again shows that you can
-        use many possibilities in combination where here it is both cumulative and end only. (This <a href="files/cumDscEndonly.csv" download>cumDscEndonly.csv</a> was loaded
+        use many possibilities in combination where here it is both cumulative and end only. (This <a
+            href="files/cumDscEndonly.csv" download>cumDscEndonly.csv</a> was loaded
         using the curl parameters of
         <code>-F 'endOnly=true' -F 'cumulative=true' -F 'timeSort=decreasing' -F 'headerRow=true' -F 'gzip=false'</code>.)
     </p>
@@ -300,7 +305,8 @@ title: OED admin reading import help
         each line is duplicated three
         times. (This <a href="files/cumAscDuplication.csv" download>cumAscDuplication.csv</a> was loaded
         using the curl parameters of
-        <code>-F 'cumulative=true' -F 'duplications=3' -F 'headerRow=true' -F 'gzip=false'</code>.)</p>
+        <code>-F 'cumulative=true' -F 'duplications=3' -F 'headerRow=true' -F 'gzip=false'</code>.)
+    </p>
     <pre>
         reading,start_timestamp,end_timestamp
         24,2021-06-01 00:00:00,2021-06-02 00:00:00
@@ -454,7 +460,9 @@ title: OED admin reading import help
             message above except "The current message" will be replaced by the message OED is currently issuing for that
             row of the CSV file.
         </li>
-        <li>You can get a variety of error messages if the gzip is improperly set. These include "TypeError", "invalid message format" and others. This is because OED is incorrectly reading the CSV file and receives garbled information.</li>
+        <li>You can get a variety of error messages if the gzip is improperly set. These include "TypeError", "invalid
+            message format" and others. This is because OED is incorrectly reading the CSV file and receives garbled
+            information.</li>
     </ul>
 
     <h2 id="details">Details</h2>
@@ -510,4 +518,13 @@ title: OED admin reading import help
         even if it is dropped. The reason is that readings generally come in time order so removing one will cause the
         next reading to generate an error. Thus, the bad reading is used for processing a next reading but is not stored
         as a reading in OED.</p>
+
+    <h3>Accuracy of stored reading value</h3>
+    <p>OED stores each reading value with about 6 decimal digits of accuracy (known as single precision on a computer).
+        This
+        has seemed to be sufficient accuracy and no sites have commented on this. It does mean that if the raw data had
+        greater precision then it will be rounded to 6 digits of precision. If you think your site needs greater
+        accuracy then please see <a href="https://github.com/OpenEnergyDashboard/OED/issues/650"
+            rel="noopener noreferrer">issue #650</a> on our
+        GitHub site to enter that conversation.</p>
 </div>
