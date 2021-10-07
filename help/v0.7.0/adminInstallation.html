@@ -1,0 +1,278 @@
+---
+layout: admin
+title: OED installation
+---
+<div>
+    <h1>OED Installation</h1>
+
+    <p>This describes the installation of an OED site for production use. If you are a developer, you likely want to
+        follow the directions on the <a href="../../developer/gettingStarted.html">getting started</a> page.</p>
+
+    <h2>Requirements</h2>
+    <p>OED uses Unix, including Linux, features to work. Mac-OS X is based on Unix and Docker can be installed directly
+        as
+        an application. Windows OS is not based on Unix so other steps are necessary. Given that Windows 10+ is
+        generally needed to install OED and the fact that most systems run at least Windows 10, these directions assume
+        your system is at that level of Windows (and use the OS name Windows 10). If you have Windows 10 Professional,
+        Enterprise or Education, you should be able to directly install Docker via the Hyper-V though it may need to be
+        enabled (this has not been tested by OED). If you have Windows 10 Home then you can use WSL 2 to enable Linux
+        and then install Docker. Once you
+        have Docker installed and working, you can follow the direction given here since they only depend on
+        Docker/docker compose. The beginning of the <a href="../../developer/wslSteps.html">WSL page</a> has details on
+        WSL and Docker
+        installation on Windows 10 Home.</p>
+    <p>OED is installed using the Docker containerization tool. This allows it to be
+        segregated from the rest of the system, and makes updates easier to perform, since the
+        dependencies are all taken care of through the container definitions. Under Docker, OED is installed and
+        administered using the <code>docker compose</code> command. (Note more recent versions of Docker have the
+        <code>docker compose</code> command so you no longer need <code>docker-compose</code>. If your Docker does not
+        support this then you need to install docker-compose and replace all the <code>docker compose</code> commands
+        with <code>docker-compose</code>.) You
+        will need Docker version 18.06 CE or higher but that should not be an issue if you have any reasonably
+        up-to-date version. Some versions of Linux already have Docker or it can be installed. Docker for MacOS is an
+        app that can easily be installed. For Windows 10 Home you can see the link on the WSL page given in the previous
+        step. General Docker installation information is available from <a
+            href="https://docs.docker.com/engine/install/" rel="nofollow">Docker</a>.
+    </p>
+    <p>It is assumed that your server is set up to respond to web requests (port 80) and that port 3000 is allowed
+        (unless you
+        change the default OED port). It is also assumed the server can access the internet for the installation.</p>
+    <p>These directions assume someone with root access to the server where OED is being installed and a working
+        knowledge of doing Unix shell commands including editing text files. This is generally someone within the IT
+        department of your
+        organization.</p>
+
+    <p>This guide requires that you enter some commands into an operating system shell, or
+        terminal.</p>
+    <ul>
+        <li>On Windows, this is the terminal that connects to the Linux running under WSL.</li>
+        <li>On MacOS, you can use Terminal.app (the default), iTerm2, or any other terminal program.</li>
+        <li>On Linux, your distribution will provide a terminal; it can generally be opened with
+            Ctrl+Shift+T or by searching for "Terminal" in your application menu.</li>
+    </ul>
+
+    <h2>Installation</h2>
+
+    <p>Follow these steps to install a production (OED site for you institution) site:</p>
+    <ol>
+        <li>
+            <p>Clone the desired OED code from Github. Note if you leave off <code>directory</code> in the next step
+                then the OED code
+                will be placed
+                in the current directory in the subdirectory OED. If you use "." for the <code>directory</code> (just a
+                period without the quotes) then the OED software will be placed directly into the current directory
+                without a subdirectory. You can place the OED software anywhere you want but
+                be sure to be in the desired directory before you begin the clone.</p>
+            <ul>
+                <li>If you want a specific released version of OED (this is most common) then do:
+                    <code>git clone --branch &lt;tag_name&gt; https://github.com/OpenEnergyDashboard/OED.git [directory]</code>.
+                    You can find the officially released and tagged versions at the <a
+                        href="https://github.com/OpenEnergyDashboard/OED/releases" rel="noopener noreferrer">OED GitHub
+                        release page</a>. In general, you should take the latest release (at the top of the page). Note
+                    that the clone will not include git history (with detached head) but that should not be needed in a
+                    production environment. For example, to get release v0.7.0 in the subdirectory OED of the current
+                    directory do:
+                    <code>git clone --branch v0.7.0 https://github.com/OpenEnergyDashboard/OED.git</code>.
+                    After this you should see the directory OED where you did the clone.
+                </li>
+                <li>If you want the latest version from development then do:
+                    <code>git clone https://github.com/OpenEnergyDashboard/OED.git [directory]</code>. Note this will
+                    likely be code that has yet gone through complete testing as done for an official release version
+                    but will have the latest OED code base.
+                </li>
+            </ul>
+        </li>
+        <li>cd into the directory that has the cloned version of OED. This is known as the root directory of OED.
+            It has a README.md file and others. What
+            follows assumes you are in the root directory of OED (as is the default when you clone).</li>
+        <li>
+            <p>Edit <code>docker-compose.yml</code> to change</p>
+            <ol>
+                <li>OED_PRODUCTION (under <code>services: -&gt; web: -&gt; environment:</code>) to
+                    <code>yes</code> so it becomes: <code>- OED_PRODUCTION=yes</code>.
+                </li>
+                <li>OED_TOKEN_SECRET (under <code>services: -&gt; web: -&gt; environment:</code>) to a
+                    random value. Keep it secret but you should never need to know this value. It will be:
+                    <code>- OED_TOKEN_SECRET=whatevertokenyouchoose</code>
+                </li>
+                <li>The port (in <code>services: -&gt; web: -&gt; ports</code>) to a mapping from host to container;
+                    e.g.,
+                    to host on your computer's port 80, set it to <code>80:3000</code>. This assumes you want to serve
+                    OED up on the standard web port. There are multiple lines here and some are commented out (begin
+                    with <code>#</code>). Before you edit it should look like:
+                    <pre><code>
+    ports:
+        - "3000:3000"
+        - "9229:9229" # Debug port
+          # For production you might want something like:
+          # - "80:3000"
+          # and disable the debug port
+                    </code></pre>
+                    <p>If you want to have standard web requests (port 80) serve up OED then edit to look like (you
+                        comment out the debug port because it is not normally used in production):</p>
+                    <pre><code>
+    ports:
+        # - "3000:3000"
+        # - "9229:9229" # Debug port
+          # For production you might want something like:
+        - "80:3000"
+          # and disable the debug port
+                    </code></pre>
+                    <p></p>It is possible to use a different port. For example, if you leave the line
+                    <code>- "3000:3000"</code> uncommented and comment out <code>- "9229:9229"</code> then OED will
+                    server up on port 3000 (where you leave the <code>- "80:3000"</code> line commented out).
+                    </p>
+                </li>
+            </ol>
+        </li>
+        <li>For the remaining steps you need to the superuser/root to have sufficient permission to modify system files.
+            On some OS setups you can do the install step (next) without being the superuser.
+        </li>
+        <li>Make sure you are in the root OED directory (where the README.md file is located).</li>
+        <li>Install OED on the server by doing <code>docker compose up</code>. This will get all the needed software
+            including Postgres, all node packages and then installs all the needed software. This can take from
+            a minute
+            to 10+ minutes depending on the speed of your server. You will see a lot
+            of output about installing
+            the database (Postgres), getting needed packages (<strong>this can take a while so you may
+                not see output for a while</strong>) and starting up the web system. When you see the
+            lines:
+            <pre>
+web_1       |     + 1836 hidden modules
+web_1       | OED install finished
+web_1       | Starting OED in production mode
+web_1       | 
+web_1       | > Open-Energy-Dashboard@0.7.0 start
+web_1       | > node ./src/bin/www
+web_1       | 
+web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
+            </pre>
+            where the actual number of hidden modules will likely be different. Once you see this then OED should be
+            running normally
+            unless
+            there was an error in the output.
+            <p>If you quickly get the error
+                <code>Invalid interpolation format for "command" option in service "web": "${install_args:-}"</code>
+                then it is likely you are running an older version of docker-compose (less than version 2). You can fix
+                this error by editing the docker-compose.yml file (as you did above). At the end of the file you will
+                see (Note OED v0.7.0 and earlier does not have the last three lines to deal with older versions of
+                docker
+                compose so you will need to add them during your edits. It also has the reverse proxy line comment that
+                has since been removed.):
+            </p>
+            <code><pre>
+                # Lets docker-compose up work right
+                # If environment variable install_args is not set the it becomes blank without warning user.
+                command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
+                # Use this if you are using a docker-compose that is earlier than version 2.
+                # command: ["bash", "./src/scripts/installOED.sh"]
+            </pre></code>
+            <p>Edit this to be:</p>
+            <code><pre>
+                # Lets docker-compose up work right
+                # If environment variable install_args is not set the it becomes blank without warning user.
+                # command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
+                # Use this if you are using a docker-compose that is earlier than version 2.
+                command: ["bash", "./src/scripts/installOED.sh"]
+            </pre></code>
+            <p>If you redo the <code>docker compose up</code> then you should now get the expected output described
+                above.</p>
+        </li>
+        <!-- TODO add sample output file -->
+        <li>You can now use a web browser to check that OED is properly serving up web pages. Use the web
+            address
+            <code>oed.myinstition.org</code> where you replace oed.myinstition.org with the name of the server
+            where you installed OED. If all is working properly you will see the main OED page. You won't be
+            able to
+            graph any data until you have OED acquire meter data. If you did not do the mapping of 80:3000
+            above, then
+            OED would be reachable at <code>oed.myinstition.org:3000</code>.
+        </li>
+        <li>OED creates an admin account that you can use to log in (see the <a href="admin.html">admin page</a>
+            for
+            login help) with email: <code>test@example.com</code>, password: <code>password</code>. For security
+            reasons
+            you should add a new admin user and delete this one. The <a href="adminUser.html">admin user</a> page has
+            help on
+            working with users. First add a new user with the admin role and a secure password and then remove
+            the
+            <code>test@example.com</code> user so others cannot easily log onto your site as an admin.
+        </li>
+        <li>
+            <p>Set up the daily cron job to email the OED admin with any issues that occurred in the past day.
+            </p>
+            <ol>
+                <li>in the root OED directory do:
+                    <code>cp src/scripts/sendLogEmailCron.bash /etc/cron.daily/sendLogEmailCron.bash</code>
+                </li>
+                <li>Edit /etc/cron.daily/sendLogEmailCron.bash to make the necessary modifications to the
+                    script. See the script for more detail.</li>
+                <li>Do: <code>chmod +x /etc/cron.daily/sendLogEmailCron.bash</code> to make the script
+                    executable.</li>
+            </ol>
+        </li>
+        <li>
+            <p>Set up the daily cron job to aggregate the daily readings needed for the fast data access OED
+                does to the
+                database.</p>
+            <ol>
+                <li>in the root OED directory do:
+                    <code>cp src/scripts/refreshReadingViewsCron.bash /etc/cron.daily/refreshReadingViewsCron.bash</code>
+                </li>
+                <li>Edit /etc/cron.daily/refreshReadingViewsCron.bash to make the necessary modifications to the
+                    script. See the script for more detail.</li>
+                <li>Do: <code>chmod +x /etc/cron.daily/refreshReadingViewsCron.bash</code> to make the script
+                    executable.</li>
+            </ol>
+        </li>
+        <li>
+            <p>Set up the service so OED runs regularly on your system. There is a chance that your version of
+                Unix
+                requires a modification of these steps. These steps should work on a Red Hat/Centos Unix.</p>
+            <ol>
+                <li>In the root OED directory do:
+                    <code>cp src/scripts/oed.service /etc/systemd/system/oed.service</code>
+                </li>
+                <li>Edit /etc/systemd/system/oed.service to make the necessary modifications to the
+                    script. See the script for more detail.??edit this file in repo to indicate should also
+                    modify the
+                    WorkingDirectory?? and User=example_user</li>
+                <li>Do: <code>systemctl enable oed.service</code> to make the service start on server boot.</li>
+                <li>Assuming you want to start OED at this time do: <code>systemctl start oed.service</code>.
+                    Stop the
+                    app at any time by doing:
+                    <code>systemctl stop oed.service</code> but note it will restart on the next reboot unless
+                    you
+                    disable this service.
+                </li>
+                <li>To check the status of the OED service do: systemctl list-units --type=service|grep -i oed
+                </li>
+                <li>If you want to check this is all set up correctly then restart the server and check it is still
+                    serving up web pages (as described above).
+                </li>
+            </ol>
+        </li>
+        <li>You will want to get meter data into OED so the site can display data. See the <a
+                href="adminDataAcquisition.html">data acquisition</a> page for more information on doing this.
+        </li>
+    </ol>
+
+    <h1>OED upgrades</h1>
+    <p>The OED project is regularly improving the code and releasing new versions of OED. To get the latest features,
+        you will probably want to upgrade OED over time. Information on officially released and tagged versions is given
+        on the <a href="https://github.com/OpenEnergyDashboard/OED/releases" rel="noopener noreferrer">OED GitHub
+            release page</a>. If you see a newer version that you want to upgrade to then consult the directions on the
+        <a href="adminUpgrading.html">OED Upgrading page</a>.
+    </p>
+
+    <h1>Other information</h1>
+    <p>Though less likely, you may want to consult:</p>
+    <ul>
+        <li><a href="../../developer/environment.html">Environment variable</a> page about all the OED
+            environment
+            variables.</li>
+        <li><a href="../../developer/npm.html">NPM script</a> page about the available scripts to support the OED
+            setup.</li>
+    </ul>
+
+</div>
