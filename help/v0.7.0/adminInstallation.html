@@ -26,7 +26,8 @@ title: OED installation
         dependencies are all taken care of through the container definitions. Under Docker, OED is installed and
         administered using the <code>docker compose</code> command. (Note more recent versions of Docker have the
         <code>docker compose</code> command so you no longer need <code>docker-compose</code>. If your Docker does not
-        support this then you need to install docker-compose and replace all the <code>docker compose</code> commands
+        support this (likely see an error with <code>docker compose</code> of "docker: 'compose' is not a docker
+        command.") then you need to install docker-compose and replace all the <code>docker compose</code> commands
         with <code>docker-compose</code>.) You
         will need Docker version 18.06 CE or higher but that should not be an issue if you have any reasonably
         up-to-date version. Some versions of Linux already have Docker or it can be installed. Docker for MacOS is an
@@ -86,47 +87,91 @@ title: OED installation
             It has a README.md file and others. What
             follows assumes you are in the root directory of OED (as is the default when you clone).</li>
         <li>
-            <p>Edit <code>docker-compose.yml</code> to change</p>
+            <p>Edit <code>docker-compose.yml</code>. Note that for values with an = you should not put spaces before or
+                after the equal sign as is shown in the sample value. The edits are:</p>
             <ol>
-                <li>OED_PRODUCTION (under <code>services: -&gt; web: -&gt; environment:</code>) to
-                    <code>yes</code> so it becomes: <code>- OED_PRODUCTION=yes</code>.
+                <li>POSTGRES_PASSWORD (under <code>services: -&gt; datebase: -&gt; environment:</code>) to a
+                    site specific password instead of the <code>pleaseChange</code> that is provided. Keep it
+                    secret but you should never need to know this value unless you want to
+                    access the PostgreSQL database outside of the docker container. It will be:
+                    <code>- POSTGRES_PASSWORD=whateverPasswordYouChoose</code>
                 </li>
                 <li>OED_TOKEN_SECRET (under <code>services: -&gt; web: -&gt; environment:</code>) to a
-                    random value. Keep it secret but you should never need to know this value. It will be:
-                    <code>- OED_TOKEN_SECRET=whatevertokenyouchoose</code>
+                    random value instead of the <code>?</code> that is provided. Keep it secret but you should never
+                    need to know this value. It will be:
+                    <code>- OED_TOKEN_SECRET=whateverTokenYouChoose</code>
                 </li>
-                <li>The port (in <code>services: -&gt; web: -&gt; ports</code>) to a mapping from host to container;
+                <li>The port (in <code>services: -&gt; web: -&gt; ports:</code>) to a mapping from host to container;
                     e.g.,
                     to host on your computer's port 80, set it to <code>80:3000</code>. This assumes you want to serve
                     OED up on the standard web port. There are multiple lines here and some are commented out (begin
                     with <code>#</code>). Before you edit it should look like:
                     <pre><code>
     ports:
-        - "3000:3000"
-        - "9229:9229" # Debug port
-          # For production you might want something like:
-          # - "80:3000"
-          # and disable the debug port
-                    </code></pre>
+        - "3000:3000" # Should be commented out if you uncomment 80:3000 below.
+        - "9229:9229" # Debug port, should be commented out for production
+        # For production you might want something like:
+        # - "80:3000"
+        # and comment out the debug port and 3000:3000 line above
+           </code></pre>
                     <p>If you want to have standard web requests (port 80) serve up OED then edit to look like (you
                         comment out the debug port because it is not normally used in production):</p>
                     <pre><code>
     ports:
-        # - "3000:3000"
-        # - "9229:9229" # Debug port
-          # For production you might want something like:
+        # - "3000:3000" # Should be commented out if you uncomment 80:3000 below.
+        # - "9229:9229" # Debug port, should be commented out for production
+        # For production you might want something like:
         - "80:3000"
-          # and disable the debug port
-                    </code></pre>
+        # and comment out the debug port and 3000:3000 line above
+                 </code></pre>
                     <p></p>It is possible to use a different port. For example, if you leave the line
                     <code>- "3000:3000"</code> uncommented and comment out <code>- "9229:9229"</code> then OED will
                     server up on port 3000 (where you leave the <code>- "80:3000"</code> line commented out).
                     </p>
                 </li>
+                <li>Later in these directions, it is suggested you set up a cron job to send an email to someone each
+                    day with any issues the OED installation encountered. For this to work, OED needs to have access to
+                    a mail system (SMTP server) to send the mail. To do this you need to set these environment values
+                    under <code>services: -&gt; web: -&gt; environment:</code></li>
+                <ul>
+                    <li>OED_MAIL_METHOD gives the way email is sent (SMTP) As the comment says this can be gmail if
+                        using
+                        Google Mail, mailgun if you are using that locally or none if you aren't going to use the mail
+                        sending. Note that the SMTP listed here does not have to relate to the mail recipient. In the
+                        end, this may become <code>OED_MAIL_METHOD=gmail</code> or <code>OED_MAIL_METHOD=mailgun</code>.
+                    </li>
+                    <li>OED_MAIL_IDENT gives the user name on the SMTP server where the mail will be sent. Replace
+                        <code>someone@example.com</code> with your user name email.
+                    </li>
+                    <li>OED_MAIL_CREDENTIAL gives the password for the SMTP user in OED_MAIL_IDENT. Replace
+                        <code>credential</code> with that password. Note this setup cannot accommodate two factor
+                        authentication (2FA).
+                    </li>
+                    <li>OED_MAIL_FROM give the email address that the mail will be from. This is often the same as the
+                        OED_MAIL_IDENT so it might be <code>OED_MAIL_FROM=mydomain@example.com</code> where you use the
+                        desired email address.</li>
+                    <li>OED_MAIL_TO gives the email address of who will get the emails. Replace
+                        <code>someone@example.com</code> with the desired email. It can be the same as the SMTP email
+                        above or something different.
+                    </li>
+                    <li>OED_MAIL_ORG gives the organization name that will be part of the subject of the email sent.
+                        This may be important in recognizing the email, esp. if the person receiving it gets email from
+                        multiple OED sites (not common). Replace <code>My Organization Name</code> with whatever name
+                        you
+                        want.</li>
+                </ul>
+                <li>If you are going to be accepting data from Obvius, you should set the password that Obvius sends
+                    with each request. Thus, set the OED_OBVIUS_PASSWORD (under
+                    <code>services: -&gt; web: -&gt; environment:</code>) to what will be used so you replace
+                    <code>pleaseChange</code> with what you want.
+                </li>
+                </ul>
             </ol>
         </li>
-        <li>For the remaining steps you need to the superuser/root to have sufficient permission to modify system files.
-            On some OS setups you can do the install step (next) without being the superuser.
+        <li>For the remaining steps you need to be the superuser/root to have sufficient permission to modify system
+            files.
+            On some OS setups you can do the install step (next) without being the superuser but it is generally safer
+            to not to try.
         </li>
         <li>Make sure you are in the root OED directory (where the README.md file is located).</li>
         <li>Install OED on the server by doing <code>docker compose up</code>. This will get all the needed software
@@ -135,7 +180,8 @@ title: OED installation
             to 10+ minutes depending on the speed of your server. You will see a lot
             of output about installing
             the database (Postgres), getting needed packages (<strong>this can take a while so you may
-                not see output for a while</strong>) and starting up the web system. When you see the
+                not see output for a while</strong> normally happening right after the " database system is ready to
+            accept connections" output line) and starting up the web system. When you see the
             lines:
             <pre>
 web_1       |     + 1836 hidden modules
@@ -147,10 +193,12 @@ web_1       | > node ./src/bin/www
 web_1       | 
 web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
             </pre>
-            where the actual number of hidden modules will likely be different. Once you see this then OED should be
-            running normally
-            unless
-            there was an error in the output.
+            then OED should be ready to accept web requests, where the actual number of hidden modules will likely be
+            different. Note is says is is listening on port
+            3000 since that is what OED listens on but the ports: changes you made above mean the web requests to port
+            80 (or whatever you chose) will be sent on to port 3000 for OED. If there was an error in the output then
+            OED might not be running properly. Please contact the OED project if you have questions where sending the
+            terminal text is generally very helpful.
             <p>If you quickly get the error
                 <code>Invalid interpolation format for "command" option in service "web": "${install_args:-}"</code>
                 then it is likely you are running an older version of docker-compose (less than version 2). You can fix
@@ -164,7 +212,7 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
                 # Lets docker-compose up work right
                 # If environment variable install_args is not set the it becomes blank without warning user.
                 command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
-                # Use this if you are using a docker-compose that is earlier than version 2.
+                # Use this if you are using a docker-compose that is earlier than version 2 and comment out the one above.
                 # command: ["bash", "./src/scripts/installOED.sh"]
             </pre></code>
             <p>Edit this to be:</p>
@@ -172,37 +220,67 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
                 # Lets docker-compose up work right
                 # If environment variable install_args is not set the it becomes blank without warning user.
                 # command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
-                # Use this if you are using a docker-compose that is earlier than version 2.
+                # Use this if you are using a docker-compose that is earlier than version 2 and comment out the one above.
                 command: ["bash", "./src/scripts/installOED.sh"]
             </pre></code>
             <p>If you redo the <code>docker compose up</code> then you should now get the expected output described
                 above.</p>
         </li>
-        <!-- TODO add sample output file -->
+        <p>The <a href="./adminInstallOutput.html">typical output of the install</a> is available.</p>
         <li>You can now use a web browser to check that OED is properly serving up web pages. Use the web
             address
             <code>oed.myinstition.org</code> where you replace oed.myinstition.org with the name of the server
-            where you installed OED. If all is working properly you will see the main OED page. You won't be
+            where you installed OED. If all is working properly you will see the main OED page (see <a
+                href="./graphType.html">Graph Type</a> help page for an image of what it will look like). You won't be
             able to
             graph any data until you have OED acquire meter data. If you did not do the mapping of 80:3000
             above, then
             OED would be reachable at <code>oed.myinstition.org:3000</code>.
         </li>
-        <li>OED creates an admin account that you can use to log in (see the <a href="admin.html">admin page</a>
-            for
-            login help) with email: <code>test@example.com</code>, password: <code>password</code>. For security
-            reasons
-            you should add a new admin user and delete this one. The <a href="adminUser.html">admin user</a> page has
-            help on
-            working with users. First add a new user with the admin role and a secure password and then remove
-            the
-            <code>test@example.com</code> user so others cannot easily log onto your site as an admin.
+        <li>You now need to create an admin user so you can log into OED on the website. To do this you will need a
+            second terminal where you go to the root OED directory and are a superuser/root (as you have been). This is
+            done so you don't have to shut down OED to add the user. Run the script with:
+            <code>docker compose run web npm run createUser</code>. The code will prompt you to enter an email address
+            and password:
+            <pre>
+# docker compose run web npm run createUser
+Starting checkoed_database_1 ... done
+
+> Open-Energy-Dashboard@0.6.0 createUser
+> node ./src/server/services/user/createUser.js
+
+Email of user to create: someEmail@yourInstitution.org
+Password: passwordYouChoose
+[INFO@2021-10-13T21:40:31.853Z] User created or already exists
+            </pre>
+            where you replace <code>someEmail@yourInstitution.org</code> with any email (it does not have to be an
+            active one) and <code>passwordYouChoose</code> with the password you want to use with this email to login to
+            OED (passwords must be at least 8 characters long). It is important to remember this email & password so you
+            have access to OED admin features on the web pages. You can run the command
+            <code>docker compose run web npm run editUser</code> to change the password if you forget it or you can
+            create a new user. Note an OED admin user can create more users on the site so this is normally a one-time
+            step.
+            <p>Note that OED echos what you type so this information will be in the terminal. You shouldn't need this
+                terminal any more so you can close it to hide the information or usually type <code>clear</code> to
+                remove it from what is shown in the terminal.</p>
+            <p>You should now log in to make sure this account works. <a href="./admin.html">Logging in</a> directions
+                are available but basically you click the "Log in" button in the top, right of the OED website and then
+                enter the information.</p>
         </li>
+        <li>Shut down OED. You will soon setting up OED to run as a service so you want to stop the one running in the
+            terminal. In the terminal where you started OED (with <code>docker compose up</code>),
+            do "^c" to shut down OED. Be a little patient since doing a second "^c" will cause a rapid stop of docker
+            without the normal cleanup.</li>
+        <li>In the following steps you need to know the root directory of OED. In the terminal where you are in the OED
+            root directory do: <code>pwd</code> and the output will tell you the directory path.</li>
         <li>
-            <p>Set up the daily cron job to email the OED admin with any issues that occurred in the past day.
+            <p>Set up the daily cron job to email the OED admin with any issues that occurred in the past day. You are
+                not required to do this but it is a very good idea. It gives someone a daily email of any issue so they
+                are not missed. See above about needed values in docker-compose.yml to support sending emails.
+                ??VERIFY??
             </p>
             <ol>
-                <li>in the root OED directory do:
+                <li>In the root OED directory do:
                     <code>cp src/scripts/sendLogEmailCron.bash /etc/cron.daily/sendLogEmailCron.bash</code>
                 </li>
                 <li>Edit /etc/cron.daily/sendLogEmailCron.bash to make the necessary modifications to the
@@ -216,7 +294,7 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
                 does to the
                 database.</p>
             <ol>
-                <li>in the root OED directory do:
+                <li>In the root OED directory do:
                     <code>cp src/scripts/refreshReadingViewsCron.bash /etc/cron.daily/refreshReadingViewsCron.bash</code>
                 </li>
                 <li>Edit /etc/cron.daily/refreshReadingViewsCron.bash to make the necessary modifications to the
@@ -228,7 +306,9 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
         <li>
             <p>Set up the service so OED runs regularly on your system. There is a chance that your version of
                 Unix
-                requires a modification of these steps. These steps should work on a Red Hat/Centos Unix.</p>
+                requires a modification of these steps. These steps should work on a Red Hat/Centos Unix. The "User" you
+                need to set below is the one assigned to OED, the one you logged in as before becoming superuser/root or
+                (hopefully not) the superuser/root.</p>
             <ol>
                 <li>In the root OED directory do:
                     <code>cp src/scripts/oed.service /etc/systemd/system/oed.service</code>
@@ -241,15 +321,28 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
                     app at any time by doing:
                     <code>systemctl stop oed.service</code> but note it will restart on the next reboot unless
                     you
-                    disable this service.
+                    disable this service with: <code>systemctl disable oed.service</code>.
                 </li>
-                <li>To check the status of the OED service do: systemctl list-units --type=service|grep -i oed
+                <li>To check the status of the OED service do:
+                    <code>systemctl list-units --type=service | grep -i oed</code>. Note
+                    that OED needs to reinstall/restart when you start the service again so it will take a little while
+                    from the time this lists the service as loaded and active running until it is ready to serve up web
+                    pages.
                 </li>
                 <li>If you want to check this is all set up correctly then restart the server and check it is still
                     serving up web pages (as described above).
                 </li>
             </ol>
         </li>
+        <li>Sometimes you want to see the output of OED when it is running as a service. This can be useful during the
+            install if you want to see why OED did not come up. You do this by:</li>
+        <ol>
+            <li>Get the container ID by using: <code>docker ps -a</code>. The CONTAINER ID will be the one with the
+                IMAGE of ...oed_web (where there may be some name in the ...) for the install/web output and IMAGE of
+                ...oed_database for any database output.</li>
+            <li><code>docker logs &lt;CONTAINER ID&gt; | more</code> where you replace &lt;CONTAINER ID&gt; with the one
+                you want from the previous step.</li>
+        </ol>
         <li>You will want to get meter data into OED so the site can display data. See the <a
                 href="adminDataAcquisition.html">data acquisition</a> page for more information on doing this.
         </li>
@@ -272,5 +365,13 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
         <li><a href="../../developer/npm.html">NPM script</a> page about the available scripts to support the OED
             setup.</li>
     </ul>
+
+    <p>It is rare that the node/npm installation is not okay in a production environment. The OED installation detects
+        if the node install already happened (because there is a node_modules directory in the root OED directory) and
+        skips doing it again to save time. However you can force OED to do the node install by going to the root OED
+        directory and deleting the node_modules directory with: <code>rm -rf node_modules/</code>. Make sure OED is not
+        running (see stopping the service above) before you do this since it will break the application. Redoing the OED
+        install with <code>docker compose up</code>
+        will recreate this directory.</p>
 
 </div>
