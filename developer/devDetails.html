@@ -100,6 +100,14 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		Note that once the at-loader ok line is seen, you may need to reload your web page to see changes. Whether this
 		is necessary depends on what was changed (normally server vs client code).</p>
 
+	<h2>OED environment variables</h2>
+	<p>If you want to know about the environment variables that control OED then see the <a
+			href="./environment.html">environment page</a>.</p>
+
+	<h2>OED Scripts</h2>
+	<p>OED has a number of scripts that are run via commands in the package.json file. A complete listing with
+		descriptions is on the <a href="npm.html">NPM script</a> page.</p>
+
 	<h2 id=migrate>Migrating OED</h2>
 	<p>The script <code>src/scripts/updateOED.sh</code> should update all dependencies and migrate the OED database if
 		changes are needed. This may not work (see ideas above) if migrations are not yet available or this has been
@@ -136,6 +144,18 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		running application will see (and damage the information too!). It is assumed you know some SQL and Postgres
 		command line commands if you are doing this. One important one is <code>\q</code> which will get you back to the
 		terminal by leaving the Postgres command system.</p>
+	<p>There may be times you want to backup/restore the Postgres data for OED. You can do it by</p>
+	<ul>
+		<li>Take a database dump with
+			<code>docker-compose exec database pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
+		</li>
+		<li>Restore a database dump by first copying the dump into the container with
+			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the
+			database
+			with <code>docker-compose exec database psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file with date & time created in the dump step. Note someone should test/see if you
+			really need to put it into the container first.
+		</li>
+	</ul>
 
 	<h2>Database timeout on testing</h2>
 	<p>Sometimes when you run the OED tests for the first time in a while, you get an error about the database timing
@@ -149,6 +169,14 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		mocha will not terminate a test until 30 seconds have passed. The only known negative of doing this is that a
 		test that will not complete due to an error will take longer for mocha to terminate. However, this is uncommon
 		in OED tests so the change should be fine.</p>
+
+	<h2 id=npmPermission>check permission error</h2>
+	<p>A few developers have reported that when they run <code>docker-compose run --rm web npm run check</code> they get
+		an error similar to "Error: EACCES: permission denied, scandir '/root/.npm/_logs". The only current fix is to
+		run outside of docker by doing <code>npm run check</code>. It is believed that this issue is due to doing
+		installs as root and then not being root when inside docker but this is not certain. However, at least one
+		developer found that changing the file permissions did not fix the issue. If anyone has this issue or finds a
+		solution then please let us know.</p>
 
 	<h2>Running without the database container</h2>
 	<p>On rare occasions, you may get a database failure during the startup of the database container during the
