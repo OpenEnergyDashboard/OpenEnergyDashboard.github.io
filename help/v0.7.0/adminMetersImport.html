@@ -236,5 +236,17 @@ title: OED admin meter import help
     </ul>
 
     <h2 id="details">Details</h2>
-    <p>None at this time.</p>
+    <p id=newMeter>Note that for efficiency reasons and because it is uncommon for the meters to change, OED does not automatically
+        recheck for new meters when doing graphing. If you add new meters, there are two ways to get them to be
+        available for graphing:</p>
+    <ol>
+        <li>You can visit the <a href="./adminMeterViewing.html">Meters viewing page</a> if logged in as an admin. This
+            page works directly with meter information and
+            it does recheck for updates. Once this is done, any new meters will also be available for graphing. This is
+            the fastest/easiest way to do this.</li>
+        <li>You can refresh the web browser page with OED. This will cause it to return to the initial state with
+            updated information. However, you will lose all unsaved changes along with any selected meters/graphics
+            meaning you are restarting from scratch. This is probably only desireable if someone who is not an admin
+            needs to see the meter changes right away.</li>
+    </ol>
 </div>
