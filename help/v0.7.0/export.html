@@ -26,9 +26,12 @@ title: OED export help
 	<p>The "Export graph data" will give you the points on the OED graphic that is being displayed. The size of the
 		exported file will not be large because you are getting the graphic points as described in the
 		<a href="lineGraphic.html#averaging">line graphic details</a>. The "Export raw graph data" will give you the
-		original (raw) meter data that was used to create the graphic. The size of this CSV file scales with the number
+		original (raw) meter data that was used to create the graphic. Since this is the raw meter data, group data on
+		display in the graph are not included in the export of raw data.
+	</p>
+	<p>The size of this CSV file scales with the number
 		of meter points and can be large. To avoid accidental or inappropriate downloads of large files, OED does the
-		following:
+		following:</p>
 	<ul>
 		<li>If the file size is small (normally set to 5MB) then the file is automatically downloaded when the button is
 			clicked. You do not need to be logged in to perform these exports. </li>
@@ -39,7 +42,9 @@ title: OED export help
 		<li>If the file size is large (normally more than 25MB) then the user must have admin privileges. You will be
 			told the expected file size and ask to verify you wish to download the file.</li>
 	</ul>
-	<p>Note that you will be told you cannot download the data if you don't have appropriate privileges.</p>
+	<p>Note that you will be told you cannot download the data if you don't have appropriate privileges. The download of
+		the raw data as a CSV will take longer than the network transfer time because OED must get the data from the
+		database and format into a CSV.</p>
 	<p>
 		A CSV file will be placed where your downloaded web browser files go. It will be
 		named
@@ -50,7 +55,8 @@ title: OED export help
 		the raw export it had the name "oedRawExport_line_April_1_2020_1_00_00_AM_to_August_6_2020_2_00_00_PM.csv". Note
 		that the dates are slightly earlier and later in the name for the raw file. This is due to the fact that OED did
 		some readings averaging on the line graph as described in the
-		<a href="lineGraphic.html#averaging">line graphic details</a>.
+		<a href="lineGraphic.html#averaging">line graphic details</a>. Also note that if different meters/groups have
+		different ranges of dates then one of them will be used for the file name.
 	</p>
 
 	<h3>Bar graphics</h3>
