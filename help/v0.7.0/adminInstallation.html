@@ -96,6 +96,8 @@ title: OED installation
                     access the PostgreSQL database outside of the docker container. It will be:
                     <code>- POSTGRES_PASSWORD=whateverPasswordYouChoose</code>
                 </li>
+                <li>OED_PRODUCTION (under <code>services: -&gt; web: -&gt; environment:</code>) to
+                    <code>yes</code> so it becomes: <code>- OED_PRODUCTION=yes</code>.
                 <li>OED_TOKEN_SECRET (under <code>services: -&gt; web: -&gt; environment:</code>) to a
                     random value instead of the <code>?</code> that is provided. Keep it secret but you should never
                     need to know this value. It will be:
@@ -161,7 +163,8 @@ title: OED installation
                         want.</li>
                 </ul>
                 <li>If you are going to be accepting data from Obvius, you should set the password that Obvius sends
-                    with each request. Thus, set the OED_OBVIUS_PASSWORD (under
+                    with each request. If not, then set to some random value to secure this service. Thus, set the
+                    OED_OBVIUS_PASSWORD (under
                     <code>services: -&gt; web: -&gt; environment:</code>) to what will be used so you replace
                     <code>pleaseChange</code> with what you want.
                 </li>

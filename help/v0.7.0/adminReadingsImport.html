@@ -114,8 +114,9 @@ title: OED admin reading import help
             later. If the meter already exists and this is "true" then a warning is placed in the OED logs (but
             not returned as part of the messages). If set "false" but the meter does not exist then OED throws and error
             that will stop the readings upload so no readings are processed. Note that the meter is created before the
-            readings are processes so it will exist even if the readings are later reject. The default value
-            is "false".</li>
+            readings are processed so it will exist even if the readings are later reject. The default value
+            is "false". Also note that new meters are not immediately visible when graphing. This and a solution is
+            described <a href="./adminMetersImport.html#newMeter">here</a>.</li>
         <li><i>Is CSV file in gzip format ("Gzip" checked if true on web page; <code>gzip</code> parameter on direct
                 file upload)</i>: Note this is the Gnu zip format and not a standard .zip file format. The default value
             is true. Note that gzip files are smaller in size for upload and also have internal validation to protect
