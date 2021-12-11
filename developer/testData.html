@@ -28,7 +28,7 @@ title: OED test data
 		Finally, these directions are written assuming you are using Docker. It should be possible to do these outside
 		Docker. Please let the project know if you are interested in directions for doing that.</p>
 	<p>The import of this data into OED uses the CSV import feature that is described in the <a
-			href="../help/v0.7.0/adminCsvImport.html">CSV import help</a> and pages linked from that page, esp. about
+			href="../help/v0.8.0/adminCsvImport.html">CSV import help</a> and pages linked from that page, esp. about
 		readings. You do not need to know all those
 		details
 		but can get further information as needed.</p>
@@ -47,7 +47,7 @@ title: OED test data
 		command
 		<code>npm run testData</code>. This may take a few minutes but when it completes there should be new meters
 		available in OED (you will need to visit the meters page or refresh the web page as described <a
-			href="../help/v0.7.0/adminMetersImport.html#newMeter">here</a>; to see the meters for test data assumes you
+			href="../help/v0.8.0/adminMetersImport.html#newMeter">here</a>; to see the meters for test data assumes you
 		are logged in
 		as an
 		admin user since the meters are not visible to others when automatically created) and the CSV files used will be
@@ -66,7 +66,7 @@ title: OED test data
 		use to create this dataset manually with
 		<code>docker compose run web npm run &ltcommand name&gt</command></code>. You will then need to load the
 		reading data
-		into OED as described <a href="../help/v0.7.0/adminReadingsImport.html">reading import page</a> >. The file will
+		into OED as described <a href="../help/v0.8.0/adminReadingsImport.html">reading import page</a> >. The file will
 		have the name indicated and is located in the
 		<code>src/server/test/db/data/automatedTests/</code> directory.) After running the script, you can you create a
 		group that contains the
@@ -317,7 +317,7 @@ title: OED test data
 			is creating new readings in some order and you can get overlap with existing readings. Also, you may need to
 			recreate the compare data on a later day so you have current readings. Thus, it is best to use a meter
 			without any readings for the compare readings. This is done by following the directions on the <a
-				href="../help/v0.7.0/adminMetersImport.html">meters import help pages</a> to create a new meter. For
+				href="../help/v0.8.0/adminMetersImport.html">meters import help pages</a> to create a new meter. For
 			example, to create the
 			meters "compare 1" and "compare 2", you could put this into a CSV file named compareMeters.csv:
 			<pre>
@@ -364,7 +364,7 @@ compare 2,,FALSE,TRUE,other,,,compare 2
 		<li>The final step to be able to see the readings on a graph is to refresh the readings. In the terminal back at
 			the Linux prompt, do: <code>docker compose exec web npm run refreshReadingViews</code>. You will need to
 			visit the meters page or
-			refresh the web page as described <a href="../help/v0.7.0/adminMetersImport.html#newMeter">here</a> in order
+			refresh the web page as described <a href="../help/v0.8.0/adminMetersImport.html#newMeter">here</a> in order
 			the see the new meters.</li>
 		<li>You can repeat these steps in the future to get back to the latest time but you may get error about
 			overlapping start_timestamp. The easiest way around this is the delete all the reading with:<code>
@@ -388,7 +388,7 @@ compare 2,,FALSE,TRUE,other,,,compare 2
 		unexpected results when you graph that meter in OED. This file has a header row so it is easier to see what goes
 		in each column. Once you are done editing and save the file in CSV format, import it the same way as the
 		provided data above except you need to check the "Header Row" box since the file has a header row. Deal with any
-		messages to correct problems and see the <a href="../help/v0.7.0/adminReadingsImport.html">readings import
+		messages to correct problems and see the <a href="../help/v0.8.0/adminReadingsImport.html">readings import
 			page</a> for more info on dealing with issues. Note if there are
 		lots of errors then you need to look at the log or console where OED is running to see them all.</p>
 
