@@ -10,6 +10,17 @@ title: OED release
 		<li>Announce to the Developer discussion board so everyone can look over the proposed release.</li>
 		<li>Review the Milestone for this release to make sure all issues are complete or reassigned.</li>
 		<li>See if there are any package or security issues that need to be addressed.</li>
+		<li>Prepare the help pages for new release in the OpenEnergyDashboard.github.io repo. These steps assume you
+			have forked this repo onto your own account and are working from that fork (probably in a local clone):</li>
+		<ul>
+			<li>Make sure all changes are done for the previous release and put in the OED repo for the main branch.</li>
+			<li>Update your clone from the the main branch in OED repo. You can do this on your GitHub website or "git pull from" the main branch of the OED repo (generally referred to as upstream as where the fork came from) into your local main in Visual Studio. If you do it on the GitHub website then you will need to pull it down into your local clone.</li>
+			<li>Create a new branch from the one you just updated for the new release. For example, if going from version 0.7.0 to 0.8.0 then branch main to create the branch v0.8.0. Commit these changes and the push them out to your fork (will probably require you to accept publishing the new branch if in Visual Studio).</li>
+			<li>To allow testing of the new branch on your fork, go to the OpenEnergyDashboard.github.io repo on your GitHub account in a web browser. Click on the "Settings" tab and then click on the "Pages" choice on the left side of the page. Under "Source", use the "Branch" dropdown menu to choose the new branch that you just pushed/published. This should cause you to see this branch when you go to https://&lt;your GitHub ID&gt;.github.io/OpenEnergyDashboard.github.io where you replace <your GitHub ID> with your id.</li>
+			<li>Update the help pages to reflect the new release.</li>
+			<li>Commit the changes.</li>
+			<li>Push the changes to the remote repository.</li>
+		</ul>
 		<li>Do the final steps to prepare for the new version:</li>
 		<ul>
 			<li>Edit package.json to change the line ""version": "0.7.0"," to the version number you are about to
