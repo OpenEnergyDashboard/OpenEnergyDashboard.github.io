@@ -12,11 +12,13 @@ title: OED bar graphic help
 	<p>A bar graphic shows each meter and group as a series of fixed time interval bars showing usage across time. The
 		following figure shows
 		a bar graphic of two meters (Meter 1 and Meter 2) and one group (Group 1 & 2) where the group contains the two
-		meters (the one sample time point from the hover values of Group 1 & 2 is seen to be the sum of the two meters).
-		Each bar represents four weeks of data so it is
+		meters so the sum of the values of the meter bars equals the group bar value. Each bar will show the value and
+		dates if the bar is wide enough (cannot easily see the actual values in the following figure) and you can also
+		get a larger hover value by placing the curser over the bar (as shown).
+		Each bar represents four weeks of data as whole days so it is
 		the total usage of the indicated meter/group for those four weeks. Since it is total usage, the units are for
-		energy, e.g., kWh for electricity. (Note a current issue with OED is causing the label to be kW. We will change
-		this shortly.) To get this graphic, you click the "Bar" choice
+		energy, e.g., kWh for electricity. The x-axis gives the range of days, inclusive, that each bar represents. To
+		get this graphic, you click the "Bar" choice
 		(highlighted with a blue box) from the "Select a graph type" dropdown menu.</p>
 	<img alt="sample bar graphic for two meters and one group" src="./images/OEDBarGraphicRealDataHelp.png"
 		style="width: 75vw; min-width: 700px;">
@@ -26,9 +28,9 @@ title: OED bar graphic help
 	<h2 id="usage">Usage</h2>
 	<p>You select the <a href="graphingMeters.html">meters</a> and/or <a href="graphingGroups.html">groups</a> to graph
 		in the usual way. OED will display each meter and group as a series of uniquely colored bars. Each bar
-		represents the chosen time interval for the bars where the dates are shown below each set of bars. The bars for
+		represents the chosen time interval for the bars where the inclusive dates are shown below each set of bars. The bars for
 		all meters and groups are kept together for the same range of time. For
-		this section the graphics use synthetic data since values are easier to see. In this data, the meters have a
+		this section the graphics use synthetic data since values are easier to understand. In this data, the meters have a
 		constant value for long periods of time. Also, we will often use meters in these sample figures
 		but the same ideas apply equally to groups. The following figure shows the data for Meter A and Meter B.</p>
 	<img alt="sample bar graphic for two meters" src="./images/OEDBarSynthetic.png"
@@ -41,7 +43,7 @@ title: OED bar graphic help
 	<p>If different
 		meters and groups have data for different time ranges for data available then some bars may not be shown in some
 		time range(s). The
-		next figure shows this where Meter C does not span the full range of time on the graph and have values
+		next figure shows this where Meter C does not span the full range of time on the graph and has values
 		missing at the beginning and end of the year. You can see date range by looking at the <a
 			href="lineGraphic.html#lineHidden">line graphic</a>.</p>
 	<img alt="sample bar graphic where the meter data is different time frames" src="./images/OEDBarVaryTime.png"

@@ -10,8 +10,16 @@ title: OED line graphic help
 
 	<h2 id="overview">Overview</h2>
 	<p>A line graphic shows each meter and group as a unique line showing usage across time. The following figure shows
-		a line graphic of two meters (Meter 1 and Meter 2) and one group (Group 1 & 2) where the group contains the two
-		meters (the one sample time point from the hover values of Group 1 & 2 is seen to be the sum of the two meters).
+		a line graphic of two meters (Meter 1 and Meter 2) and one group (Group 1 & 2) where the group contains the same
+		two
+		meters. The hover is shown whenever the curser is over a line and is accurate to 6 significant figures. If you
+		hover over each line then you would see that the sum of the hover values for Meter 1 and Meter 2 is the same as
+		the value for Group 1 & 2 as expected since the group contains these two meters. The time in the hover is
+		12:00:00 PM which is the middle of the day (noon) and is the same as the x-axis value. On most graphics, except
+		if zoomed in to a small time frame (see below), the x-axis represents the average over multiple meter values as
+		<a href="#averaging">discussed below</a>. The x-axis value is given the middle of the date/time range of values
+		that were averaged. In this case, each point is a full day and goes from midnight to midnight of that day. Thus,
+		the average is in the middle of the day/noon/12:00:00 PM.
 		Each line represents power usage at that time for the indicated meter/group, e.g., kW for electricity. To get
 		this graphic, you
 		click the

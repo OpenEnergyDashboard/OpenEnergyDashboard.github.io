@@ -48,7 +48,11 @@ title: OED map help
 		will find the file image does not appear on the next step. There are many programs/apps that will allow you to
 		convert to one of these two types of graphical images. Once you have uploaded the map image, use the box
 		immediately below (labeled "Define a name for the map:") to name your map. Note this is the name that a user
-		will see (it can be edited later). In this example, "Happy Place" was used. When
+		will see (it can be edited later). In this example, "Happy Place" was used. Finally, you need to input the angle
+		of the map relative to true north. To properly display maps, OED needs to know the vector that points to true
+		north on the uploaded map. This is the clockwise angle between straight up on the map image you upload and true
+		north. See the discussion on <a href="#angle">true north angle</a> below for setting this value on a rotated
+		map. When
 		you are ready, click the "Save and continue" button to complete this step.</p>
 	<img alt="admin map loading page" src="./images/OEDAdminLoadMap.png" style="width: 75vw; min-width: 700px;">
 	<p>You should then see the confirmation popup shown below. The exact look differs depending on your web browser. It
@@ -114,7 +118,8 @@ title: OED map help
 		single
 		map. If you want users to be able to see the map then make sure "Display Enabled" is shown. It is best to verify
 		that items are showing up in the correct places before you reveal the map to users. Note you can recalibrate
-		a map from this page.</p>
+		a map from this page. There are other values you can set and see that are described on
+		the <a href="adminMapViewing.html">Admin Map Viewing</a> page.</p>
 	<img alt="admin map viewing page after calibration" src="./images/OEDAdminMapViewingAfterCalibration.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>Once you set the GPS of meters, you can see their values on the map. (See the <a href="mapGraphic.html">map
@@ -122,6 +127,35 @@ title: OED map help
 		points, then see the section on <a href="#circlePlacementIssues">circle placement issues</a> below.</p>
 
 	<p>You can repeat this process for as many maps as you want.</p>
+
+	<h3 id="angle">True north angle</h3>
+	<p>To properly display maps, OED needs to know the vector that points to true
+		north on the uploaded map. This is the clockwise angle between straight up on the map image you upload and true
+		north. If your map image is oriented to north at the top then the angle is 0. If not, you need to determine the
+		angle. For example, suppose the Happy Place map used above was rotated 30 degrees clockwise. This would give the
+		following image:</p>
+	<img alt="Happy Place map rotated 30 degrees with up and true north vectors along with angle between"
+		src="./images/HappyPlace30Deg.png" style="width: 10vw; min-width: 300px;">
+	<p>Let's assume the original map was oriented to true north. The arrow labeled true north shows this direction. The
+		other arrow labeled straight up points directly to to top of the image (and is parallel to the corresponding
+		sides of the image). The pink arrow labeled angle is the angle between the two arrows and the direction
+		indicates the direction of the OED needed angle. In this case the angle is 30 degrees from straight up to true
+		north. You would enter this value for the angle when inputting the map. Note that the GPS coordinates you enter
+		for any meter or group is the actual one and is not changed by this rotation angle.</p>
+	<p>Note that normally you have a rectangular image that is oriented to how people view your organization in this
+		map. Thus, you would not normally rotate the map image as was done here for example purposes. Instead, you use
+		the angle to tell OED what is going on.</p>
+	<p>So, how can you get the angle needed. Sometimes the person or group that created the image of your organization
+		knows this value, esp. if it was created with a GIS system. If not, you can use a mapping program on the web
+		(such
+		as Google Maps). These generally put true north at the top. If you take a screenshot of the area on the mapping
+		program you want, you can then rotate the image until it aligns with the one you want to upload into OED. The
+		angle that you needed to rotate the map is the value OED needs. Please note that
+		some graphics programs/descriptions rotate the image and some rotate the coordinate system so you should be
+		careful when getting the value from a graphics program. These values are just negatives of each other so
+		checking if it follows the image above tells you if you need to negate the angle value. If the graphing does not
+		produce the desired result, you
+		may need to adjust this angle.</p>
 
 	<h3 id="calibrationPoints">Choosing calibration points and finding the GPS value</h3>
 	<p>OED uses the distance between calibration points to determine the quality of the points (called the "result"
@@ -174,7 +208,9 @@ title: OED map help
 		get the GPS coordinates has features placed at a different location than on the map you uploaded to OED. It
 		could also happen because manually read GPS values (such as going to a place and using the value shown of your
 		cell phone) are off. This is due to the inherent accuracy of the device in getting the GPS coordinate or
-		standing in the correct location. While many issues can happen, the OED project found that getting the correct
+		standing in the correct location. Finally, it is possible that the true north angle is off. This will generally
+		lead to items not showing up on the map and/or being off across all meters/groups. While many issues can happen,
+		the OED project found that getting the correct
 		value is usually possible and led to good placement on the map. Getting a good calibration is the easiest way to
 		place items on the map. See the next section for ideas on fixing poor placement of the circles on the map.</p>
 
@@ -208,24 +244,5 @@ title: OED map help
 		solution in this case.</p>
 
 	<h2 id="details">Details</h2>
-	<h3>Current limitations</h3>
-	<ul>
-		<li>OED internally supports maps with any rotation from true north. There is not currently an admin interface to
-			allow entering this value. The plan is to add this soon. If you need rotated maps then contact us for how
-			you can do it at the current time.</li>
-		<li>You cannot place a group on a map. The planned changes will give admins the ability to give a group GPS
-			coordinates
-			and
-			users to place on a map.</li>
-		<li> OED internally supports the setting of the maximum circle size. This is specified as a fraction of the
-			total map size and currently defaults to 0.15 or 15% of the map size. This generally works well. However, it
-			can be suboptimal if items being placed on the map are close together or you want to have larger circles for
-			viewing. OED plans to add an admin interface in the near future to allow admins to set this value for each
-			map. Until then, please contact us if you need to modify the circle sizes on your maps.</li>
-	</ul>
-
-	<h3>Previous versions</h3>
-	<p>The first version of maps (OED v0.6.0) calculated the error from calibration in a poor way. The new method gives
-		more
-		information but yields significantly different values.</p>
+	<p>None at this time.</p>
 </div>

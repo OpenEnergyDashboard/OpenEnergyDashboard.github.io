@@ -73,4 +73,10 @@ title: OED export help
 		the zoomed in time) so you will see that unless you redraw to reduce the time range. (see <a
 			href="lineGraphic.html#redrawRestore">
 			redraw</a> information)</p>
+	<p>Since version 0.8.0, exported data includes both the start and end date/timestamp. This provides more information
+		that could be useful. Also note that the first column is the meter/group name. You can import data that was
+		exported by OED but you need to remove the first column and include the meter name in the import parameters.
+		Finally, you can export multiple meters at a time but you can only have one meter of data for import. If you
+		plan to import the exported data then do the export one meter at a time or you need to edit the CSV to break it
+		up into one file for each meter.</p>
 </div>
