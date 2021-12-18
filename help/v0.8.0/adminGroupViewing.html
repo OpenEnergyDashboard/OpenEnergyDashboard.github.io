@@ -28,8 +28,8 @@ title: OED admin group help
 		name that will make
 		sense to users. Use the "Select Meters:" and "Select Groups:" dropdown menus as you would on any page to select
 		the meters and groups to include within the new group. You can also set GPS coordinates, decide if it group is
-		displayable to any user, create a note about this group (only seen by admins) and set the area (currently not
-		used). The next figure shows what creating a group named "Group
+		displayable to any user, create a note about this group (only seen by admins) and set the area. The next figure
+		shows what creating a group named "Group
 		1 & 2 & 7 & 8" that includes Meter 1, Meter 2 and Group 7 & 8, GPS of 40.00419, -87.99916, a note of "This is a
 		note" and area of 12.3 would look like.</p>
 	<img alt="admin group creation page" src="./images/OEDAdminCreateGroup.png" style="width: 75vw; min-width: 700px;">
@@ -46,7 +46,8 @@ title: OED admin group help
 		menu was used to select Group 1 & 2. Note that both of these menus do not include any meters or groups already
 		included in this group or just selected. Note that Group 1 & 2 contains Meter 1 & Meter 2 and these two meters
 		were already directly added to this group. While you may wish to avoid this, OED will not count readings more
-		than once for any meter even if you add it more than once. Note it probably be a good idea to change the name of this
+		than once for any meter even if you add it more than once. Note it probably be a good idea to change the name of
+		this
 		group to reflect its new members. This could have been done along with any other value that you
 		wished to change on this page.The screen looks as in the figure below.</p>
 	<img alt="admin group edit page" src="./images/OEDAdminEditGroup.png" style="width: 75vw; min-width: 700px;">
@@ -67,7 +68,11 @@ title: OED admin group help
 		the choices on the other set (group or meter). The workaround is to first select the desired unused meter(s),
 		add them and then do the same for the desired unused group(s).</p>
 	<p>Note that when you edit a group that is included in another group, the changes to the group impact the other
-		group as well.</p>
+		group as well. So, if you delete a group it will disappear from other groups.</p>
 	<p>Groups will have features similar to meters in the near future and admins will be able to edit them similar to
 		meters.</p>
+	<p>Note neither the area nor the displayable is currently used in OED. We hope to fix the displayable issue soon.
+		The area will be used once OED completes its generalization so data displayed can be normalized by area. For
+		now, sites may want to begin adding the desired values so they take effect when OED is done with these updates.
+	</p>
 </div>
