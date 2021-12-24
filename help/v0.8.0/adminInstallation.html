@@ -136,18 +136,26 @@ title: OED installation
                     a mail system (SMTP server) to send the mail. To do this you need to set these environment values
                     under <code>services: -&gt; web: -&gt; environment:</code></li>
                 <ul>
-                    <li>OED_MAIL_METHOD gives the way email is sent (SMTP) As the comment says this can be gmail if
-                        using
-                        Google Mail, mailgun if you are using that locally or none if you aren't going to use the mail
-                        sending. Note that the SMTP listed here does not have to relate to the mail recipient. In the
-                        end, this may become <code>OED_MAIL_METHOD=gmail</code> or <code>OED_MAIL_METHOD=mailgun</code>.
+                    <li>OED_MAIL_METHOD gives the way email is sent (SMTP). As the comment says this can be
+                        <code>secure-smtp</code> to use your SMTP server or <code>none</code> if you are not going to
+                        have OED send mail
+                        alerts. OED only supports sending mail via secure channels. Note that the SMTP listed here does
+                        not have to relate to the mail recipient. In the
+                        end, this usually becomes <code>OED_MAIL_METHOD=secure-smtp</code>.
                     </li>
+                    <li>OED_MAIL_SMTP gives the web address of the SMTP server you are using. For example, it could be
+                        <code>OED_MAIL_SMTP=smtp.example.com</code> where example.com would become the domain for your
+                        organization or you could use <code>OED_MAIL_SMTP=smtp.gmail.com</code> for Google Mail.
+                    </li>
+                    <li>OED_MAIL_SMTP_PORT gives the port number of the SMTP server you are using. For example, it is
+                        often <code>OED_MAIL_SMTP_PORT=465</code> for the standard SSL connection port.</li>
                     <li>OED_MAIL_IDENT gives the user name on the SMTP server where the mail will be sent. Replace
                         <code>someone@example.com</code> with your user name email.
                     </li>
                     <li>OED_MAIL_CREDENTIAL gives the password for the SMTP user in OED_MAIL_IDENT. Replace
                         <code>credential</code> with that password. Note this setup cannot accommodate two factor
-                        authentication (2FA).
+                        authentication (2FA) unless you have access to a token for the credential (an app password for
+                        mail for Google has been tested and it works).
                     </li>
                     <li>OED_MAIL_FROM give the email address that the mail will be from. This is often the same as the
                         OED_MAIL_IDENT so it might be <code>OED_MAIL_FROM=mydomain@example.com</code> where you use the
@@ -162,12 +170,6 @@ title: OED installation
                         you
                         want.</li>
                 </ul>
-                <li>If you are going to be accepting data from Obvius, you should set the password that Obvius sends
-                    with each request. If not, then set to some random value to secure this service. Thus, set the
-                    OED_OBVIUS_PASSWORD (under
-                    <code>services: -&gt; web: -&gt; environment:</code>) to what will be used so you replace
-                    <code>pleaseChange</code> with what you want.
-                </li>
                 </ul>
             </ol>
         </li>
