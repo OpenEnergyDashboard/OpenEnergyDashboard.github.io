@@ -7,12 +7,14 @@ title: OED map data
 	<h1>OED developer map data</h1>
 	<p>The following assumes you have loaded the <a href="testData.html">test data</a> into your development OED system.
 		You can use other meter data if you prefer.</p>
-	<p>Please use the <a href="../help/v0.8.0/adminMap.html">admin map help</a> for information on how to load and calibrate a
+	<p>Please use the <a href="../help/v0.8.0/adminMap.html">admin map help</a> for information on how to load and
+		calibrate a
 		map. This page only describes the necessary details of the test map. You need to be logged in as an admin to
 		complete these steps.</p>
-	<p>Use the sample <a href="testData/goodPlace.png" download>Good Place map</a> by downloading it. This
+	<p>Use the sample <a href="testData/HappyPlace.png" download>Happy Place map</a> by downloading it. This
 		is the map
-		you upload into OED. We will call it "Good Place" and you can use that name in OED or some other name.</p>
+		you upload into OED. We will call it "Happy Place" and you can use that name in OED or some other name. The map
+		angle is 0.0 degrees.</p>
 	<p>During the calibration step, you will use a mythical GPS coordinate system of (0-30, 0-50) which are real GPS
 		values but not usual for a map. This large area works because we will make a perfect calibration with no error.
 		This means the lower, left corner of the map has GPS coordinate (0, 0) and the top, right has GPS coordinate
@@ -27,25 +29,41 @@ title: OED map data
 		for both directions. If not, start over. If yes, then save changes to the database.
 	</p>
 	<p>Next go to mater page to edit the meters for the desired GPS locations. These values will work where you don't
-		input the location on map but that tells you where it will show up.</p>
+		input the location on map but that tells you where it will show up. You can do the same on the groups page.</p>
 	<ul>
-		<li>test100, GPS: 41.8, 8.5, Location on map: Play Place</li>
+		<li>GPS: 41.6, 8.5, Location on map: Play Place</li>
 	</ul>
 	<ul>
-		<li>test101, GPS: 26.9, 24.8, Location on map: Theater</li>
+		<li>GPS: 26.8, 25.2, Location on map: Theater</li>
 	</ul>
 	<ul>
-		<li>for another meter, GPS: 42.7, 23.0, Location on map: Swimming Pool</li>
+		<li>GPS: 42.6, 23.4, Location on map: Swimming Pool</li>
 	</ul>
 	<ul>
-		<li>for another meter, GPS: 20.2, 8.5, Location on map: Cafeteria</li>
+		<li>GPS: 20.2, 8.1, Location on map: Cafeteria</li>
 	</ul>
 	<ul>
-		<li>for another meter, GPS: 5.7, 18.2, Location on map: Housing</li>
+		<li>GPS: 5.6, 18.9, Location on map: Housing</li>
 	</ul>
-	<p>Note the three labeled "for another meter" are given in case you want to put other meters on the map. Note that
-		test102 and test103 will give very large circles until we fix the size issue. If all went well, you should now
-		see the following on the map page (I used a different map name due to ones already in my system).</p>
-	<img src="./images/developerMap.png" alt="what the developer map should look like"
+	<p>You can put these on whatever meters/groups you want and can use as many as you want. If all went
+		well, you should now
+		see the following on the map page where you may have different meters/groups that can change the color of the
+		circles and their size.</p>
+	<img src="./images/HappyPlace.png" alt="what the Happy Place map should look like"
+		style="width: 75vw; min-width: 700px;">
+
+	<h2>Rotated map</h2>
+	<p>Sometimes you want to test a rotated map. In this case use <a href="testData/HappyPlace30Deg.png" download>Happy
+			Place 30 Deg map</a> that was rotated by 30 degrees. This does not impact the GPS coordinates but means the
+		simple
+		correspondence between the OED grid and GPS no longer holds. During calibration, use these points:</p>
+	<ul>
+		<li>Bottom, right of Swimming Pool at coordinate 265, 342 with GPS value of 39.5, 27.7</li>
+		<li>Bottom, right of Theater at coordinate 217, 234 with GPS value of 23.7, 29.3</li>
+		<li>Bottom, right of Cafeteria at coordinate 85, 252, with GPS value of 17.0, 12.7</li>
+	</ul>
+	<p>This will give: result: x: 3.127%, y: 0.647%. If you switch to this map then you should see the following
+		(assuming you put in the meter locations above) with the same caveats listed for the Happy Place map.</p>
+		<img src="./images/HappyPlace30Deg.png" alt="what the Happy Place 30 Degree map should look like"
 		style="width: 75vw; min-width: 700px;">
 </div>
