@@ -14,7 +14,10 @@ title: OED map graphic help
 		the size of the circle represents its usage. An OED site can have as many maps as it wishes. To get this
 		graphic, you click the "Map" choice (highlighted with a blue box in the next figure). This is a simple map with
 		a few buildings
-		where the usage is given for "Play Place" (Meter 7), "Theater" (Meter 8) and "Cafeteria" (Group 1 & 2). As the
+		where the usage is given for "Play Place" (Meter 7), "Theater" (Meter 8) and "Cafeteria" (Group 1 & 2). Note
+		that there are hover items as with other graphics and this figure shows the time range, what the circle
+		represents (Groups 1 & 2) and its value. (The top values are the coordinates the graphics package uses and are
+		not likely of interest.) As the
 		size of the circles show, the "Cafeteria" used
 		significantly more energy than the other two.</p>
 	<img alt="sample map graphic for Meters 7, 8" src="./images/OEDMapHelp.png" style="width: 75vw; min-width: 700px;">
@@ -28,18 +31,35 @@ title: OED map graphic help
 		selected that can be shown on the map then they will immediately appear. (See below for more on selecting
 		meters.)</p>
 	<img alt="selecting map" src="./images/OEDMapSelection.png" style="width: 75vw; min-width: 700px;">
-	<p>You select the <a href="graphingMeters.html">meters</a> to graph
-		in the usual way. (See <a href="#limitations">Limitations</a> below about graphing groups.) OED will display
-		each meter as an individual circle as shown in the figure above. In some cases the meter cannot be placed on the
-		graph. This happens when its GPS coordinates do not lie within the map. Note that a meter without GPS
-		coordinates provided by the admin of the site can never be placed on any map. To let the user know when a meter
-		cannot be placed on the current map, its name is grayed out. These meters cannot be selected. In the following
+	<p>You select the <a href="graphingMeters.html">meters</a> or <a href="graphingGroups.html">groups</a> to graph
+		in the usual way. OED will display
+		each meter as an individual circle as shown in the figure above. In some cases the meter/group cannot be placed on the
+		graph. This happens when its GPS coordinates do not lie within the map. Note that a meter/group without GPS
+		coordinates provided by the admin of the site can never be placed on any map. To let the user know when a meter/group
+		cannot be placed on the current map, its name is grayed out. These meters/groups cannot be selected. In the following
 		figure, Meters 2, A and B are
 		grayed out (highlighted with blue boxes) since they cannot be shown on the map. Meters 7 and 8 look normal since
 		they can be shown on the map and selected.</p>
 	<img alt="grayed out meters that cannot be shown on map" src="./images/OEDMapGrayedMeters.png"
 		style="width: 75vw; min-width: 700px;">
-	<p>If you selected Meter 7 and Meter 8 then you would see the graphic at the top of this page.</p>
+	<p>If you selected Meter 7 and Meter 8 and Group 1 & 2 then you would see the graphic at the top of this page.</p>
+
+	<p>The circle represents the average daily usage over the time range chosen in the "Map Interval:". The allowed time
+		ranges are "Day", "Week" and "4 Weeks" and highlighted in blue in the next figure. In this figure, the "Day"
+		choice was selected and note that the circle sizes differ from the first figure since the relative usage is
+		different for one day than 4 weeks. These time ranges are the same selections
+		as on a bar graph. A selection on either
+		the bar or map page impacts the other graphic. Note that there is no slider on the map page (this may change in
+		the future) and changes to the slider on the bar graphic page does not change the time range on the map graphic.
+		The
+		value shown on the map is the same as on the last bar shown in the bar graphic except divided by the number of
+		days for the time range. As with bar graphics, the overall dates graphed are the same as the selection in the
+		line graphic. This means if you change the date range on the line graphic, the bar graphic changes to those
+		dates and the
+		map graphic also changes the circle size.</p>
+	<img alt="three allowed time ranges for map graphics" src="./images/OEDMapTimeFrames.png"
+		style="width: 75vw; min-width: 700px;">
+
 	<p>If a site has multiple maps that lie in different geographical locations, then a meter grayed out on one map
 		might be displayable on another. Also, if you are on a different graphic type and are displaying a meter that
 		cannot be shown on the map then it will not appear on the map and be grayed out on the "Meters:" list. If you
@@ -67,17 +87,6 @@ title: OED map graphic help
 		<li>The minimum size of the circle means that items with low usage do not become so small that they cannot be
 			seen. However, it does mean that items with small circles will not accurately represent the actual usage.
 			Hovering over a circle will cause a popup that displays the actual usage.</li>
-	</ul>
-
-	<h3 id="limitations">Limitations</h3>
-	<p>Maps are a new and complex feature added in version 0.7. It was designed to show what they can do and allow
-		people to begin to incorporate them into their sites. There are several current limitations on maps that should
-		be removed shortly.</p>
-	<ul>
-		<li>The circle represents the average usage over the last 4 weeks bar shown in the bar graphic for this meter.
-			This means if you change the date range on the line graphic, the bar graphic changes to those dates and the
-			map graphic also changes the circle size. In the future we will allow other time
-			ranges (probably similar to bar graphs).</li>
 	</ul>
 
 	<h3>Format of dates and times</h3>
