@@ -25,7 +25,8 @@ title: OED line graphic help
 		click the
 		"Line"
 		choice
-		(highlighted with a blue box) from the "Select a graph type" dropdown menu.</p>
+		(highlighted with a blue box) from the "Select a graph type" dropdown menu.
+	</p>
 	<img alt="line graphic with two meters and a group of those meters" src="./images/OEDLineGraphicRealDataHelp.png"
 		style="width: 75vw; min-width: 700px;">
 	<p>A line graphic can show an arbitrary choice and number of meters and groups. As described below, you can control
@@ -114,6 +115,31 @@ title: OED line graphic help
 		top of this page.</p>
 	<img alt="restoring time in a line graphic" src="./images/OEDLineRestored.png"
 		style="width: 75vw; min-width: 700px;">
+	<p>As noted, when you "Redraw" the data, OED recalculates the number of points to display. Part of that process is
+		deciding the frequency, i.e., the time between points, that is shown. OED has three frequencies that it uses:
+	</p>
+	<ul>
+		<li>Daily. Each point represents one day of data. This is typically the average of the readings across that day
+			unless there are not multiple readings in a day. When you hover over a line in this case the time shown will
+			be 12:00:00 PM because that is the midpoint of the points averaged. OED will display day data when there is
+			2 or more months of data (precisely, for 61 or more days).</li>
+		<li>Hourly. Each point represents one hour of data. As with days, OED automatically averages multiple readings
+			within the hour. When you hover over a line in this case the time shown will be a half hour such as 9:30:00
+			AM since the half hour is the midpoint of the time averaged. When this happens can be controlled by the site
+			but the default is for more than about 2 weeks (precisely, 15 days) and up to 60 days when the daily points
+			will be shown.</li>
+		<li>Original Meter Data. If you go below the minimum time for hourly points then OED will display the original
+			meter data (also called raw data). This means that no averaging has been done and the graph shows what was
+			received from the meter. This can be valuable if you want to see exactly what the meter showed. For the
+			default settings, this happens when you display less than 15 days worth of data.</li>
+	</ul>
+	<p>If a site receives meter data more rapidly than about every 15 minutes, it would be common to lower the point
+		when original meter data is displayed. For example, if data is read every minute, then the normal setting would
+		be to switch at 1 day and not the 15 days for most sites. A site can choose to modify this nominal setting. If
+		it was set so the switch occurred at 2 days instead of 1 day then OED would need to send more points than it
+		typically wants for time ranges between 1 and 2 days. For example, at exactly 2 days, OED would send 2880 points
+		(normally OED limits to 1440 points). This will make getting this data a little slower but does allow for seeing
+		a larger range of time with original meter data. The site administrator can help with this setting.</p>
 
 	<h2 id="details">Details</h2>
 

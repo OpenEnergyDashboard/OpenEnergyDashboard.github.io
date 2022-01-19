@@ -131,6 +131,12 @@ title: OED installation
                     server up on port 3000 (where you leave the <code>- "80:3000"</code> line commented out).
                     </p>
                 </li>
+                <li>OED_SITE_READING_RATE (under <code>services: -&gt; web: -&gt; environment:</code>) might need to be
+                    updated. This represents the typical rate that meters at your site provide data. This impacts when
+                    OED switches from daily to hourly to original meter data when doing line graphics. The default value
+                    is 00:15:00 meaning the meter data is expected every 15 minutes. If the value is roughly right then
+                    there should be no issues. Note you do not change OED_TEST_SITE_READING_RATE as that is used
+                    internally for the automated tests in OED. More information is available on the help pages.</li>
                 <li>Later in these directions, it is suggested you set up a cron job to send an email to someone each
                     day with any issues the OED installation encountered. For this to work, OED needs to have access to
                     a mail system (SMTP server) to send the mail. To do this you need to set these environment values
@@ -272,7 +278,8 @@ Password: passwordYouChoose
                 are available but basically you click the "Log in" button in the top, right of the OED website and then
                 enter the information.</p>
         </li>
-        <li>Shut down OED. You will soon setting up OED to run as a service so you want to stop the one running in the
+        <li>Shut down OED. You will soon be setting up OED to run as a service so you want to stop the one running in
+            the
             terminal. In the terminal where you started OED (with <code>docker compose up</code>),
             do "^c" to shut down OED. Be a little patient since doing a second "^c" will cause a rapid stop of docker
             without the normal cleanup.</li>
@@ -305,6 +312,23 @@ Password: passwordYouChoose
                 <li>Edit /etc/cron.daily/refreshReadingViewsCron.bash to make the necessary modifications to the
                     script. See the script for more detail.</li>
                 <li>Do: <code>chmod +x /etc/cron.daily/refreshReadingViewsCron.bash</code> to make the script
+                    executable.</li>
+            </ol>
+        </li>
+        <li>
+            <p>Set up the cron job to aggregate the hourly readings needed for the fast data access OED
+                does to the database when zoomed in on data. The site can choose how frequently to do this. If you want
+                to see the latest meter data quickly then this should be done hourly. Note the update takes a modest
+                amount of CPU and can delay when users see data. If you prefer, you could run the script daily just
+                before running the daily updates. This would mean the new hourly data would only become visible after
+                the day completes.</p>
+            <ol>
+                <li>In the root OED directory do (this assumes you do the update every hour):
+                    <code>cp src/scripts/refreshHourlyReadingViewsCron.bash /etc/cron.hourly/refreshHourlyReadingViewsCron.bash</code>
+                </li>
+                <li>Edit /etc/cron.daily/refreshHourlyReadingViewsCron.bash to make the necessary modifications to the
+                    script. See the script for more detail but it should be the same as the daily script changes.</li>
+                <li>Do: <code>chmod +x /etc/cron.hourly/refreshHourlyReadingViewsCron.bash</code> to make the script
                     executable.</li>
             </ol>
         </li>

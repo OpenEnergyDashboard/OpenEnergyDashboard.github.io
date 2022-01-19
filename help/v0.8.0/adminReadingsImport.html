@@ -132,7 +132,8 @@ title: OED admin reading import help
             changing data. Note that using update removes the previous data and it is lost within OED. Thus, care should
             be taken in using the update option and it is often safer to limit the items uploaded to avoid issues. The
             default value is "false".</li>
-        <li><i>Should OED refresh its internally stored readings after the upload ("Refresh Readings" checked if true on
+        <li><i>Should OED refresh its internally stored daily readings after the upload ("Refresh Readings" checked if
+                true on
                 web page; <code>refreshReadings</code> parameter on direct
                 file upload)</i>: OED does optimization on uploaded readings so it can quickly respond to user requests
             for data. While this process does not take long, it can briefly slow the server down. Also, it only makes a
@@ -145,6 +146,12 @@ title: OED admin reading import help
             you are looking at a graphic that deals with complete days (which is the most common) and have not zoomed in
             to a subset of the data that makes OED show sub-day data. The default value
             is false.</li>
+        <li><i>Should OED refresh its internally stored hourly readings after the upload ("Refresh Hourly Readings"
+                checked if true on
+                web page; <code>refreshHourlyReadings</code> parameter on direct
+                file upload)</i>This is similar to refresh readings except it does the hourly ones. These are slower to
+            refresh but allow the user to see the data on an hourly basis when they zoom into the graph. If this is not
+            done then the hourly data will not show any of the uploaded data.</li>
     </ul>
 
     <h3>Reading CSV file format</h3>
