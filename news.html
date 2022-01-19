@@ -5,7 +5,38 @@ title: OED news
 <div>
 	<h1>Open Energy Dashboard News</h1>
 
-	<h2>Release of OED version 0.7.0</h2>
+	<h2>Release of OED version 0.8.0</h2>
+	<h3>January 24, 2022</h3>
+	<p>OED is pleased to announce the release of version 0.8.0 that
+		contains these new features:</p>
+	<ul>
+		<li>For maps: maps can include groups, the time range can be selected as day/week/4 weeks, auto select map
+			if only one available, sort map names alphabetically on menu,
+			full support for maps rotated from true north, admins can set the maximum circle size, and maps can be made
+			the default graphic type.</li>
+		<li>The speed of getting data for graphing was improved. This change also allows for the seeing of the original
+			meter values instead of minute points when the user zooms in on a line graphic.</li>
+		<li>The x-axis date on line graphics now gives the middle of the dates included in the raw data in the point.
+			The dates labeling
+			bar graphics are now inclusive to remove the next day.</li>
+		<li>Admins can now view/edit all values on groups such as GPS, note, etc.</li>
+		<li>Exported data includes both start and end time/date and bar data is sorted by date.</li>
+	</ul>
+	<h3>Other changes</h3>
+	<ul>
+		<li>Obvius uploads now use the Obvius OED user so the old environment variable is eliminated.</li>
+		<li>More items are internationalized and all Spanish strings are done.</li>
+		<li>Improved site installation and directions.</li>
+		<li>Uncalibrated maps cannot be made visible by the admin.</li>
+		<li>Leaving a page edited by the admin now warns about unsaved changes.</li>
+		<li>Rate limiting was added to total requests and requests for raw data. The default limits can be adjusted by
+			the admin. This should stop users from making repeated requests either by mistake or to be malicious.</li>
+		<li>Chart links: chart links for bar graphics now work and resized line graphics have better links.</li>
+		<li>Packages were updated so most security issues have been addressed.</li>
+	</ul>
+
+	<h2>Release
+		of OED version 0.7.0</h2>
 	<h3>15 September 2021</h3>
 	<p>OED is pleased to announce the release of version 0.7.0. This is the fairly major release that
 		contains these new features:</p>
