@@ -196,8 +196,8 @@ title: OED admin reading import help
         without .csv). Note that meters created by OED are not visible to non-admin users so you will either need to be
         logged in as an admin or get an admin user to make the meter(s) visible. Also, an admim user needs to refresh
         the readings for them to be able to be graphed (often happens automatically somewhat after midnight on a site).
-        As an alternative (if it is okay for your server) you can add the parameter
-        <code>-F 'refreshReadings=true'</code> so
+        As an alternative (if it is okay for your server) you can add the parameters
+        <code>-F 'refreshReadings=true' -F 'refreshHourlyReadings=true'</code> so
         OED will do the refresh as part of the upload.
         Finally, you need to reload the OED web page so your browser is aware of the new meters and data. Please see <a
             href="#valueShown">CSV vs graphic value</a> discussion about expected values in OED graphs.
