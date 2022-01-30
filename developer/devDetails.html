@@ -75,10 +75,15 @@ title: OED dev details
 		<li>OED has the log file "log.txt" in the main OED directory. All message should be placed in this file. The
 			newest messages are at the end. This file can get large over time so you probably want to focus on lines in
 			the time frame you are interested (they should be timestamped).</li>
+		<li>Using the Redux debugging tools in the web browser is also very valuable. It can also help to look at the
+			traces. To do this you must enable it in the code. Go to src/client/app/index.tsx and do what the comments
+			say to enable traces (comment out one line and uncomment two lines below). Please make sure you do not
+			commit this change/include in a pull request. As the comments indicate, it would be nice to automate this
+			process and maybe a developer will do this work and submit a PR.</li>
 	</ul>
 	<p>The warning:<br>
 		WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
-		may or may not show up in the output. The complete answer is not known but it appears to
+		may or may not show up in the terminal where you started OED. The complete answer is not known but it appears to
 		be a transient error in PostgreSQL writing log information. It has never caused any problems.</p>
 
 	<h2 id=codeChange>Getting a running OED to recognize code changes</h2>
@@ -152,7 +157,8 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		<li>Restore a database dump by first copying the dump into the container with
 			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the
 			database
-			with <code>docker-compose exec database psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file with date & time created in the dump step. Note someone should test/see if you
+			with <code>docker-compose exec database psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file
+			with date & time created in the dump step. Note someone should test/see if you
 			really need to put it into the container first.
 		</li>
 	</ul>
