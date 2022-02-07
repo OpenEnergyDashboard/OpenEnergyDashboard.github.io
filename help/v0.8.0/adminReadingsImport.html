@@ -513,6 +513,14 @@ title: OED admin reading import help
         being graphed. In general you do not need to worry about this but it is mentioned so people will not think
         that OED should show the CSV file value directly.</p>
 
+    <h3>Cumulative data and resets</h3>
+    <p>For OED to get the usage during any time period for cumulative data, it must subtract the previous reading from
+        the current one. When a reset occurs, OED assumes the previous reading was zero which means it uses the current
+        reading as the usage for the period represented by this reading. Since there is no alternative, OED assumes the
+        current reading began the period with a reading of zero. If the reset occurs in the middle of a reading, OED
+        will not include any usage before the reset happened it this period. Meters should not do resets in the middle
+        of a reading but it would cause inaccuracies for that reading if it did.</p>
+
     <h3>Row numbers in returned messages</h3>
     <p>OED tries to return the row (line) number of the CSV when it reports any messages. First, OED strips off the
         header row so that is not counted in the row number. This means the second row in a CSV file (assuming time
