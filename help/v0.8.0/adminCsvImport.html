@@ -85,6 +85,9 @@ title: OED admin csv import help
         <code>curl myuniv.edu:3000/api/csv/readings -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>
         where many more parameters are allowed.
     </p>
+    <p>The web page upload does certain checks and restricts input of values for the parameters. The curl command uses
+        the values provided. Thus, it is possible to get problematic values farther into the OED upload process when you
+        use curl. This isn't a bug in OED but noted so you are aware.</p>
 
     <h3>Returned information</h3>
     <p>Whenever a CSV upload is requested, OED returns information about the request. This information is in HTML format
