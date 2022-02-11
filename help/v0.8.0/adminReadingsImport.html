@@ -36,7 +36,9 @@ title: OED admin reading import help
         <li><i>Time sort ("Time Sort" drop down menu on web page; <code>TimeSort</code> parameter on direct file
                 upload)</i>: Specifies the time order of the readings in the CSV file. "increasing" means the later rows
             in the CSV are later in time and "decreasing" is the opposite ordering. If unspecified then it uses the
-            value stored on the meter.</li>
+            value stored on the meter. Note that when decreasing, OED processes from the last line in the CSV to the
+            first line. This is not normally important to users but note that if an error occurs and processing stops,
+            you will not see messages about earlier lines in the CSV.</li>
         <li><i># of times a reading is duplicated ("Duplications" drop down menu on web page; <code>duplications</code>
                 parameter on direct file upload)</i>: This specifies how many identical readings are in a row in the CSV
             file. Some meters provide the same reading multiple times so they are duplicates and only one is really
