@@ -20,7 +20,7 @@ title: Steps for WSL
             there as well. The information below assumes you have done this and the commands given are run in a Linux
             shell.</strong></p>
 
-    <h1>Errors running <code>docker-compose up</code> might throw:</h1>
+    <h1>Errors running <code>docker compose up</code> might throw:</h1>
     <ol>
         <li>
             <h2><code>FileNotFoundError: [Errno 2] No such file or directory</code></h2><br>
@@ -37,11 +37,11 @@ title: Steps for WSL
             while for the npm install to finish but wait and hopefully this will happen. You will likely then get a
             message
             about trying to start to database but nothing after that one line. At this point, stop the install (a
-            <strong>single ^c</strong> (control and letter c) or <code>docker-compose down</code> in a second terminal
+            <strong>single ^c</strong> (control and letter c) or <code>docker compose down</code> in a second terminal
             where it is in the same
             OED
             directory as the install is happening). You should now be back at the command line. Do
-            <code>install_args="--keep_node_modules" docker-compose up</code> which will try the install again but keep
+            <code>install_args="--keep_node_modules" docker compose up</code> which will try the install again but keep
             the
             node modules (node_modules/ directory) and the Postgres installation (in postgres-data/ directory). Normally
             this will complete the installation fairly quickly without further issues. For now, we encourage you to do

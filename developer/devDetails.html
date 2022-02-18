@@ -8,23 +8,32 @@ title: OED dev details
 
 	<h2 id="fastInstall">Faster OED installation</h2>
 	<p>The easiest way to install OED is to use:
-		<br><code>docker-compose up</code><br>
+		<br><code>docker compose up</code><br>
 		This is equivalent to the full OED install command of
-		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh</code><br>
+		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh</code><br>
 	</p>
 
 	<p>When you do this it does a complete npm package install by first removing the node_modules/ directory.
 		Downloading all the needed packages for OED can take many minutes. (<a href="fullInstallOutput.html">full
 			install output</a>) You can avoid the package download by using
-		<br><code>install_args="--keep_node_modules" docker-compose up</code><br>
+		<br><code>install_args="--keep_node_modules" docker compose up</code><br>
 		or the full install of
-		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh --keep_node_modules</code><br>
+		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh --keep_node_modules</code><br>
 		It is <strong>very important</strong> to note that this skips updating packages. If you change package.json or
 		package-lock.json directly or by pulling in code that does this, you <strong>should not</strong> use this option
 		but do the full install above after this and then you can use this faster process. If you do not then you will
 		see errors and/or unexpected behavior when OED installs/runs. (<a href="noNPMInstallOutput.html">skipping NPM
 			install output</a>)
 	</p>
+
+	<h2>Rebuild after Docker dependency changes</h2>
+	<p>If a "From" in a Dockerfile is changed, then the version of that software needs to be updated. Docker normally
+		uses its cached version so the update will not happen. To force the update, do
+		<code>docker compose up --build</code> where you can add other arguments (such as keeping the node modules).
+		This should make Docker use what is specified in the Dockerfile. If there are no changes then it will not
+		download a new version of the needed software but it will be a little slower for the checks and potentially
+		creating the container. OED tries to announce to the Developer Discussion board whenever a change is make to a
+		Dockerfile that would require this action.</p>
 
 	<h2 id="resetDB">Resetting the Postgres database</h2>
 	<p>During the initial install of OED, Postgres detects that you have not run before for this install and initializes
@@ -57,7 +66,7 @@ title: OED dev details
 	<h2>Stopping OED</h2>
 	<p>If you go to the terminal where OED is running, you can type ^-c (control and letter c) together to stop OED.
 		Note it is best to only do this once since a second time causes a force stop. An alternative is to use
-		<code>docker-compose down</code> in a second terminal that is in the same directory as where the install is
+		<code>docker compose down</code> in a second terminal that is in the same directory as where the install is
 		happening. This can also be useful if you are having an issue with your docker container(s) since it cleans them
 		all up.
 	</p>
@@ -132,19 +141,19 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		run
 		testing (or you want to focus on one test at a time that fails). Running all the tests is much slower than
 		running a single test. Thus, to run a single test, do:
-		<br><code>docker-compose run --rm web npm run testsome -- &lt;first test&gt; [&lt;second test&gt;]
+		<br><code>docker compose run --rm web npm run testsome -- &lt;first test&gt; [&lt;second test&gt;]
 		</code><br>where you replace &lt; xxxx test&gt; with the path to the test you want to run and [ ] indicates this is
 		optional and you can repeat as many times as you want for more tests.
 	</p>
 	<p>For example, to run the web groups test, you would
-		use:<br><code>docker-compose run --rm web npm run testsome -- src/server/test/web/groups.js</code><br>and to run
+		use:<br><code>docker compose run --rm web npm run testsome -- src/server/test/web/groups.js</code><br>and to run
 		the web groups test and the db baselineTests
-		use:<br><code>docker-compose run --rm web npm run testsome -- src/server/test/web/groups.js src/server/test/db/baselineTests.js</code>
+		use:<br><code>docker compose run --rm web npm run testsome -- src/server/test/web/groups.js src/server/test/db/baselineTests.js</code>
 	</p>
 
 	<h2>Accessing the database</h2>
 	<p>You can access the Postgres database that OED uses within the docker container. In a second terminal (the first
-		should have OED running), do <code>docker-compose exec database psql -U oed</code>. You will now be in the
+		should have OED running), do <code>docker compose exec database psql -U oed</code>. You will now be in the
 		Postgres command line for the OED database. Note this is the live system so you can make changes that the
 		running application will see (and damage the information too!). It is assumed you know some SQL and Postgres
 		command line commands if you are doing this. One important one is <code>\q</code> which will get you back to the
@@ -152,12 +161,12 @@ web_1       | [at-loader] Ok, 0.006 sec.
 	<p>There may be times you want to backup/restore the Postgres data for OED. You can do it by</p>
 	<ul>
 		<li>Take a database dump with
-			<code>docker-compose exec database pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
+			<code>docker compose exec database pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
 		</li>
 		<li>Restore a database dump by first copying the dump into the container with
 			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the
 			database
-			with <code>docker-compose exec database psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file
+			with <code>docker compose exec database psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file
 			with date & time created in the dump step. Note someone should test/see if you
 			really need to put it into the container first.
 		</li>
@@ -177,7 +186,7 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		in OED tests so the change should be fine.</p>
 
 	<h2 id=npmPermission>check permission error</h2>
-	<p>A few developers have reported that when they run <code>docker-compose run --rm web npm run check</code> they get
+	<p>A few developers have reported that when they run <code>docker compose run --rm web npm run check</code> they get
 		an error similar to "Error: EACCES: permission denied, scandir '/root/.npm/_logs". The only current fix is to
 		run outside of docker by doing <code>npm run check</code>. It is believed that this issue is due to doing
 		installs as root and then not being root when inside docker but this is not certain. However, at least one
@@ -193,9 +202,9 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		resolved.) In rare circumstances, you still want to run the OED web container knowing that any
 		operations that touch the database will fail. There is a parameter to the install script that allows this and
 		can be done with:
-		<br><code>install_args="---continue_on_db_error" docker-compose up</code><br>
-		or the full install script (not using docker-compose up) of
-		<br><code>docker-compose run --service-ports --rm web npm run src/scripts/installOED.sh --continue_on_db_error</code><br>
+		<br><code>install_args="---continue_on_db_error" docker compose up</code><br>
+		or the full install script (not using docker compose up) of
+		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh --continue_on_db_error</code><br>
 		OED will still try to install the DB, fail and then continue to try to install the web container. You should see
 		the regular messages in the console indicating the web container is running as expected.
 	</p>

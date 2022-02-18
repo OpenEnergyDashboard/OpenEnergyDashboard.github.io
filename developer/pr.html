@@ -26,9 +26,9 @@ title: OED PRs
 			has the needed license at the top and that TypeScript is used where expected. You will likely find it easier
 			if
 			you run this check early to find any issues so you don't repeat them many times. The checks are run in a
-			terminal. The safest way is to do it inside Docker (by using docker-compose). To
-			do this do (from the main OED directory as needed for all docker-compose commands):
-			<br><code>docker-compose run --rm web npm run check</code><br>
+			terminal. The safest way is to do it inside Docker (by using docker compose). To
+			do this do (from the main OED directory as needed for all docker compose commands):
+			<br><code>docker compose run --rm web npm run check</code><br>
 			You can run the check outside of Docker with:<br><code>npm run check</code><br>where you need to have npm
 			installed on your system outside the Docker OED system. Note that the checks use certain Unix commands that
 			may not run or may not run as expected on your system so even though this is faster we recommend doing it
@@ -38,7 +38,7 @@ title: OED PRs
 		</li>
 		<li>Run our code checks. These run all the test cases to verify the code is running correctly. It is similar to
 			running lint where you use:
-			<br><code>docker-compose run --rm web npm run test</code><br>
+			<br><code>docker compose run --rm web npm run test</code><br>
 			This can take several minutes. A summary will be given at the bottom. If you see any errors then they should
 			be checked out. Let us know if you need help. You will do the same command to check any new tests you add.
 			Please note that it is difficult to run the tests outside Docker (with the full OED install) so you should
