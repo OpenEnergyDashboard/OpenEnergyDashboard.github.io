@@ -185,7 +185,8 @@ title: OED installation
             to not to try.
         </li>
         <li>Make sure you are in the root OED directory (where the README.md file is located).</li>
-        <li>Install OED on the server by doing <code>docker compose up</code>. This will get all the needed software
+        <li>Install OED on the server by doing <code>docker-compose up</code>. (On older versions of Docker you must do
+            <code>docker-compose up</code>.) This will get all the needed software
             including Postgres, all node packages and then installs all the needed software. This can take from
             a minute
             to 10+ minutes depending on the speed of your server. You will see a lot
@@ -275,7 +276,7 @@ Password: passwordYouChoose
         </li>
         <li>Shut down OED. You will soon be setting up OED to run as a service so you want to stop the one running in
             the
-            terminal. In the terminal where you started OED (with <code>docker compose up</code>),
+            terminal. In the terminal where you started OED (with <code>docker-compose up</code>),
             do "^c" to shut down OED. Be a little patient since doing a second "^c" will cause a rapid stop of docker
             without the normal cleanup.</li>
         <li>In the following steps you need to know the root directory of OED. In the terminal where you are in the OED
@@ -394,7 +395,7 @@ Password: passwordYouChoose
         skips doing it again to save time. However you can force OED to do the node install by going to the root OED
         directory and deleting the node_modules directory with: <code>rm -rf node_modules/</code>. Make sure OED is not
         running (see stopping the service above) before you do this since it will break the application. Redoing the OED
-        install with <code>docker compose up</code>
+        install with <code>docker-compose up</code>
         will recreate this directory.</p>
 
 </div>

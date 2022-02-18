@@ -26,6 +26,15 @@ title: OED dev details
 			install output</a>)
 	</p>
 
+	<h2>Rebuild after Docker dependency changes</h2>
+	<p>If a "From" in a Dockerfile is changed, then the version of that software needs to be updated. Docker normally
+		uses its cached version so the update will not happen. To force the update, do
+		<code>docker-compose up --build</code> where you can add other arguments (such as keeping the node modules).
+		This should make Docker use what is specified in the Dockerfile. If there are no changes then it will not
+		download a new version of the needed software but it will be a little slower for the checks and potentially
+		creating the container. OED tries to announce to the Developer Discussion board whenever a change is make to a
+		Dockerfile that would require this action.</p>
+
 	<h2 id="resetDB">Resetting the Postgres database</h2>
 	<p>During the initial install of OED, Postgres detects that you have not run before for this install and initializes
 		the database system. It keeps the information in the postgres-data/ directory in the main OED directory. If you
