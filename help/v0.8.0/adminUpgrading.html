@@ -58,14 +58,14 @@ title: OED upgrades
 			in the terminal, OED will be doing the install and may take a while to complete without showing any output.
 		</li>
 		<li>Sometimes OED needs to upgrade the images/containers used in Docker. This can be accomplished by doing:
-			<code>docker-compose up --build</code>. This is the same step as the original build from
+			<code>docker compose up --build</code>. This is the same step as the original build from
 			the first OED installation with an added argument and can take a little while. See the <a
 				href="adminInstallation.html">OED
 				installation page</a> for further information. Once complete, you should then be able to access OED via
 			a web browser
 			to see it is running properly and has all the data and settings you had before the upgrade. Doing it outside
 			the Unix service makes it easier to see any issues during the build steps. Once you complete this step then
-			do "^c" in the terminal where you did the <code>docker-compose up</code> to shut down OED. Be a little
+			do "^c" in the terminal where you did the <code>docker compose up</code> to shut down OED. Be a little
 			patient since doing a second "^c" will cause a rapid stop of docker without the normal cleanup.
 		</li>
 		<li>Restart the OED app and service with: <code>systemctl start oed.service</code>.</li>

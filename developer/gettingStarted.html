@@ -33,7 +33,7 @@ title: OED developer startup
         </li>
         <li>OED uses the Docker container system to run the software so you need to <a
                 href="https://www.docker.com/products/docker-desktop" rel="noopener noreferrer">download</a> and install
-            Docker. (You need both Docker and docker-compose but you generally get those together during the
+            Docker. (You need both Docker and docker compose but you generally get those together during the
             install.) This
             has the advantage that our configuration
             files for Docker can get any needed software and also means we do not modify your normal system since the
@@ -63,10 +63,10 @@ title: OED developer startup
                             might do<br><code>cd /home/username/projects/OED</code><br>if you cloned OED in the
                             /home/username/projects/
                             directory.</li>
-                        <li><code>docker-compose up</code><br>This will run the entire OED install process. Note that on
+                        <li><code>docker compose up</code><br>This will run the entire OED install process. Note that on
                             some systems (mostly some Linux systems), depending on how you installed Docker, you may get
                             a
-                            permission error so you will need to do:<br><code>sudo docker-compose up</code><br>which
+                            permission error so you will need to do:<br><code>sudo docker compose up</code><br>which
                             runs
                             the process with root privileges. If this is
                             the case then you need to do sudo before all docker commands on your system.<br>
