@@ -6,26 +6,6 @@ title: OED dev details
 	<h1>OED Developer Information (detailed)</h1>
 	<p>There are many details and good ideas to use as an OED developer. This page tries to give you some of them.</p>
 
-	<h2 id="fastInstall">Faster OED installation</h2>
-	<p>The easiest way to install OED is to use:
-		<br><code>docker compose up</code><br>
-		This is equivalent to the full OED install command of
-		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh</code><br>
-	</p>
-
-	<p>When you do this it does a complete npm package install by first removing the node_modules/ directory.
-		Downloading all the needed packages for OED can take many minutes. (<a href="fullInstallOutput.html">full
-			install output</a>) You can avoid the package download by using
-		<br><code>install_args="--keep_node_modules" docker compose up</code><br>
-		or the full install of
-		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh --keep_node_modules</code><br>
-		It is <strong>very important</strong> to note that this skips updating packages. If you change package.json or
-		package-lock.json directly or by pulling in code that does this, you <strong>should not</strong> use this option
-		but do the full install above after this and then you can use this faster process. If you do not then you will
-		see errors and/or unexpected behavior when OED installs/runs. (<a href="noNPMInstallOutput.html">skipping NPM
-			install output</a>)
-	</p>
-
 	<h2>Rebuild after Docker dependency changes</h2>
 	<p>If a "From" in a Dockerfile is changed, then the version of that software needs to be updated. Docker normally
 		uses its cached version so the update will not happen. To force the update, do
@@ -33,7 +13,8 @@ title: OED dev details
 		This should make Docker use what is specified in the Dockerfile. If there are no changes then it will not
 		download a new version of the needed software but it will be a little slower for the checks and potentially
 		creating the container. OED tries to announce to the Developer Discussion board whenever a change is make to a
-		Dockerfile that would require this action.</p>
+		Dockerfile that would require this action.
+	</p>
 
 	<h2 id="resetDB">Resetting the Postgres database</h2>
 	<p>During the initial install of OED, Postgres detects that you have not run before for this install and initializes
@@ -207,6 +188,18 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh --continue_on_db_error</code><br>
 		OED will still try to install the DB, fail and then continue to try to install the web container. You should see
 		the regular messages in the console indicating the web container is running as expected.
+	</p>
+
+	<h2 id="fastInstall">Faster OED installation</h2>
+	<p>The installation process was updated in late February 2022 so the node modules are not updated unless needed.
+		This means the node modules will only be updated if the package.json and/or package-lock.json file is update
+		whether by directed edit or from pulling updating versions. As a result, the old method of
+		<code>install_args="--keep_node_modules" docker compose up</code> should not be needed if you are running
+		current versions of OED software. The <code>keep_node_modules</code> parameter was left for backward
+		compatibility and in the unlikely case where a developer wishes to use it. As expected, the steps and output is
+		different when there is no node module installation as seen in <a href="noNPMInstallOutput.html">skipping NPM
+			install output</a>.</p>
+	)
 	</p>
 
 	<h2 id=typescript>TypeScript Wisdom</h2>
