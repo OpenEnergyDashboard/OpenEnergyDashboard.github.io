@@ -7,228 +7,449 @@ title: OED full install
 	<p>When you install OED without already have a database or node modules, it does all the steps. Below is typical
 		output for this process. Please note:</p>
 	<ul>
-		<li>This output was created on 5 Feb 2021 on a Mac. The exact output will vary with machine type and changes to
-			OED.</li>
-		<li>There are often colors in the output but that is not shown.</li>
-		<li>There may be a delay of many minutes before the line<br>
-			web_1 | > fsevents@1.2.12 install /usr/src/app/node_modules/fsevents<br>
-			due to the install process downloading all the needed packages. The time needed varies by internet
-			connection, your machine speed and the speed that the repos respond.</li>
-		<li>The warning:<br>
-			WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
-			may or may not show up. It also shows up at other times. The complete answer is not known but it appears to
-			be a transient error in PostgreSQL writing log information. It has never caused any problems.</li>
+		<li>This output was created on 24 April 2022 on a Mac. The exact output will vary with machine type and changes
+			to OED. This output was what was shown in the nohup.out file for a VSC install.</li>
+		<li>The output and information in <a href="noNPMInstallOutput.html">install output without redoing database or
+				npm
+				install</a> is similar to what will happen here. The major difference is in what is shown in nohup.out
+			below. Note that if you have run OED previously then the previous output will be before the new output.</li>
+		<li>For unknown reasons, the OED install fails to run at times. See the <a href="noNPMInstallOutput.html">no npm
+				install output</a> to see the known solution.</li>
 	</ul>
 
+	<h3>nohup.out output</h3>
 	<pre>
-$ docker compose up
-Starting oed_database_1 ... done
-Starting oed_web_1      ... done
-Attaching to oed_database_1, oed_web_1
-database_1  | The files belonging to this database system will be owned by user "postgres".
-database_1  | This user must also own the server process.
-database_1  | 
-database_1  | The database cluster will be initialized with locale "en_US.utf8".
-database_1  | The default database encoding has accordingly been set to "UTF8".
-database_1  | The default text search configuration will be set to "english".
-database_1  | 
-database_1  | Data page checksums are disabled.
-database_1  | 
-database_1  | fixing permissions on existing directory /var/lib/postgresql/data/pgdata ... ok
-database_1  | creating subdirectories ... ok
-database_1  | selecting default max_connections ... 100
-database_1  | selecting default shared_buffers ... 128MB
-database_1  | selecting default timezone ... Etc/UTC
-database_1  | selecting dynamic shared memory implementation ... posix
-database_1  | creating configuration files ... ok
-web_1       | NPM install...
-web_1       | npm WARN prepare removing existing node_modules/ before installation
-database_1  | running bootstrap script ... ok
-database_1  | performing post-bootstrap initialization ... ok
-database_1  | syncing data to disk ... ok
-database_1  | 
-database_1  | Success. You can now start the database server using:
-database_1  | 
-database_1  |     pg_ctl -D /var/lib/postgresql/data/pgdata -l logfile start
-database_1  | 
-database_1  | 
-database_1  | WARNING: enabling "trust" authentication for local connections
-database_1  | You can change this by editing pg_hba.conf or using the option -A, or
-database_1  | --auth-local and --auth-host, the next time you run initdb.
-database_1  | waiting for server to start....2021-02-05 17:58:09.541 UTC [46] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-database_1  | 2021-02-05 17:58:09.657 UTC [47] LOG:  database system was shut down at 2021-02-05 17:58:02 UTC
-database_1  | 2021-02-05 17:58:09.725 UTC [46] LOG:  database system is ready to accept connections
-database_1  |  done
-database_1  | server started
-database_1  | 
-database_1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-database_1  | CREATE ROLE
-database_1  | psql:/docker-entrypoint-initdb.d/init.sql:6: NOTICE:  database "oed" does not exist, skipping
-database_1  | DROP DATABASE
-database_1  | CREATE DATABASE
-database_1  | DROP DATABASE
-database_1  | psql:/docker-entrypoint-initdb.d/init.sql:8: NOTICE:  database "oed_testing" does not exist, skipping
-database_1  | CREATE DATABASE
-database_1  | ALTER ROLE
-database_1  | 
-database_1  | 
-database_1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/nuke.sql
-database_1  | DROP DATABASE
-database_1  | DROP DATABASE
-database_1  | CREATE DATABASE
-database_1  | CREATE DATABASE
-database_1  | 
-database_1  | 
-database_1  | 2021-02-05 17:58:38.398 UTC [46] LOG:  received fast shutdown request
-database_1  | waiting for server to shut down....2021-02-05 17:58:38.406 UTC [46] LOG:  aborting any active transactions
-database_1  | 2021-02-05 17:58:38.409 UTC [46] LOG:  worker process: logical replication launcher (PID 53) exited with exit code 1
-database_1  | 2021-02-05 17:58:38.420 UTC [48] LOG:  shutting down
-database_1  | 2021-02-05 17:58:38.605 UTC [46] LOG:  database system is shut down
-database_1  |  done
-database_1  | server stopped
-database_1  | 
-database_1  | PostgreSQL init process complete; ready for start up.
-database_1  | 
-database_1  | 2021-02-05 17:58:38.687 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-database_1  | 2021-02-05 17:58:38.687 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-database_1  | 2021-02-05 17:58:38.699 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-database_1  | 2021-02-05 17:58:38.841 UTC [73] LOG:  database system was shut down at 2021-02-05 17:58:38 UTC
-database_1  | 2021-02-05 17:58:38.914 UTC [1] LOG:  database system is ready to accept connections
-database_1  | 2021-02-05 18:00:39.112 UTC [77] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
-database_1  | 2021-02-05 18:02:39.177 UTC [83] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
-web_1       | 
-web_1       | > fsevents@1.2.12 install /usr/src/app/node_modules/fsevents
-web_1       | > node-gyp rebuild
-web_1       | 
-web_1       | gyp info it worked if it ends with ok
-web_1       | gyp info using node-gyp@5.0.3
-web_1       | gyp info using node@12.9.1 | linux | x64
-web_1       | gyp info find Python using Python version 2.7.13 found at "/usr/bin/python"
-web_1       | gyp http GET https://nodejs.org/download/release/v12.9.1/node-v12.9.1-headers.tar.gz
-web_1       | gyp http 200 https://nodejs.org/download/release/v12.9.1/node-v12.9.1-headers.tar.gz
-web_1       | gyp http GET https://nodejs.org/download/release/v12.9.1/SHASUMS256.txt
-web_1       | gyp http 200 https://nodejs.org/download/release/v12.9.1/SHASUMS256.txt
-web_1       | gyp info spawn /usr/bin/python
-web_1       | gyp info spawn args [
-web_1       | gyp info spawn args   '/usr/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py',
-web_1       | gyp info spawn args   'binding.gyp',
-web_1       | gyp info spawn args   '-f',
-web_1       | gyp info spawn args   'make',
-web_1       | gyp info spawn args   '-I',
-web_1       | gyp info spawn args   '/usr/src/app/node_modules/fsevents/build/config.gypi',
-web_1       | gyp info spawn args   '-I',
-web_1       | gyp info spawn args   '/usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi',
-web_1       | gyp info spawn args   '-I',
-web_1       | gyp info spawn args   '/root/.cache/node-gyp/12.9.1/include/node/common.gypi',
-web_1       | gyp info spawn args   '-Dlibrary=shared_library',
-web_1       | gyp info spawn args   '-Dvisibility=default',
-web_1       | gyp info spawn args   '-Dnode_root_dir=/root/.cache/node-gyp/12.9.1',
-web_1       | gyp info spawn args   '-Dnode_gyp_dir=/usr/local/lib/node_modules/npm/node_modules/node-gyp',
-web_1       | gyp info spawn args   '-Dnode_lib_file=/root/.cache/node-gyp/12.9.1/&lt;(target_arch)/node.lib',
-web_1       | gyp info spawn args   '-Dmodule_root_dir=/usr/src/app/node_modules/fsevents',
-web_1       | gyp info spawn args   '-Dnode_engine=v8',
-web_1       | gyp info spawn args   '--depth=.',
-web_1       | gyp info spawn args   '--no-parallel',
-web_1       | gyp info spawn args   '--generator-output',
-web_1       | gyp info spawn args   'build',
-web_1       | gyp info spawn args   '-Goutput_dir=.'
-web_1       | gyp info spawn args ]
-web_1       | gyp info spawn make
-web_1       | gyp info spawn args [ 'BUILDTYPE=Release', '-C', 'build' ]
-web_1       | make: Entering directory '/usr/src/app/node_modules/fsevents/build'
-web_1       |   SOLINK_MODULE(target) Release/obj.target/.node
-web_1       |   COPY Release/.node
-web_1       | make: Leaving directory '/usr/src/app/node_modules/fsevents/build'
-web_1       | gyp info ok 
-web_1       | 
-web_1       | > core-js@2.6.11 postinstall /usr/src/app/node_modules/core-js
-web_1       | > node -e "try{require('./postinstall')}catch(e){}"
-web_1       | 
-web_1       | Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
-web_1       | 
-web_1       | The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
-web_1       | > https://opencollective.com/core-js 
-web_1       | > https://www.patreon.com/zloirock 
-web_1       | 
-web_1       | Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
-web_1       | 
-web_1       | 
-web_1       | > nodemon@1.18.11 postinstall /usr/src/app/node_modules/nodemon
-web_1       | > node bin/postinstall || exit 0
-web_1       | 
-web_1       | Love nodemon? You can now support the project via the open collective:
-web_1       |  > https://opencollective.com/nodemon/donate
-web_1       | 
-web_1       | added 1711 packages in 409.022s
-web_1       | NPM install finished.
-web_1       | Attempting to create database...
-web_1       | 
-web_1       | -----start of npm run createdb output-----
-web_1       | 
-web_1       | > Open-Energy-Dashboard@0.5.0 createdb /usr/src/app
-web_1       | > node ./src/server/services/createDB.js
-web_1       | 
-web_1       | -----end of npm run createdb output-----
-web_1       | 
-web_1       |   database creation had no errors so assume schema creation worked.
-web_1       | 
-web_1       | > Open-Energy-Dashboard@0.5.0 createUser /usr/src/app
-web_1       | > node ./src/server/services/user/createUser.js "test@example.com" "password"
-web_1       | 
-web_1       | [INFO@2021-02-05T18:04:25.852Z] User created or already exists
-web_1       | 
-web_1       | User creation had no errors so default user 'test@example.com' with password 'password' should exist
-web_1       | OED install finished
-web_1       | Starting OED in development mode
-web_1       | 
-web_1       | > Open-Energy-Dashboard@0.5.0 start:dev /usr/src/app
-web_1       | > nodemon --inspect=0.0.0.0 ./src/bin/www
-web_1       | 
-web_1       | 
-web_1       | > Open-Energy-Dashboard@0.5.0 webpack:dev /usr/src/app
-web_1       | > webpack -d --watch --color --progress
-web_1       | 
-web_1       | [nodemon] 1.18.11
-web_1       | [nodemon] to restart at any time, enter `rs`
-web_1       | [nodemon] watching: /usr/src/app/src/server/**/* /usr/src/app/src/bin/**/* /usr/src/app/src/common/**/*
-web_1       | [nodemon] starting `node --inspect=0.0.0.0 ./src/bin/www`
-web_1       | Debugger listening on ws://0.0.0.0:9229/b832e662-4efb-4af6-a4b1-4fabc6cadc2b
-web_1       | For help, see: https://nodejs.org/en/docs/inspector
-database_1  | 2021-02-05 18:04:40.264 UTC [87] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
-web_1       |  10% building 0/0 modules 0 active
-web_1       | webpack is watching the files…
-web_1       | 
-web_1       | [INFO@2021-02-05T18:04:42.098Z] Listening on port 3000
-web_1       | 
- 10% building 0/1 modules 1 active ...s!/usr/src/app/src/client/app/index.tsx
-web_1       | [at-loader] Using typescript@3.5.3 from typescript and "tsconfig.json" from /usr/src/app/tsconfig.json (in a forked process).
-web_1       | 
- 95% emitting                                                                       
-web_1       | [at-loader] Checking started in a separate process...
-wHash: 617247ab0ef1d20cb236          
-web_1       | Version: webpack 4.30.0
-web_1       | Time: 98861ms
-web_1       | Built at: 02/05/2021 6:06:20 PM
-web_1       |     Asset      Size  Chunks                    Chunk Names
-web_1       | bundle.js  27.2 MiB    main  [emitted]  [big]  main
-web_1       | Entrypoint main [big] = bundle.js
-web_1       | [./node_modules/css-loader/dist/cjs.js!./src/client/app/styles/index.css] 413 bytes {main} [built]
-web_1       | [./src/client/app/actions/barReadings.ts] 10.1 KiB {main} [built]
-web_1       | [./src/client/app/actions/graph.ts] 7.77 KiB {main} [built]
-web_1       | [./src/client/app/containers/RouteContainer.ts] 906 bytes {main} [built]
-web_1       | [./src/client/app/index.tsx] 1.27 KiB {main} [built]
-web_1       | [./src/client/app/reducers/admin.ts] 2.88 KiB {main} [built]
-web_1       | [./src/client/app/reducers/barReadings.ts] 5.44 KiB {main} [built]
-web_1       | [./src/client/app/reducers/compareReadings.ts] 5.53 KiB {main} [built]
-web_1       | [./src/client/app/reducers/graph.ts] 3.43 KiB {main} [built]
-web_1       | [./src/client/app/reducers/groups.ts] 8.16 KiB {main} [built]
-web_1       | [./src/client/app/reducers/index.ts] 1 KiB {main} [built]
-web_1       | [./src/client/app/reducers/lineReadings.ts] 4.62 KiB {main} [built]
-web_1       | [./src/client/app/reducers/meters.ts] 2.52 KiB {main} [built]
-web_1       | [./src/client/app/reducers/notifications.ts] 1.21 KiB {main} [built]
-web_1       | [./src/client/app/styles/index.css] 1.03 KiB {main} [built]
-web_1       |     + 2076 hidden modules
-web_1       | 
-web_1       | [at-loader] Ok, 22.565 sec.
-	</pre>
+
+***** Starting install of OED at Sun Apr 24 22:39:24 UTC 2022 *****
+
+NPM install...
+npm WARN deprecated request-promise-native@1.0.8: request-promise-native has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142
+npm WARN deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+npm WARN deprecated querystring@0.2.0: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+npm WARN deprecated hoek@6.1.3: This module has moved and is now available at @hapi/hoek. Please update your dependencies as this version is no longer maintained an may contain bugs and security issues.
+npm WARN deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+npm WARN deprecated @types/moment@2.13.0: This is a stub types definition for Moment (https://github.com/moment/moment). Moment provides its own type definitions, so you don't need @types/moment installed!
+npm WARN deprecated cryptiles@4.1.3: This module has moved and is now available at @hapi/cryptiles. Please update your dependencies as this version is no longer maintained an may contain bugs and security issues.
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+npm WARN deprecated boom@7.3.0: This module has moved and is now available at @hapi/boom. Please update your dependencies as this version is no longer maintained an may contain bugs and security issues.
+npm WARN deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm WARN deprecated mumath@3.3.4: Redundant dependency in your project.
+npm WARN deprecated formidable@1.2.2: Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated superagent@3.8.3: Please upgrade to v7.0.2+ of superagent.  We have fixed numerous issues with streams, form-data, attach(), filesystem errors not bubbling up (ENOENT on attach()), and all tests are now passing.  See the releases tab for more information at <https://github.com/visionmedia/superagent/releases>. Thanks to @shadowgate15, @spence-s, and @niftylettuce. Superagent is sponsored by Forward Email at <https://forwardemail.net>.
+npm WARN deprecated popper.js@1.16.1: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
+npm WARN deprecated tslint@6.1.3: TSLint has been deprecated in favor of ESLint. Please see https://github.com/palantir/tslint/issues/4534 for more information.
+npm WARN deprecated core-js@2.6.11: core-js@<3.4 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
+
+added 1453 packages, and audited 1454 packages in 14m
+
+128 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm notice 
+npm notice New minor version of npm available! 8.1.2 -> 8.7.0
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v8.7.0>
+npm notice Run `npm install -g npm@8.7.0` to update!
+npm notice 
+NPM install finished.
+Attempting to create database...
+
+-----start of npm run createdb output-----
+
+> Open-Energy-Dashboard@0.8.0 createdb
+> node ./src/server/services/createDB.js
+
+-----end of npm run createdb output-----
+
+  database creation had no errors so assume schema creation worked.
+
+> Open-Energy-Dashboard@0.8.0 createUser
+> node ./src/server/services/user/createUser.js "test@example.com" "password"
+
+[INFO@2022-04-24T22:54:16.937Z] User created or already exists
+
+User creation had no errors so default user 'test@example.com' with password 'password' should exist
+OED install finished
+Starting OED in development mode
+
+> Open-Energy-Dashboard@0.8.0 start:dev
+> ./node_modules/.bin/nodemon --legacy-watch --inspect=0.0.0.0 ./src/bin/www
+
+
+> Open-Energy-Dashboard@0.8.0 webpack:dev
+> webpack watch --color --progress --mode development
+
+[33m[nodemon] 2.0.15[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src/server/**/* src/bin/**/* src/common/**/*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node --inspect=0.0.0.0 ./src/bin/www`[39m
+Debugger listening on ws://0.0.0.0:9229/bcf2b7a0-32b7-4365-8dd4-1d1b8ccd3c80
+For help, see: https://nodejs.org/en/docs/inspector
+[INFO@2022-04-24T22:54:48.745Z] Listening on port 3000
+
+&lt;s&gt; [webpack.Progress] 0% 
+
+&lt;s&gt; [webpack.Progress] 1% setup initialize
+&lt;s&gt; [webpack.Progress] 1% setup initialize
+&lt;s&gt; [webpack.Progress] 3% setup watch run
+&lt;s&gt; [webpack.Progress] 3% setup watch run webpack-cli
+&lt;s&gt; [webpack.Progress] 3% setup watch run
+&lt;s&gt; [webpack.Progress] 4% setup normal module factory
+&lt;s&gt; [webpack.Progress] 4% setup normal module factory LodashModuleReplacementPlugin
+&lt;s&gt; [webpack.Progress] 4% setup normal module factory
+&lt;s&gt; [webpack.Progress] 5% setup context module factory
+&lt;s&gt; [webpack.Progress] 5% setup context module factory
+&lt;s&gt; [webpack.Progress] 6% setup before compile
+&lt;s&gt; [webpack.Progress] 6% setup before compile ProgressPlugin
+&lt;s&gt; [webpack.Progress] 6% setup before compile
+&lt;s&gt; [webpack.Progress] 7% setup compile
+&lt;s&gt; [webpack.Progress] 7% setup compile ExternalsPlugin
+&lt;s&gt; [webpack.Progress] 7% setup compile
+&lt;s&gt; [webpack.Progress] 8% setup compilation
+&lt;s&gt; [webpack.Progress] 8% setup compilation ArrayPushCallbackChunkFormatPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation JsonpChunkLoadingPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation StartupChunkDependenciesPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation ImportScriptsChunkLoadingPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation FetchCompileWasmPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation FetchCompileAsyncWasmPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation WorkerPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation SplitChunksPlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation ResolverCachePlugin
+&lt;s&gt; [webpack.Progress] 8% setup compilation
+&lt;s&gt; [webpack.Progress] 9% setup compilation
+&lt;s&gt; [webpack.Progress] 9% setup compilation ProgressPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ProvidePlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ChunkPrefetchPreloadPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ModuleInfoHeaderPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation SourceMapDevToolPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation JavascriptModulesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation JsonModulesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation AssetModulesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation EntryPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RuntimePlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation InferAsyncModulesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation DataUriPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation FileUriPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation CompatibilityPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation HarmonyModulesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation AMDPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RequireJsStuffPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation CommonJsPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation LoaderPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation LoaderPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation NodeStuffPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation APIPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ExportsInfoApiPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation WebpackIsIncludedPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ConstPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation UseStrictPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RequireIncludePlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RequireEnsurePlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RequireContextPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ImportPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation SystemPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation ImportMetaPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation URLPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsFactoryPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsPresetPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsPrinterPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation JavascriptMetaInfoPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation EnsureChunkConditionsPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RemoveEmptyChunksPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation MergeDuplicateChunksPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation SideEffectsFlagPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation FlagDependencyExportsPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation NamedModuleIdsPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation NamedChunkIdsPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation DefinePlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation TemplatedPathPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation RecordIdsPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation WarnCaseSensitiveModulesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation AddBuildDependenciesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation AddBuildDependenciesPlugin
+&lt;s&gt; [webpack.Progress] 9% setup compilation
+&lt;s&gt; [webpack.Progress] 10% building
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 0/0 dependencies 0/0 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/1 dependencies 0/0 modules
+&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/ts-loader/index.js
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/1 dependencies 0/1 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/2 dependencies 0/1 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 4/18 dependencies 0/3 modules
+&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/style-loader/dist/cjs.js
+&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/css-loader/dist/cjs.js
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 9/18 dependencies 0/8 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 10/18 dependencies 0/8 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 13/46 dependencies 0/12 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 15/60 dependencies 0/12 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 21/60 dependencies 0/18 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 27/105 dependencies 0/24 modules
+&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/source-map-loader/dist/cjs.js
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 86/113 dependencies 10/66 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 122/152 dependencies 11/77 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 149/193 dependencies 12/79 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 168/220 dependencies 26/80 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 189/230 dependencies 35/83 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 212/297 dependencies 36/85 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 256/297 dependencies 36/100 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 285/400 dependencies 39/114 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 294/600 dependencies 39/123 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 338/649 dependencies 40/167 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 480/683 dependencies 42/245 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 600/683 dependencies 51/268 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 645/700 dependencies 52/279 modules
+&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 800/855 dependencies 70/299 modules
+&lt;s&gt; [webpack.Progress] 11% building 0/1 entries 845/865 dependencies 100/307 modules
+&lt;s&gt; [webpack.Progress] 11% building 0/1 entries 879/900 dependencies 116/308 modules
+&lt;s&gt; [webpack.Progress] 11% building 0/1 entries 959/1000 dependencies 155/311 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1035/1200 dependencies 192/318 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1038/1300 dependencies 195/321 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1155/1323 dependencies 202/400 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1290/1400 dependencies 210/459 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1400/1612 dependencies 211/466 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1562/1700 dependencies 214/486 modules
+&lt;s&gt; [webpack.Progress] 12% building 0/1 entries 1844/1900 dependencies 220/498 modules
+&lt;s&gt; [webpack.Progress] 13% building 0/1 entries 2200/2245 dependencies 296/556 modules
+&lt;s&gt; [webpack.Progress] 13% building 0/1 entries 2253/2300 dependencies 321/580 modules
+&lt;s&gt; [webpack.Progress] 13% building 0/1 entries 2300/2337 dependencies 335/584 modules
+&lt;s&gt; [webpack.Progress] 13% building 0/1 entries 2341/2400 dependencies 352/594 modules
+&lt;s&gt; [webpack.Progress] 14% building 0/1 entries 2444/2500 dependencies 390/621 modules
+&lt;s&gt; [webpack.Progress] 15% building 0/1 entries 2539/2600 dependencies 489/646 modules
+&lt;s&gt; [webpack.Progress] 15% building 0/1 entries 2600/2664 dependencies 496/654 modules
+&lt;s&gt; [webpack.Progress] 15% building 0/1 entries 2700/2760 dependencies 529/681 modules
+&lt;s&gt; [webpack.Progress] 16% building 0/1 entries 2800/2869 dependencies 565/710 modules
+&lt;s&gt; [webpack.Progress] 16% building 0/1 entries 2833/2900 dependencies 587/721 modules
+&lt;s&gt; [webpack.Progress] 16% building 0/1 entries 2859/2927 dependencies 600/727 modules
+&lt;s&gt; [webpack.Progress] 16% building 0/1 entries 2900/2945 dependencies 608/735 modules
+&lt;s&gt; [webpack.Progress] 17% building 0/1 entries 2974/3000 dependencies 651/761 modules
+&lt;s&gt; [webpack.Progress] 17% building 0/1 entries 3062/3082 dependencies 700/797 modules
+&lt;s&gt; [webpack.Progress] 18% building 0/1 entries 3100/3139 dependencies 746/815 modules
+&lt;s&gt; [webpack.Progress] 18% building 0/1 entries 3161/3200 dependencies 747/845 modules
+&lt;s&gt; [webpack.Progress] 18% building 0/1 entries 3284/3300 dependencies 755/876 modules
+&lt;s&gt; [webpack.Progress] 65% building 1/1 entries 3436/3436 dependencies 899/899 modules
+&lt;s&gt; [webpack.Progress] 65% building
+&lt;s&gt; [webpack.Progress] 69% building finish
+&lt;s&gt; [webpack.Progress] 69% building finish
+&lt;s&gt; [webpack.Progress] 70% sealing finish module graph
+&lt;s&gt; [webpack.Progress] 70% sealing finish module graph ResolverCachePlugin
+&lt;s&gt; [webpack.Progress] 70% sealing finish module graph InferAsyncModulesPlugin
+&lt;s&gt; [webpack.Progress] 70% sealing finish module graph FlagDependencyExportsPlugin
+&lt;s&gt; [webpack.Progress] 70% sealing finish module graph
+&lt;s&gt; [webpack.Progress] 70% sealing plugins
+&lt;s&gt; [webpack.Progress] 70% sealing plugins WarnCaseSensitiveModulesPlugin
+&lt;s&gt; [webpack.Progress] 70% sealing plugins
+&lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization
+&lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization SideEffectsFlagPlugin
+&lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization
+&lt;s&gt; [webpack.Progress] 71% sealing after dependencies optimization
+&lt;s&gt; [webpack.Progress] 71% sealing after dependencies optimization
+&lt;s&gt; [webpack.Progress] 72% sealing chunk graph
+&lt;s&gt; [webpack.Progress] 72% sealing chunk graph
+&lt;s&gt; [webpack.Progress] 73% sealing after chunk graph
+&lt;s&gt; [webpack.Progress] 73% sealing after chunk graph
+&lt;s&gt; [webpack.Progress] 73% sealing optimizing
+&lt;s&gt; [webpack.Progress] 73% sealing optimizing
+&lt;s&gt; [webpack.Progress] 74% sealing module optimization
+&lt;s&gt; [webpack.Progress] 74% sealing module optimization
+&lt;s&gt; [webpack.Progress] 75% sealing after module optimization
+&lt;s&gt; [webpack.Progress] 75% sealing after module optimization
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization EnsureChunkConditionsPlugin
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization RemoveEmptyChunksPlugin
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization MergeDuplicateChunksPlugin
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization SplitChunksPlugin
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization RemoveEmptyChunksPlugin
+&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization
+&lt;s&gt; [webpack.Progress] 76% sealing after chunk optimization
+&lt;s&gt; [webpack.Progress] 76% sealing after chunk optimization
+&lt;s&gt; [webpack.Progress] 77% sealing module and chunk tree optimization
+&lt;s&gt; [webpack.Progress] 77% sealing module and chunk tree optimization
+&lt;s&gt; [webpack.Progress] 77% sealing after module and chunk tree optimization
+&lt;s&gt; [webpack.Progress] 77% sealing after module and chunk tree optimization
+&lt;s&gt; [webpack.Progress] 78% sealing chunk modules optimization
+&lt;s&gt; [webpack.Progress] 78% sealing chunk modules optimization
+&lt;s&gt; [webpack.Progress] 78% sealing after chunk modules optimization
+&lt;s&gt; [webpack.Progress] 78% sealing after chunk modules optimization
+&lt;s&gt; [webpack.Progress] 79% sealing module reviving
+&lt;s&gt; [webpack.Progress] 79% sealing module reviving RecordIdsPlugin
+&lt;s&gt; [webpack.Progress] 79% sealing module reviving
+&lt;s&gt; [webpack.Progress] 80% sealing before module ids
+&lt;s&gt; [webpack.Progress] 80% sealing before module ids
+&lt;s&gt; [webpack.Progress] 80% sealing module ids
+&lt;s&gt; [webpack.Progress] 80% sealing module ids NamedModuleIdsPlugin
+&lt;s&gt; [webpack.Progress] 80% sealing module ids
+&lt;s&gt; [webpack.Progress] 81% sealing module id optimization
+&lt;s&gt; [webpack.Progress] 81% sealing module id optimization
+&lt;s&gt; [webpack.Progress] 82% sealing module id optimization
+&lt;s&gt; [webpack.Progress] 82% sealing module id optimization
+&lt;s&gt; [webpack.Progress] 82% sealing chunk reviving
+&lt;s&gt; [webpack.Progress] 82% sealing chunk reviving RecordIdsPlugin
+&lt;s&gt; [webpack.Progress] 82% sealing chunk reviving
+&lt;s&gt; [webpack.Progress] 83% sealing before chunk ids
+&lt;s&gt; [webpack.Progress] 83% sealing before chunk ids
+&lt;s&gt; [webpack.Progress] 84% sealing chunk ids
+&lt;s&gt; [webpack.Progress] 84% sealing chunk ids NamedChunkIdsPlugin
+&lt;s&gt; [webpack.Progress] 84% sealing chunk ids
+&lt;s&gt; [webpack.Progress] 84% sealing chunk id optimization
+&lt;s&gt; [webpack.Progress] 84% sealing chunk id optimization
+&lt;s&gt; [webpack.Progress] 85% sealing after chunk id optimization
+&lt;s&gt; [webpack.Progress] 85% sealing after chunk id optimization
+&lt;s&gt; [webpack.Progress] 86% sealing record modules
+&lt;s&gt; [webpack.Progress] 86% sealing record modules RecordIdsPlugin
+&lt;s&gt; [webpack.Progress] 86% sealing record modules
+&lt;s&gt; [webpack.Progress] 86% sealing record chunks
+&lt;s&gt; [webpack.Progress] 86% sealing record chunks RecordIdsPlugin
+&lt;s&gt; [webpack.Progress] 86% sealing record chunks
+&lt;s&gt; [webpack.Progress] 87% sealing module hashing
+&lt;s&gt; [webpack.Progress] 87% sealing module hashing
+&lt;s&gt; [webpack.Progress] 87% sealing code generation
+&lt;s&gt; [webpack.Progress] 87% sealing code generation
+&lt;s&gt; [webpack.Progress] 88% sealing runtime requirements
+&lt;s&gt; [webpack.Progress] 88% sealing runtime requirements
+&lt;s&gt; [webpack.Progress] 89% sealing hashing
+&lt;s&gt; [webpack.Progress] 89% sealing hashing
+&lt;s&gt; [webpack.Progress] 89% sealing after hashing
+&lt;s&gt; [webpack.Progress] 89% sealing after hashing
+&lt;s&gt; [webpack.Progress] 90% sealing record hash
+&lt;s&gt; [webpack.Progress] 90% sealing record hash
+&lt;s&gt; [webpack.Progress] 91% sealing module assets processing
+&lt;s&gt; [webpack.Progress] 91% sealing module assets processing
+&lt;s&gt; [webpack.Progress] 91% sealing chunk assets processing
+&lt;s&gt; [webpack.Progress] 91% sealing chunk assets processing
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing ts-loader
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js generate SourceMap
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js generated SourceMap
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js attach SourceMap
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js attached SourceMap
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+&lt;s&gt; [webpack.Progress] 92% sealing asset processing
+&lt;s&gt; [webpack.Progress] 93% sealing after asset optimization
+&lt;s&gt; [webpack.Progress] 93% sealing after asset optimization
+&lt;s&gt; [webpack.Progress] 93% sealing recording
+&lt;s&gt; [webpack.Progress] 93% sealing recording
+&lt;s&gt; [webpack.Progress] 94% sealing after seal
+&lt;s&gt; [webpack.Progress] 94% sealing after seal
+&lt;s&gt; [webpack.Progress] 95% emitting emit
+&lt;s&gt; [webpack.Progress] 95% emitting emit
+&lt;s&gt; [webpack.Progress] 98% emitting after emit
+&lt;s&gt; [webpack.Progress] 98% emitting after emit SizeLimitsPlugin
+&lt;s&gt; [webpack.Progress] 98% emitting after emit
+&lt;s&gt; [webpack.Progress] 99% done plugins
+&lt;s&gt; [webpack.Progress] 99% done plugins IdleFileCachePlugin
+&lt;s&gt; [webpack.Progress] 99% done plugins
+&lt;s&gt; [webpack.Progress] 99% 
+
+asset [1m[33mbundle.js[39m[22m [1m[33m14.3 MiB[39m[22m [1m[33m[compared for emit][39m[22m [1m[33m[big][39m[22m (name: application) 1 related asset
+orphan modules 92.5 KiB [1m[33m[orphan][39m[22m 54 modules
+runtime modules 1.67 KiB 7 modules
+modules by path [1m./node_modules/[39m[22m 12.8 MiB 636 modules
+modules by path [1m./src/[39m[22m 791 KiB 154 modules
+asset modules 2.35 KiB
+  modules by path [1mdata:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/[39m[22m 1.77 KiB 8 modules
+  modules by path [1mdata:image/svg+xml,%3csvg viewBox=%270 0 30 30%27 xmlns=%27http://www.w3.org/2000/[39m[22m 595 bytes
+[1mdata:image/svg+xml,%3csvg viewBox=%270 0 30 30%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath stroke=%27rgba%280, 0, 0, 0.5%29%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e[39m[22m 293 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+[1mdata:image/svg+xml,%3csvg viewBox=%270 0 30 30%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath stroke=%27rgba%28255, 255, 255, 0.5%29%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e[39m[22m 301 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+webpack 5.62.0 compiled [1m[32msuccessfully[39m[22m in 165759 ms
+&lt;s&gt; [webpack.Progress] 99% cache store build dependencies
+&lt;s&gt; [webpack.Progress] 99% cache store build dependencies IdleFileCachePlugin
+&lt;s&gt; [webpack.Progress] 99% cache store build dependencies
+&lt;s&gt; [webpack.Progress] 99% cache begin idle
+&lt;s&gt; [webpack.Progress] 99% cache begin idle IdleFileCachePlugin
+&lt;s&gt; [webpack.Progress] 99% cache begin idle
+&lt;s&gt; [webpack.Progress] 100% 
+</pre>
+
+	<h3>Postgres output</h3>
+	<p>You can see the output from the database install by right clicking on the database Docker container in the VSC
+		Docker extension and choosing "Show Logs". The output in this case follows. Note the warning after the install
+		about "pg_stat_tmp/global.stat" is a recurring warning that does not cause issues. Sometimes it involves other
+		Postgres files.</p>
+	<pre>
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/data/pgdata ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Etc/UTC
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+
+WARNING: enabling "trust" authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+pg_ctl -D /var/lib/postgresql/data/pgdata -l logfile start
+
+waiting for server to start....2022-04-24 22:40:59.831 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2022-04-24 22:41:00.050 UTC [49] LOG:  database system was shut down at 2022-04-24 22:40:50 UTC
+2022-04-24 22:41:00.152 UTC [48] LOG:  database system is ready to accept connections
+ done
+server started
+
+/usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+CREATE ROLE
+psql:/docker-entrypoint-initdb.d/init.sql:6: NOTICE:  database "oed" does not exist, skipping
+DROP DATABASE
+psql:/docker-entrypoint-initdb.d/init.sql:8: NOTICE:  database "oed_testing" does not exist, skipping
+CREATE DATABASE
+DROP DATABASE
+CREATE DATABASE
+ALTER ROLE
+
+
+/usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/nuke.sql
+DROP DATABASE
+DROP DATABASE
+CREATE DATABASE
+CREATE DATABASE
+
+
+2022-04-24 22:42:01.807 UTC [48] LOG:  received fast shutdown request
+waiting for server to shut down....2022-04-24 22:42:01.814 UTC [48] LOG:  aborting any active transactions
+2022-04-24 22:42:01.825 UTC [48] LOG:  worker process: logical replication launcher (PID 55) exited with exit code 1
+2022-04-24 22:42:01.828 UTC [50] LOG:  shutting down
+2022-04-24 22:42:01.932 UTC [48] LOG:  database system is shut down
+ done
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+2022-04-24 22:42:02.065 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2022-04-24 22:42:02.065 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2022-04-24 22:42:02.079 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2022-04-24 22:42:02.224 UTC [76] LOG:  database system was shut down at 2022-04-24 22:42:01 UTC
+2022-04-24 22:42:02.325 UTC [1] LOG:  database system is ready to accept connections
+2022-04-24 22:54:03.543 UTC [95] WARNING:  could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted
+</pre>
 </div>
