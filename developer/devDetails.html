@@ -10,10 +10,12 @@ title: OED dev details
 	<p>If a "From" in a Dockerfile is changed, then the version of that software needs to be updated. Docker normally
 		uses its cached version so the update will not happen. To force the update, do
 		<code>docker compose up --build</code> where you can add other arguments (such as keeping the node modules).
-		This should make Docker use what is specified in the Dockerfile. If there are no changes then it will not
-		download a new version of the needed software but it will be a little slower for the checks and potentially
-		creating the container. OED tries to announce to the Developer Discussion board whenever a change is make to a
-		Dockerfile that would require this action.
+		This is unusual in that it is done in a terminal on your own machine in the main OED directory and not in an OED
+		Docker container (because you are resetting the Docker containers). This should make Docker use what is
+		specified in the Dockerfile. If there are no changes then it will not download a new version of the needed
+		software but it will be a little slower for the checks and potentially creating the container. OED tries to
+		announce to the Developer Discussion board whenever a change is make to a Dockerfile that would require this
+		action. This is not commonly done.
 	</p>
 
 	<h2 id="resetDB">Resetting the Postgres database</h2>
@@ -28,9 +30,9 @@ title: OED dev details
 		<li>Remove the postgres-data/ directory from the main OED directory. While you can delete it, it is probably
 			safer to move the entire directory somewhere else outside your OED directory. That way, if something goes
 			wrong, you can remove the new postgres-data/ directory and put this one back.</li>
-		<li>Do an install of OED. Remember if package changes were made then you need to reinstall the node_modules. In
-			this case, do not use the keep_node_module option. Note the install will take longer do to the extra
-			initialization.</li>
+		<li>Do an install of OED by reopening it in the VSC container. Remember if package changes were made then it
+			will reinstall the node_modules. In this case, do not use the keep_node_module option. Note the install will
+			take longer do to the extra initialization.</li>
 		<li>Sometimes the first attempt at installation will fail when you do this. Try it one or two times more to see
 			if it will work. (We are trying to determine why this happens.) If not, replace the postgres-data/ directory
 			with the one removed and this should get you
@@ -45,26 +47,30 @@ title: OED dev details
 		the database within the Docker container.</p>
 
 	<h2>Stopping OED</h2>
-	<p>If you go to the terminal where OED is running, you can type ^-c (control and letter c) together to stop OED.
-		Note it is best to only do this once since a second time causes a force stop. An alternative is to use
-		<code>docker compose down</code> in a second terminal that is in the same directory as where the install is
-		happening. This can also be useful if you are having an issue with your docker container(s) since it cleans them
-		all up.
-	</p>
-	<p>Normally, doing ^-z will put the process into the background. This does not work with a running OED.</p>
+	<p>If you are running in a VSC container, then you can simply click the green icon for the Remote Container and
+		selecting "Close Remote Container". You can also shut the container down manually (by right clicking and
+		choosing "stop") but that is normally only done if something went wrong in shutting down the container in the
+		usual way.</p>
+	<p>If you are running OED outside of Visual Studio Code then go to the terminal where OED is running, you can type
+		^-c (control and letter c) together to stop OED. Note it is best to only do this once since a second time causes
+		a force stop. An alternative is to use <code>docker compose down</code> in a second terminal that is in the same
+		directory as where the install is happening. This can also be useful if you are having an issue with your docker
+		container(s) since it cleans them all up. Normally, doing ^-z will put the process into the background. This
+		does not work with a running OED.</p>
 
 	<h2 id=goingOn>Seeing what is happening with OED</h2>
 	<p>Sometimes OED will not act as you expect and you want to know what is going on. There are two normal ways to do
 		this:
 	</p>
 	<ul>
-		<li>The terminal where you started OED should show any errors, messages, etc. that are produced while it is
-			running. It is a good idea to be able to see this while you are running a version you are developing so you
-			can tell when something significant happens. The messages can be informational where these are
-			normal and not an indication of a problem.</li>
-		<li>OED has the log file "log.txt" in the main OED directory. All message should be placed in this file. The
-			newest messages are at the end. This file can get large over time so you probably want to focus on lines in
-			the time frame you are interested (they should be timestamped).</li>
+		<li>The "nohup.out" file in the main OED directory shows all the logged messages. (If running OED outside Visual
+			Studio Code then it is in the terminal where you started OED.) It is a good idea to be able to see this
+			while you are running a version you are developing so you can tell when something significant happens. The
+			messages can be informational where these are normal and not an indication of a problem.</li>
+		<li>Any messages on the client side will show up in the web browser console.</li>
+		<li>OED has the log file "log.txt" in the main OED directory. All logged messages and errors should be placed in
+			this file. The newest messages are at the end. This file can get large over time so you probably want to
+			focus on lines in the time frame you are interested (they should be timestamped).</li>
 		<li>Using the Redux debugging tools in the web browser is also very valuable. It can also help to look at the
 			traces. To do this you must enable it in the code. Go to src/client/app/index.tsx and do what the comments
 			say to enable traces (comment out one line and uncomment two lines below). Please make sure you do not
@@ -73,27 +79,30 @@ title: OED dev details
 	</ul>
 	<p>The warning:<br>
 		WARNING: could not open statistics file "pg_stat_tmp/global.stat": Operation not permitted<br>
-		may or may not show up in the terminal where you started OED. The complete answer is not known but it appears to
+		may or may not show up. The complete answer is not known but it appears to
 		be a transient error in PostgreSQL writing log information. It has never caused any problems.</p>
 
 	<h2 id=codeChange>Getting a running OED to recognize code changes</h2>
 	<p>As a developer, you are often changing the code to see what impact it has on a running version of OED. In
-		general, the system should recognize these changes and update the running version. When that happens, in the
-		terminal where you started OED, you see:
+		general, the system should recognize these changes and update the running version. If you change code under the
+		client/ directory, the output will include a rebuild of the code. When that happens, the output
+		will show this line if it worked. This will be in the terminal where OED is running or in nohup.out if you are working inside VSC.<br>
+		<code>oed-web-1       | webpack 5.62.0 compiled successfully in 24100 ms</code><br>
+		If it fails then you will see one or more failure lines (with failure in red) rather than success. It will also
+		show that it is done rebuilding when you see the line:<br>
+		<code>oed-web-1       | \<s\> [webpack.Progress] 100% </code><br>
+		It is not safe to reload the new version in the web browser until the rebuild finishes. You must reload to see
+		the new code. If you change code on the server side, you will not see a rebuild but after a few lines of output
+		you will see:<br>
+		<code>oed-web-1       | [INFO@2022-04-24T16:31:17.449Z] Listening on port 3000</code><br>
+		and then you can see the changes. Since all these changes are on the server, you do not need to reload the web
+		browser.
 	</p>
-	<pre>
-web_1       |  94% after seal                                                                 
-web_1       | [at-loader] Checking started in a separate process...
-95% emitting 
-web_1       | [at-loader] Ok, 0.006 sec.
-	</pre>
-	<p>Where the % shown will vary and sometimes it says "seal" instead of "emitting". The update can start almost
-		immediately after a saved file or it can take a modest amount of time. If it does not happen, you can restart
-		the system (forces the update) by typing "rs" in the terminal where the output from OED is showing and you
-		started OED. This is indicated during the install from the line:<br>
-		[nodemon] to restart at any time, enter `rs`<br>
-		Note that once the at-loader ok line is seen, you may need to reload your web page to see changes. Whether this
-		is necessary depends on what was changed (normally server vs client code).</p>
+	<p>Normally the output is seen quickly but it can take a little while for webpack to detect the changes. If it ever
+		fails to do this you could shut down OED and restart it but it is generally much easier/faster to go into some
+		file, add a space, remove the space and save the file. This change (that really does nothing) should cause
+		webpack to start the rebuild.</p>
+	</p>
 
 	<h2>OED environment variables</h2>
 	<p>If you want to know about the environment variables that control OED then see the <a
@@ -106,50 +115,49 @@ web_1       | [at-loader] Ok, 0.006 sec.
 	<h2 id=migrate>Migrating OED</h2>
 	<p>The script <code>src/scripts/updateOED.sh</code> should update all dependencies and migrate the OED database if
 		changes are needed. This may not work (see ideas above) if migrations are not yet available or this has been
-		done
-		before for the same version of OED.
-	</p>
-
+		done before for the same version of OED.</p>
 	<h2>Having multiple versions of OED</h2>
 	<p>Most developers keep one clone of the OED software. They switch between branches as needed. However, if you are
 		working on multiple versions of OED, esp. where the node modules are changing or the database configuration
 		changes, then you can avoid having to do a full install (see above) by cloning separate copies of OED. When you
 		install it will do the clone you are currently located in (the current directory in your terminal). The database
-		information and all code is kept separate for each installation as part of the Docker containerization.</p>
+		information and all code is kept separate for each installation as part of the Docker containerization. Note you
+		cannot run multiple version of OED simultaneously unless you change the ports it uses (this is not common).</p>
 
 	<h2 id="singleTest">Rapid testing of a one or a few test(s)</h2>
-	<p>When you make changes to OED or develop new tests, it may be the case that only one or a few tests fails when you
-		run
-		testing (or you want to focus on one test at a time that fails). Running all the tests is much slower than
-		running a single test. Thus, to run a single test, do:
-		<br><code>docker compose run --rm web npm run testsome -- &lt;first test&gt; [&lt;second test&gt;]
-		</code><br>where you replace &lt; xxxx test&gt; with the path to the test you want to run and [ ] indicates this is
-		optional and you can repeat as many times as you want for more tests.
+	<p>When you make changes to OED or develop new tests, it may be the case that only one or a few tests fail when you
+		run testing (or you want to focus on one test at a time that fails). Running all the tests is much slower than
+		running a single test. Thus, to run a single test, in the web/vsc docker container do:<br>
+		<code>npm run testsome -- &lt;first test&gt; [&lt;second test&gt;] </code><br> where you replace &lt; xxxx
+		test&gt; with the path to the test you want to run and [ ] indicates this is optional and you can repeat as many
+		times as you want for more tests.
 	</p>
-	<p>For example, to run the web groups test, you would
-		use:<br><code>docker compose run --rm web npm run testsome -- src/server/test/web/groups.js</code><br>and to run
-		the web groups test and the db baselineTests
-		use:<br><code>docker compose run --rm web npm run testsome -- src/server/test/web/groups.js src/server/test/db/baselineTests.js</code>
+	<p>For example, to run the web groups test, you would use:<br>
+		<code>npm run testsome -- src/server/test/web/groups.js</code><br>
+		and to run the web groups test and the db baselineTests
+		use:<br>
+		<code>npm run testsome -- src/server/test/web/groups.js src/server/test/db/baselineTests.js</code>
 	</p>
 
 	<h2>Accessing the database</h2>
-	<p>You can access the Postgres database that OED uses within the docker container. In a second terminal (the first
-		should have OED running), do <code>docker compose exec database psql -U oed</code>. You will now be in the
-		Postgres command line for the OED database. Note this is the live system so you can make changes that the
-		running application will see (and damage the information too!). It is assumed you know some SQL and Postgres
-		command line commands if you are doing this. One important one is <code>\q</code> which will get you back to the
-		terminal by leaving the Postgres command system.</p>
+	<p>You can access the Postgres database that OED uses within the docker container. In the database docker container
+		terminal do: <code>psql -U oed</code>. You will now be in the Postgres command line for the OED database. Note
+		this is the live system so you can make changes that the running application will see (and damage the
+		information too!). It is assumed you know some SQL and Postgres command line commands if you are doing this. One
+		important one is <code>\q</code> which will get you back to the terminal by leaving the Postgres command system.
+	</p>
 	<p>There may be times you want to backup/restore the Postgres data for OED. You can do it by</p>
 	<ul>
-		<li>Take a database dump with
-			<code>docker compose exec database pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
+		<li>Take a database dump (in the database Docker container terminal) with
+			<code>pg_dump -U oed &gt; dump_$(date +%Y-%m-%d"_"%H_%M_%S.sql)</code>
 		</li>
 		<li>Restore a database dump by first copying the dump into the container with
 			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the
 			database
-			with <code>docker compose exec database psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file
-			with date & time created in the dump step. Note someone should test/see if you
-			really need to put it into the container first.
+			with <code>psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file
+			with date & time created in the dump step. TODO Note someone should test/see if you
+			really need to put it into the container first and this has not been tested since we went to working in the
+			database container.
 		</li>
 	</ul>
 
@@ -160,20 +168,21 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		this happens, rerun the test command. It normally works the next time (or within a total or three
 		tries). We are working to change our testing and installation so Postgres is ready before operations continue so
 		this problem will go away. The current fix is to allow a test to take up toe 15,000 ms or 15 seconds to complete
-		so Postgres has time to start up and that is why you see "15000ms" in the error message. If the problem
+		so Postgres has time to start up and that is why you see "15000ms" in the error message. We have also set the
+		timeout to be longer in a few tests where the issue was happening. If the problem
 		persists, you can go into package.json and change the 15000 to be a larger value (such as 30000). This means
 		mocha will not terminate a test until 30 seconds have passed. The only known negative of doing this is that a
 		test that will not complete due to an error will take longer for mocha to terminate. However, this is uncommon
 		in OED tests so the change should be fine.</p>
 
-	<h2 id=npmPermission>check permission error</h2>
+	<h2 id=npmPermission>check permission error (historical)</h2>
 	<p>A few developers have reported that when they run <code>docker compose run --rm web npm run check</code> they get
-		an error similar to "Error: EACCES: permission denied, scandir '/root/.npm/_logs". The only current fix is to
-		run outside of docker by doing <code>npm run check</code>. It is believed that this issue is due to doing
-		installs as root and then not being root when inside docker but this is not certain. However, at least one
-		developer found that changing the file permissions did not fix the issue. If anyone has this issue or finds a
-		solution then please let us know.</p>
-
+		an error similar to "Error: EACCES: permission denied, scandir '/root/.npm/_logs". We do not believe this will
+		happen any longer now that developers are asked to work within the Docker container. For the historical record
+		the only know fix was to run outside of docker by doing <code>npm run check</code>. It is believed that this
+		issue is due to doing installs as root and then not being root when inside docker but this is not certain.
+		However, at least one developer found that changing the file permissions did not fix the issue. If anyone has
+		this issue or finds a solution then please let us know.</p>
 	<h2>Running without the database container</h2>
 	<p>On rare occasions, you may get a database failure during the startup of the database container during the
 		install/startup of OED. (This is not the transient issues noted during the install where the script reports it
@@ -187,10 +196,12 @@ web_1       | [at-loader] Ok, 0.006 sec.
 		or the full install script (not using docker compose up) of
 		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh --continue_on_db_error</code><br>
 		OED will still try to install the DB, fail and then continue to try to install the web container. You should see
-		the regular messages in the console indicating the web container is running as expected.
+		the regular messages in the console indicating the web container is running as expected. If you are working
+		inside VSC, you will need to edit the src/scripts/installOED.sh script to add the --continue_on_db_error
+		parameter.
 	</p>
 
-	<h2 id="fastInstall">Faster OED installation</h2>
+	<h2 id="fastInstall">Faster OED installation (historical)</h2>
 	<p>The installation process was updated in late February 2022 so the node modules are not updated unless needed.
 		This means the node modules will only be updated if the package.json and/or package-lock.json file is update
 		whether by directed edit or from pulling updating versions. As a result, the old method of

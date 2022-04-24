@@ -25,12 +25,14 @@ title: OED environment
 		<li>OED_TOKEN_SECRET: Token for authentication. Generate something secure and random where you should never need
 			to use this value.</li>
 		<li>OED_LOG_FILE: Path to the log file, defaults to ./log.txt.</li>
-		<li>OED_SITE_READING_RATE: The expected rate the meters provide data and impacts when the line graphic goes to original meter data.</li>
-		<li>OED_MAIL_METHOD: Method of sending mail. Supports "gmail", "mailgun", "none". Case insensitive.</li>
+		<li>OED_MAIL_METHOD: Method of sending mail. Supports "secure-smtp" and "none". Case insensitive.</li>
 		<li>OED_MAIL_IDENT: Username for gmail, domain for mailgun. Ex: user@example.com</li>
 		<li>OED_MAIL_CREDENTIAL: Password for gmail, or API key for mailgun.</li>
-		<li>OED_MAIL_FROM: From address for email. If using GMail, make sure this is set<. /li>
+		<li>OED_MAIL_FROM: From address for email. If using GMail, make sure this is set.</li>
 		<li>OED_MAIL_TO: Who gets error, warning (log) e-mail. Ex: admin@example.com</li>
 		<li>OED_MAIL_ORG: Organization name, used in e-mail subject line</li>
+		<li>OED_SITE_READING_RATE: The expected rate the meters provide data and impacts when the line graphic goes to
+			original meter data.</li>
+		<li>OED_TEST_SITE_READING_RATE: Similar to OED_SITE_READING_RATE but used when running tests.</li>
 	</ul>
 </div>
