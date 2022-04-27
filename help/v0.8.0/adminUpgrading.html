@@ -53,9 +53,24 @@ title: OED upgrades
 		<li>You now need to upgrade the OED system with:
 			<code>docker compose run --rm web src/scripts/updateOED.sh</code>. This will reinstall the node packages
 			because there are usually changes, update the database for the new version of OED and then build the new
-			application. When you see a line similar to
-			<code>[at-loader] Using typescript@3.5.3 from typescript and "tsconfig.json" from /usr/src/app/tsconfig.json.</code>
-			in the terminal, OED will be doing the install and may take a while to complete without showing any output.
+			application. At the start you will see "NPM ci to upgrade the packages..." and this can take a while to
+			complete. Next you should see "NPM install finished." followed by "Attempting to migrate database to latest
+			version...". Finally it will do "Doing docker compose up --no-start --build to capture any changes needed
+			for images/containers without starting...". If all does well you will see "webpack 5.67.0 compiled
+			successfully" followed by "OED upgrade completed".
+			<p>Certain upgrade are failing for unknown reasons upgrade. If this happens, do the following:</p>
+			<ul>
+				<li>Delete the node_modules/ directory</li>
+				<li>Remove the docker containers associated with OED. First, find them with <code>docker container ls
+						-a</code>. You don't want to accidentally remove another docker container. There should be one
+					with oed_web and one oed_database (or similar names). The OED containers should not be currently
+					running so they should have "Exited" as the "STATUS". The first column listed should be "CONTAINER
+					ID". For each CONTAINER ID, do: <code>docker container rm &lt;CONTAINER ID&gt;</code>. The
+					response should be an echo of the &lt;CONTAiNER ID&gt;. If you list the containers again these should be
+						gone. At this point you should be able  If you have any issues or questions then please don't hesitate to reach out to the
+						project.
+				</li>
+			</ul>
 		</li>
 		<li>It is a good idea to make sure OED is working properly before you restart the service. This can be
 			accomplished by doing:

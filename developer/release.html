@@ -49,7 +49,8 @@ title: OED release
 				</li>
 				<li>Edit help/v0.7.0/_version.html to update the version shown, e.g., 0.6.0 to 0.7.0.</li>
 			</ul>
-			<li>Update the help pages to reflect the new release. Be careful to do new screenshots if the look of OED has changed.</li>
+			<li>Update the help pages to reflect the new release. Be careful to do new screenshots if the look of OED
+				has changed.</li>
 			<li>Commit the changes.</li>
 			<li>Push the changes to your fork.</li>
 			<li>Check the changes work on your GitHub account (see above). When all is okay, create a pull request to
@@ -61,7 +62,8 @@ title: OED release
 		<ul>
 			<li>Edit package.json to change the line ""version": "0.6.0"," to the version number you are about to
 				release. Assuming you are going to version 0.7.0 (as in the next step for migrations) then it becomes:
-				"version": "0.7.0",</li>
+				"version": "0.7.0",. You also need to edit package-lock.json to make a similar change as migrations do
+				not update this file given changes in package.json.</li>
 			<li>Assuming you have a migration of the database for this release, edit
 				src/server/migrations/registerMigration.js to add a line that corresponds to the migration folder in
 				src/server/migrations. For example, if you are migrating from 0.6.0 to 0.7.0 and have the directory
