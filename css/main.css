@@ -1,7 +1,9 @@
 body {
     max-width: 1200px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5 {
