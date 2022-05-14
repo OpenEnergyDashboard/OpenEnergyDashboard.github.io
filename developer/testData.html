@@ -304,7 +304,7 @@
 				<li>The step above created a duplicate of readings into the compare meter. Now you need to shift the
 					reading
 					dates to end at the current time. First, you need to determine the needed shift in time by:
-					<code>select date_trunc('hour', clock_timestamp() at time zone 'cdt') - max(end_timestamp) as shift from readings where meter_id = (select id from meters where name = 'Meter 1');</code>
+					<code>select date_trunc('hour', clock_timestamp() at time zone 'cdt') - max(end_timestamp) as shift from readings where meter_id = (select id from meters where name = 'compare 1');</code>
 					where you can replace <code>cdt</code> with the appropriate timezone you used above. This will give
 					the time
 					shift needed so the date of the last end_timestamp is nearest to current hour.

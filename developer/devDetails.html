@@ -192,7 +192,7 @@ title: OED dev details
 		resolved.) In rare circumstances, you still want to run the OED web container knowing that any
 		operations that touch the database will fail. There is a parameter to the install script that allows this and
 		can be done with:
-		<br><code>install_args="---continue_on_db_error" docker compose up</code><br>
+		<br><code>install_args="--continue_on_db_error" docker compose up</code><br>
 		or the full install script (not using docker compose up) of
 		<br><code>docker compose run --service-ports --rm web npm run src/scripts/installOED.sh --continue_on_db_error</code><br>
 		OED will still try to install the DB, fail and then continue to try to install the web container. You should see
