@@ -1,4 +1,8 @@
---- layout: developer title: OED test data --- <div>
+---
+layout: developer
+title: OED test data
+---
+<div>
 	<h1>OED developer test data</h1>
 	<p>Developers want to have test meter data for OED development that is consistent, stable and does not require
 		having access to actual meters. This describes how to get and load such meter test data.</p>
@@ -11,32 +15,22 @@
 	<p>For using the following data with maps, please see the <a href="testMap.html">test map page</a>.</p>
 	<h2>Prerequisites</h2>
 	<p>What follows assumes you have a properly installed and working OED but have not yet loaded in the reading data
-		described here. (See comments at the top of the automated script at src/scripts/testData.sh to see how to remove
-		the reading data if that is needed.) At a minimum you should be able to see the main OED page in a web browser
+		described here. If they have already been loaded then the loading step for that meter will be skipped. At a
+		minimum you should be able to see the main OED page in a web browser
 		(normally URL of localhost:3000). Normally the database is automatically created and works fine. If you get
 		errors about the database then you need to address them before you can do this or get the test data in (if you
 		get errors during this process).</p>
-	<p>The script uses scripts defined in package.json. It will be run in a terminal inside the web/vsc Docker container as
-		described in the <a href="./gettingStarted.html">getting started directions</a>.</p>
 	<p>The import of this data into OED uses the CSV import feature that is described in the <a
 			href="../help/v1.0.0/adminCsvImport.html">CSV import help</a> and pages linked from that page, esp. about
 		readings. You do not need to know all those details but can get further information as needed.</p>
-	<h2>Mathematical Test Data</h2>
-	<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
-	<ul>
-		<li>You can create on your own machine without needing to download anything.</li>
-		<li>The provided script will generate the data and load it into your OED database for use within the system.
-		</li>
-		<li>Since it has a regular pattern, it is often easy to see issues in graphed data.</li>
-		<li>Different datasets can be used to focus on different types of testing.</li>
-	</ul>
-	<p>Note that the values are shifted so the minimum is 0 since most meter data is like that. It is easy to use this
-		data by following these steps</p>
+	<h2>Inserting the standard OED test data for meters</h2>
+	<p>The simple and mathematical test data is created in OED by doing the following (they are described next):</p>
 	<ol>
 		<li>Make sure you have OED running so it is available to respond to the CSV requests to load the meter data.
 		</li>
-		<li>Open a terminal in the web/vsc Docker container by right clicking on the web container in the Docker extension
-			of VSC and attaching a shell.</li>
+		<li>Open a terminal in the web/vsc Docker container by right clicking on the web container in the Docker
+			extension of VSC and attaching a shell. (Described in the <a href="./gettingStarted.html">getting started
+				directions)</a></li>
 		<li>In the terminal, run the command <code>npm run testData</code>. This may take a few minutes but when it
 			completes there should be new meters available in OED (you will need to visit the meters page or refresh the
 			web page as described <a href="../help/v1.0.0/adminMetersImport.html#newMeter">here</a> to see the meters
@@ -51,16 +45,284 @@
 			amplitude of testSqSin and testSqCos is not 1 so sin^2 + cos^2 does not equal 1 but does equal a constant
 			value.</li>
 	</ol>
+	<p>If you only want to load some of the data (not the common usage), you can look at package.json for the individual
+		commands to insert the mathematical data. The others are so small/fast that they are done as above.</p>
+	<h2>Simple Test Data</h2>
+	<p>The simple/basic test data is not representative of real meter data nor mathematical but it is easy to use. Each
+		meter has readings for five days from June 1-5, 2020. All the line graphs should be a straight line where value
+		go 1-5 unless otherwise noted in the name. The meters
+		and units are based on the simplified example in the <a
+			href="https://github.com/OpenEnergyDashboard/DevDocs/blob/main/resourceGeneralization/resourceGeneralization.md#creating-graph">Resource
+			Generalization document</a> with the addition of kW (flow data) and Fahrenheit/Celsius (raw data). The
+		following table gives the expected values for the line graphs. The item for each meter/row that is marked with a <sup>*</sup>
+		indicated the default graphic unit if one is not already selected.</p>
+	<table border="1">
+		<thread>
+			<tr>
+				<th>Meter name</th>
+				<th>Kwh</th>
+				<th>BTU</th>
+				<th>MJ</th>
+				<th>M<sup>3</sup> Gas</th>
+				<th>100 W bulb</th>
+				<th>US Dollar</th>
+				<th>Euro</th>
+				<th>kg</th>
+				<th>Metric ton</th>
+				<th>kg of CO2</th>
+				<th>Metric ton of CO2</th>
+				<th>Fahrenheit</th>
+				<th>Celsius</th>
+				<th>kW</th>
+			</tr>
+		</thread>
+		<tbody>
+			<tr>
+				<td>Electric Utility kWh</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>3412.08 - 17060.4</td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh 2-6</td>
+				<td>2 - 6<sup>*</sup></td>
+				<td>6824.16 - 20472.48</td>
+				<td>7.2 - 21.6</td>
+				<td>0.1872 - 0.5616</td>
+				<td>2 - 6</td>
+				<td>0.23 - 0.69</td>
+				<td>0.2 - 0.6</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1.418 - 4.254</td>
+				<td>1.418e-3 - 4.254e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh in BTU</td>
+				<td>1 - 5</td>
+				<td>3412.08 - 17060.4<sup>*</sup></td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh in MTon CO2</td>
+				<td>1 - 5</td>
+				<td>3412.08 - 17060.4<sup>*</sup></td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas BTU</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>1.06e-3 - 5.27e-3</td>
+				<td>2.74e-5 - 1.37e-4</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>2.95e-6 - 1.48e-5</td>
+				<td>2.6e-6 - 1.3e-5</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>5.28e-5 - 2.64e-4</td>
+				<td>5.28e-8 - 2.64e-7</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas BTU in Dollar</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>1 - 5</td>
+				<td>1.06e-3 - 5.27e-3</td>
+				<td>2.74e-5 - 1.37e-4</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>2.95e-6 - 1.48e-5<sup>*</sup></td>
+				<td>2.6e-6 - 1.3e-5</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>5.28e-5 - 2.64e-4</td>
+				<td>5.28e-8 - 2.64e-7</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas Dollar</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas Cubic Meters</td>
+				<td>10.7 - 53.4</td>
+				<td>3.64e4 - 1.82e5</td>
+				<td>38.5 - 192.3</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>10.7 - 53.4</td>
+				<td>0.11 - 0.55</td>
+				<td>0.97 - 4.84</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Trash Kg</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>1e-3 - 5e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Temp Fahrenheit 0-212</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0 - 212<sup>*</sup></td>
+				<td>-17.78 - 100</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Temp Fahrenheit in Celsius</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0 - 212</td>
+				<td>-17.78 - 100<sup>*</sup></td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric kW</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1 - 5<sup>*</sup></td>
+			</tr>
+			<tr>
+				<td>Electric kW 2-6</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>2 - 6<sup>*</sup></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h2>Mathematical Test Data</h2>
+	<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
+	<ul>
+		<li>You can create on your own machine without needing to download anything.</li>
+		<li>The provided script will generate the data and load it into your OED database for use within the system.
+		</li>
+		<li>Since it has a regular pattern, it is often easy to see issues in graphed data.</li>
+		<li>Different datasets can be used to focus on different types of testing.</li>
+	</ul>
+	<p>Note that the values are shifted so the minimum is 0 since most meter data is like that. It is easy to use this
+		data by following these steps</p>
 	</p>
 	<p>The following table gives a list of the available data and information about it. The meter name assumes you use
 		the provided script to load the data. (If you want to generate the test data outside the usual script, the
 		&ltcommand name&gt is what you use to create this dataset manually with
-		<code>npm run &ltcommand name&gt</command></code> in a web/vsc Docker container terminal. You will then need to load
+		<code>npm run &ltcommand name&gt</command></code> in a web/vsc Docker container terminal. You will then need to
+		load
 		the reading data into OED as described on the <a href="../help/v1.0.0/adminReadingsImport.html">reading import
 			page</a>. The file will have the name indicated and is located in the
 		<code>src/server/test/db/data/automatedTests/</code> directory.)
 	</p>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Description</th>
@@ -195,7 +457,7 @@
 	<p>The table below lists the types of test data we have. The first four all have 3.5 years of electric data but for
 		different meters so the values vary. The last one is a sample file that you can edit to create your own data.
 	</p>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Description</th>
