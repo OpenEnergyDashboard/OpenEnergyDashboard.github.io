@@ -32,12 +32,16 @@ title: OED test data
 			extension of VSC and attaching a shell. (Described in the <a href="./gettingStarted.html">getting started
 				directions)</a></li>
 		<li>In the terminal, run the command <code>npm run testData</code>. This may take a few minutes but when it
-			completes there should be new meters available in OED (you will need to visit the meters page or refresh the
-			web page as described <a href="../help/v1.0.0/adminMetersImport.html#newMeter">here</a> to see the meters
-			for test data assuming you are logged in as an admin user since the meters are not visible to others when
-			automatically created) and the CSV files used will be removed unless there was an error. This generates all
+			completes there should be new meters with data, the DB structures are all updated and the CSV files used
+			will be removed unless there was an error. This generates all
 			the standard test data except the one where readings are every minute since that is a large dataset that is
-			less frequently used. If this does not happen then an error likely occurred.</li>
+			less frequently used. See the next step before you
+			can use the new OED information within the OED web page.</li>
+		<li>As we update OED pages, the code is avoiding reloading Redux state every time. Thus, to see all the changes
+			in Redux state and to get the array for graphing units, you need to either load afresh or reload and
+			existing OED web page. Once done you should see all the test meters and data as described below. If this
+			does not happen then an error likely occurred so carefully look at the output in your terminal that you used
+			above.</li>
 		<li>While you can create any group with the test meters, if you want to test that groups aggregate data properly
 			then the test data has a special case for that. The testSqSin meter has values for sine squared and
 			testSqCos is analogous. If you create a group that contains the testSqSin and testSqCos meters the sum
@@ -54,8 +58,11 @@ title: OED test data
 		and units are based on the simplified example in the <a
 			href="https://github.com/OpenEnergyDashboard/DevDocs/blob/main/resourceGeneralization/resourceGeneralization.md#creating-graph">Resource
 			Generalization document</a> with the addition of kW (flow data) and Fahrenheit/Celsius (raw data). The
-		following table gives the expected values for the line graphs. The item for each meter/row that is marked with a <sup>*</sup>
-		indicated the default graphic unit if one is not already selected.</p>
+		following table gives the expected values for the line graphs. The item for each meter/row that is marked with a
+		<sup>*</sup>
+		indicated the default graphic unit if one is not already selected. Note that the temperature data will not be a
+		straight line unless viewed as raw data when graphed. It will vary modestly from that with daily points.
+	</p>
 	<table border="1">
 		<thread>
 			<tr>
@@ -300,7 +307,16 @@ title: OED test data
 			</tr>
 		</tbody>
 	</table>
-	<p>For bar graphs, you can easily check both day and 4-week bars. The 1-week bar is a little strange because the 5 days cross a week boundary so the first day (June 1) is the only day in the May 26-June 1, 2021 bar and the other four days are in the June 2-8, 2021. The values are correct when this is considered. Back to the 1-day bar graph. The value can be found by taking the day value on the line graph (shown in the table above) and multiplying by 24. For example, Electric Utility kWh as kWh has line values of 1-5 and bar values of 24-120. In US Dollars it is 0.115 - 0.575 on line and 2.76-13.8 on bar. This holds for both quantity and flow units. For raw units, it does not make sense to do a bar graph. For example, what is the total temperature over time (not a good question). For the 4-week bar, it is the sum of the 5 daily bars. For example, the Electric Utility kWh as kWh has 1-day bar values of 24, 24, 72, 96, 120 which sums to 360 and is the 4-week bar value.</p>
+	<p>For bar graphs, you can easily check both day and 4-week bars. The 1-week bar is a little strange because the 5
+		days cross a week boundary so the first day (June 1) is the only day in the May 26-June 1, 2021 bar and the
+		other four days are in the June 2-8, 2021. The values are correct when this is considered. Back to the 1-day bar
+		graph. The value can be found by taking the day value on the line graph (shown in the table above) and
+		multiplying by 24. For example, Electric Utility kWh as kWh has line values of 1-5 and bar values of 24-120. In
+		US Dollars it is 0.115 - 0.575 on line and 2.76-13.8 on bar. This holds for both quantity and flow units. For
+		raw units, it does not make sense to do a bar graph. For example, what is the total temperature over time (not a
+		good question). For the 4-week bar, it is the sum of the 5 daily bars. For example, the Electric Utility kWh as
+		kWh has 1-day bar values of 24, 24, 72, 96, 120 which sums to 360 and is the 4-week bar value.
+	</p>
 
 	<h2>Mathematical Test Data</h2>
 	<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
