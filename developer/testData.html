@@ -49,7 +49,7 @@ title: OED test data
 		commands to insert the mathematical data. The others are so small/fast that they are done as above.</p>
 	<h2>Simple Test Data</h2>
 	<p>The simple/basic test data is not representative of real meter data nor mathematical but it is easy to use. Each
-		meter has readings for five days from June 1-5, 2020. All the line graphs should be a straight line where value
+		meter has readings for five days from June 1-5, 2021. All the line graphs should be a straight line where value
 		go 1-5 unless otherwise noted in the name. The meters
 		and units are based on the simplified example in the <a
 			href="https://github.com/OpenEnergyDashboard/DevDocs/blob/main/resourceGeneralization/resourceGeneralization.md#creating-graph">Resource
@@ -300,6 +300,7 @@ title: OED test data
 			</tr>
 		</tbody>
 	</table>
+	<p>For bar graphs, you can easily check both day and 4-week bars. The 1-week bar is a little strange because the 5 days cross a week boundary so the first day (June 1) is the only day in the May 26-June 1, 2021 bar and the other four days are in the June 2-8, 2021. The values are correct when this is considered. Back to the 1-day bar graph. The value can be found by taking the day value on the line graph (shown in the table above) and multiplying by 24. For example, Electric Utility kWh as kWh has line values of 1-5 and bar values of 24-120. In US Dollars it is 0.115 - 0.575 on line and 2.76-13.8 on bar. This holds for both quantity and flow units. For raw units, it does not make sense to do a bar graph. For example, what is the total temperature over time (not a good question). For the 4-week bar, it is the sum of the 5 daily bars. For example, the Electric Utility kWh as kWh has 1-day bar values of 24, 24, 72, 96, 120 which sums to 360 and is the 4-week bar value.</p>
 
 	<h2>Mathematical Test Data</h2>
 	<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
