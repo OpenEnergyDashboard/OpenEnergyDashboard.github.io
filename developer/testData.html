@@ -52,6 +52,7 @@ title: OED test data
 	<p>If you only want to load some of the data (not the common usage), you can look at package.json for the individual
 		commands to insert the mathematical data. The others are so small/fast that they are done as above.</p>
 	<h2>Simple Test Data</h2>
+	<h3>Meter data</h3>
 	<p>The simple/basic test data is not representative of real meter data nor mathematical but it is easy to use. Each
 		meter has readings for five days from June 1-5, 2021. All the line graphs should be a straight line where value
 		go 1-5 unless otherwise noted in the name. The meters
@@ -61,13 +62,15 @@ title: OED test data
 		following table gives the expected values for the line graphs. The item for each meter/row that is marked with a
 		<sup>*</sup>
 		indicated the default graphic unit if one is not already selected. Note that the temperature data will not be a
-		straight line unless viewed as raw data when graphed. It will vary modestly from that with daily points.
+		straight line unless viewed as raw data when graphed. It will vary modestly from that with daily points. Also, a
+		meter without a unit cannot be graphed and OED switches the displayable to false in this case. The meter
+		"Electric Utility kWh not displayable" can only be seen if logged in as an admin.
 	</p>
 	<table border="1">
 		<thread>
 			<tr>
 				<th>Meter name</th>
-				<th>Kwh</th>
+				<th>kWh</th>
 				<th>BTU</th>
 				<th>MJ</th>
 				<th>M<sup>3</sup> Gas</th>
@@ -86,6 +89,23 @@ title: OED test data
 		<tbody>
 			<tr>
 				<td>Electric Utility kWh</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>3412.08 - 17060.4</td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh not displayable</td>
 				<td>1 - 5<sup>*</sup></td>
 				<td>3412.08 - 17060.4</td>
 				<td>3.6 - 18</td>
@@ -153,6 +173,23 @@ title: OED test data
 				<td>NA</td>
 			</tr>
 			<tr>
+				<td>Electric Utility no unit</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
 				<td>Natural Gas BTU</td>
 				<td>2.93e-4 - 1.465e-3</td>
 				<td>1 - 5<sup>*</sup></td>
@@ -194,7 +231,7 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>1 - 5<sup>*</sup></td>
-				<td>NA</td>
+				<td>0.88-4.4</td>
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
@@ -317,6 +354,147 @@ title: OED test data
 		good question). For the 4-week bar, it is the sum of the 5 daily bars. For example, the Electric Utility kWh as
 		kWh has 1-day bar values of 24, 24, 72, 96, 120 which sums to 360 and is the 4-week bar value.
 	</p>
+	<h3>Group data</h3>
+	<p>The following table gives groups that are created from the meters above as well as the mathematical meter data
+		described below.</p>
+	<table border="1">
+		<thread>
+			<tr>
+				<th>Group name</th>
+				<th>Default graphic unit</th>
+				<th>Values for default unit</th>
+				<th>Included meters</th>
+				<th>Included groups</th>
+				<th>All meters included</th>
+				<th>Compatible units</th>
+				<th>Note</th>
+			</tr>
+		</thread>
+		<tbody>
+			<tr>
+				<td>Electric Utility 1-5 + 2-6 kWh</td>
+				<td>kWh</td>
+				<td>3 - 11</td>
+				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
+				<td>none</td>
+				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric Utility 1-5 + Natural Gas Dollar Euro</td>
+				<td>Euro</td>
+				<td>0.9812 - 4.906</td>
+				<td>Electric Utility kWh, Natural Gas Dollar</td>
+				<td>none</td>
+				<td>Electric Utility kWh, Natural Gas Dollar</td>
+				<td>see Natural Gas Dollar</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric Utility 1-5 kWh not displayable</td>
+				<td>kWh</td>
+				<td>1 - 5</td>
+				<td>Electric Utility kWh</td>
+				<td>none</td>
+				<td>Electric Utility kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric kW + 2-6 kW</td>
+				<td>kW</td>
+				<td>3 - 11</td>
+				<td>Electric kW, Electric kW 2-6</td>
+				<td>none</td>
+				<td>Electric kW, Electric kW 2-6</td>
+				<td>see Electric Utility kWh</td>
+				<td>This should only been seen and graphable by an admin</td>
+			</tr>
+			<tr>
+				<td>SqSin + SqCos kWh</td>
+				<td>kWh</td>
+				<td>constant 2.5</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>none</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>SqSin + SqCos no unit</td>
+				<td>none</td>
+				<td>cannot graph</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>none</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>none</td>
+				<td>Will graph once a unit compatible with kWh is chosen</td>
+			</tr>
+			<tr>
+				<td>Amp 1 + 5 kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-6</td>
+				<td>testAmp1Sin kWh, testAmp5Sin kWh</td>
+				<td>none</td>
+				<td>testAmp1Sin kWh, testAmp5Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 2 + 6 kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-8</td>
+				<td>testAmp2Sin kWh, testAmp6Sin kWh</td>
+				<td>none</td>
+				<td>testAmp2Sin kWh, testAmp6Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 3 + 4 kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-7</td>
+				<td>testAmp3Sin kWh, testAmp4Sin kWh</td>
+				<td>none</td>
+				<td>testAmp3Sin kWh, testAmp4Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 2 + (1 + 5) kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-8</td>
+				<td>testAmp2Sin kWh</td>
+				<td>Amp 1 + 5 kWh</td>
+				<td>testAmp1Sin kWh, testAmp2Sin kWh, testAmp5Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 3 + 6 + (2 + (1 + 5)) + (3 + 4) kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-21</td>
+				<td>testAmp3Sin kWh, testAmp6Sin kWh</td>
+				<td>Amp 2 + (1 + 5) kWh, Amp 3 + 4 kWh</td>
+				<td>testAmp1Sin kWh, testAmp2Sin kWh, testAmp3Sin kWh, testAmp4Sin kWh, testAmp5Sin kWh, testAmp6Sin kWh
+				</td>
+				<td>see Electric Utility kWh</td>
+				<td>testAmp3Sin included twice but not double counted by OED</td>
+			</tr>
+			<tr>
+				<td>Amp 6 + 7 + (1 + 5) + (2 + 6) + (3 + 4) kWh'</td>
+				<td>kWh</td>
+				<td>sine from 0-28</td>
+				<td>testAmp6Sin kWh, testAmp7Sin kWh</td>
+				<td>Amp 1 + 5 kWh, Amp 2 + 6 kWh, Amp 3 + 4 kWh</td>
+				<td>testAmp1Sin kWh, testAmp2Sin kWh, testAmp3Sin kWh, testAmp4Sin kWh, testAmp5Sin kWh, testAmp6Sin
+					kWh, testAmp7Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td>testAmp6Sin included twice but not double counted by OED</td>
+			</tr>
+		</tbody>
+	</table>
 
 	<h2>Mathematical Test Data</h2>
 	<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
@@ -423,7 +601,8 @@ title: OED test data
 			</tr>
 		</tbody>
 	</table>
-	<p>The following picture shows the meters test4DaySin, test4HourSin, test23MinSin & test15MinSine. It is designed to
+	<p>NOTE THE FIGURES ARE NOT YET UPDATED FOR UNITS. The following picture shows the meters test4DaySin, test4HourSin,
+		test23MinSin & test15MinSine. It is designed to
 		show how the number of points impact the line quality in OED and verify that varied reading rates do not impact
 		the OED code. What you see is that the 4 day line is stair step because each group of 4 day points have the same
 		value. The other meters are very similar in value. This shows that the daily averaging in OED is accurate. Note
