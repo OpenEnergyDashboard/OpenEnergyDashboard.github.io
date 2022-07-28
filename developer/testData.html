@@ -64,7 +64,8 @@ title: OED test data
 		indicated the default graphic unit if one is not already selected. Note that the temperature data will not be a
 		straight line unless viewed as raw data when graphed. It will vary modestly from that with daily points. Also, a
 		meter without a unit cannot be graphed and OED switches the displayable to false in this case. The meter
-		"Electric Utility kWh not displayable" can only be seen if logged in as an admin.
+		"Electric Utility kWh not displayable" can only be seen if logged in as an admin. Note kW and kWh are not
+		impacted by a rate change. The Gallon and Gallon flow are so available for testing the rate choices.
 	</p>
 	<table border="1">
 		<thread>
@@ -84,6 +85,10 @@ title: OED test data
 				<th>Fahrenheit</th>
 				<th>Celsius</th>
 				<th>kW</th>
+				<th>Gallon</th>
+				<th>Liter</th>
+				<th>Gallon per minute</th>
+				<th>Liter per hour</th>
 			</tr>
 		</thread>
 		<tbody>
@@ -100,6 +105,10 @@ title: OED test data
 				<td>NA</td>
 				<td>0.709 - 3.545</td>
 				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
@@ -120,6 +129,10 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Electric Utility kWh 2-6</td>
@@ -134,6 +147,10 @@ title: OED test data
 				<td>NA</td>
 				<td>1.418 - 4.254</td>
 				<td>1.418e-3 - 4.254e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
@@ -154,6 +171,10 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Electric Utility kWh in MTon CO2</td>
@@ -171,9 +192,17 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Electric Utility no unit</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
@@ -205,6 +234,10 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Natural Gas BTU in Dollar</td>
@@ -222,6 +255,10 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Natural Gas Dollar</td>
@@ -232,6 +269,10 @@ title: OED test data
 				<td>NA</td>
 				<td>1 - 5<sup>*</sup></td>
 				<td>0.88-4.4</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
@@ -256,6 +297,10 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Trash Kg</td>
@@ -268,6 +313,10 @@ title: OED test data
 				<td>NA</td>
 				<td>1 - 5<sup>*</sup></td>
 				<td>1e-3 - 5e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
 				<td>NA</td>
@@ -290,6 +339,10 @@ title: OED test data
 				<td>0 - 212<sup>*</sup></td>
 				<td>-17.78 - 100</td>
 				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Temp Fahrenheit in Celsius</td>
@@ -306,6 +359,10 @@ title: OED test data
 				<td>NA</td>
 				<td>0 - 212</td>
 				<td>-17.78 - 100<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 				<td>NA</td>
 			</tr>
 			<tr>
@@ -324,6 +381,10 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>1 - 5<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
 			</tr>
 			<tr>
 				<td>Electric kW 2-6</td>
@@ -341,6 +402,52 @@ title: OED test data
 				<td>NA</td>
 				<td>NA</td>
 				<td>2 - 6<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Water Gallon</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1-5<sup>*</sup></td>
+				<td>3.79-18.93</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Water Gallon flow 1-5 per minute</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1-5<sup>*</sup></td>
+				<td>227.12-1135.6</td>
 			</tr>
 		</tbody>
 	</table>
