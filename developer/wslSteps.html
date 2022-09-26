@@ -6,8 +6,8 @@ title: Steps for WSL
     <h1>Prerequisite steps for WSL on Windows</h1>
     <ol>
         <li>Make sure your WSL is fully installed correctly, following <a
-                href="https://docs.microsoft.com/en-us/windows/wsl/install"
-                rel="noopener noreferrer">these steps</a>.</li>
+                href="https://docs.microsoft.com/en-us/windows/wsl/install" rel="noopener noreferrer">these steps</a>.
+        </li>
         <li>Make sure Docker is correctly configured to work with WSL, following <a
                 href="https://docs.docker.com/desktop/windows/wsl/" rel="noopener noreferrer">these steps</a>.</li>
     </ol>
@@ -18,7 +18,17 @@ title: Steps for WSL
             means
             you should clone OED into the Linux file system and run your code environment (such as Visual Studio Code)
             there as well. The information below assumes you have done this and the commands given are run in a Linux
-            shell.</strong></p>
+            shell. Specifically, this means:
+            <ol>
+                <li>You do the
+                    <code>git clone</code> in the Linux filesystem. Normally this is done by opening the Linux terminal.
+                </li>
+                <li>When you run visual studio code, you go to the Linux directory with OED in a Linux terminal and then
+                    type <code>code .</code> to start Visual Studio code. It opens the current directory as
+                    the code to work on, e.g., OED. This will also automatically install Visual Studio Code (at least on
+                    Ubuntu) if it is not yet installed on your Linux.</li>
+            </ol>
+        </strong></p>
 
     <h1>Errors running <code>docker compose up</code> might throw:</h1>
     <ol>
