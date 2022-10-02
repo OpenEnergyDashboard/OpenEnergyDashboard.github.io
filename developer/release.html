@@ -38,14 +38,14 @@ title: OED release
 					search box in Visual Studio. Note it is important to prefix it with help/ so you don't edit other
 					references to the version.</li>
 				<li>edit _layouts/admin.html to add a line below<br>
-					&lt;a href="../v0.6.0/{{page.name}}"&gt;OED version 0.6.0 Help&lt;/a&gt;<br>
+					&lt;a href="../v0.6.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.6.0 Help&lt;/a&gt;<br>
 					the line<br>
-					&lt;a href="../v0.7.0/{{page.name}}"&gt;OED version 0.7.0 Help&lt;/a&gt;<br>
+					&lt;a href="../v0.7.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.7.0 Help&lt;/a&gt;<br>
 				</li>
 				<li>Similarly, edit _layouts/help.html, to add a line below<br>
-					&lt;a href="../v0.6.0/{{page.name}}"&gt;OED version 0.6.0 Help&lt;/a>"<br>
+					&lt;a href="../v0.6.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.6.0 Help&lt;/a&gt;<br>
 					the line<br>
-					&lt;a href="../v0.7.0/{{page.name}}"&gt;OED version 0.7.0 Help"&lt;/a&gt;
+					&lt;a href="../v0.7.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.7.0 Help&lt;/a&gt;<br>
 				</li>
 				<li>Edit help/v0.7.0/_version.html to update the version shown, e.g., 0.6.0 to 0.7.0.</li>
 			</ul>
@@ -86,10 +86,10 @@ title: OED release
 		<li>Do extensive running and testing of OED in a web browser. When possible, test in all major web browsers.
 		</li>
 		<li>Verify the upgrade from a previous version works using the directions on the latest version of the <a
-				href="../help/v0.8.0/adminUpgrading.html">Admin
+				href="../help/v1.0.0/adminUpgrading.html">Admin
 				Upgrading</a> help page. This normally means starting from the previous version on a server. If not
 			already
-			there see the <a href="../help/v0.8.0/adminInstallation.html">Admin Installation</a> help page on doing this
+			there see the <a href="../help/v1.0.0/adminInstallation.html">Admin Installation</a> help page on doing this
 			where you will need to load in test data, add
 			groups, etc. before upgrading to be sure the database migrates correctly. From the previous version you do
 			the upgrade. After the upgrade make sure everything works correctly including the new features.</li>

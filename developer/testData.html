@@ -1,4 +1,8 @@
---- layout: developer title: OED test data --- <div>
+---
+layout: developer
+title: OED test data
+---
+<div>
 	<h1>OED developer test data</h1>
 	<p>Developers want to have test meter data for OED development that is consistent, stable and does not require
 		having access to actual meters. This describes how to get and load such meter test data.</p>
@@ -11,16 +15,614 @@
 	<p>For using the following data with maps, please see the <a href="testMap.html">test map page</a>.</p>
 	<h2>Prerequisites</h2>
 	<p>What follows assumes you have a properly installed and working OED but have not yet loaded in the reading data
-		described here. (See comments at the top of the automated script at src/scripts/testData.sh to see how to remove
-		the reading data if that is needed.) At a minimum you should be able to see the main OED page in a web browser
+		described here. If they have already been loaded then the loading step for that meter will be skipped. At a
+		minimum you should be able to see the main OED page in a web browser
 		(normally URL of localhost:3000). Normally the database is automatically created and works fine. If you get
 		errors about the database then you need to address them before you can do this or get the test data in (if you
 		get errors during this process).</p>
-	<p>The script uses scripts defined in package.json. It will be run in a terminal inside the web/vsc Docker container as
-		described in the <a href="./gettingStarted.html">getting started directions</a>.</p>
 	<p>The import of this data into OED uses the CSV import feature that is described in the <a
-			href="../help/v0.8.0/adminCsvImport.html">CSV import help</a> and pages linked from that page, esp. about
+			href="../help/v1.0.0/adminCsvImport.html">CSV import help</a> and pages linked from that page, esp. about
 		readings. You do not need to know all those details but can get further information as needed.</p>
+	<h2>Inserting the standard OED test data for meters</h2>
+	<p>The simple and mathematical test data is created in OED by doing the following (they are described next):</p>
+	<ol>
+		<li>Make sure you have OED running so it is available to respond to the CSV requests to load the meter data.
+		</li>
+		<li>Open a terminal in the web/vsc Docker container by right clicking on the web container in the Docker
+			extension of VSC and attaching a shell. (Described in the <a href="./gettingStarted.html">getting started
+				directions)</a></li>
+		<li>In the terminal, run the command <code>npm run testData</code>. This may take a few minutes but when it
+			completes there should be new meters with data, the DB structures are all updated and the CSV files used
+			will be removed unless there was an error. This generates all
+			the standard test data except the one where readings are every minute since that is a large dataset that is
+			less frequently used. See the next step before you
+			can use the new OED information within the OED web page.</li>
+		<li>As we update OED pages, the code is avoiding reloading Redux state every time. Thus, to see all the changes
+			in Redux state and to get the array for graphing units, you need to either load afresh or reload and
+			existing OED web page. Once done you should see all the test meters and data as described below. If this
+			does not happen then an error likely occurred so carefully look at the output in your terminal that you used
+			above.</li>
+		<li>While you can create any group with the test meters, if you want to test that groups aggregate data properly
+			then the test data has a special case for that. The testSqSin meter has values for sine squared and
+			testSqCos is analogous. If you create a group that contains the testSqSin and testSqCos meters the sum
+			should be constant at 2.5 and can be used for testing that groups are working as expected. Note the
+			amplitude of testSqSin and testSqCos is not 1 so sin^2 + cos^2 does not equal 1 but does equal a constant
+			value.</li>
+	</ol>
+	<p>If you only want to load some of the data (not the common usage), you can look at package.json for the individual
+		commands to insert the mathematical data. The others are so small/fast that they are done as above.</p>
+	<h2>Simple Test Data</h2>
+	<h3>Meter data</h3>
+	<p>The simple/basic test data is not representative of real meter data nor mathematical but it is easy to use. Each
+		meter has readings for five days from June 1-5, 2021. All the line graphs should be a straight line where value
+		go 1-5 unless otherwise noted in the name. The meters
+		and units are based on the simplified example in the <a
+			href="https://github.com/OpenEnergyDashboard/DevDocs/blob/main/resourceGeneralization/resourceGeneralization.md#creating-graph">Resource
+			Generalization document</a> with the addition of kW (flow data) and Fahrenheit/Celsius (raw data). The
+		following table gives the expected values for the line graphs. The item for each meter/row that is marked with a
+		<sup>*</sup>
+		indicated the default graphic unit if one is not already selected. Note that the temperature data will not be a
+		straight line unless viewed as raw data when graphed. It will vary modestly from that with daily points. Also, a
+		meter without a unit cannot be graphed and OED switches the displayable to false in this case. The meter
+		"Electric Utility kWh not displayable" can only be seen if logged in as an admin. Note kW and kWh are not
+		impacted by a rate change. The Gallon and Gallon flow are so available for testing the rate choices.
+	</p>
+	<table border="1">
+		<thread>
+			<tr>
+				<th>Meter name</th>
+				<th>kWh</th>
+				<th>BTU</th>
+				<th>MJ</th>
+				<th>M<sup>3</sup> Gas</th>
+				<th>100 W bulb</th>
+				<th>US Dollar</th>
+				<th>Euro</th>
+				<th>kg</th>
+				<th>Metric ton</th>
+				<th>kg of CO2</th>
+				<th>Metric ton of CO2</th>
+				<th>Fahrenheit</th>
+				<th>Celsius</th>
+				<th>kW</th>
+				<th>Gallon</th>
+				<th>Liter</th>
+				<th>Gallon per minute</th>
+				<th>Liter per hour</th>
+			</tr>
+		</thread>
+		<tbody>
+			<tr>
+				<td>Electric Utility kWh</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>3412.08 - 17060.4</td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh not displayable</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>3412.08 - 17060.4</td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh 2-6</td>
+				<td>2 - 6<sup>*</sup></td>
+				<td>6824.16 - 20472.48</td>
+				<td>7.2 - 21.6</td>
+				<td>0.1872 - 0.5616</td>
+				<td>2 - 6</td>
+				<td>0.23 - 0.69</td>
+				<td>0.2 - 0.6</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1.418 - 4.254</td>
+				<td>1.418e-3 - 4.254e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh in BTU</td>
+				<td>1 - 5</td>
+				<td>3412.08 - 17060.4<sup>*</sup></td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility kWh in MTon CO2</td>
+				<td>1 - 5</td>
+				<td>3412.08 - 17060.4<sup>*</sup></td>
+				<td>3.6 - 18</td>
+				<td>9.36e-2 - 0.468</td>
+				<td>1-5</td>
+				<td>0.115 - 0.575</td>
+				<td>0.1012 - 0.506</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0.709 - 3.545</td>
+				<td>7.09e-4 - 3.545e-3<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric Utility no unit</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas BTU</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>1.06e-3 - 5.27e-3</td>
+				<td>2.74e-5 - 1.37e-4</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>2.95e-6 - 1.48e-5</td>
+				<td>2.6e-6 - 1.3e-5</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>5.28e-5 - 2.64e-4</td>
+				<td>5.28e-8 - 2.64e-7</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas BTU in Dollar</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>1 - 5</td>
+				<td>1.06e-3 - 5.27e-3</td>
+				<td>2.74e-5 - 1.37e-4</td>
+				<td>2.93e-4 - 1.465e-3</td>
+				<td>2.95e-6 - 1.48e-5<sup>*</sup></td>
+				<td>2.6e-6 - 1.3e-5</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>5.28e-5 - 2.64e-4</td>
+				<td>5.28e-8 - 2.64e-7</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas Dollar</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>0.88-4.4</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Natural Gas Cubic Meters</td>
+				<td>10.7 - 53.4</td>
+				<td>3.64e4 - 1.82e5</td>
+				<td>38.5 - 192.3</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>10.7 - 53.4</td>
+				<td>0.11 - 0.55</td>
+				<td>0.97 - 4.84</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Trash Kg</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>1e-3 - 5e-3</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Temp Fahrenheit 0-212</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0 - 212<sup>*</sup></td>
+				<td>-17.78 - 100</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Temp Fahrenheit in Celsius</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>0 - 212</td>
+				<td>-17.78 - 100<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric kW</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1 - 5<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Electric kW 2-6</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>2 - 6<sup>*</sup></td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Water Gallon</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1-5<sup>*</sup></td>
+				<td>3.79-18.93</td>
+				<td>NA</td>
+				<td>NA</td>
+			</tr>
+			<tr>
+				<td>Water Gallon flow 1-5 per minute</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>NA</td>
+				<td>1-5<sup>*</sup></td>
+				<td>227.12-1135.6</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>For bar graphs, you can easily check both day and 4-week bars. The 1-week bar is a little strange because the 5
+		days cross a week boundary so the first day (June 1) is the only day in the May 26-June 1, 2021 bar and the
+		other four days are in the June 2-8, 2021. The values are correct when this is considered. Back to the 1-day bar
+		graph. The value can be found by taking the day value on the line graph (shown in the table above) and
+		multiplying by 24. For example, Electric Utility kWh as kWh has line values of 1-5 and bar values of 24-120. In
+		US Dollars it is 0.115 - 0.575 on line and 2.76-13.8 on bar. This holds for both quantity and flow units. For
+		raw units, it does not make sense to do a bar graph. For example, what is the total temperature over time (not a
+		good question). For the 4-week bar, it is the sum of the 5 daily bars. For example, the Electric Utility kWh as
+		kWh has 1-day bar values of 24, 24, 72, 96, 120 which sums to 360 and is the 4-week bar value.
+	</p>
+	<h3>Group data</h3>
+	<p>The following table gives groups that are created from the meters above as well as the mathematical meter data
+		described below.</p>
+	<table border="1">
+		<thread>
+			<tr>
+				<th>Group name</th>
+				<th>Default graphic unit</th>
+				<th>Values for default unit</th>
+				<th>Included meters</th>
+				<th>Included groups</th>
+				<th>All meters included</th>
+				<th>Compatible units</th>
+				<th>Note</th>
+			</tr>
+		</thread>
+		<tbody>
+			<tr>
+				<td>Electric Utility 1-5 + 2-6 kWh</td>
+				<td>kWh</td>
+				<td>3 - 11</td>
+				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
+				<td>none</td>
+				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric Utility 1-5 + 2-6 Dollar</td>
+				<td>US Dollar</td>
+				<td>0.345 - 1.265</td>
+				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
+				<td>none</td>
+				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Natural Gas Dollar Euro</td>
+				<td>Euro</td>
+				<td>0.88 - 4.4</td>
+				<td>Natural Gas Dollar</td>
+				<td>none</td>
+				<td>Natural Gas Dollar</td>
+				<td>see Natural Gas Dollar</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric Utility 1-5 + Natural Gas Dollar Euro</td>
+				<td>Euro</td>
+				<td>0.9812 - 4.906</td>
+				<td>Electric Utility kWh, Natural Gas Dollar</td>
+				<td>none</td>
+				<td>Electric Utility kWh, Natural Gas Dollar</td>
+				<td>see Natural Gas Dollar</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric Utility 1-5 kWh not displayable</td>
+				<td>kWh</td>
+				<td>1 - 5</td>
+				<td>Electric Utility kWh</td>
+				<td>none</td>
+				<td>Electric Utility kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Electric kW + 2-6 kW</td>
+				<td>kW</td>
+				<td>3 - 11</td>
+				<td>Electric kW, Electric kW 2-6</td>
+				<td>none</td>
+				<td>Electric kW, Electric kW 2-6</td>
+				<td>see Electric Utility kWh</td>
+				<td>This should only been seen and graphable by an admin</td>
+			</tr>
+			<tr>
+				<td>SqSin + SqCos kWh</td>
+				<td>kWh</td>
+				<td>constant 2.5</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>none</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>SqSin + SqCos no unit</td>
+				<td>none</td>
+				<td>cannot graph</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>none</td>
+				<td>testSqSin kWh, testSqCos kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td>Will graph once a unit compatible with kWh is chosen</td>
+			</tr>
+			<tr>
+				<td>Amp 1 + 5 kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-6</td>
+				<td>testAmp1Sin kWh, testAmp5Sin kWh</td>
+				<td>none</td>
+				<td>testAmp1Sin kWh, testAmp5Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 2 + 6 kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-8</td>
+				<td>testAmp2Sin kWh, testAmp6Sin kWh</td>
+				<td>none</td>
+				<td>testAmp2Sin kWh, testAmp6Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 3 + 4 kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-7</td>
+				<td>testAmp3Sin kWh, testAmp4Sin kWh</td>
+				<td>none</td>
+				<td>testAmp3Sin kWh, testAmp4Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 2 + (1 + 5) kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-8</td>
+				<td>testAmp2Sin kWh</td>
+				<td>Amp 1 + 5 kWh</td>
+				<td>testAmp1Sin kWh, testAmp2Sin kWh, testAmp5Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Amp 3 + 6 + (2 + (1 + 5)) + (3 + 4) kWh</td>
+				<td>kWh</td>
+				<td>sine from 0-21</td>
+				<td>testAmp3Sin kWh, testAmp6Sin kWh</td>
+				<td>Amp 2 + (1 + 5) kWh, Amp 3 + 4 kWh</td>
+				<td>testAmp1Sin kWh, testAmp2Sin kWh, testAmp3Sin kWh, testAmp4Sin kWh, testAmp5Sin kWh, testAmp6Sin kWh
+				</td>
+				<td>see Electric Utility kWh</td>
+				<td>testAmp3Sin included twice but not double counted by OED</td>
+			</tr>
+			<tr>
+				<td>Amp 6 + 7 + (1 + 5) + (2 + 6) + (3 + 4) kWh'</td>
+				<td>kWh</td>
+				<td>sine from 0-28</td>
+				<td>testAmp6Sin kWh, testAmp7Sin kWh</td>
+				<td>Amp 1 + 5 kWh, Amp 2 + 6 kWh, Amp 3 + 4 kWh</td>
+				<td>testAmp1Sin kWh, testAmp2Sin kWh, testAmp3Sin kWh, testAmp4Sin kWh, testAmp5Sin kWh, testAmp6Sin
+					kWh, testAmp7Sin kWh</td>
+				<td>see Electric Utility kWh</td>
+				<td>testAmp6Sin included twice but not double counted by OED</td>
+			</tr>
+		</tbody>
+	</table>
+
 	<h2>Mathematical Test Data</h2>
 	<p>The OED test data generation code can generate sine and cosine based data. It has several advantages:</p>
 	<ul>
@@ -32,35 +634,17 @@
 	</ul>
 	<p>Note that the values are shifted so the minimum is 0 since most meter data is like that. It is easy to use this
 		data by following these steps</p>
-	<ol>
-		<li>Make sure you have OED running so it is available to respond to the CSV requests to load the meter data.
-		</li>
-		<li>Open a terminal in the web/vsc Docker container by right clicking on the web container in the Docker extension
-			of VSC and attaching a shell.</li>
-		<li>In the terminal, run the command <code>npm run testData</code>. This may take a few minutes but when it
-			completes there should be new meters available in OED (you will need to visit the meters page or refresh the
-			web page as described <a href="../help/v0.8.0/adminMetersImport.html#newMeter">here</a> to see the meters
-			for test data assuming you are logged in as an admin user since the meters are not visible to others when
-			automatically created) and the CSV files used will be removed unless there was an error. This generates all
-			the standard test data except the one where readings are every minute since that is a large dataset that is
-			less frequently used. If this does not happen then an error likely occurred.</li>
-		<li>While you can create any group with the test meters, if you want to test that groups aggregate data properly
-			then the test data has a special case for that. The testSqSin meter has values for sine squared and
-			testSqCos is analogous. If you create a group that contains the testSqSin and testSqCos meters the sum
-			should be constant at 2.5 and can be used for testing that groups are working as expected. Note the
-			amplitude of testSqSin and testSqCos is not 1 so sin^2 + cos^2 does not equal 1 but does equal a constant
-			value.</li>
-	</ol>
 	</p>
 	<p>The following table gives a list of the available data and information about it. The meter name assumes you use
 		the provided script to load the data. (If you want to generate the test data outside the usual script, the
 		&ltcommand name&gt is what you use to create this dataset manually with
-		<code>npm run &ltcommand name&gt</command></code> in a web/vsc Docker container terminal. You will then need to load
-		the reading data into OED as described on the <a href="../help/v0.8.0/adminReadingsImport.html">reading import
+		<code>npm run &ltcommand name&gt</command></code> in a web/vsc Docker container terminal. You will then need to
+		load
+		the reading data into OED as described on the <a href="../help/v1.0.0/adminReadingsImport.html">reading import
 			page</a>. The file will have the name indicated and is located in the
 		<code>src/server/test/db/data/automatedTests/</code> directory.)
 	</p>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Description</th>
@@ -144,7 +728,8 @@
 			</tr>
 		</tbody>
 	</table>
-	<p>The following picture shows the meters test4DaySin, test4HourSin, test23MinSin & test15MinSine. It is designed to
+	<p>NOTE THE FIGURES ARE NOT YET UPDATED FOR UNITS. The following picture shows the meters test4DaySin, test4HourSin,
+		test23MinSin & test15MinSine. It is designed to
 		show how the number of points impact the line quality in OED and verify that varied reading rates do not impact
 		the OED code. What you see is that the 4 day line is stair step because each group of 4 day points have the same
 		value. The other meters are very similar in value. This shows that the daily averaging in OED is accurate. Note
@@ -195,7 +780,7 @@
 	<p>The table below lists the types of test data we have. The first four all have 3.5 years of electric data but for
 		different meters so the values vary. The last one is a sample file that you can edit to create your own data.
 	</p>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Description</th>
@@ -268,7 +853,7 @@
 			is creating new readings in some order and you can get overlap with existing readings. Also, you may need to
 			recreate the compare data on a later day so you have current readings. Thus, it is best to use a meter
 			without any readings for the compare readings. This is done by following the directions on the <a
-				href="../help/v0.8.0/adminMetersImport.html">meters import help pages</a> to create a new meter. For
+				href="../help/v1.0.0/adminMetersImport.html">meters import help pages</a> to create a new meter. For
 			example, to create the meters "compare 1" and "compare 2", you could put this into a CSV file named
 			compareMeters.csv:
 			<pre> name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier compare 1,,FALSE,TRUE,other,,,compare 1 compare 2,,FALSE,TRUE,other,,,compare 2 </pre>
@@ -323,7 +908,7 @@
 		</li>
 		<li>The final step to be able to see the readings on a graph is to refresh the readings. In the terminal in the
 			web/vsc Docker container, do: <code>npm run refreshAllReadingViews</code>. You will need to visit the meters
-			page or refresh the web page as described <a href="../help/v0.8.0/adminMetersImport.html#newMeter">here</a>
+			page or refresh the web page as described <a href="../help/v1.0.0/adminMetersImport.html#newMeter">here</a>
 			in order the see the new meters.</li>
 		<li>You can repeat these steps in the future to get back to the latest time but you may get error about
 			overlapping start_timestamp. The easiest way around this is the delete all the reading
@@ -342,7 +927,7 @@
 		is easier to see what goes in each column. Once you are done editing and save the file in CSV format, import it
 		the same way as the provided data above except you need to check the "Header Row" box since the file has a
 		header row. Deal with any messages to correct problems and see the <a
-			href="../help/v0.8.0/adminReadingsImport.html">readings import page</a> for more info on dealing with
+			href="../help/v1.0.0/adminReadingsImport.html">readings import page</a> for more info on dealing with
 		issues. Note if there are lots of errors then you need to look at the log or console where OED is running to see
 		them all.</p>
 	<h2 id="dbIssue">Database issue</h2>
