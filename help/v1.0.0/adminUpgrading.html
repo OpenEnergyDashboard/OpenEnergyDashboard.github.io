@@ -27,6 +27,12 @@ title: OED upgrades
 			if you want to save disk space. You can contact the OED project if you need to restore the database due to
 			issues.
 		</li>
+		<li>
+			If you are upgrading from before OED v1.0.0 to v1.0.0 or higher, then you need to <a
+				href="./adminUpgradingV1.html">special steps for upgrading the database</a>. This is a one-time process
+			and not needed unless you are doing this migration. Once you complete those step you return here to continue
+			a standard migration.
+		</li>
 		<li>Stop the OED app from running using: <code>systemctl stop oed.service</code>. This assumes you named the
 			service oed.service as is the default in the installation directions. You can check the status of the
 			service with <code>systemctl list-units --type=service | grep -i oed</code> where it will not be listed if
@@ -66,9 +72,11 @@ title: OED upgrades
 					with oed_web and one oed_database (or similar names). The OED containers should not be currently
 					running so they should have "Exited" as the "STATUS". The first column listed should be "CONTAINER
 					ID". For each CONTAINER ID, do: <code>docker container rm &lt;CONTAINER ID&gt;</code>. The
-					response should be an echo of the &lt;CONTAiNER ID&gt;. If you list the containers again these should be
-						gone. At this point you should be able  If you have any issues or questions then please don't hesitate to reach out to the
-						project.
+					response should be an echo of the &lt;CONTAiNER ID&gt;. If you list the containers again these
+					should be
+					gone. At this point you should be able If you have any issues or questions then please don't
+					hesitate to reach out to the
+					project.
 				</li>
 			</ul>
 		</li>
