@@ -45,7 +45,9 @@ title: OED PRs
 			documentation</a>). The pull request template should include the following:
 	<ul>
 		<li>An area at the top to describe this PR. It states: "Please include a summary of the change and which issue
-			is touched on. Please also include relevant motivation and context."</li>
+			is touched on. Please also include relevant motivation and context." This is also the area to add
+			recognition of others that worked on code. Use the @&lt;GitHub name&gt; where you put in the person's actual
+			GitHub name (user id) without the angle brackets and GitHub will automatically link to their GitHub account.</li>
 		<li>Note any issues this PR addresses. Check to see if
 			you are addressing any open issues. If so, please note in the pull request description. If your pull request
 			completely fixes/addresses an open issue then put the words "Fixes #XXX", where XXX is the issue number. If
@@ -54,10 +56,6 @@ title: OED PRs
 			will close this issue when
 			merged and there is
 			also a related note in the issue.</li>
-		<li>There is a checkbox to indicate: "Note merging this changes the node modules." This indicates you changed
-			package.json so that new packages
-			or versions are needed. This indicates to others that is it not safe to use the "--keep_node_modules" option
-			when installing OED.</li>
 		<li>There is a checkbox to indicate: "Note merging this changes the database configuration." This indicates that
 			the database needs to be updated
 			for these changes to work correctly. Normally there will be migration files to update the database. However,
