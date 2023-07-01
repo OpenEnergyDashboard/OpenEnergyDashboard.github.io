@@ -8,9 +8,10 @@ title: OED examples help
 	<!-- Page content -->
 	<h1>Example Description (Help)</h1>
 	<p>The following gives a description of the sample data that was used to create the help examples. It gives both a
-		<!-- TODO add link to unit description once written -->
+		<!-- TODO add link to unit/conversion description once written; in addition to the meter dropdown or instead? -->
 		high-level description and the details. It assumes you understand the ideas and terminology of <a
-			href="">units</a>, <a href="">conversions</a>, <a href="">meters</a> and <a href="">groups</a>.
+			href="graphingUnits.html">units</a>, <a href="graphingMeters.html">meters</a> and <a
+			href="graphingGroups.html">groups</a>.
 	</p>
 
 	<h2 id="units">Units</h2>
@@ -19,7 +20,7 @@ title: OED examples help
 	<p>For now, ignore the arrows that describe the conversions. The different items are labeled as follows:</p>
 	<ul>
 		<li>Blue boxes represent meter units</li>
-		<li>orange ovals represent a unit for graphing (graphing unit)</li>
+		<li>Orange ovals represent a unit for graphing (graphing unit)</li>
 	</ul>
 	<p>All units are of type quantity except these:</p>
 	<ul>
@@ -30,7 +31,7 @@ title: OED examples help
 
 	<h2 id="conversions">Conversions</h2>
 	<p>The conversions linking the units in the example are shown as arrows in the figure above. The actual value of the
-		conversion is not shown. The different items are labeled as follows</p>
+		conversion is not shown. The different items are labeled as follows:</p>
 	<ul>
 		<li>A line represents a conversion between two units. The arrow indicates which direction or directions are
 			allowed. If the line has arrows in both directions then it is bidirectional meaning you can convert either
@@ -38,14 +39,14 @@ title: OED examples help
 			with only one arrow is unidirectional. The line between Recycling and ton is this way. As such, you can
 			convert from Recycling to ton but not the other way around.</li>
 		<li>A blue line links a meter (in blue) to the unit in which it collects (in orange). For example, the
-			Electric_Utility meter unit is connected to the kWh unit which is a standard electric unit. The
+			Electric_Utility meter unit is connected to the kWh unit which is a standard electric energy unit. The
 			Electric_Solar meter unit is also connected to the kWh unit as it also collects in this unit. There are also
 			times that the same type of energy source may have meters that collect in different units. This is shown by
 			Natural_Gas_BTU and Natural_Gas_M3 which are both gas meters but they collect in BTU and cubic meters of
 			gas, respectively. Note that these conversions only have an arrow from the meter unit to the graphing unit
 			since OED will only convert data in that direction. As is common, all the conversion values along blue lines
 			are the identity and do not change the value because the meter collects in the connected unit.</li>
-		<li>A pink line is similar to a blue line but represents a conversion that allows the user the graph the meter
+		<li>A pink line is similar to a blue line but represents a conversion that allows one to graph the meter
 			data in the linked unit.</li>
 		<li>A black line links two units (not of type meter). As would be expected, these are all bidirectional since
 			you can, in general, convert both way. In the example, you can convert from ton to lb and lb to ton.</li>
@@ -58,11 +59,12 @@ title: OED examples help
 		CO<sub>2</sub> to create electricity.</p>
 	<p>The follow table gives the details on each interesting conversion. A conversion is defined by the source,
 		destination, slope
-		and intercept. The row with source of Electric_Utility, destination of US $, slope of 0.xx and intercept of 0
-		means that each kWh of electricity costs 0.xx U.S. dollars. Most conversions have an intercept of 0 but
+		and intercept. The row with source of Electric_Utility, destination of US $, slope of 0.115 and intercept of 0
+		means that each kWh of electricity costs 0.115 U.S. dollars or 11.5 cents. Most conversions have an intercept of
+		0 but
 		temperature is the exception in this example. The table also indicates if the conversion is bidirectional. The
 		conversion from a meter to its unit of collection (blue, unidirectional arrows) are all slope of 1, intercept of
-		0 and bidirectional of no so are not listed. The values are meant to be reasonable for each quantity; clearly
+		0 and bidirectional of No so are not listed. The values are meant to be reasonable for each quantity; clearly
 		different locations and times will have different values.</p>
 	<table border="1">
 		<thread>
@@ -250,13 +252,14 @@ title: OED examples help
 	<p>The value for the example chained conversion above (Recycling to kg) is worked out as follows (all intercepts are
 		0):</p>
 	<ol>
-		<li>Recycling to ton has a conversion of slope = 1</li>
+		<li>Recycling to ton has a conversion of slope = 1 which indicates that the quantity of recycling is provided in
+			the unit of ton.</li>
 		<li>ton to lb has a conversion of 2000 so the total conversion is 1 x 2000 = 2000.</li>
 		<li>lb to kg has a conversion of 1 / 2.2 because the provided conversion is kg to lb so it must be inverted.
 			This gives a final conversion of 2000 / 2.2 = 909.09. Thus, 1 ton of recycling is the same as 909.09 kg of
 			recycling.</li>
 	</ol>
-	<p>Note that units are incompatible if they are not possible by any direct or chained conversion. For example, if
+	<p>Note that units are incompatible if they are not connected by any direct or chained conversion. For example, if
 		you have a meter collecting in Electric_Utility units then it can be graphed in these compatible units: kWh,
 		BTU, m<sup>3</sup> gas, kg
 		of CO<sub>2</sub>, lb of CO<sub>2</sub>, metric ton of CO<sub>2</sub>, ton of CO<sub>2</sub> and US $. All other
@@ -270,24 +273,25 @@ title: OED examples help
 	<p>The meters are on the left-hand side of the image in the blue rectangles. The beginning of the meter name is the
 		building it is associated with: Library, Dining Hall, Theater or Great Dorm. The exception is "Campus Recycling"
 		which is a campus-wide meter and not associated with a building. It is also unique because this type of data
-		would normally be manually entered in OED and not received from a automated meter. All meters collect for its
+		would normally be manually entered into OED and not received from a automated meter. All meters collect for its
 		entire building except the electric meters for "Great Dorm" which has separate meters for the first and second
 		floor of the building.</p>
 	<p>The following table gives information about the meters. The headers for the columns indicate it contains this
 		information:</p>
 	<ul>
-		<li>Name: is the name of the meter shown in OED and in the figures.</li>
+		<li>Name: Is the name of the meter shown in OED and in the figures.</li>
 		<li>Unit: The first part is the meter unit that the meter collects data in and the second is the associated
-			graphic unit. This associated can be seen in the image above by the blue arrows from the blue meter unit to
+			graphic unit. This association can be seen in the image above by the blue arrows from the blue meter unit to
 			the orange graphic unit.</li>
 		<li>Default graphing unit: This is the graphic unit that OED will use if a unit has yet to be selected.</li>
 		<li>Area: This is the size of the building associated with the meter. If it is blank then there is no value. All
-			meters in the example use square meters for the area. This could be because it was not provided for this
+			meters in the example use square meters for the area. Some meters do not have an area. This could be because
+			it was not provided for this
 			sample site or it does not make sense such as for "Campus Recycling".</li>
 		<li>Reading frequency: This is the time that each reading spans for this meter. For example, a value of 1 hour
 			means each reading given to OED should be for 1 hour of use. This value impacts the accuracy of points
 			returned in the line graphic.</li>
-		<li>Note: any needed descriptive information.</li>
+		<li>Note: Any needed descriptive information.</li>
 	</ul>
 	<table border="1">
 		<thread>
@@ -387,7 +391,7 @@ title: OED examples help
 				<td>kWh</td>
 				<td>5,000</td>
 				<td>20 minutes</td>
-				<td>Only the first floor of a two story building and half the area. Note it gets electricity for solar.
+				<td>Only the first floor of a two story building and half the area. Note it gets electricity from solar.
 			</tr>
 			<tr>
 				<td>Great Dorm 2nd Floor Electric</td>
@@ -395,7 +399,8 @@ title: OED examples help
 				<td>kWh</td>
 				<td>5,000</td>
 				<td>20 minutes</td>
-				<td>Only the second floor of a two story building and half the area. Note it gets electricity for solar.
+				<td>Only the second floor of a two story building and half the area. Note it gets electricity from
+					solar.
 			</tr>
 			<tr>
 				<td>Great Dorm Gas</td>
@@ -429,9 +434,10 @@ title: OED examples help
 	<p>The figure above has the groups shown in the yellow rectangles. A line from a meter to a group indicates that the
 		meter is a member of the group. A line from a group to a group indicates the group on the left is a member of
 		the group on the right. Each group shows all of its members with the same color line. For example, "Dinning Hall
-		All" contains the meter "Dining Hall Water" and the group "Dining Hall Energy".</p>
+		All" contains the meter "Dining Hall Water" and the group "Dining Hall Energy" where they are connected by a
+		pink line.</p>
 	<p>The following table gives information about the groups where the headers indicate similar information as the
-		meter equivalent.
+		meter equivalent.</p>
 	<table border="1">
 		<thread>
 			<tr>
