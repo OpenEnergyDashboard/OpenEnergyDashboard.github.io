@@ -5,3 +5,10 @@ theme: jekyll-theme-minimal
 
 plugins:
   - jekyll-redirect-from
+
+defaults:
+  -
+    scope:
+      path: "help"
+    values:
+      navbarShown: true

@@ -76,11 +76,13 @@
 		</div>
 		<a href="../../contact.html">Contact Us</a>
 	</div>
-	<div class="navbar">
-		<a href="#overview">Overview section</a>
-		<a href="#usage">Usage section</a>
-		<a href="#details">Details section</a>
-	</div>
+	{% if navbarShown == true %}
+		<div class="navbar">
+			<a href="#overview">Overview section</a>
+			<a href="#usage">Usage section</a>
+			<a href="#details">Details section</a>
+		</div>
+	{% end if %}
 	<div class="container">{{ content }}</div>
 	<footer>
 		<div class="navbar">
@@ -90,7 +92,8 @@
 		</div>
 		<p>This page is part of the Open Energy Dashboard and is subject to the terms of the Mozilla Public License,
 			v. 2.0. If a copy of the MPL was not distributed with this file, you can obtain one at <a
-				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.</p>
+				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.
+		</p>
 	</footer>
 </body>
 
