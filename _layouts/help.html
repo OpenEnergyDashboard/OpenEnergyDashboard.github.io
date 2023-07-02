@@ -76,10 +76,7 @@
 		</div>
 		<a href="../../contact.html">Contact Us</a>
 	</div>
-	<!-- debug -->
-	<div>navbarShown: {{ navbarShown }}</div>
-	<div>page.navbarShown: {{ page.navbarShown }}</div>
-	{% if navbarShown == true %}
+	{% if page.navbarShown == true %}
 	<div class="navbar">
 		<a href="#overview">Overview section</a>
 		<a href="#usage">Usage section</a>
