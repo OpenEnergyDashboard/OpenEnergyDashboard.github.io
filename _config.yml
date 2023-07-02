@@ -9,6 +9,6 @@ plugins:
 defaults:
   -
     scope:
-      path: "help"
+      path: ""
     values:
       navbarShown: true

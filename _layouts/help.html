@@ -76,12 +76,14 @@
 		</div>
 		<a href="../../contact.html">Contact Us</a>
 	</div>
+	<!-- debug -->
+	<div>navbarShown: {{ navbarShown }}</div>
 	{% if navbarShown == true %}
-		<div class="navbar">
-			<a href="#overview">Overview section</a>
-			<a href="#usage">Usage section</a>
-			<a href="#details">Details section</a>
-		</div>
+	<div class="navbar">
+		<a href="#overview">Overview section</a>
+		<a href="#usage">Usage section</a>
+		<a href="#details">Details section</a>
+	</div>
 	{% endif %}
 	<div class="container">{{ content }}</div>
 	<footer>
