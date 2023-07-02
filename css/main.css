@@ -17,6 +17,11 @@ p img {
     margin-right: auto;
 }
 
+.img {
+    max-width: 25%;
+    height: auto;
+}
+
 .navbar {
     overflow: hidden;
 }

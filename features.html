@@ -11,7 +11,7 @@ title: OED features
 		these features by using
 		our <a href="demo.html">live demo site</a>.</p>
 	<p>OED acquires, permanently stores and analyzes data it receives. While this is important in allowing OED to have
-		the features on this page, it is no normally visible to the user and is not discussed here. If you are
+		the features on this page, it is not normally visible to the user and is not discussed here. If you are
 		interested in how OED
 		does this work then please contact the project.</p>
 	<ul>
@@ -42,58 +42,112 @@ title: OED features
 				<li><a href="help/v1.0.0/lineGraphic.html">Line Graphic</a>. Each meter/group is represented by a
 					line graph of usage versus time where you can control the time frame shown. An example is shown in
 					the
-					next figure where Meter 1 and Meter 2 are meter readings and Group 1 & 2 is a group that sums these
-					value which can be verified by checking the hover value on each line (the Group 1 & 2 hover is
-					shown).
+					next figure where "Great Dorm 1st Floor Electric" and "Great Dorm 2nd Floor Electric" meters and
+					"Great Dorm Electric" group that includes these two meters. As such, the group is the sum of the
+					values of the two meters at each time point.
+					value which can be verified by checking the hover value on each line (the "Great Dorm Electric"
+					hover is shown).
 				</li>
 			</ul>
-			<img alt="line graphic with two meters and a group of those meters" src="images/OEDLineGraphicRealData.png"
-				style="width: 75vw; min-width: 700px;">
+			<img alt="line graphic with two meters and a group of those meters in kWh"
+				src="images/lineGraphickWhDaily.png">
+			<p>One can choose any compatible <a href="help/v1.0.0/graphingUnits.html">graphing unit</a> to display the
+				data.
+				In the following figure, the same data is displayed as cost in U.S. dollars. OED supports virtually any
+				unit including CO<sub>2</sub>, weight, volume, temperature, power (kW, etc.) where new units can be
+				created by a site. Every graphic support one choosing the desired unit for display.</p>
+			<img alt="line graphic with two meters and a group of those meters in US $"
+				src="images/lineGraphicUSDollarDaily.png">
+			<p>OED optimizes the time shown between points on a line graphic. This allows each point to be separate
+				along with speeding up graphing requests while minimizing the network traffic. In the previous line
+				graphic examples, each point represented the average usage over one day. Since there was about three
+				years worth of data (16 August 2019 to 16 October 2022), there are 1157 days with that many points on
+				the
+				graphic. This is why the hover information shows 12:00:00 PM for each point because that is the middle
+				of each day/point. While this is useful, sometimes you want to see more detail. In the following
+				figure, the
+				rectangles at the bottom of the graphic were dragged to contain July 2021 and the graphic was then
+				redrawn. The hover now shows thirty minutes into the hour since that is the middle of that
+				point that spans one hour. There are approximately 31 days * 24 hours/day = 744 hourly points in this
+				graphic.</p>
+			<img alt="line graphic with July 2021" src="images/lineGraphicUSDollarHourly.png">
+			<p>If you continue to zoom in on days then you will see the original meter readings. In the following
+				figure, the dates were modified to be the first 20 days in July. The hover now shows 20 minutes past the
+				hour because that meter reads data every 20 minutes (the reading goes from 10 past the hour to 30 past
+				the hour on this meter). There are 20 days * 24 hours/day * 3 readings/hour
+				= 1440 readings on this graphic.</p>
+			<img alt="line graphic with early July 2021" src="images/lineGraphicUSDollarRaw.png">
+			<p>OED will give the highest quality (shortest time between points) for each meter that it can given the
+				date range of the graphic.</p>
 			<ul>
 				<li><a href="help/v1.0.0/barGraphic.html">Bar Graphic</a>. Each meter/group is represented by a
-					series of bars over the total time chosen of the total usage over the chosen number of days for each
+					series of bars over the total time chosen showing the total usage over the chosen number of days for
+					each
 					bar. An example of four weeks is shown in the next figure for the same meters/group for the line
-					graphic. Again the group is the sum of the two meters.
+					graphic. It is for kWh where the date range selected was for all of 2021 so there are 52 weeks / 4
+					weeks/bar = 13 bars. Again the group is the sum of the two meters.
 				</li>
 			</ul>
-			<img alt="bar graphic with two meters and a group of those meters" src="images/OEDBarGraphicRealData.png"
-				style="width: 75vw; min-width: 700px;">
+			<img alt="bar graphic with two meters and a group of those meters for 4 weeks"
+				src="images/barGraphickWh4Week.png">
+			<p>There are several bar graphic options. One allows for predefined day, week and 4 weeks bars or one can
+				select
+				between 1 to 365 days if those are not desired. You can also stack the bars rather than having them next
+				to each other for each date range shown.</p>
 			<ul>
 				<li><a href="help/v1.0.0/compareGraphic.html">Compare Graphic</a>. Each meter/group is represented by
 					its own
 					bar group comparing the current usage to the previous usage over day, week or four weeks. OED
 					supports sorting the graphs alphabetically and by how much they improved between the current and
 					previous time period. Typically this graphic is used to see how usage is changing and to compare
-					between different areas of an organization. For example, on a college campus you could run an energy
-					competition to see how each dorm is doing in saving energy. An example comparing the current week to
-					the previous week is shown in the next figure for two meters and their combined group. Note the
-					scale of the y-axis varies by meter/group but the sum of the bars for Meter 7 & Meter 8 equals Group
-					7 & 8.
-				</li>
+					between different areas of an organization. For example, on a college campus one could run an energy
+					competition to see how each dorm is doing in saving energy. The following figure shows the running
+					example in kWh comparing the current week to
+					the previous week. Note the
+					scale of the y-axis varies by meter/group but the sum of the bars for the two meters equals the
+					group. </li>
 			</ul>
-			<img alt="compare graphic with two meters and a group of those meters"
-				src="images/OEDCompareGraphicRealData.png" style="width: 75vw; min-width: 700px;">
+			<img alt="compare graphic with two meters and a group of those meters for 1 week"
+				src="images/compareGraphickWhWeek.png" style="width: 95vw; min-width: 1024px;">
+				<img alt="compare graphic with two meters and a group of those meters for 1 week"
+				src="images/compareGraphickWhWeek.png">
 			<ul>
 				<li><a href="help/v1.0.0/mapGraphic.html">Map Graphic</a>. Each meter/group is represented by a
-					circle on a map where the size of the circle represents usage. This representation is useful in
+					circle on a map where the size of the circle represents usage per day for the range selected (day,
+					week, 4 weeks). This representation is useful in
 					getting a visual sense of how much energy different areas (often buildings) of an organization use.
 					A site can have as many maps as they wish and maps can overlap (for example, a larger map with the
 					entire organization and ones that zoom in on specific areas).
 					The site administrator can upload any graphical image of the organization and they use a web
 					interface to define GPS coordinates for all meters/groups. This requires no additional software nor
-					knowledge of GIS graphing. An example is shown in the following figure for two meters and a group.
+					knowledge of GIS graphing. The following figure shows the electric usage in kWh of four different
+					buildings over four weeks. Three of the buildings use meters for the entire building and the forth
+					uses a group since each floor of "Great Dorm" has a separate meter. The hover shows the actual value
+					that the circle represents.
 				</li>
 			</ul>
-			<img alt="map graphic with two meters" src="images/OEDMap.png" style="width: 75vw; min-width: 700px;">
+			<img alt="map graphic of 4 buildings" src="images/mapGraphickWh4Weeks.png"">
 		</li>
-		<li><a href="help/v1.0.0/export.html">Data Export</a>. You can export the data of the line and bar graphics
+		<li><a href=" help/v1.0.0/TODO.html">Area normalization</a>. Because the area covered by a meter or group can vary
+			greatly, the absolute usage can be misleading. To help, OED allows for normalizing the usage by the area
+			represented. The following figure shows the electrical usage in BTUs (showing you can display in any energy
+			unit because the meters collect this information in kWh). The library uses slightly less energy than "Great
+			Dorm".
+		</li>
+		<img alt="line graphic of two building electric usage" src="images/lineGraphicBtu.png">
+		<p>In the next graphic, the option to "Normalize by Area" is selected. The library is 10x larger (100,000 sq.
+			meters vs 10,000 sq. meters) so it is now shows dramatically less usage. Clearly the Library is either used
+			differently or is much more efficient.</p>
+		<img alt="line graphic of two building electric usage normalized by area" src="images/lineGraphicBtuArea.png">
+		<li><a href=" help/v1.0.0/export.html">Data Export</a>. You can export the data of the line and bar graphics
 			which
 			includes all meters and groups for the specified time frame of the graphic. This means you can use OED to
 			inspect the data, including its ability to sum data into groups, and if you decide you would like to work on
 			that data outside OED you simply click a button. This also gives you the ability to export all meter data
 			that resides in OED for a full
 			data dump. OED feels you should always have easy access to your data
-			from the web pages. After all, it is your data. OED believes in being open in many ways.</li>
+			from the web pages. After all, it is your data. OED believes in being open in many ways.
+		</li>
 		<li><a href="help/v1.0.0/chartLink.html">Chart Links</a>. Sometimes you want to post a specific graphic from OED
 			so
 			others
@@ -140,7 +194,8 @@ title: OED features
 			other applications on your server.</li>
 		<li>A site can change the default language displayed on all web pages. OED currently supports English, Spanish
 			(Latin American variation) and French. (Some newer parts, such as the help system, are awaiting translation
-			from English.) Any site wishing to add an additional language should contact us.
+			from English.) Any site wishing to add an additional language should contact us. The user can also choose
+			the preferred language.
 			Once the list of phrases used is translated, we can easily include them in OED.</li>
 		<li>OED has the ability to send the site administrator a regular email to inform them of any issues OED has
 			encountered including failures to acquire meter data.</li>
