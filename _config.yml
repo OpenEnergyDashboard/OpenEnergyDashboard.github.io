@@ -17,3 +17,8 @@ defaults:
       path: "developer"
     values:
       layout: developer
+  -
+    scope:
+      path: "help"
+    values:
+      layout: help
