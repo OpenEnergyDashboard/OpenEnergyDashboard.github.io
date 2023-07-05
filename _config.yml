@@ -12,3 +12,8 @@ defaults:
       path: ""
     values:
       navbarShown: true
+  -
+    scope:
+      path: "developer"
+    values:
+      layout: developer
