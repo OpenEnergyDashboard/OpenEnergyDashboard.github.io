@@ -22,7 +22,7 @@ defaults:
       path: ""
     values:
       layout: default
- -
+  -
     scope:
       path: "developer"
     values:
