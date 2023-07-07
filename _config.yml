@@ -6,6 +6,11 @@ theme: jekyll-theme-minimal
 plugins:
   - jekyll-redirect-from
 
+liquid:
+  error_mode: strict
+  strict_variables: true
+  strict_filters: true
+
 defaults:
   -
     scope:
@@ -13,6 +18,11 @@ defaults:
     values:
       navbarShown: true
   -
+    scope:
+      path: ""
+    values:
+      layout: default
+ -
     scope:
       path: "developer"
     values:
