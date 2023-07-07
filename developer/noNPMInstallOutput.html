@@ -35,7 +35,7 @@ title: OED quick install
 [43 ms] Start: Resolving Remote
 [61 ms] Setting up container for folder or workspace: /Users/steve/OED/OED
 [68 ms] Start: Check Docker is running
-[68 ms] Start: Run: docker version --format
+[68 ms] Start: Run: docker version --format \{\{.Server.APIVersion\}\}
 [343 ms] Server API version: 1.41
 [348 ms] Start: Run: docker volume ls -q
 [873 ms] Start: Run: docker ps -q -a --filter label=vsch.local.folder=/Users/steve/OED/OED --filter label=vsch.quality=stable
@@ -96,7 +96,7 @@ volumes:
 - /Users/steve/OED/OED:/workspace:cached
 version: '2.1'
 
-[5086 ms] Start: Run: docker events --format {{json .}} --filter event=start
+[5086 ms] Start: Run: docker events --format \{\{json .\}\} --filter event=start
 [5088 ms] PersistedPath=/var/folders/kr/7wxdvbk15fx5kqh22yvb42w00000gn/T, ContainerHasLabels=true
 [5088 ms] Container was created with these config files: /Users/steve/OED/OED/docker-compose.yml
 [5088 ms] Expected to find a docker-compose file prefixed with docker-compose.devcontainer.containerFeatures, but did not.
