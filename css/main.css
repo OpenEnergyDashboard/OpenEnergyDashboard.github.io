@@ -19,10 +19,14 @@ h1, h2, h3, h4, h5 {
     height: auto;
 } */
 
-/* img {
-    max-width: 25%;
+img {
+    display: block;
+    margin-left: auto;
+    min-width: 640px;
+    margin-right: auto;
+    max-width: 95%;
     height: auto;
-} */
+}
 
 .navbar {
     overflow: hidden;
