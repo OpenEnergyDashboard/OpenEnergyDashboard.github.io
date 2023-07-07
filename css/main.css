@@ -24,7 +24,16 @@ img {
     margin-left: auto;
     min-width: 640px;
     margin-right: auto;
-    max-width: 95%;
+    max-width: 1000px;
+    height: auto;
+}
+
+p img {
+    display: block;
+    margin-left: auto;
+    min-width: 640px;
+    margin-right: auto;
+    max-width: 800px;
     height: auto;
 }
 
