@@ -49,14 +49,14 @@ title: OED features
 				</li>
 			</ul>
 			<p><img alt="line graphic with two meters and a group of those meters in kWh"
-				src="images/lineGraphickWhDaily.png"></p>
+					src="images/lineGraphickWhDaily.png"></p>
 			<p>One can choose any compatible <a href="help/v1.0.0/graphingUnits.html">graphing unit</a> to display the
 				data.
 				In the following figure, the same data is displayed as cost in U.S. dollars. OED supports virtually any
 				unit including CO<sub>2</sub>, weight, volume, temperature, power (kW, etc.) where new units can be
 				created by a site. Every graphic support one choosing the desired unit for display.</p>
-			<img alt="line graphic with two meters and a group of those meters in US $"
-				src="images/lineGraphicUSDollarDaily.png">
+			<p><img alt="line graphic with two meters and a group of those meters in US $"
+					src="images/lineGraphicUSDollarDaily.png"></p>
 			<p>OED optimizes the time shown between points on a line graphic. This allows each point to be separate
 				along with speeding up graphing requests while minimizing the network traffic. In the previous line
 				graphic examples, each point represented the average usage over one day. Since there was about three
@@ -69,13 +69,13 @@ title: OED features
 				redrawn. The hover now shows thirty minutes into the hour since that is the middle of that
 				point that spans one hour. There are approximately 31 days * 24 hours/day = 744 hourly points in this
 				graphic.</p>
-			<img alt="line graphic with July 2021" src="images/lineGraphicUSDollarHourly.png">
+			<p><img alt="line graphic with July 2021" src="images/lineGraphicUSDollarHourly.png"></p>
 			<p>If you continue to zoom in on days then you will see the original meter readings. In the following
 				figure, the dates were modified to be the first 20 days in July. The hover now shows 20 minutes past the
 				hour because that meter reads data every 20 minutes (the reading goes from 10 past the hour to 30 past
 				the hour on this meter). There are 20 days * 24 hours/day * 3 readings/hour
 				= 1440 readings on this graphic.</p>
-			<img alt="line graphic with early July 2021" src="images/lineGraphicUSDollarRaw.png">
+			<p><img alt="line graphic with early July 2021" src="images/lineGraphicUSDollarRaw.png"></p>
 			<p>OED will give the highest quality (shortest time between points) for each meter that it can given the
 				date range of the graphic.</p>
 			<ul>
@@ -87,8 +87,8 @@ title: OED features
 					weeks/bar = 13 bars. Again the group is the sum of the two meters.
 				</li>
 			</ul>
-			<img alt="bar graphic with two meters and a group of those meters for 4 weeks"
-				src="images/barGraphickWh4Week.png">
+			<p><img alt="bar graphic with two meters and a group of those meters for 4 weeks"
+					src="images/barGraphickWh4Week.png"></p>
 			<p>There are several bar graphic options. One allows for predefined day, week and 4 weeks bars or one can
 				select
 				between 1 to 365 days if those are not desired. You can also stack the bars rather than having them next
@@ -102,10 +102,16 @@ title: OED features
 					between different areas of an organization. For example, on a college campus one could run an energy
 					competition to see how each dorm is doing in saving energy. The following figure shows the running
 					example in kWh comparing the current week to
-					the previous week. Note the
+					the previous week. It is sorted from the meter/group with the least improvement to the one with the
+					best improvement. The title of each graphic is colored coded so it is green when using less
+					energy was used in the current time vs the past time and red if using more. Note the
 					scale of the y-axis varies by meter/group but the sum of the bars for the two meters equals the
-					group. </li>
+					group.</li>
 			</ul>
+			<p>There are several bar graphic options. One allows for predefined day, week and 4 weeks bars or one can
+				select
+				between 1 to 365 days if those are not desired. You can also stack the bars rather than having them next
+				to each other for each date range shown.</p>
 			<p><img alt="compare graphic with two meters and a group of those meters for 1 week"
 					src="images/compareGraphickWhWeek.png"></p>
 			<ul>
@@ -123,19 +129,25 @@ title: OED features
 					that the circle represents.
 				</li>
 			</ul>
-			<img alt="map graphic of 4 buildings" src="images/mapGraphickWh4Weeks.png"">
+			<p><img alt="map graphic of 4 buildings" src="images/mapGraphickWh4Weeks.png""></p>
 		</li>
 		<li><a href=" help/v1.0.0/TODO.html">Area normalization</a>. Because the area covered by a meter or group can vary
-			greatly, the absolute usage can be misleading. To help, OED allows for normalizing the usage by the area
-			represented. The following figure shows the electrical usage in BTUs (showing you can display in any energy
-			unit because the meters collect this information in kWh). The library uses slightly less energy than "Great
-			Dorm".
+				greatly, the absolute usage can be misleading. To help, OED allows for normalizing the usage by the area
+				represented. The following figure shows the electrical usage in BTU (showing you can display in any
+				energy
+				unit because the meters collect this information in kWh). The Theater uses the most electricity then the
+				Dining Hall and the least by Great Dorm.
 		</li>
-		<img alt="line graphic of two building electric usage" src="images/lineGraphicBtu.png">
-		<p>In the next graphic, the option to "Normalize by Area" is selected. The library is 10x larger (100,000 sq.
-			meters vs 10,000 sq. meters) so it is now shows dramatically less usage. Clearly the Library is either used
-			differently or is much more efficient.</p>
-		<img alt="line graphic of two building electric usage normalized by area" src="images/lineGraphicBtuArea.png">
+		<p><img alt="line graphic of two building electric usage" src="images/lineGraphicBtu.png"></p>
+		<p>In the next graphic, the option to "Normalize by Area" is selected. Note the y-axis units are now "BTU / Hour
+			/ sq. meters". The area of the the Theater is 10,000 sq. meters, the Dining
+			Hall is 1,000 sq. meters and the Great Dorm is 10,000 sq. meters. Thus, when normalized by area, the Theater
+			is substantially below the Dining Hall because it is 10 times larger. There is no change between the Theater
+			and Great Dorm because they are the same area. Clearly the Theater is either used
+			differently or is much more efficient compared to the Dining Hall.</p>
+		<p><img alt="line graphic of two building electric usage normalized by area"
+				src="images/lineGraphicBtuArea.png"></p>
+		<p>One can normalize by either sq. meters or sq. feet independent of the area unit for a meter/group.</p>
 		<li><a href=" help/v1.0.0/export.html">Data Export</a>. You can export the data of the line and bar graphics
 			which
 			includes all meters and groups for the specified time frame of the graphic. This means you can use OED to
