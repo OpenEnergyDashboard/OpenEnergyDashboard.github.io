@@ -157,22 +157,21 @@ title: OED features
 			data dump. OED feels you should always have easy access to your data
 			from the web pages. After all, it is your data. OED believes in being open in many ways.
 		</li>
-		<li><a href="help/v1.0.0/chartLink.html">Chart Links</a>. Sometimes you want to post a specific graphic from OED
-			so
-			others
-			can easily see it. For example, you might want to have a link on your website to let the public easily see
-			how you are reducing your energy usage. You also might want to easily get back a graphic that is interesting
-			and took time to produce. For any graphic, you can click a button to get a URL that you can either use as a
-			link in a website or put into the address bar in your web browser to recreate that graphic. While the same
-			graphic is reproduced, you are in a full featured version of OED so you can continue to interact with the
-			system as you wish.</li>
 		<li><a href="help/v1.0.0/hideOptions.html">Hiding Options</a>. OED is designed to work on any reasonable device
 			from a
 			cell
 			phone to large monitor. If you are on a small screen or a monitor that is not interactive, you might want to
 			only have the graphics on the screen. You can hide the options normally shown on the page so they are docked
 			in the top, left corner where popup menu gives access to all the OED controls that were docked.</li>
-		<li>OED provides help within the web pages that contain links to context sensitive help pages.</li>
+		<li><a href="help/v1.0.0/chartLink.html">Chart Links</a>. Sometimes you want to post a specific graphic from OED
+			so others
+			can easily see it. For example, you might want to have a link on your website to let the public easily see
+			how you are reducing your energy usage. You also might want to easily get back a graphic that is interesting
+			and took time to produce. For any graphic, you can click a button to get a URL that you can either use as a
+			link in a website or put into the address bar in your web browser to recreate that graphic. While the same
+			graphic is reproduced, you are in a full featured version of OED so you can continue to interact with the
+			system as you wish. To support public monitors without interaction, the link has an option to hide the
+			menus.</li>
 		<li><a href="help/v1.0.0/meterViewing.html">Meter</a> and <a href="help/v1.0.0/groupViewing.html">Group</a>
 			Viewing. There is
 			a page to see details on meters and another for groups. This allows users to see information about the data
@@ -181,30 +180,29 @@ title: OED features
 			information for a meter or group.</li>
 		<li><a href="help/v1.0.0/tooltip.html">Tooltip help</a>. OED has help throughout the web pages to give users
 			context sensitive help that is linked to the OED help web pages.</li>
-		<li><a href="help/v1.0.0/admin.html">Admin pages</a>. OED believes that a non-IT person should be able to get a
-			site
-			running
-			and control the site with just a web browser. OED provides web pages to control many aspects including meter
-			information, site language, default graphic shown and the site name. There are also features to allow admins
+		<li><a href="help/v1.0.0/admin.html">Admin pages</a>. OED believes that a non-IT person should be able to set up
+			a site
+			and control the site with just a web browser. OED provides web pages to control many aspects including
+			meter, group, unit, conversion and map creation and editings, site language, default graphic shown and the
+			site name. There are also features to allow admins
 			to input new meters and manually add meter data via a CSV file.</li>
 		<li>OED has an interface that allows acquisition of data from many sources. At the current time we can
 			automatically accept data from <a href="http://www.obvius.com/" rel="noopener noreferrer">Obvius
 				AcquiSuite</a>, which can collect
-			data from many meter types, and <a href="http://mamacsys.com/" rel="noopener noreferrer">MAMAC meters</a>.
-			Release 0.8 will include
-			upload of files in CSV format to
-			add to a meter. This will allow for loading historical data as well as sending data from other devices where
+			data from many meter types, <a href="http://mamacsys.com/" rel="noopener noreferrer">MAMAC meters</a> and <a
+				href="https://www.egauge.net/" rel="noopener noreferrer">eGauge meters</a>. OED can also accept meter
+			data or the creation of new meters via a CSV file either through the admin web pages or the internet.
+			The CSV upload allows for loading historical data as well as sending data from other devices where
 			the data can be placed in a CSV file. If the current methods for acquiring meter data do not meet your
 			needs, you can produce code to have OED accept the new meter format through our API or contact OED to see if
-			we will do the
-			necessary modifications.</li>
+			we will do the necessary modifications.</li>
 		<li>Easy site installation via the Docker containerized system. The automated installation process takes care of
 			all needed software. It also isolates OED from other software running on your system so it should not impact
 			other applications on your server.</li>
 		<li>A site can change the default language displayed on all web pages. OED currently supports English, Spanish
 			(Latin American variation) and French. (Some newer parts, such as the help system, are awaiting translation
-			from English.) Any site wishing to add an additional language should contact us. The user can also choose
-			the preferred language.
+			from English.)  The user can also choose
+			the preferred language. Any site wishing to add an additional language should contact us.
 			Once the list of phrases used is translated, we can easily include them in OED.</li>
 		<li>OED has the ability to send the site administrator a regular email to inform them of any issues OED has
 			encountered including failures to acquire meter data.</li>
@@ -212,7 +210,7 @@ title: OED features
 		<li>Unlike some energy dashboards, OED is designed to allow users to interact with the data. If the dashboard
 			takes significant time to respond then the user will not want to use interactive features. OED has invested
 			significant effort in making the system very responsive by sophisticated data management techniques and
-			limiting network transfers.</li>
+			limiting network transfers. Our goal is sub 1 second response times.</li>
 		<li>OED is based on modern, free, maintained and reliable software. This means OED will be a viable dashboard
 			for many years
 			to come while still supporting current and future computers, cell phones, etc.</li>
