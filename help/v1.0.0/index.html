@@ -1,14 +1,13 @@
 ---
 title: OED help
+navbarShown: false
 ---
 <div>
 	<!-- Add version info at top of page. Would be nice if could put in layout but then relative link does not work. -->
 	{% include_relative _version.html %}
 	<!-- Page content -->
-	<!-- Put empty elements at top of page for the standard links on each page -->
-	<code id="overview"></code><code id="usage"></code><code id="details"></code>
 	<h1>Help Overview</h1>
-	<p>These pages provide help about the Open Energy Dashboard (OED) system. You can use the links at the top or any
+	<p>These pages provide help about the Open Energy Dashboard (OED) system. You can use the links at the top on any
 		help page to go the
 		appropriate section for your question or look at the description/links below. Note that each version of OED has
 		its own help pages. You will be taken to the latest version on the website and the version of OED you are
@@ -17,14 +16,19 @@ title: OED help
 		example, a feature may not have existed in earlier versions so there is not help page for that feature. If you
 		select another version and the web browser gives you a "404 File not found" error then this is likely the case.
 		You can use the web browser's back button to return to the page you were on to get back to the help system.</p>
-	<p>The help (? within OED) can be clicked to reveal information about the features(s) near the question mark. That
-		information generally contains links to help pages directly related to the feature being described. This context
+	<p>The help icon <img alt="help icon" src="./images/helpIcon.png"> can be clicked within OED to reveal information
+		about the features(s) near the <img alt="help icon" src="./images/helpIcon.png">. That
+		information generally contains a brief overview and links to help pages directly related to the feature being
+		described. This context
 		sensitive help can aid users while working with OED and lead them to appropriate help pages.</p>
 	<p>OED uses JavaScript for many features. You must have JavaScript enabled for the web browser page that contains
-		OED.</p>
+		OED. If JavaScript is not enabled then you will see "OED requires JavaScript to run correctly. Please enable
+		JavaScript." when you load OED into the web browser page.</p>
+	<p>The following is a listing of all the main help pages in OED. Some pages that are related to a main page are
+		linked from a main page.</p>
 	<ul>
 		<li><a href="./exampleDescription.html">Description of website example</a>: describes the example data used in
-			the website including the help pages.</li>
+			the help pages.</li>
 		<li><a href="graphType.html">Graph Type</a>: describes the types of graphics and how to select them.</li>
 		<li><a href="graphingMeters.html">Graphing Meters</a>: describes the ideas of meters and how to get them
 			graphed.</li>
@@ -45,8 +49,10 @@ title: OED help
 		<li><a href="chartLink.html">Chart Link</a>: describes how to get a persistent URL for recreating a graphic with
 			a hyperlink.</li>
 		<li><a href="hideOptions.html">Hide Options</a>: describes how dock/undock the buttons/options on the left side
-			a hyperlink.</li>
-		<li><a href="pageChoices.html">Page Choices</a>: describes different pages available and choosing them.</li>
+			of the OED graphic pages.</li>
+		<li><a href="pageChoices.html">Pages Menu</a>: describes different pages available and choosing them.</li>
+		<li><a href="optionsMenu.html">Options Menu</a>: describes language choices, hide/show options and log in/out
+			and choosing them.</li>
 		<li><a href="meterViewing.html">Meter Viewing</a>: describes the page where you can see details on meters.</li>
 		<li><a href="groupViewing.html">Group Viewing</a>: describes the page where you can see details on groups.</li>
 		<li><a href="home.html">Home Navigation</a>: describes how to return to the main (graphic) OED page.</li>
