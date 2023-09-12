@@ -19,7 +19,7 @@ title: OED line graphic help
 		by this point. In the figure below, the time in the hover is
 		12:00:00 PM which is the middle of the day (noon) since the point spans an entire day. It is the same as the
 		x-axis value. Each line represents power usage at that time for the indicated meter/group, e.g., kW for
-		electricity with the graphing unit of kWh. To get
+		electricity with the graphing unit of kWh (see <a href="./graphingUnits.html#yAxisUnit">y-axis unit</a>). To get
 		this graphic, one clicks the "Line" choice (highlighted with a blue box) from the "Graph type" dropdown
 		menu.
 	</p>
@@ -75,11 +75,13 @@ title: OED line graphic help
 		process
 		of dragging where the time displayed has now changed to January through June, 2021.</p>
 	<p><img alt="scrolling time in a line graphic" src="./images/lineScrolled.png"></p>
-	<p>If one zoom3 in significantly so the time range is much smaller than the original time range, the graph can become
+	<p>If one zoom3 in significantly so the time range is much smaller than the original time range, the graph can
+		become
 		jagged due to having too few points. Also, one might want to return the graphic to its original, full time
 		range. Both of these are discussed in the next section on the "Redraw" and "Restore" buttons.
 	</p>
-	<p>If one goes to another page then the zoomed values will be lost unless one redraws as described in the next section.
+	<p>If one goes to another page then the zoomed values will be lost unless one redraws as described in the next
+		section.
 	</p>
 
 	<h3 id="redrawRestore">Redraw and Restore buttons</h3>
@@ -107,7 +109,8 @@ title: OED line graphic help
 		original figure at the
 		top of this page when the different y-xis scales are taken into account.</p>
 	<p><img alt="restoring time in a line graphic" src="./images/lineRestored.png"></p>
-	<p id="lineQuality">As noted, when one clicks "Redraw" the data, OED recalculates the number of points to display. Part of that process is
+	<p id="lineQuality">As noted, when one clicks "Redraw" the data, OED recalculates the number of points to display.
+		Part of that process is
 		deciding the frequency, i.e., the time between points, that is shown. OED tries to return the highest quality
 		data it can without returning too many graphing points. This means that it will first try to return meter data
 		then hourly and finally daily data. At the current time, OED limits the number of graphic
@@ -152,6 +155,10 @@ title: OED line graphic help
 		does not take into account if the meter supplies data at a different rate.</p>
 
 	<h2 id="details">Details</h2>
+
+	<h2>Y-axis label</h2>
+	<p> See <a href="./graphingUnits.html#yAxisUnit">graphic units used</a> for an explanation of the y-axis units and
+		why they can vary from the graphing unit selected.</p>
 
 	<h3>Exporting graph data</h3>
 	<p>one can export the data represented on a line graphic. one can use the line graph to get the time range,
