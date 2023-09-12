@@ -2,7 +2,6 @@
 title: OED unit help
 ---
 <div>
-	<!-- TODO: add about kWh and kW graphing in same kW. -->
 	<!-- Add version info at top of page. Would be nice if could put in layout but then relative link does not work. -->
 	{% include_relative _version.html %}
 	<!-- Page content -->
@@ -22,8 +21,7 @@ title: OED unit help
 		or group, then the default graphic unit associated with that meter or group will become the current unit. In the
 		following figure, "Dining Hall Electric" was selected so OED automatically sets the units to "kWh". (Both shown
 		in blue rectangle.) The y-axis
-		graphing unit on this line graphic is the related unit of kW. See TODO for information on the unit used in the
-		graphic including kW and kWh are both graphed at kW.</p>
+		graphing unit on this line graphic is the related flow unit of kW (see <a href="#yAxisUnit">below</a>).</p>
 	<p><img alt="Graphic after selecting the Dining Hall Electric meter" src="./images/graphicUnitMenuAfterMeter.png">
 	</p>
 	<p>Clicking on the down arrow to reveal the "Units:"" options will show all units and their status for the selected
@@ -44,8 +42,7 @@ title: OED unit help
 	<p><img alt="Graphic unit menu showing incompatible choices" src="./images/graphicUnitMenuIncomptibleChoices.png"
 			style="min-width: 197px;"></p>
 	<p>Any allowed unit can be selected to update the displayed graphic unit. As shown in the following figure, "US $"
-		was selected and the y-axis label became "US $/hour". See TODO for information on the time unit
-		used and how to change it.</p>
+		was selected and the y-axis label became "US $/hour". (see <a href="#yAxisUnit">below</a>)</p>
 	<p><img alt="Graphic after selecting US $ unit" src="./images/graphicAfterUSDollar.png"></p>
 	<p>Selecting additional meters/groups will not change the graphic unit on the "Units" menu but it can alter the
 		allowed/incompatible units that are displayed. This is due to the fact that the allowed units are those that are
@@ -79,14 +76,16 @@ title: OED unit help
 		<li>Raw (as named by OED). These are not quantities and are not consumed. The common example is temperature
 			(Celsius, Fahrenheit).</li>
 	</ul>
-	<p>Each type of graphic has a y-axis unit that it wants to graph:</p>
+	<p id="yAxisUnit">Each type of graphic has a y-axis unit that it wants to graph:</p>
 	<ul>
 		<li>Line graphic. This shows a rate since each point is a moment in time. If the graphing unit is a quantity
 			then OED will convert that to the rate of usage (quantity / time) by using the fact that
-			measurements/readings from a meter span a time in OED. If the graphing unit is a rate then it directly graphs
+			measurements/readings from a meter span a time in OED. If the graphing unit is a rate then it directly
+			graphs
 			the value as it is
-			already a rate. In both these cases, the <a href="./graphingRates.html">graphing rate</a> generally
-			determines the time used for the rate. If the graphing unit is a raw unit then it also directly graphs the
+			already a rate. In both these cases, the <a href="./graphingRates.html">graphing rate</a>
+			determines the time used for the rate but with an <a href="./graphingRates.html#details">exception for kWh &
+				kW</a>. If the graphing unit is a raw unit then it also directly graphs the
 			value because it does
 			not make sense to talk about the rate usage of something that is not consumed. For example, Celsius / hour
 			is not something one talks about.</li>
@@ -103,9 +102,7 @@ title: OED unit help
 			that is displayed. It is a type of rate but always the average rate per day. This was done so the value
 			shown is similar when different time ranges are selected.</li>
 	</ul>
-	<p>The above discussion gives the basic idea. Figuring out exactly what OED does in each case is more complex. For
-		example, what happens when a quantity reading overlaps two time ranges in a graphic. A number of these are
-		described in TODO link to line graphic and probably others. </p>
+	<p></p>
 
 	<h2 id="details">Details</h2>
 	<p>An easy way to see all available graphing units is to use the "Units" dropdown menu when no meter/group is
@@ -115,5 +112,4 @@ title: OED unit help
 		Note if you do this and don't select an option, OED will set the unit to "Select Unit" and clear all your
 		selected meters/groups. To avoid this, delete the character(s) entered for the search to get back to just the
 		previously selected unit.</p>
-	<p id="unitTypes">TODO describe y-axis unit for quantities, rates and raw.</p>
 </div>
