@@ -55,11 +55,17 @@
 			</div>
 		</div>
 	</div>
+	{% if page.navbarShown == true %}
+	<div class="navbar">
+		<a href="#overview">Overview section</a>
+		<a href="#usage">Usage section</a>
+		<a href="#details">Details section</a>
+	</div>
+	{% endif %}
 	<div class="container">{{ content }}</div>
-	<!-- /.container -->
 	<footer>
 		<div class="navbar">
-			<a href="mailto:developer@OpenEnergyDashboard.org">Email Developer Help or comments on these
+			<a href="mailto:help@OpenEnergyDashboard.org">Email OED Help or comments on these
 				pages</a>
 			<a href="https://github.com/OpenEnergyDashboard/OED" target="_blank" rel="noopener noreferrer">GitHub
 				Repository</a>

@@ -29,6 +29,7 @@
 				<a href="graphingGroups.html">Graphing Groups</a>
 				<a href="graphingUnits.html">Units</a>
 				<a href="graphingRates.html">Rates</a>
+				<a href="areaNormalization.html">Area Normalization</a>
 				<a href="lineGraphic.html">Line Graphic</a>
 				<a href="barGraphic.html">Bar Graphic</a>
 				<a href="compareGraphic.html">Compare Graphic</a>
@@ -55,6 +56,7 @@
 		<div class="dropdown">
 			<button class="dropbtn">Information &#x25BC</button>
 			<div class="dropdown-content">
+				<a href="exampleDescription.html">Help example</a>
 				<a href="time.html">OED and Time</a>
 			</div>
 		</div>
@@ -75,11 +77,13 @@
 		</div>
 		<a href="../../contact.html">Contact Us</a>
 	</div>
+	{% if page.navbarShown == true %}
 	<div class="navbar">
 		<a href="#overview">Overview section</a>
 		<a href="#usage">Usage section</a>
 		<a href="#details">Details section</a>
 	</div>
+	{% endif %}
 	<div class="container">{{ content }}</div>
 	<footer>
 		<div class="navbar">
@@ -89,7 +93,8 @@
 		</div>
 		<p>This page is part of the Open Energy Dashboard and is subject to the terms of the Mozilla Public License,
 			v. 2.0. If a copy of the MPL was not distributed with this file, you can obtain one at <a
-				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.</p>
+				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.
+		</p>
 	</footer>
 </body>
 

@@ -1,5 +1,4 @@
 ---
-layout: developer
 title: OED dev details
 ---
 <div>
@@ -27,9 +26,34 @@ title: OED dev details
 		doing this will wipe out any data (meter, readings, preferences, etc.) that you have for this instance of OED.
 		If you wish to force Postgres to reinitialize then do the following:</p>
 	<ol>
-		<li>Remove the postgres-data/ directory from the main OED directory. While you can delete it, it is probably
-			safer to move the entire directory somewhere else outside your OED directory. That way, if something goes
-			wrong, you can remove the new postgres-data/ directory and put this one back.</li>
+		<li>Remove the postgres-data/ directory from the main OED directory. While you can move it to keep a copy, some
+			OSes will still use the moved directory as if it exists in the main OED directory (at least until a reboot).
+			Thus, it is probably best to delete the directory. Also note that OED should not be running when you do this
+			as it will cause all kinds of problems when it does not find this directory. OED will automatically recreate
+			the next time you bring it up.
+			<ul>
+				<li>To delete this on Linux, you can do <code>rm -rf postgres-data</code> in the main OED directory.
+					Note you may need to be root to remove this directory. If this is the case, use
+					<code>sudo rm -rf postgres-data</code> where you will be prompted for the root password.
+				</li>
+				<li>It is sometimes tricky to know/login as root on a Windows WSL system. In this case, open the
+					PowerShell, and enter the command <code>wsl -u root</code> that will put you in your WSL/Linus
+					terminal as root. You can then directly delete the postgres-data/ directory. You should be very
+					careful using this terminal as you can do damage as the root user.</li>
+				<li>After you delete the postgres-data/ directory on Windows WSL, you will need to delete both OED
+					containers (can do via the Docker Desktop or Docker extension in VSC). Otherwise, you are likely to
+					get the following error when you restart OED:
+						<p>
+							Error response from daemon: failed to create shim task: OCI runtime create failed: runc
+							create failed: unable to start container process: error during container init: error
+							mounting
+							"/run/desktop/mnt/host/wsl/docker-desktop-bind-mounts/Ubuntu/c5c261024a2161c37bee3afcd0931bd36812e943519b816556c0bfbd60899ef2"
+							to rootfs at "/var/lib/postgresql/data/pgdata": mount
+							/run/desktop/mnt/host/wsl/docker-desktop-bind-mounts/Ubuntu/c5c261024a2161c37bee3afcd0931bd36812e943519b816556c0bfbd60899ef2:/var/lib/postgresql/data/pgdata
+							(via /proc/self/fd/14), flags: 0x5000: no such file or directory: unknown
+						</p>
+				</li>
+			</ul>
 		<li>Do an install of OED by reopening it in the VSC container. Remember if package changes were made then it
 			will reinstall the node_modules. In this case, do not use the keep_node_module option. Note the install will
 			take longer do to the extra initialization.</li>
@@ -86,7 +110,8 @@ title: OED dev details
 	<p>As a developer, you are often changing the code to see what impact it has on a running version of OED. In
 		general, the system should recognize these changes and update the running version. If you change code under the
 		client/ directory, the output will include a rebuild of the code. When that happens, the output
-		will show this line if it worked. This will be in the terminal where OED is running or in nohup.out if you are working inside VSC.<br>
+		will show this line if it worked. This will be in the terminal where OED is running or in nohup.out if you are
+		working inside VSC.<br>
 		<code>oed-web-1       | webpack 5.62.0 compiled successfully in 24100 ms</code><br>
 		If it fails then you will see one or more failure lines (with failure in red) rather than success. It will also
 		show that it is done rebuilding when you see the line:<br>
