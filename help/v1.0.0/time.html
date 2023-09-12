@@ -15,7 +15,8 @@ title: OED time help
 	<h2 id="usage">Usage</h2>
 	<p>OED thought about the issue of time zones and considered alternatives. If someone in New York City, U.S.A has a
 		meeting at 11:00 with people from around the city, then everyone should show up at 11:00. On the other hand, if
-		same person arranged a phone call with someone in Los Angles, U.S.A. then the person in Los Angles expects the
+		the same person arranged a phone call with someone in Los Angles, U.S.A. then the person in Los Angles expects
+		the
 		call at 8:00 since they are three time zones behind (or 3 hours farther behind UTC). The way we deal with
 		it in everyday life is to use time zones since clocks are normally set to the local time zone. As a result, web
 		browsers and other applications often shift a time you receive to local time. This is why, if your
@@ -40,17 +41,16 @@ title: OED time help
 	<p>There was another issue in allowing times to shift to local time. If two different people in different time zones
 		did a line graph from the same site, they saw different looking graphs. The graphs were very similar but shifted
 		by
-		the hours that the time zones differed. This also impacted the other graphs where the bar, compare and map
-		graphics all had slightly different values due to using slightly different times (and therefore values). OED
+		the hours that the time zones differed. This also impacted the other graphs where they all had slightly
+		different values due to using slightly different times (and therefore values). OED
 		felt that anyone, anywhere should see the same graphic for a given site and meter. This is another reason we do
 		not shift to local time.</p>
-	<p>Mostly these issues are not visible to users. However, it can come up and we wanted everyone to understand how
+	<p>Mostly these issues are not visible to users. However, it can come up and OED wanted everyone to understand how
 		OED deals with time.</p>
 	<h2 id="details">Details</h2>
 	<p>OED recognized that users might want to know the original time zone associated with data when it is exported for
-		use outside of OED. If the admin has set the time zone then we plan to give the option to include it in exported
-		data. This will be coming in a future release and will be more valuable once sites have had the opportunity to
-		properly set
-		time zone information. Note this information will be most valuable for the small fraction of sites that might
-		have data that crosses time zones.</p>
+		use outside of OED. OED plans to include the time zone in exported data in a future release. Note this
+		information will be most valuable for the small
+		fraction of sites that might
+		have data that crosses time zones or if dealing with a meter that honors daylight savings time.</p>
 </div>
