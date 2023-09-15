@@ -16,7 +16,7 @@ title: OED admin meter import help
     <h2 id="usage">Usage</h2>
     <p>The information needed to upload meters is the same whether done via the web page or direct file upload. The web
         page looks as follows:</p>
-    <img alt="admin CSV meter page" src="./images/OEDAdminMeterCSV.png" style="width: 75vw; min-width: 700px;">
+    <p><img alt="admin CSV meter page" src="./images/adminMeterCSV.png"></p>
     <p></p>
 
     <h3>Required and optional information</h3>
@@ -28,8 +28,9 @@ title: OED admin meter import help
             This gives the location of the CSV file containing the meter information. On the web page it is via a file
             picker popup. See below on the file format.</li>
         <li><i>Is CSV file in gzip format ("Gzip" checked if true on web page; <code>gzip</code> parameter on direct
-                file upload)</i>: Note this is the Gnu zip format and not a standard .zip file format. The default value
-            is true. Note that gzip files are smaller in size for upload and also have internal validation to protect
+                file upload with default value
+                of true. )</i>: Note this is the Gnu zip format and not a standard .zip file format. Note that gzip
+            files are smaller in size for upload and also have internal validation to protect
             against corruption so they are preferred.</li>
         <li><i>Does CSV have a header row ("Header Row" checked if true on web page; <code>headerRow</code> parameter on
                 direct file upload)</i>: Is the first row of the CSV file header information and not an actual meter
@@ -45,13 +46,17 @@ title: OED admin meter import help
     </ul>
 
     <h3>Meter CSV file format</h3>
-    <p>If the file has a header row then it should be:<br>
-        name,ipaddress,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset
-        end,gap,variation,duplicates,timesort,end only,reading,start time,end time<br>
-        More information on the first set of columns/values are described on the <a href="adminMeterViewing.html">admin
+    <p>Meters in OED store a lot of information about them so there are many possible values. If the file has a header
+        row then it should be:<br>
+        name,url,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset
+        end,gap,variation,duplicates,timesort,end only,reading,start time,end time,previous end,unit,default graphic
+        unit,area unit,reading freq.<br>
+        Currently OED does not use the header row so the names are not critical but it may do so in the future so using
+        these column header names is a good idea. More information on the columns/values are described on the <a
+            href="adminMeterViewing.html">admin
             meter viewing</a>
         page and the later ones are the meter defaults for reading input and described on the <a
-            href="adminReadingsImport.html">admin reading import</a> page.<br>
+            href="adminReadingsImport.html">admin reading import</a> page.????????????todo<br>
         Each following line should contain the values for one meter. Most values can be skipped where the default value
         for OED will be used. A brief description of each value is in the following table:
     </p>
@@ -70,7 +75,7 @@ title: OED admin meter import help
                 <td>none, must be provided and unique</td>
             </tr>
             <tr>
-                <td>ipaddress</td>
+                <td>url</td>
                 <td>The IP address to pull data from some meters</td>
                 <td>none but optional</td>
             </tr>
@@ -236,7 +241,8 @@ title: OED admin meter import help
     </ul>
 
     <h2 id="details">Details</h2>
-    <p id=newMeter>Note that for efficiency reasons and because it is uncommon for the meters to change, OED does not automatically
+    <p id=newMeter>Note that for efficiency reasons and because it is uncommon for the meters to change, OED does not
+        automatically
         recheck for new meters when doing graphing. If you add new meters, there are two ways to get them to be
         available for graphing:</p>
     <ol>

@@ -23,20 +23,23 @@ title: OED admin csv import help
         is described in the next two sections.</p>
 
     <h4>CSV file upload via the web page</h4>
-    <p>If you click on the "CSV" button in the top, right of the main OED screen you will go to the CSV page shown
+    <p>If you click on the "CSV" option from
+		the <a href="./pageChoices.html">"Pages" dropdown menu</a> as shown in the following
+		figure (highlighted in the blue
+		rectangle where "CSV" is grayed out since it has already been clicked) you will go to the CSV page shown
         below. Note that a user must have CSV privileges to see the "CSV" button. This is an OED user with overall
         "admin" rights or just "csv" rights. See the <a href="./adminUser.html">admin user page</a> for more
         information on
         users.</p>
-    <img alt="admin CSV page" src="./images/OEDAdminCSV.png" style="width: 75vw; min-width: 700px;">
-    <p>There are now two tabs near the top of the page (highlighted in blue boxes): one for "Readings" and one for
+    <p><img alt="admin CSV page" src="./images/adminCSV.png"></p>
+    <p>There are now two tabs near the top of the page (highlighted in light blue rectangles in the figure above): one for "Readings" and one for
         "Meters"
         where each imports the a CSV file with the expected import information. The initially selected tab is normally
         the "Readings" one. This page allows for setting options and selecting the desired CSV file and are described
         on the upload help page for each type of upload (see later for appropriate links).</p>
 
     <h4>CSV file upload via direct file upload</h4>
-    <p>Direct file upload is accomplished via HTTP POST request that is often done using the curl command via a
+    <p>Direct file upload is accomplished via a HTTP POST request that is often done using the curl command via a
         script. A sample line to upload a meter is:</p>
     <code>curl https://myuniv.edu:3000/api/csv/meters -X POST -F 'email=csvadmin@myuniv.edu' -F 'password=something' -F 'csvfile=@meterinfo.csv.gz'</code>
     <p>where the command can be understood as follows:</p>

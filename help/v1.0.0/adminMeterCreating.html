@@ -12,8 +12,134 @@ title: OED admin meter creating help
 		interest to a general user. </p>
 
 	<h2 id="overview">Overview</h2>
+	<p>The admin meter creating popup, shown in the following figure, allows admin users to creating a new
+		meter on an OED site. It is accessed from
+		the <a href="./adminMeterViewing.html">admin meter viewing page</a> by clicking the "Create a
+		Meter" button near the top of that page.
+	</p>
+	<p><img alt="Admin meter creating popup" src="./images/adminMeterCreatingPopupOne.png"></p>
+	<p><img alt="Admin meter creating popup" src="./images/adminMeterCreatingPopupTwo.png"></p>
+	<p>All information shown on this page is based upon the <a href="exampleDescription.html">help example</a>.</p>
 
 	<h2 id="usage">Usage</h2>
+	<p>As shown in the figure above, the following information can be entered:</p>
+	<ol>
+		<li>Identifier. This is the "name" of the meter shown when <a href="graphingMeters.html">graphing
+				meters</a>. The identifier of a meter must be different from any other meter. If no identifier is
+			provided then the name provided is automatically used.</li>
+		<li>Name. This is the name of the meter. It is often the same as the identifier but can differ. There are two
+			values because OED sometimes needs to internally use a special name that is not very user friendly so the
+			identifier is also useful. Sites can also use this name for similar or other reasons when they want
+			something other than what is displayed to the user. The name of a meter must be different from any other
+			meter. This field will be outlined in red until a unit is selected as
+			is shown in the figures.</li>
+		<li>Unit. This dropdown menu allows for the selection of the unit that the meter collects in. This is related
+			but different than the <a href="./graphingUnits.html">graphing unit</a> used. Some information on the meter
+			unit is given on the <a href="exampleDescription.html">help example</a> page. The result of
+			clicking this dropdown menu is shown in the following figure.</li>
+		<!-- Need to override the default size for most images on pages. -->
+		<img alt="Admin meter unit choices" src="./images/adminMeterUnitDropdown.png" style="width:249">
+		<p>All units of meter type will be shown and any one that is compatible with the default graphic unit can be
+			selected by clicking it. The compatible/selectable units will be at the top of the dropdown menu and the
+			incompatible/non-selectable ones will be at the bottom in grayed out font. In the following figure, the
+			compatible units are in the blue Rectangle and the incompatible units are in the light blue rectangle where
+			the
+			default graphic unit was already set to kWh.</p>
+		<!-- Need to override the default size for most images on pages. -->
+		<img alt="Admin meter unit choices separated by compatible and incompatible"
+			src="./images/adminMeterUnitDropdownSeparated.png" style="width:249">
+		<p>A meter unit is compatible with
+			the default graphic unit as long as there is a
+			conversion that exists between them. Note that if "no unit" is selected for the default graphic unit then
+			every
+			unit is compatible with that. Meters can only collect in
+			units of meter type and must be linked by a conversion to a regular unit for graphing. There is a choice of
+			"no
+			unit" on this menu but it is generally not used. If this is selected then the meter can collect data but
+			would be unusable for graphics. The default graphic unit is automatically set to "no unit" when the meter
+			unit is set to that value. It is mostly used internally to OED for automatically creating meters where
+			the unit is not known and then the admin needs to set this unit afterward. If one needs to
+			select a different unit that does not have a conversion to the current unit then selecting "no unit" for the
+			default graphic
+			unit will allow that selection. This field will be outlined in red until a unit is selected as
+			is shown in the figures.</p>
+		<li>Default Graphic Unit. This dropdown menu allows for the selection a compatible <a
+				href="./graphingUnits.html">graphing unit</a>
+			that is used if one is not
+			already selected before this meter is chosen. A default graphic unit is compatible with the meter unit if a
+			conversion exists between them. As with the meter unit, the compatible/selectable units will be at the top
+			of the dropdown menu and the
+			incompatible/non-selectable ones will be at the bottom in grayed out font. Initially this menu will only
+			have "no unit" as compatible because that is the only
+			compatible unit with "no unit" as shown in the following figure.</li>
+		<!-- Need to override the default size for most images on pages. -->
+		<img alt="Admin meter default graphic unit choices when no meter unit"
+			src="./images/adminMeterDguNoUnitDropdown.png" style="width:248">
+		<p>The dropdown menu when the meter unit is already set to Electric_Utility is shown in the following figure.
+			All units from Celsius and below are not compatible and grayed out.</p>
+		<!-- Need to override the default size for most images on pages. -->
+		<img alt="Admin meter unit choices" src="./images/adminMeterDguEuDropdown.png" style="width:248">
+		<p>This field will be outlined in red until a unit is selected as
+			is shown in the figures.</p>
+		<li>Updates. This dropdown menu can be "yes" or "no" (default). If "yes" and OED knows how to automatically
+			acquire readings from this meter then it will be done whenever the site automatically acquires readings from
+			meters. (See information on <a href="./adminInstallation.html">site installation</a> about automatic meter
+			reading acquisition.) If no then no data will automatically be acquired for this meter.</li>
+		<li>Displayable. This dropdown menu can be "yes" or "no" (default). "yes" indicates the meter
+			can be seen and graphed by any user and "no" limits the meter visibility and graphing to admins.
+		<li>Type. This dropdown menu allows for setting the type of a meter which is generally the vendor associated
+			with
+			it. As the following figure shows, OED currently knows about a few types of meters and can acquire their
+			data
+			directly. If you want and can to use a meter not on this list then select "OTHER". See the page on <a
+				href="./adminDataAcquisition.html">data acquisition</a> for more information. Please <a
+				href="../../contact.html">contact us</a> if you want to use meters for that we do not yet support. This
+			field will be outlined in red
+			until a unit is selected as
+			is shown in the figures.</li>
+		<img alt="Admin meter type choices" src="./images/adminMeterTypeDropdown.png" style="width:248">
+
+		<li>Reading Frequency.</li>
+		<li>URL.</li>
+		<li>GPS.</li>
+		<li>Area.</li>
+		<li>Meter Area Unit.</li>
+		<li>Note. This may give additional information about the meter supplied when OED created it or from the
+			admin. Only the first 30 characters will be shown and any additional characters in the note can be seen by
+			clicking the "Edit Meter" button.</li>
+		<li>Cumulative.</li>
+		<li>Cumulative Reset.</li>
+		<li>Cumulative Reset Start.</li>
+		<li>Cumulative Reset End.</li>
+		<li>End Only Time.</li>
+		<li>Reading Gap.</li>
+		<li>Reading Variation.</li>
+		<li>Reading Duplication.</li>
+		<li>Time Sort.</li>
+		<li>Start Time Stamp. This is less commonly used.</li>
+		<li>End Time Stamp. This is less commonly used.</li>
+		<li>Time Zone.</li>
+		<li>Reading. This is less commonly used.</li>
+		<li>Previous End Time Stamp.</li>
+	</ol>
 
 	<h2 id="details">Details</h2>
 </div>
+
+<li>Meter Type: This is the type of meter as stored in OED. This information might be useful if you are looking
+	for a particular type of meter or to be sure it is the correct type.</li>
+<li>Meter Address: This is the IP address to get data if the meter type is MAMAC. It is the address that Obvius
+	data came from if the meter type is Obvius.</li>
+<li>Meter GPS: This is the latitude and longitude used when placing this meter on a map. You can edit the value
+	here. See the <a href="adminMap.html">admin map help</a> for more information on maps.</li>
+<li>Meter Updates. This tells if OED tries to automatically gather this meter's data (assuming the site was
+	properly set up the do meter updates). At the current time, OED only does this for MAMAC meters. (Obvius
+	pushes the data to OED so OED does not need to start that process.) If you have a MAMAC meter in your site
+	that you no longer want to collect data, then click the "Disable" button next to the green "Updates Enabled"
+	string. The string will change to "Updates Disabled" and go red. The button will become "Enable". Clicking
+	that button will reverse the process. (This is also visible to a regular user but they cannot change
+	setting.)</li>
+<li>Meter Time Zone: This sets the time zone for this meter and overrides the <a href="adminPreferences.html">site
+		preferences</a> time zone value.
+	This is useful if some meters are not in the same time zone as the site default. See the <a href="time.html">time
+		help page</a> for further information.</li>
