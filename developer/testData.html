@@ -979,8 +979,7 @@ title: OED test data
 		</li>
 		<li>The final step to be able to see the readings on a graph is to refresh the readings. In the terminal in the
 			web/vsc Docker container, do: <code>npm run refreshAllReadingViews</code>. You will need to visit the meters
-			page or refresh the web page as described <a href="../help/v1.0.0/adminMetersImport.html#newMeter">here</a>
-			in order the see the new meters.</li>
+			page or refresh the web page in order the see the new meters.</li>
 		<li>You can repeat these steps in the future to get back to the latest time but you may get error about
 			overlapping start_timestamp. The easiest way around this is the delete all the reading
 			with:<code> delete from readings where meter_id in (select id from meters where name in ('compare 1'));</code>

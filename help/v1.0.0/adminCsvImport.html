@@ -7,7 +7,7 @@ title: OED admin csv import help
     {% include_relative _version.html %}
     <!-- Page content -->
     <h1>Admin CSV Import (Help)</h1>
-	{% include_relative _adminWarning.html %}
+    {% include_relative _adminWarning.html %}
 
     <h2 id="overview">Overview</h2>
     <p>The canonical format for OED to acquire information is the vendor neutral CSV (Comma Separated Values) format. It
@@ -25,15 +25,16 @@ title: OED admin csv import help
 
     <h4>CSV file upload via the web page</h4>
     <p>If you click on the "CSV" option from
-		the <a href="./pageChoices.html">"Pages" dropdown menu</a> as shown in the following
-		figure (highlighted in the blue
-		rectangle where "CSV" is grayed out since it has already been clicked) you will go to the CSV page shown
+        the <a href="./pageChoices.html">"Pages" dropdown menu</a> as shown in the following
+        figure (highlighted in the blue
+        rectangle where "CSV" is grayed out since it has already been clicked) you will go to the CSV page shown
         below. Note that a user must have CSV privileges to see the "CSV" button. This is an OED user with overall
         "admin" rights or just "csv" rights. See the <a href="./adminUser.html">admin user page</a> for more
         information on
         users.</p>
     <p><img alt="admin CSV page" src="./images/adminCSV.png"></p>
-    <p>There are now two tabs near the top of the page (highlighted in light blue rectangles in the figure above): one for "Readings" and one for
+    <p>There are now two tabs near the top of the page (highlighted in light blue rectangles in the figure above): one
+        for "Readings" and one for
         "Meters"
         where each imports the a CSV file with the expected import information. The initially selected tab is normally
         the "Readings" one. This page allows for setting options and selecting the desired CSV file and are described
@@ -92,6 +93,12 @@ title: OED admin csv import help
     <p>The web page upload does certain checks and restricts input of values for the parameters. The curl command uses
         the values provided. Thus, it is possible to get problematic values farther into the OED upload process when you
         use curl. This isn't a bug in OED but noted so you are aware.</p>
+    <p id="reload">When a CSV upload uses direct file upload then an open web browser page will not automatically see
+        the new
+        information. In this case, one needs to reload the web browser page in order to see the newly uploaded
+        information. This happens because it is done outside the web browser. In the case of meters this will not occur
+        when you upload via
+        the CSV Web page but a reload is needed for readings that are uploaded via the web page.</p>
 
     <h3>Returned information</h3>
     <p>Whenever a CSV upload is requested, OED returns information about the request. This information is in HTML format

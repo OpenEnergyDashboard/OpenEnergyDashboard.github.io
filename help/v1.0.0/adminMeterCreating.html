@@ -15,8 +15,7 @@ title: OED admin meter creating help
 		the <a href="./adminMeterViewing.html">admin meter viewing page</a> by clicking the "Create a
 		Meter" button near the top of that page.
 	</p>
-	<p><img alt="Admin meter creating popup" src="./images/adminMeterCreatingPopupOne.png"></p>
-	<p><img alt="Admin meter creating popup" src="./images/adminMeterCreatingPopupTwo.png"></p>
+	<p><img alt="Admin meter creating popup" src="./images/adminMeterCreatingPopup.png"></p>
 	<p>All information shown on this page is based upon the <a href="exampleDescription.html">help example</a>.</p>
 
 	<h2 id="usage">Usage</h2>
@@ -185,7 +184,9 @@ title: OED admin meter creating help
 			OED
 			will automatically convert an end only time reading to have a start time by using the previous reading's
 			time stamp as is
-			normal for these type of reading.</li>
+			normal for these type of reading. OED prefers to get both start and end date/time for each reading since more
+            validation checking is possible. Note that if end only,  the gap between a reading and the previous one
+            will always be zero so this warning cannot happen. </li>
 		<li>Reading Gap. A non-negative number of how many seconds are considered normal between the end of one reading
 			and the start of the next reading. A value of zero (default value) indicates that there should never be a
 			gap in readings and they
@@ -223,12 +224,7 @@ title: OED admin meter creating help
 			same default.</li>
 		<li>Reading. This is less commonly used. It is the reading value of the last reading processed in
 			the last batch of readings received by OED for this meter. It has the default value of zero.</li>
-		<li>Time Zone. The timezone of this meter as text. OED can accept most standard time zone names such as <a
-				href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" rel="noopener noreferrer">this
-				Wikipedia one</a>
-			where the "TZ identifier" is used, e.g., Pacific/Galapagos for the Galápagos Islands. The time zone of a
-			meter only needs to be set if the meter readings are time zone aware. For example, eGauge meters are time
-			zone aware and can provide data that accounts for daylight savings. This sets the time zone for this meter
+		<li>Time Zone. Select one of the many choices from the dropdown menu. This sets the time zone for this meter
 			and overrides the <a href="adminPreferences.html">site
 				preferences</a> time zone value.
 			This is useful if some meters are not in the same time zone as the site default. See the <a
