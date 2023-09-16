@@ -75,7 +75,7 @@ title: OED line graphic help
 		process
 		of dragging where the time displayed has now changed to January through June, 2021.</p>
 	<p><img alt="scrolling time in a line graphic" src="./images/lineScrolled.png"></p>
-	<p>If one zoom3 in significantly so the time range is much smaller than the original time range, the graph can
+	<p>If one zooms in significantly so the time range is much smaller than the original time range, the graph can
 		become
 		jagged due to having too few points. Also, one might want to return the graphic to its original, full time
 		range. Both of these are discussed in the next section on the "Redraw" and "Restore" buttons.
@@ -97,7 +97,10 @@ title: OED line graphic help
 		see that many more points are present. In this case it is using the original meter data
 		which is spaced 20 minutes apart.</p>
 	<p><img alt="result of redrawing a line graphic" src="./images/lineRedraw.png"></p>
-	<p>Note that the time range redrawn on a line graphic is also used for most other graphics (but not comparison).</p>
+	<p>Note that the time range redrawn on a line graphic is also used for most other graphics (but not comparison). If
+		you see a blank graphic on a different graphic page then one should check to see if the time range on the line
+		graphic is too small to see values on the other graphics. For example, if you zoom into a time range that is less
+		than the width of one bar interval then the bar graphic page will be blank.</p>
 	<p>Because OED uses a rate on the line graphic (as discussed above), The reading's value does not dramatically
 		change when the time frame is redrawn unless the averaging was for meter data that varied greatly. Note that
 		once one does this, the time range is reset so one cannot zoom outward nor scroll to times outside the
