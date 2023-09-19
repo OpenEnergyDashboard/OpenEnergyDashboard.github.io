@@ -927,10 +927,11 @@ title: OED test data
 				href="../help/v1.0.0/adminMetersImport.html">meters import help pages</a> to create a new meter. For
 			example, to create the meters "compare 1" and "compare 2", you could put this into a CSV file named
 			compareMeters.csv:
-			<pre> name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier compare 1,,FALSE,TRUE,other,,,compare 1 compare 2,,FALSE,TRUE,other,,,compare 2 </pre>
+			<pre> name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier
+			compare 1,,FALSE,TRUE,other,,,compare 1 compare 2,,FALSE,TRUE,other,,,compare 2 </pre>
 			You can then import this CSV meter file (assuming you have OED running and have the default admin user)
 			with:
-			<code>curl localhost:3000/api/csv/meters -X POST -F 'headerRow=true' -F 'gzip=false' -F 'email=test@example.com' -F 'password=password' -F 'csvfile=@compareMeters.csv'</code>.
+			<code>curl localhost:3000/api/csv/meters -X POST -F 'headerRow=yes' -F 'gzip=false' -F 'email=test@example.com' -F 'password=password' -F 'csvfile=@compareMeters.csv'</code>.
 		</li>
 		<li>For what follows, do work in Postgres terminal by attaching a shell to the database container in a similar
 			way to how you did it above for the web container. Once inside the database shell, do:

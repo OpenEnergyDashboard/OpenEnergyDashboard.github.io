@@ -28,17 +28,17 @@ title: OED admin meter import help
         <li><i>CSV file ("Choose File" button on web page; <code>csvFile</code> parameter on direct file upload)</i>:
             This gives the location of the CSV file containing the meter information. On the web page it is via a file
             picker popup. See below on the file format.</li>
-        <li><i>Is CSV file in gzip format ("Gzip" checked if true on web page; <code>gzip</code> parameter on direct
+        <li><i>Is CSV file in gzip format ("Gzip" checked if yes on web page; <code>gzip</code> parameter on direct
                 file upload with default value
-                of true. )</i>: Note this is the Gnu zip format and not a standard .zip file format. Note that gzip
+                of yes. )</i>: Note this is the Gnu zip format and not a standard .zip file format. Note that gzip
             files are smaller in size for upload and also have internal validation to protect
             against corruption so they are preferred.</li>
-        <li><i>Does CSV have a header row ("Header Row" checked if true on web page; <code>headerRow</code> parameter on
+        <li><i>Does CSV have a header row ("Header Row" checked if yes on web page; <code>headerRow</code> parameter on
                 direct file upload)</i>: Is the first row of the CSV file header information and not an actual meter
-            (see below for format). The default value is false.</li>
-        <li><i>Is this an update ("Update" checked if true on web page; <code>update</code> parameter on direct file
+            (see below for format). The default value is no.</li>
+        <li><i>Is this an update ("Update" checked if yes on web page; <code>update</code> parameter on direct file
                 upload)</i>: Each row is new information for the meter so it will be update with any provided values and
-            others are left as currently set. The default value is false.</li>
+            others are left as currently set. The default value is no.</li>
         <li><i>Meter name ("Meter name" input box on web page; <code>meterName</code> parameter on direct file
                 upload)</i>: This is only used if you want to change the name of a meter (not identifier). The meter
             name provided is used as the name to update and the meter name value in the CSV is used as the new name.
@@ -64,8 +64,6 @@ title: OED admin meter import help
         upload compared to the meter creation page information are:
     <ul>
         <li>When providing a unit one should use the name, e.g., "kWh".</li>
-        <li>When providing values that are a dropdown menu of "yes" and "no" on the meter creation page one should use
-            "true" and "false" instead.</li>
         <li>When providing a value for "type" one should use ones in the drop down menu on the meter creation page, e.g,
             "OBVIUS". This is case-sensitive.</li>
         <li>When providing a value for "timesort" use the dropdown menu options of "increasing" and "decreasing". This
@@ -92,9 +90,13 @@ title: OED admin meter import help
         separated by a comma that would be in a single column of the CSV file and input without the quotes, i.e., 3,5.
         The quotes are added when such a CSV is saved to make it clear that the comma is not a new column. Most
         values that are optional and unspecified so the
-        default values are used for Meter 1 but are provided for the second meter. This file can be loaded
+        default values are used for Meter 1 but are provided for the second meter. Also note that values that are "yes"
+        on
+        dropdown menus for meter creation must be "true" and values that are "no" must be "false" in this file (but not
+        the curl command). This file
+        can be loaded
         using the curl command of:<br>
-        <code>curl https://myoedserver.com:3000/api/csv/meters -X POST -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@meters.csv'</code><br>
+        <code>curl https://myoedserver.com:3000/api/csv/meters -X POST -F 'headerRow=yes' -F 'gzip=no' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@meters.csv'</code><br>
         assuming the shown URL, user email and password. (See <a href="adminReadingsImport.html#sampleFiles">admin
             reading sample files</a> for more information on URL, email and password.) You need to reload the OED web
         page so your browser is aware of the new meters after a curl import but you will get an empty graphic if used
@@ -103,7 +105,7 @@ title: OED admin meter import help
     </p>
     <pre>
         name,url,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset end,gap,variation,duplicates,timesort,end only,reading,start time,end time,previous end,unit,default graphic unit,area unit,reading freq.
-        Meter 1,,false,true,other,,,,,,,,,,,,,,,,,,,Electric_Utility,,,
+        Meter 1,,false,yes,other,,,,,,,,,,,,,,,,,,,Electric_Utility,,,
         Meter 2,127.0.0.0,false,true,obvius,Pacific/Galapagos,"3,5",My Place,special note,123,true,true,11:50,12:10,5,10,2,decreasing,true,,,,,Electric_Utility,kWh,meters,13:00
     </pre>
 
@@ -144,4 +146,4 @@ title: OED admin meter import help
     <h3>See meters after CSV uploaded via direct file upload</h3>
     <p>You need to reload your web browser pages as described <a href="adminCsvImport.html#reload">here</a>.</p>
 
-   </div>
+</div>
