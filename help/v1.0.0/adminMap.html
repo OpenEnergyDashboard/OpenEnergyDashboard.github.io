@@ -47,11 +47,14 @@ title: OED map help
 		OED will allow one to choose other types of files and will state the upload is complete but the file image does
 		not appear on the next step. There are many programs/apps to
 		convert to one of these two types of graphical images. Note that a non-rectangular map that does not
-		have horizontal/vertical edges will be forced into this rectangular shape by OED and parts of the map may be clipped
+		have horizontal/vertical edges will be forced into this rectangular shape by OED and parts of the map may be
+		clipped
 		off. After selecting the map image file, use the box
 		immediately below (labeled "Define a name for the map:") to name the map. Note this is the name that a user
-		will see (it can be edited later). In this example, "Happy Place" was used. (The <a
-			href="files/happyPlace.png">happyPlace.png</a> image file used.) Finally, input the angle
+		will see (it can be edited later). The name must be a different name than any other map. If a duplicate name is
+		used then the final saving of the map after calibration will fail (notification given) and the process will have
+		to be repeated. In this example, "Happy Place" was used. (The <a href="files/happyPlace.png">happyPlace.png</a>
+		image file used.) Finally, input the angle
 		of the map relative to true north. To properly display maps, OED needs to know the vector that points to true
 		north on the uploaded map. This is the clockwise angle between straight up on the map image uploaded and true
 		north. See the discussion on <a href="#angle">true north angle</a> below for setting this value on a rotated
@@ -112,7 +115,12 @@ title: OED map help
 	<p>In this example, the result is "result: x: 1.202% y: 0.25%". (Note the points used were deliberately shifted a
 		little bit so a small error is shown.) If satisfied with the result, click the "Save changes to
 		database" button. The result is shown in the next figure where there is now three maps including the one just
-		added. See below for a discussion of the <a href="#calibrationResult">Calibration Result</a>. If at
+		added. Note that when leaving the page displaying all maps that OED will ask if you want to save changes or not.
+		This
+		is because a new map was added and OED cannot tell the difference between a new map and changes to an existing
+		map's information. It is safe to either leave without changes if no other maps were changed or to save to be
+		careful to
+		leave this page. See below for a discussion of the <a href="#calibrationResult">Calibration Result</a>. If at
 		any time one wants to begin the calibration process
 		again, click the "Reset" button. If the calibration is a little worse than desired, try to
 		add more points to improve the error but this is not guaranteed to work. Once the
