@@ -16,7 +16,8 @@ title: OED admin meter creating help
 		Meter" button near the top of that page.
 	</p>
 	<p><img alt="Admin meter creating popup" src="./images/adminMeterCreatingPopup.png"></p>
-	<p>All example information shown on this web page is based upon the <a href="exampleDescription.html">help example</a>.</p>
+	<p>All example information shown on this web page is based upon the <a href="exampleDescription.html">help
+			example</a>.</p>
 
 	<h2 id="usage">Usage</h2>
 	<p>As shown in the figure above, the following information can be entered:</p>
@@ -119,7 +120,8 @@ title: OED admin meter creating help
 			when the values from
 			the meter are placed on a <a href="./mapGraphic.html">map graphic</a>. More information on using the best
 			GPS
-			value is given on the <a href="./adminMapCreating.html.html">admin help page for creating maps</a>. If blank then there is no
+			value is given on the <a href="./adminMapCreating.html.html">admin help page for creating maps</a>. If blank
+			then there is no
 			GPS value and the meter cannot be placed on a map.</li>
 		<li>Area. A non-negative number of the area associated with the meter. It is used when <a
 				href="./areaNormalization.html">normalizing graphics by area</a>. It has a default value of zero
@@ -184,9 +186,10 @@ title: OED admin meter creating help
 			OED
 			will automatically convert an end only time reading to have a start time by using the previous reading's
 			time stamp as is
-			normal for these type of reading. OED prefers to get both start and end date/time for each reading since more
-            validation checking is possible. Note that if end only,  the gap between a reading and the previous one
-            will always be zero so this warning cannot happen. </li>
+			normal for these type of reading. OED prefers to get both start and end date/time for each reading since
+			more
+			validation checking is possible. Note that if end only, the gap between a reading and the previous one
+			will always be zero so this warning cannot happen. </li>
 		<li>Reading Gap. A non-negative number of how many seconds are considered normal between the end of one reading
 			and the start of the next reading. A value of zero (default value) indicates that there should never be a
 			gap in readings and they
@@ -237,6 +240,13 @@ title: OED admin meter creating help
 			and honor daylight savings such as eGauge. It is only really important for detecting when time crosses
 			daylight savings. It is similar to the Start Time Stamp and has the same default.</li>
 	</ol>
+	<p>There are two buttons at the bottom of the popup:</p>
+	<ul>
+		<li>Discard changes. Clicking this button will remove all entries and close the popup. This means the next time
+			that "Create a Meter" is clicked all the values will be the default ones. Clicking outside the popup but
+			within the OED web browser window will have the same effect.</li>
+		<li>Save all. Clicking this button will save the new meter with the provided entries.</li>
+	</ul>
 
 	<h2 id="details">Details</h2>
 	<p>None</p>
