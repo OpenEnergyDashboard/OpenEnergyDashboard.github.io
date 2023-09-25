@@ -22,6 +22,20 @@ title: OED Academic Use
 			hide meters</li>
 		<li><a href="#courses">Usage for research/courses</a>: features export data after graph, export user role</li>
 	</ul>
+	<p>The examples that follow will use the following meters. Note that OED uses the term meter to apply to a data
+		collection item since it
+		is often a physical meter on a campus.</p>
+	<ul>
+		<li>Great Dorm 1st Floor Electric: The electrical usage on the first floor of this dorm.</li>
+		<li>Great Dorm 2nd Floor Electric: The electrical usage on the second floor of this dorm.</li>
+		<li>Great Dorm Gas: The gas usage for the entire dorm.</li>
+		<li>Great Dorm Water: The water usage for the entire dorm.</li>
+		<li>Dining Hall Electric: The electrical usage for the Dining Hall.</li>
+		<li>Dining Hall Gas: The gas usage for the Dining Hall.</li>
+		<li>Dining Hall Water: The water usage for the Dining Hall.</li>
+	</ul>
+	<p>These are a subset of the <a href="help/v1.0.0/exampleDescription.html">example data</a> used throughout the OED
+		help pages.</p>
 
 	<h2 id="varietyAudiences">Displaying data for a variety of audiences</h2>
 	<p>Different people want to see energy usage in different ways. A classic use of an energy dashboard is to show
@@ -31,62 +45,75 @@ title: OED Academic Use
 		<li>See how usage varies when grouped by days, weeks, etc. in a bar graph</li>
 		<li>See usage on a map to give a spacial overview</li>
 	</ul>
-	<p>We will now look at each of these. Note that OED uses the term meter to apply to a data collection item since it
-		is often a physical meter on a campus. In what follows, there are four meters with one year of data for
-		electrical usage with the
-		following meaning:</p>
-	<ul>
-		<li>Dorm A Residents: represents the usage in Dorm A that is attributed to residents.</li>
-		<li>Dorm A Other: represents the usage in Dorm A that is not attributed to residents. In this scenario, there
-			are
-			two meters in this dorm so the sum of the two is the total usage in the dorm.</li>
-		<li>Dorm B Residents: same as Dorm A Residents but for another dorm named Dorm B.</li>
-		<li>Dorm B Other: same as Dorm A Other but for another dorm named Dorm B.</li>
-	</ul>
-	<p>The following graphic shows the usage for each of the four meters as a line graph of usage vs. time:</p>
-	<img alt="line graphic with four meters" src="images/OEDAcademicLine.png" style="width: 75vw; min-width: 700px;">
+	<p>We will now look at each of these.</p>
+	<p>The following graphic shows the electric usage for each of the three electric meters as a line graph of usage vs.
+		time:</p>
+	<p><img alt="line graphic with three meters" src="images/academicLine.png"></p>
 	<p>The following graphic shows the same usage but as a bar graphic where each bar represents four weeks of usage:
 	</p>
-	<img alt="bar graphic with four meters" src="images/OEDAcademicBar.png" style="width: 75vw; min-width: 700px;">
-	<p>The following graphic shows the residents usage in Dorms A & B as a map where the circle size indicates relative
-		usage. All four meters could have been shown but since each pair
-		is for the same building it is harder to see the individual circles for one building. In this case it shows
-		average usage for one week where the hover shows the exact value for Dorm B.
+	<p><img alt="bar graphic with three meters" src="images/academicBar.png"></p>
+	<p>The following graphic shows the electric usage in Great Dorm 1st Floor & Dining Hall as a map where the circle
+		size indicates relative
+		usage. Great Dorm 2nd Floor Electric could also have been shown but meters for the same building are harder
+		to see since the circles are at the same location. In this case it shows
+		average usage for the last 4 week where the hover shows the exact value for the Dining Hall. All types of
+		graphics support the hover feature.
 	</p>
-	<img alt="map graphic with two meters" src="images/OEDAcademicMap.png" style="width: 75vw; min-width: 700px;">
+	<p><img alt="map graphic with two meters" src="images/academicMap.png"></p>
+	<p>One might wish to see the usage normalized by the size of the building. The following figure shows this for the
+		previous map but any graphic could have this done. The hover shows that the value reduced by a factor of 1,000
+		because that is the area of the building in sq. meters. The figure also presents the fact that the dorm is
+		significantly more energy efficient considering its size because the circle size is much smaller in this figure.
+	</p>
+	<p><img alt="map graphic with three meters normalized by area" src="images/academicMapArea.png"></p>
+	<p>One may wish to also see data in another unit. The line graphic above is shown in the figure below but for ton
+		of CO<sub>2</sub>. per day. The Great Dorm has zero for its value because it uses solar electricity which is
+		assigned to have no carbon footprint (site chosen value).</p>
+	<p><img alt="line graphic with three meters in CO2 units" src="images/academicMapCO2.png"></p>
 	<p>Further information: <a href="help/v1.0.0/graphType.html">Graphical display of data</a>, <a
 			href="help/v1.0.0/lineGraphic.html">Line Graphic</a>, <a href="help/v1.0.0/barGraphic.html">Bar
-			Graphic</a>
-		and <a href="help/v1.0.0/mapGraphic.html">Map Graphic</a>.</p>
+			Graphic</a>, <a href="help/v1.0.0/mapGraphic.html">Map Graphic</a>, <a
+			href="help/v1.0.0/areaNormalization.html">Area normalization</a> and <a
+			href="help/v1.0.0/graphingUnits.html">Graphing units</a>.</p>
 
 	<h2 id="buildings">Buildings and campus level data display</h2>
 	<p>An academic institution often wants to show usage for different areas on campus. For example, you might want to
 		show the
 		total usage for all residential buildings. OED can aggregate (sum) any combination of meters via its group
-		feature. In this example, we will show the total electrical usage for each Dorm and for both dorms together.
-		Graphically this means doing:
+		feature. In this example, a nested set of groups will be created to show the total resource consumption for two
+		buildings.
+		Graphically these groups were created as shown in the following figure. The meters are shown in blue and the
+		groups are shown in yellow.
 	</p>
-	<img alt="dorms as groups" src="images/academicGroupings.png" style="width: 50vw; min-width: 700px;">
-	<p>The image shows that "Dorm A Residents" and "Dorm A Other" meters are grouped to form "Dorm A". When you graph
-		"Dorm A"
-		you will get the sum of the two underlying meters. The image shows a similar "Dorm B" group. It also shows that
-		you can group "Dorm A" and "Dorm B" to create the "All Residential" group. This shows the groups in OED are very
-		general and can be composed of any combination of meters and groups. This can greatly simplify grouping items as
-		they can be built from previous groups. The following shows a map that is very
-		similar to the one for meters but now showing the total usage for "Dorm A" and "Dorm B" as groups. The line or
-		bar graphic can also show groups.</p>
-	<img alt="map graphic with two groups" src="images/OEDAcademicGroup.png" style="width: 75vw; min-width: 700px;">
+	<p><img alt="buildings as groups" src="images/academicGroups.png"></p>
+	<p>OED allows for creating groups from groups. This can greatly simplify grouping items as
+		they can be built from previous groups. Given this, the Dining Hall group was created as follows:</p>
+	<ol>
+		<li>The group Great Dorm Electric was created from the two Great Dorm electric meters so it represents the total
+			electric usage for both floors of the building.</li>
+		<li>The group Great Dorm Energy was created from the Great Dorm Gas meter and the Great Dorm Electric group. It
+			is supposed to represent the total energy usage of the building.</li>
+		<li>The group Great Dorm All was created from the Great Dorm Water meter and the Great Dorm Energy group. It is
+			supposed to represent the total consumption of the building. As such, it is not representing energy.</li>
+	</ol>
+	<p>The figure below shows the usage of "Dining Hall All" and "Great Dorm All" groups on a line graphic but groups
+		can be used with any graphic. It is graphed in ton
+		of CO<sub>2</sub>. per hour. The graphic clearly shows that the Great Dorm is generating a lot less
+		CO<sub>2</sub> than the Dining Room.</p>
+	<p><img alt="line graphic with two groups" src="images/academicLineGroup.png"></p>
 	<p>Further information: <a href="help/v1.0.0/graphingGroups.html">Groups</a>.</p>
 
 	<h2 id="competition">Energy Competitions</h2>
-	<p>To engage students, some academic institutions use energy competitions. In a common usage, each dorm completes to
-		see which ones can reduce their usage the most. The comparison graphic in OED supports this type of competition.
-		In the following figure, the usage from last week vs. this week is displayed for each dorm (group) where the
-		title gives the percentage change (green for less and red for more). The graphs are sorted so the dorm with the
-		greatest decrease is first but you can choose to do the least first or alphabetically. You can include as many
-		items as you wish on one comparison page (only two shown here).</p>
-	<img alt="compare graphic with two dorms" src="images/OEDAcademicCompare.png"
-		style="width: 75vw; min-width: 700px;">
+	<p>To engage students, some academic institutions use energy competitions. In a common usage, different buildings
+		complete to
+		see which ones can reduce its usage the most. The comparison graphic in OED supports this type of competition.
+		In the following figure, the total electrical usage from last week vs. this week is displayed for the two
+		buildings so it uses the Dining Hall Electric meter and the Great Dorm Electric group. It was created on Monday
+		afternoon. The graphs are sorted so
+		the building with the
+		greatest decrease is first but one can choose to do the least first or alphabetically. One can include as many
+		items desired on one comparison page (only two shown here).</p>
+	<p><img alt="compare graphic with two buildings" src="images/academicCompare.png"></p>
 	<p>Further information: <a href="help/v1.0.0/compareGraphic.html">Compare Graphic</a>.</p>
 
 	<h2 id="webpages">Including OED in webpages for campus</h2>
@@ -96,7 +123,7 @@ title: OED Academic Use
 		that was shown when it was created. One feature is that the link recreates the same look but with current data.
 		What this means is that if you had a link to a compare graphic to show usage for the last week that was created
 		at the start of January, if some used it in the middle of February they would see the same comparisons (such as
-		the two dorms in the example above) but for the current week in February.</p>
+		the two buildings in the example above) but for the current week in February.</p>
 	<p>Further information: <a href="help/v1.0.0/chartLink.html">Chart Links</a>.</p>
 
 	<h2 id="internal">Internal usage by facilities, sustainability coordinator</h2>
@@ -104,42 +131,38 @@ title: OED Academic Use
 		on energy usage is often sufficient for most users. Some users, such as energy managers and sustainability
 		coordinators, may wish to see usage on shorter time scales to investigate interesting usage patterns. OED allows
 		users to zoom in on time frames and scroll across times. You can also have OED redraw a graphic to get shorter
-		time frames for each point. OED can display data as daily, hourly or the original raw meter data. This allows
-		the user to see the data at appropriate time scales depending on need. The figure below shows hourly data in an
-		area where the usage was higher than normal. One can see that starting about July 23, the usage has the highest
-		spikes. This graphic has both the overall usage for Dorm A and the two meters that monitor its usage.
-		The graphic clearly shows that it is Dorm A Other that is varying and causing the spikes and the Dorm A
-		Residents are using more normal amount of electricity (but it is slowly going up). If you look at the line
-		graphic above, you will see the spike in usage around this time but you cannot see the ones around it nor the
-		fluctuations that are occurring. This new graphic with more frequent readings allows this level of detail to be
-		shown. This figure also shows that you can get a hover at any point to see the usage at that time for any line
-		in the graphic. Also note that the bar and map graphic will honor the time frame chosen on the line graphic so
-		in this case would limit readings shown to July 17 to July 29.</p>
-	<img alt="compare graphic with two dorms" src="images/OEDAcademicHourly.png" style="width: 75vw; min-width: 700px;">
+		time frames for each point. OED can display data as daily, hourly or the original meter data. This allows
+		the user to see the data at appropriate time scales depending on need. The figure below shows original meter
+		data for the first week of January 2021 that is every 15 minutes for these meters.</p>
+	<p><img alt="line graphic for one week with original meter data" src="images/academicMeterLevel.png"></p>
+	<p>Someone may also wish to see the cost associated with buildings. In the following figure, the cost of the
+		electrical usage for the two
+		buildings is shown on a bar graphic. The fluctuation in cost and the relative cost is easy to see.</p>
+	<p><img alt="cost bar graphic with two buildings" src="images/academicCost.png"></p>
 	<p>Further information: <a href="help/v1.0.0/lineGraphic.html#scrollZoom">Zooming & Scrolling</a>.</p>
 
 	<h2 id="courses">Usage for research/courses</h2>
 	<p>When students are investigating energy usage, they often need to work interactively with the data. OED is
 		somewhat unique in that it allows users to interactively choose what information to display including the
-		meters, groups, time frame and frequency of points. OED uses a sophisticated program so that any user choice is
+		meters, groups, time frame, units and frequency of points. OED uses a sophisticated program so that any user choice is
 		normally displayed within one second. This allows users to look at the data in various ways to understand what
 		is going on. As discussed above, this includes focusing on specific dates/times that are of interest. OED
-		recognizes that there are times you want to have the energy data (readings) to analyze them outside OED. This
+		recognizes that there are times one wants to have the energy data (readings) to analyze them outside OED. This
 		could be to do a type of analysis OED does not support. To allow this, OED has two export features for line or
-		bar graphics. The "Export graph data" gives you the energy data shown on the current graph. Thus, if you are
+		bar graphics. The "Export graph data" gives the energy data shown on the current graph. Thus, if one is
 		showing the data with daily points then you will get one point for each day for each meter or group. The "Export
-		raw graph data" exports at the resolution of the original meter data. For example, if the meter displayed
-		collected readings every 15 minutes then you would get a point every 15 minutes. In either case, the export
+		meter graph data" exports at the resolution of the original meter data. For example, if the meter displayed
+		collected readings every 15 minutes then one would get a point every 15 minutes. In either case, the export
 		provides a CSV (comma separated values) spreadsheet file with the reading data. Given that OED can rapidly
-		display any graphic, the user can use the capability to get the exact data they want before exporting. This
+		display any graphic, the user can use this capability to get the exact data they want before exporting. This
 		reduces the size of files downloaded and allows users to take advantage of OED's capabilities to get grouped
 		data, limited time frames, bar data, etc. This feature can also be useful to facilities and sustainability
 		coordinators.</p>
-	<p>Obviously, the raw data normally
+	<p>Obviously, the meter data normally
 		creates a much larger file since it has more readings. To stop inadvertent downloads of large files, OED will
 		warn
 		the user if the file is larger than a site specified size. If the file is larger than another site specified
-		size, then only users logged can download that data. OED allows sites to create as many users of this type as
+		size, then only users logged in with export privileges can download that data. OED allows sites to create as many users of this type as
 		they want so a site can create a unique one for each person, class or other group. They can also be removed so
 		access times can be limited.</p>
 	<p>Further information: <a href="help/v1.0.0/export.html">Data Export</a> and <a
