@@ -69,7 +69,7 @@ title: OED test data
 		"Electric Utility kWh not displayable" can only be seen if logged in as an admin. Note kW and kWh are not
 		impacted by a rate change. The Gallon and Gallon flow are so available for testing the rate choices.
 	</p>
-	<table border="1">
+	<table>
 		<thread>
 			<tr>
 				<th>Meter name</th>
@@ -466,7 +466,7 @@ title: OED test data
 	<h3>Group data</h3>
 	<p>The following table gives groups that are created from the meters above as well as the mathematical meter data
 		described below.</p>
-	<table border="1">
+	<table>
 		<thread>
 			<tr>
 				<th>Group name</th>
@@ -646,7 +646,7 @@ title: OED test data
 			page</a>. The file will have the name indicated and is located in the
 		<code>src/server/test/db/data/automatedTests/</code> directory.)
 	</p>
-	<table border="1">
+	<table>
 		<thead>
 			<tr>
 				<th>Description</th>
@@ -844,7 +844,7 @@ title: OED test data
 	<p>The table below lists the types of test data we have. The first four all have 3.5 years of electric data but for
 		different meters so the values vary. The last one is a sample file that you can edit to create your own data.
 	</p>
-	<table border="1">
+	<table>
 		<thead>
 			<tr>
 				<th>Description</th>
@@ -927,10 +927,11 @@ title: OED test data
 				href="../help/v1.0.0/adminMetersImport.html">meters import help pages</a> to create a new meter. For
 			example, to create the meters "compare 1" and "compare 2", you could put this into a CSV file named
 			compareMeters.csv:
-			<pre> name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier compare 1,,FALSE,TRUE,other,,,compare 1 compare 2,,FALSE,TRUE,other,,,compare 2 </pre>
+			<pre> name,ipaddress,enabled,displayable,meter_type,default_timezone_meter,gps,identifier
+			compare 1,,FALSE,TRUE,other,,,compare 1 compare 2,,FALSE,TRUE,other,,,compare 2 </pre>
 			You can then import this CSV meter file (assuming you have OED running and have the default admin user)
 			with:
-			<code>curl localhost:3000/api/csv/meters -X POST -F 'headerRow=true' -F 'gzip=false' -F 'email=test@example.com' -F 'password=password' -F 'csvfile=@compareMeters.csv'</code>.
+			<code>curl localhost:3000/api/csv/meters -X POST -F 'headerRow=yes' -F 'gzip=false' -F 'email=test@example.com' -F 'password=password' -F 'csvfile=@compareMeters.csv'</code>.
 		</li>
 		<li>For what follows, do work in Postgres terminal by attaching a shell to the database container in a similar
 			way to how you did it above for the web container. Once inside the database shell, do:
@@ -979,8 +980,7 @@ title: OED test data
 		</li>
 		<li>The final step to be able to see the readings on a graph is to refresh the readings. In the terminal in the
 			web/vsc Docker container, do: <code>npm run refreshAllReadingViews</code>. You will need to visit the meters
-			page or refresh the web page as described <a href="../help/v1.0.0/adminMetersImport.html#newMeter">here</a>
-			in order the see the new meters.</li>
+			page or refresh the web page in order the see the new meters.</li>
 		<li>You can repeat these steps in the future to get back to the latest time but you may get error about
 			overlapping start_timestamp. The easiest way around this is the delete all the reading
 			with:<code> delete from readings where meter_id in (select id from meters where name in ('compare 1'));</code>

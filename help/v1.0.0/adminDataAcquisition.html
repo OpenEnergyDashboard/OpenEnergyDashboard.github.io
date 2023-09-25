@@ -7,25 +7,34 @@ title: OED data acquisition help
 	{% include_relative _version.html %}
 	<!-- Page content -->
 	<h1>Admin Data Acquisition (Help)</h1>
+	{% include_relative _adminWarning.html %}
 
 	<h2 id="overview">Overview</h2>
 	<p>The OED system stores and works with readings. These are normally thought of as meter readings but can come from
 		any source. OED has a standard way to acquire these readings but also provides software that can take readings
 		from other sources and manipulate them to fit our model of how readings should come to OED. This allows for
-		sites to directly acquire readings from a number of sources. Note that it is possible to do this for other meter
+		sites to directly acquire readings from a number of sources. At the current time OED has systems in place to
+		automatically acquire data from CSV files, eGauge meters, Obvius AcquiSuite and MAMAC meters. These are
+		described below. Note
+		that it is possible to do this for other meter
 		systems. We are willing to either work with you (or another party) to create the needed code or, if it
-		seems appropriate, create this code for a new type of device. At the current time OED has systems in place to
-		automatically acquire data from CSV files, Obvius AcquiSuite and MAMAC meters. These are described below.</p>
+		seems appropriate, create this code for a new type of device. Please <a href="../../contact.html">contact us</a>
+		if that is of interest.</p>
 
 	<h2 id="usage">Usage</h2>
 	<h3>CSV</h3>
 	<p>The standard way OED acquires information about meters and readings is via information in CSV files. Data passed
 		in this way goes through the standard data acquisition pipeline where it is checked for a number of possible
-		errors/issues before being added into the OED system. The Obvius and MAMAC acquisition described in the next two
-		sections are filters that process the data supplied in these vendor's format (mostly CSV in a different format)
-		and converted into the canonical CSV format that OED expects for standard processing. The details for uploading
+		errors/issues before being added into the OED system. The other acquisition types supported in the following
+		sections are filters that process the data supplied in these vendor's format
+		and convert it into the canonical CSV format that OED expects for standard processing. The details for uploading
 		a CSV file into OED are described
 		on the <a href="adminCsvImport.html">admin CSV Import page</a>.</p>
+
+	<h3>eGauge</h3>
+	<p><a href="https://www.egauge.net/" rel="noopener noreferrer">eGauge meters</a> are hardware devices that collect
+		electricity usage. OED can acquire eGauge meter data as described <a href="adminEgauge.html">here</a>.</p>
+
 	<h3>Obvius</h3>
 	<p><a href="http://www.obvius.com/" rel="noopener noreferrer">Obvius
 			AcquiSuite</a> acquires meter data using Obvius hardware for a large number of metering devices. The system
@@ -36,8 +45,7 @@ title: OED data acquisition help
 	<h3>MAMAC meters</h3>
 	<p><a href="http://mamacsys.com/" rel="noopener noreferrer">MAMAC meters</a> are hardware devices that collect
 		various types of metering data. OED can acquire MAMAC meter data as described <a
-			href="adminMamac.html">here</a>. This process is normally done by an IT person as part of the setup of your
-		OED site.</p>
+			href="adminMamac.html">here</a>.</p>
 
 	<h2 id="details">Details</h2>
 	<p>None at this time.</p>
