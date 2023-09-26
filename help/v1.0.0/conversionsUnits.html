@@ -93,6 +93,7 @@ navbarShown: false
         <li>A suffix unit should only have bidirectional of no (unidirectional) for a conversion as either the
             source or the destination. The section below on <a href="#suffix">suffix unit</a> will clarify why.</li>
     </ul>
+
     <h3>Chained conversions</h3>
     <p>To make units easier to work with, OED allows for chained conversions. What this means is that OED will look at
         all conversions and determine if there is a chain of allowed conversions between two units. If this is the case
@@ -123,6 +124,30 @@ navbarShown: false
         energy
         units in both directions as desired. From a practical standpoint this means one can graph the meter in any
         energy unit.</p>
+
+    <h2 id="compatible">Compatibility</h2>
+    <p>Two items are compatible if there exists a conversion between them. This includes any derived chained conversions
+        that
+        OED determines. Here is the meaning for different items within OED:</p>
+    <ul>
+        <li>Units. Two units are compatible if there exists a conversion between them.</li>
+        <li>Meter and graphing unit. If the meter's unit is compatible with the graphing unit then the meter is
+            compatible with the graphing unit.</li>
+        <li>Meter with another meter. If the set of units compatible with one meter's unit and the set of meters
+            compatible with a different meter's unit contain at least one item in common then the two meters are
+            compatible. This is because one can graph both meters in at least one unit and, in general, all the common
+            values between the two sets of units.</li>
+        <li>Group and graphing unit. A group can contain many meters within it. If one takes the set of compatible units
+            for each meter and finds all the units that exist in all the sets then those are the units compatible with
+            the
+            group. This is because one can graph the group in these units. If the graphing unit is in set of overlapping
+            units then it is a compatible unit for graphing.</li>
+        <li>Group and meter. If the compatible units of the group and meter overlap then they are compatible. All the
+            units that overlap are all the compatible units.</li>
+        <li>Group and group. If the compatible units of both groups contain the same unit then they are compatible. All
+            the units contained for both groups are all the compatible units.</li>
+    </ul>
+    <p>See the <a href="#example">example section</a> for concrete examples.</p>
 
     <h2 id="suffix">Suffix unit</h2>
     <p>As was briefly discussed above, a suffix unit is a special unit in OED that allows for the creation of a unit
@@ -165,7 +190,7 @@ navbarShown: false
         appropriately.
     </p>
 
-    <h2>Example</h2>
+    <h2 id="example">Example</h2>
     <p>Please see the <a href="./exampleDescription.html">example description</a> as it will extended as the current
         example of how OED works with units and conversions. An updated graphic from that page is:</p>
     <p><img alt="Unit and conversion graphic" src="./images/unitsConversionsSuffix.png"></p>
@@ -217,16 +242,38 @@ navbarShown: false
     </ul>
     <p>Here are a few examples of what a figure means.</p>
     <ul>
-        <li>The Electric_Solar meter collects in kWh and can also be graphed in BTU, m<sup>3</sup> gas, US $ and the
+        <li>kWh, BTU and m<sup>3</sup> gas are all compatible units.</li>
+        <li>The Electric_Solar meter (actually formally a unit) collects in kWh and can also be graphed (compatible) in
+            BTU, m<sup>3</sup>
+            gas, US
+            $ and the
             suffix units of kg of CO<sub>2</sub>, lb of CO<sub>2</sub>, Metric ton of CO<sub>2</sub> and ton of
-            CO<sub>2</sub>.</li>
-        <li>The Temperature_Fahrenheit meter collects in Fahrenheit and can also be graphed Celsius.</li>
-        <li>The Recycling meter collects in ton and can also be graphed in lb, kg, US $ and the
+            CO<sub>2</sub>. An example is the Great Dorm 1st Floor Electric meter.</li>
+        <li>The Temperature_Fahrenheit meter unit collects in Fahrenheit and can also be graphed (compatible) in
+            Celsius. An example is the Library Temperature meter.
+        </li>
+        <li>The Recycling meter (actually formally a unit) collects in ton and can also be graphed (compatible) in lb,
+            kg, US $ and the
             suffix units of kg of CO<sub>2</sub>, lb of CO<sub>2</sub>, Metric ton of CO<sub>2</sub> and ton of
             CO<sub>2</sub>. Note that even though there are mass units associated with the collection amount and
-            CO<sub>2</sub> OED will keep them separate and graph them correctly.</li>
-        <li>The Electric kW meter collects in kW and can only be graphed in this unit.</li>
+            CO<sub>2</sub> OED will keep them separate and graph them correctly. An example is the Campus Recycling
+            meter.</li>
+        <li>The Electric kW meter (actually formally a unit) collects in kW and can only be graphed in this unit (no
+            other compatible units). An
+            example is the Theater Electric Power meter.</li>
     </ul>
-    <p>Note that this site could have many meters using the Electric_Utility meter. This makes the site easier to
-        maintain and more efficient. This is true for any meter defined.</p>
+    <p>Note that this site could have many meters using the Electric_Utility meter unit. This makes the site easier to
+        maintain and more efficient. This is true for any meter unit defined.</p>
+    <p>Using the groups from the example, the following compatibilities are derived:</p>
+    <ul>
+        <li>Campus Electric group is compatible with kWh, BTU, m<sup>3</sup> gas, US
+            $ and the suffix units of kg of CO<sub>2</sub>, lb of CO<sub>2</sub>, Metric ton of CO<sub>2</sub> and ton
+            of
+            CO<sub>2</sub> because all the underlying meters have the same compatibility. Campus Energy group is the
+            same.</li>
+        <li>Campus All group is compatible with US
+            $ and the suffix units of kg of CO<sub>2</sub>, lb of CO<sub>2</sub>, Metric ton of CO<sub>2</sub> and ton
+            of
+            CO<sub>2</sub> because it includes energy and water meters.</li>
+    </ul>
 </div>
