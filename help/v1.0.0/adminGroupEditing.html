@@ -14,7 +14,7 @@ title: OED admin group editing help
 		the <a href="./adminGroupViewing.html">admin group viewing page</a> by clicking the "Edit
 		Group" button at the bottom of each group card.
 	</p>
-	<img alt="Admin group editing popup" src="./images/adminGroupEditingPopup.png" style="width: 594">
+	<img alt="Admin group editing popup" src="./images/adminGroupEditingPopup.png" width="594">
 	<p>All information shown on this page is based upon the <a href="exampleDescription.html">help example</a>.</p>
 
 	<h2 id="usage">Usage</h2>
@@ -53,33 +53,40 @@ title: OED admin group editing help
 			groups</a> page. This discussion will use the following example that is not part of the example
 		data for the help pages because seeing these cases requires a different situation.</p>
 	<ul>
-		<li>Units of type meter</li>
-		<ul>
-			<li>Elec_kWh</li>
-			<li>Elec_$</li>
-			<li>Elec_kWh_$</li>
-		</ul>
-		<li>Conversions, all one way</li>
-		<ul>
-			<li>Elec_kWh → kWh</li>
-			<li>Elec_$ → US $</li>
-			<li>Elec_kWh_$ → kWh</li>
-			<li>Elec_kWh_$ → US $</li>
-		</ul>
-		<li>Meters</li>
-		<ul>
-			<li>Bldg kWh with unit Elec_kWh so compatible with kWh</li>
-			<li>Bldg $ with unit Elec_$ so compatible with US $</li>
-			<li>Bldg kWh & $ with unit Elec_kWh_$ so compatible with kWh & US $</li>
-		</ul>
-		<li>Groups</li>
-		<ul>
-			<li>Bldg some with child meter Bldg kWh & $, default graphic unit kWh and compatible with kWh & US $</li>
-			<li>Bldg all with child meter Bldg kWh & $, child group Bldg some, default graphic unit kWh and compatible
-				with kWh & US $. (This is an unusual group because it includes a meter from an included group directly
-				but
-				is done for illustration and OED does not duplicate all meters in groups.)</li>
-		</ul>
+		<li>Units of type meter
+			<ul>
+				<li>Elec_kWh</li>
+				<li>Elec_$</li>
+				<li>Elec_kWh_$</li>
+			</ul>
+		</li>
+		<li>Conversions, all one way
+			<ul>
+				<li>Elec_kWh → kWh</li>
+				<li>Elec_$ → US $</li>
+				<li>Elec_kWh_$ → kWh</li>
+				<li>Elec_kWh_$ → US $</li>
+			</ul>
+		</li>
+		<li>Meters
+			<ul>
+				<li>Bldg kWh with unit Elec_kWh so compatible with kWh</li>
+				<li>Bldg $ with unit Elec_$ so compatible with US $</li>
+				<li>Bldg kWh & $ with unit Elec_kWh_$ so compatible with kWh & US $</li>
+			</ul>
+		</li>
+		<li>Groups
+			<ul>
+				<li>Bldg some with child meter Bldg kWh & $, default graphic unit kWh and compatible with kWh & US $
+				</li>
+				<li>Bldg all with child meter Bldg kWh & $, child group Bldg some, default graphic unit kWh and
+					compatible
+					with kWh & US $. (This is an unusual group because it includes a meter from an included group
+					directly
+					but
+					is done for illustration and OED does not duplicate all meters in groups.)</li>
+			</ul>
+		</li>
 	</ul>
 
 	<p>The possible
@@ -88,32 +95,37 @@ title: OED admin group editing help
 		<li>If one edits the group Bldg some and adds the child meter Bldg kWh then the compatible units for both
 			groups
 			would become kWh. OED notifies one of this change with the following popup:</li>
-		<img alt="Admin group child meter changes compatible units" src="./images/adminGroupCompatibleChange.png"
-			width="441">
-		<p>If one clicks "OK" then this change will happen and if one clicks "Cancel" then the change will not happen.
-			If
-			one chooses to "Discard Changes" later then neither group will be modified even though the warning
-			was given and one clicked OK.</p>
+	</ul>
+	<img alt="Admin group child meter changes compatible units" src="./images/adminGroupCompatibleChange.png"
+		width="441">
+	<p>If one clicks "OK" then this change will happen and if one clicks "Cancel" then the change will not happen.
+		If
+		one chooses to "Discard Changes" later then neither group will be modified even though the warning
+		was given and one clicked OK.</p>
+	<ul>
 		<li>Starting from the original example, if one edits the group Bldg some and adds the child meter Bldg $ then
 			the compatible units for both groups
 			would become US $. Since the default graphic unit for both groups is kWh, it must be changed to no unit
 			because
 			kWh is no longer a valid choice. One must manually choose a different unit if that is desired. OED notifies
 			one of this change with the following popup:</li>
-		<img alt="Admin group child meter changes compatible units" src="./images/adminGroupCompatibleNoUnit.png"
-			width="441">
-		<p>The choices are the same as the example above. However, the default graphic unit will be changed for the
-			indicated groups.</p>
+	</ul>
+	<img alt="Admin group child meter changes compatible units" src="./images/adminGroupCompatibleNoUnit.png"
+		width="441">
+	<p>The choices are the same as the example above. However, the default graphic unit will be changed for the
+		indicated groups.</p>
+	<ul>
 		<li>Suppose the original example is changed so the group Bldg all only has child meter Bldg kWh (only kWh
 			compatible) but everything else
 			stays the same. If one edits the group Bldg some and adds the child meter Bldg $ then the compatible units
 			for this group has changed (only US $) and the ones for Bldg all are now empty. OED notifies one of this
 			change with the following popup:</li>
-		<img alt="Admin group child meter changes compatible units" src="./images/adminGroupCompatibleNone.png"
-			width="441">
-		<p>If such an edit was allowed then the group could not be graphed. As a result, OED does not permit this change
-			and the only choice is to accept the fact that the change is reverted.</p>
-		<p>Note that it is possible to get a mixture of any of the three warnings above in the popup.</p>
+	</ul>
+	<img alt="Admin group child meter changes compatible units" src="./images/adminGroupCompatibleNone.png" width="441">
+	<p>If such an edit was allowed then the group could not be graphed. As a result, OED does not permit this change
+		and the only choice is to accept the fact that the change is reverted.</p>
+	<p>Note that it is possible to get a mixture of any of the three warnings above in the popup.</p>
+	<ul>
 		<li>Groups included in other groups cannot wrap back around to the original group. For example, suppose group A
 			includes group B, Group B includes Group C and Group C includes group A. The chain now goes A → B → C → A so
 			the original group reappears in the chain. Formally this is known as a circular dependency and makes
@@ -123,11 +135,11 @@ title: OED admin group editing help
 			notify one as in the following figure and as indicated the group that caused the issue will not be added to
 			the
 			list of "Child Groups".</li>
-		<img alt="Admin group circular" src="./images/adminGroupCircular.png" width="441">
-		<p>A group cannot contain itself as a child group since that is a trivial example of a circular group discussed
-			above. The menus will stop one from
-			doing that.</p>
 	</ul>
+	<img alt="Admin group circular" src="./images/adminGroupCircular.png" width="441">
+	<p>A group cannot contain itself as a child group since that is a trivial example of a circular group discussed
+		above. The menus will stop one from
+		doing that.</p>
 	<p>OED does not allow a group without any meters included meaning there are no child meters or groups. If one
 		removes
 		the last child meter or group then the following popup will be seen and that change will be eliminated. As
@@ -141,7 +153,6 @@ title: OED admin group editing help
 		popup before doing this as shown in the following figure.</p>
 	<img alt="Admin meter type choices" src="./images/adminGroupDeleteConfirm.png" width="373">
 	<p>Click "Cancel" to stop the delete and "Delete Group" to delete it.</p>
-
 
 	<h2 id="details">Details</h2>
 	<p>None</p>

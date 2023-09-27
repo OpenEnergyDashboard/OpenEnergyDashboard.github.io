@@ -5,7 +5,7 @@ navbarShown: false
 ---
 <div>
     <h1>OED Installation</h1>
-	{% include_relative _adminWarning.html %}
+    {% include_relative _adminWarning.html %}
 
     <p>This describes the installation of an OED site for production use. If you are a developer, you likely want to
         follow the directions on the <a href="../../developer/gettingStarted.html">getting started</a> page.</p>
@@ -117,7 +117,7 @@ navbarShown: false
         # For production you might want something like:
         # - "80:3000"
         # and comment out the debug port and 3000:3000 line above
-           </code></pre>
+                    </code></pre>
                     <p>If you want to have standard web requests (port 80) serve up OED then edit to look like (you
                         comment out the debug port because it is not normally used in production):</p>
                     <pre><code>
@@ -127,10 +127,10 @@ navbarShown: false
         # For production you might want something like:
         - "80:3000"
         # and comment out the debug port and 3000:3000 line above
-                 </code></pre>
-                    <p></p>It is possible to use a different port. For example, if you leave the line
-                    <code>- "3000:3000"</code> uncommented and comment out <code>- "9229:9229"</code> then OED will
-                    server up on port 3000 (where you leave the <code>- "80:3000"</code> line commented out).
+                    </code></pre>
+                    <p>It is possible to use a different port. For example, if you leave the line
+                        <code>- "3000:3000"</code> uncommented and comment out <code>- "9229:9229"</code> then OED will
+                        server up on port 3000 (where you leave the <code>- "80:3000"</code> line commented out).
                     </p>
                 </li>
                 <li>OED_SITE_READING_RATE (under <code>services: -&gt; web: -&gt; environment:</code>) might need to be
@@ -142,43 +142,54 @@ navbarShown: false
                 <li>Later in these directions, it is suggested you set up a cron job to send an email to someone each
                     day with any issues the OED installation encountered. For this to work, OED needs to have access to
                     a mail system (SMTP server) to send the mail. To do this you need to set these environment values
-                    under <code>services: -&gt; web: -&gt; environment:</code></li>
-                <ul>
-                    <li>OED_MAIL_METHOD gives the way email is sent (SMTP). As the comment says this can be
-                        <code>secure-smtp</code> to use your SMTP server or <code>none</code> if you are not going to
-                        have OED send mail
-                        alerts. OED only supports sending mail via secure channels. Note that the SMTP listed here does
-                        not have to relate to the mail recipient. In the
-                        end, this usually becomes <code>OED_MAIL_METHOD=secure-smtp</code>.
-                    </li>
-                    <li>OED_MAIL_SMTP gives the web address of the SMTP server you are using. For example, it could be
-                        <code>OED_MAIL_SMTP=smtp.example.com</code> where example.com would become the domain for your
-                        organization or you could use <code>OED_MAIL_SMTP=smtp.gmail.com</code> for Google Mail.
-                    </li>
-                    <li>OED_MAIL_SMTP_PORT gives the port number of the SMTP server you are using. For example, it is
-                        often <code>OED_MAIL_SMTP_PORT=465</code> for the standard SSL connection port.</li>
-                    <li>OED_MAIL_IDENT gives the user name on the SMTP server where the mail will be sent. Replace
-                        <code>someone@example.com</code> with your user name email.
-                    </li>
-                    <li>OED_MAIL_CREDENTIAL gives the password for the SMTP user in OED_MAIL_IDENT. Replace
-                        <code>credential</code> with that password. Note this setup cannot accommodate two factor
-                        authentication (2FA) unless you have access to a token for the credential (an app password for
-                        mail for Google has been tested and it works).
-                    </li>
-                    <li>OED_MAIL_FROM give the email address that the mail will be from. This is often the same as the
-                        OED_MAIL_IDENT so it might be <code>OED_MAIL_FROM=mydomain@example.com</code> where you use the
-                        desired email address.</li>
-                    <li>OED_MAIL_TO gives the email address of who will get the emails. Replace
-                        <code>someone@example.com</code> with the desired email. It can be the same as the SMTP email
-                        above or something different.
-                    </li>
-                    <li>OED_MAIL_ORG gives the organization name that will be part of the subject of the email sent.
-                        This may be important in recognizing the email, esp. if the person receiving it gets email from
-                        multiple OED sites (not common). Replace <code>My Organization Name</code> with whatever name
-                        you
-                        want.</li>
-                </ul>
-                </ul>
+                    under <code>services: -&gt; web: -&gt; environment:</code>
+                    <ul>
+                        <li>OED_MAIL_METHOD gives the way email is sent (SMTP). As the comment says this can be
+                            <code>secure-smtp</code> to use your SMTP server or <code>none</code> if you are not going
+                            to
+                            have OED send mail
+                            alerts. OED only supports sending mail via secure channels. Note that the SMTP listed here
+                            does
+                            not have to relate to the mail recipient. In the
+                            end, this usually becomes <code>OED_MAIL_METHOD=secure-smtp</code>.
+                        </li>
+                        <li>OED_MAIL_SMTP gives the web address of the SMTP server you are using. For example, it could
+                            be
+                            <code>OED_MAIL_SMTP=smtp.example.com</code> where example.com would become the domain for
+                            your
+                            organization or you could use <code>OED_MAIL_SMTP=smtp.gmail.com</code> for Google Mail.
+                        </li>
+                        <li>OED_MAIL_SMTP_PORT gives the port number of the SMTP server you are using. For example, it
+                            is
+                            often <code>OED_MAIL_SMTP_PORT=465</code> for the standard SSL connection port.</li>
+                        <li>OED_MAIL_IDENT gives the user name on the SMTP server where the mail will be sent. Replace
+                            <code>someone@example.com</code> with your user name email.
+                        </li>
+                        <li>OED_MAIL_CREDENTIAL gives the password for the SMTP user in OED_MAIL_IDENT. Replace
+                            <code>credential</code> with that password. Note this setup cannot accommodate two factor
+                            authentication (2FA) unless you have access to a token for the credential (an app password
+                            for
+                            mail for Google has been tested and it works).
+                        </li>
+                        <li>OED_MAIL_FROM give the email address that the mail will be from. This is often the same as
+                            the
+                            OED_MAIL_IDENT so it might be <code>OED_MAIL_FROM=mydomain@example.com</code> where you use
+                            the
+                            desired email address.</li>
+                        <li>OED_MAIL_TO gives the email address of who will get the emails. Replace
+                            <code>someone@example.com</code> with the desired email. It can be the same as the SMTP
+                            email
+                            above or something different.
+                        </li>
+                        <li>OED_MAIL_ORG gives the organization name that will be part of the subject of the email sent.
+                            This may be important in recognizing the email, esp. if the person receiving it gets email
+                            from
+                            multiple OED sites (not common). Replace <code>My Organization Name</code> with whatever
+                            name
+                            you
+                            want.</li>
+                    </ul>
+                </li>
             </ol>
         </li>
         <li>For the remaining steps you need to be the superuser/root to have sufficient permission to modify system
@@ -235,7 +246,7 @@ oed-web-1       | ℹ ｢atl｣: Time: 24033ms
             <p>If you redo the <code>docker compose up</code> then you should now get the expected output described
                 above.</p>
         </li>
-        <p>The <a href="./adminInstallOutput.html">typical output of the install</a> is available.</p>
+        The <a href="./adminInstallOutput.html">typical output of the install</a> is available.
         <li>You can now use a web browser to check that OED is properly serving up web pages. Use the web
             address
             <code>oed.myinstition.org</code> where you replace oed.myinstition.org with the name of the server
@@ -361,14 +372,17 @@ Password: passwordYouChoose
             </ol>
         </li>
         <li>Sometimes you want to see the output of OED when it is running as a service. This can be useful during the
-            install if you want to see why OED did not come up. You do this by:</li>
-        <ol>
-            <li>Get the container ID by using: <code>docker ps -a</code>. The CONTAINER ID will be the one with the
-                IMAGE of ...oed_web (where there may be some name in the ...) for the install/web output and IMAGE of
-                ...oed_database for any database output.</li>
-            <li><code>docker logs &lt;CONTAINER ID&gt; | more</code> where you replace &lt;CONTAINER ID&gt; with the one
-                you want from the previous step.</li>
-        </ol>
+            install if you want to see why OED did not come up. You do this by:
+            <ol>
+                <li>Get the container ID by using: <code>docker ps -a</code>. The CONTAINER ID will be the one with the
+                    IMAGE of ...oed_web (where there may be some name in the ...) for the install/web output and IMAGE
+                    of
+                    ...oed_database for any database output.</li>
+                <li><code>docker logs &lt;CONTAINER ID&gt; | more</code> where you replace &lt;CONTAINER ID&gt; with the
+                    one
+                    you want from the previous step.</li>
+            </ol>
+        </li>
     </ol>
 
     <h1>OED upgrades</h1>
@@ -385,13 +399,16 @@ Password: passwordYouChoose
     <ul>
         <li><a href="./adminPreferences.html">Site preferences</a>. Allows for setting of the site name, default actions
             on the graphic pages, creating other users, and certain limits among other things.</li>
-        <li><a href="./adminDataAcquisition.html">data acquisition</a>. Discusses getting meter data into OED so the site
+        <li><a href="./adminDataAcquisition.html">data acquisition</a>. Discusses getting meter data into OED so the
+            site
             can display data.
         </li>
-        <li><a href="./adminOedUnits.html">Standard units and conversions</a>. Discusses the units and conversions provided by OED and making more of
+        <li><a href="./adminOedUnits.html">Standard units and conversions</a>. Discusses the units and conversions
+            provided by OED and making more of
             them visible to the user.</li>
         <li><a href="./adminUser.html">Users</a>. To create additional user logins and manage them.</li>
-        <li><a href="./admin.html">Admin features</a>. Discusses the range of actions that admins can take and the related help pages.
+        <li><a href="./admin.html">Admin features</a>. Discusses the range of actions that admins can take and the
+            related help pages.
             There are many OED features other than the ones linked directly above.</li>
     </ul>
 

@@ -15,7 +15,7 @@ title: OED admin group creating help
 		the <a href="./adminGroupViewing.html">admin group viewing page</a> by clicking the "Create a
 		Group" button near the top of that page.
 	</p>
-	<img alt="Admin group creating popup" src="./images/adminGroupCreatingPopup.png" style="width: 592">
+	<img alt="Admin group creating popup" src="./images/adminGroupCreatingPopup.png" width="592">
 	<p>All example information shown on this web page is based upon the <a href="exampleDescription.html">help
 			example</a>.</p>
 
@@ -40,18 +40,20 @@ title: OED admin group creating help
 			incompatible/non-selectable ones will be at the bottom in grayed out font. Initially this menu will only
 			have "no unit" as compatible because that is the only
 			compatible unit with an empty group as shown in the following figure.</li>
-		<!-- Need to override the default size for most images on pages. -->
-		<img alt="Admin group default graphic unit choices when empty group"
-			src="./images/adminGroupDguNoUnitDropdown.png" width="288">
-		<p>The dropdown menu when the meter "Dining Hall Electric" that collects in kWh is the only child meter is shown
-			in the following figure.
-			All units from Celsius and below are not compatible and grayed out.</p>
-		<!-- Need to override the default size for most images on pages. -->
-		<img alt="Admin group unit choices" src="./images/adminGroupDguEuDropdown.png" width="281">
-		<p>If "no unit" is selected then this group cannot be graphed until a compatible unit is already selected. It
-			has a default value of "no unit".</p>
+	</ol>
+	<!-- Need to override the default size for most images on pages. -->
+	<img alt="Admin group default graphic unit choices when empty group" src="./images/adminGroupDguNoUnitDropdown.png"
+		width="288">
+	<p>The dropdown menu when the meter "Dining Hall Electric" that collects in kWh is the only child meter is shown
+		in the following figure.
+		All units from Celsius and below are not compatible and grayed out.</p>
+	<!-- Need to override the default size for most images on pages. -->
+	<img alt="Admin group unit choices" src="./images/adminGroupDguEuDropdown.png" width="281">
+	<p>If "no unit" is selected then this group cannot be graphed until a compatible unit is already selected. It
+		has a default value of "no unit".</p>
+	<ol start="3">
 		<li>Displayable. This dropdown menu can be "yes" or "no" (default). "yes" indicates the group
-			can be seen and graphed by any user and "no" limits the group visibility and graphing to admins.
+			can be seen and graphed by any user and "no" limits the group visibility and graphing to admins.</li>
 		<li>GPS. This is the GPS location of the group entered as latitude, longitude (without parentheses). It is used
 			when the values from
 			the group are placed on a <a href="./mapGraphic.html">map graphic</a>. More information on using the best
@@ -77,29 +79,33 @@ title: OED admin group creating help
 			Floor
 			Electric" And "Great Dorm 2nd Floor Electric" then clicking this button will result in the popup in the next
 			figure.</li>
-		<!-- Need to override the default size for most images on pages. -->
-		<img alt="Admin group unit choices" src="./images/adminGroupAreaCalc.png" width="445">
-		<p>If one clicks "OK" (the default) then the value for area display will be placed in the area input and it will
-			overwrite any existing value. If one clicks "Cancel" then nothing is changed. In this example the area is
-			11000 because the area of "Dining Hall Electric" is 1000, "Great Dorm 1st Floor
-			Electric" is 5000 and "Great Dorm 2nd Floor Electric" is 5000 so the sum is 11000.</p>
-		<p>It is not required that all meters have an associated area. If a group includes such a meter then OED will
-			give a warning when it calculates the area of the group because it cannot include anything for that meter.
-			If the
-			previous example was modified to include a fourth meter of "Other building" that does not have an area then
-			the
-			popup in the next figure would appear when you calculate the area.</p>
-		<!-- Need to override the default size for most images on pages. -->
-		<img alt="Admin group unit choices" src="./images/adminGroupAreaCalcNoArea.png" width="445">
-		<p>As stated, the area calculated does not include anything for this meter. Note if one clicks "OK" and sets the
-			area for this group, it is possible to manually edit this value to include any missing meters. While this
-			example shows one meter, any meters without an area will be listed in the popup.</p>
+	</ol>
+	<!-- Need to override the default size for most images on pages. -->
+	<img alt="Admin group unit choices" src="./images/adminGroupAreaCalc.png" width="445">
+	<p>If one clicks "OK" (the default) then the value for area display will be placed in the area input and it will
+		overwrite any existing value. If one clicks "Cancel" then nothing is changed. In this example the area is
+		11000 because the area of "Dining Hall Electric" is 1000, "Great Dorm 1st Floor
+		Electric" is 5000 and "Great Dorm 2nd Floor Electric" is 5000 so the sum is 11000.</p>
+	<p>It is not required that all meters have an associated area. If a group includes such a meter then OED will
+		give a warning when it calculates the area of the group because it cannot include anything for that meter.
+		If the
+		previous example was modified to include a fourth meter of "Other building" that does not have an area then
+		the
+		popup in the next figure would appear when you calculate the area.</p>
+	<!-- Need to override the default size for most images on pages. -->
+	<img alt="Admin group unit choices" src="./images/adminGroupAreaCalcNoArea.png" width="445">
+	<p>As stated, the area calculated does not include anything for this meter. Note if one clicks "OK" and sets the
+		area for this group, it is possible to manually edit this value to include any missing meters. While this
+		example shows one meter, any meters without an area will be listed in the popup.</p>
+	<ol start="7">
 		<li>Area Unit. This dropdown menu can have the values shown in the following figure. The usable area units
 			are "sq. feet" and "sq. meters". If "no unit" is selected then the field will be red if the area is non-zero
 			because OED needs to know the unit of the area. The default value is "no unit" and this can be used if the
 			area is reset back to zero so the choice is valid.</li>
-		<!-- Reuse meter one since menu is the same. -->
-		<img alt="Admin group area unit choices" src="./images/adminMeterAreaUnitDropdown.png" width="155">
+	</ol>
+	<!-- Reuse meter one since menu is the same. -->
+	<img alt="Admin group area unit choices" src="./images/adminMeterAreaUnitDropdown.png" width="155">
+	<ol start="8">
 		<li>Note. This may give additional information about the group supplied by the
 			admin. Any text can be entered and it can be blank if desired.</li>
 		<li>Child Meters. This area lists all the meters directly included into this group along with the ability to
@@ -134,28 +140,30 @@ title: OED admin group creating help
 					compatible with any of the "Dining Hall Electric" meter units
 					so there are no possible compatible units between them.</li>
 			</ul>
-			<!-- Need to override the default size for most images on pages. -->
-			<img alt="Admin group child meter choices" src="./images/adminGroupChildMeters.png" width="573">
-			<p>The fourth possible display state of a meter is shown in the following figure. In this case the default
-				graphic unit was changed to kWh. As a result, the meter "Great Dorm Water" is now in red. This
-				indicates that the compatible units would change if this meter
-				is selected and the current default
-				graphic unit is not one of the changed compatible units (CO<sub>2</sub> units and US $). If this meter
-				is chosen then the default
-				graphic unit
-				must be changed. OED will set the default graph unit to "no unit" and one needs to set it to a new
-				compatible unit for this group if desired. These meters are shown in red to indicate that the group will
-				automatically
-				be changed. If the new meter is added to the group then a pop up will confirm the change to the group.
-				In this example it would have "The default graphic unit was changed to no unit from "kWh"".</p>
-			<!-- Need to override the default size for most images on pages. -->
-			<img alt="Admin group child meter choices" src="./images/adminGroupChildMetersRed.png" width="573">
-			<p>While the examples above use meters, any group included in this group also impacts the compatible units.
-				Any of
-				the meters that are in this group (see All Meters below) are included in the consideration of compatible
-				units. Finally, a meter can always be removed from a group because it cannot reduce the compatible units
-				so it will leave it the same or add more compatible units.</p>
 		</li>
+	</ol>
+	<!-- Need to override the default size for most images on pages. -->
+	<img alt="Admin group child meter choices" src="./images/adminGroupChildMeters.png" width="573">
+	<p>The fourth possible display state of a meter is shown in the following figure. In this case the default
+		graphic unit was changed to kWh. As a result, the meter "Great Dorm Water" is now in red. This
+		indicates that the compatible units would change if this meter
+		is selected and the current default
+		graphic unit is not one of the changed compatible units (CO<sub>2</sub> units and US $). If this meter
+		is chosen then the default
+		graphic unit
+		must be changed. OED will set the default graph unit to "no unit" and one needs to set it to a new
+		compatible unit for this group if desired. These meters are shown in red to indicate that the group will
+		automatically
+		be changed. If the new meter is added to the group then a pop up will confirm the change to the group.
+		In this example it would have "The default graphic unit was changed to no unit from "kWh"".</p>
+	<!-- Need to override the default size for most images on pages. -->
+	<img alt="Admin group child meter choices" src="./images/adminGroupChildMetersRed.png" width="573">
+	<p>While the examples above use meters, any group included in this group also impacts the compatible units.
+		Any of
+		the meters that are in this group (see All Meters below) are included in the consideration of compatible
+		units. Finally, a meter can always be removed from a group because it cannot reduce the compatible units
+		so it will leave it the same or add more compatible units.</p>
+	<ol start="10">
 		<li>Child Groups. This area lists all the groups directly included into this group along with the ability to
 			change them. A group can be removed by clicking the "x" to the right of its name. The dropdown menu can be
 			used to select another group to include into this group. A group is compatible with the new group if a
@@ -168,7 +176,9 @@ title: OED admin group creating help
 			The reason for the group labeling can be determined by looking at the information in the <a
 				href="exampleDescription.html">help example</a> and <a
 				href="conversionsUnits.html#compatible">compatibility</a> .</li>
-		<p><img alt="Admin group group choices" src="./images/adminGroupChildGroupsRed.png" width="580"></p>
+	</ol>
+	<p><img alt="Admin group group choices" src="./images/adminGroupChildGroupsRed.png" width="580"></p>
+	<ol start="11">
 		<li>All Meters. Determining all meters that are included in a group can be difficult, especially given that
 			groups can include groups (and those can include more groups). To help with this, this area shows all meters
 			that are included in this group
