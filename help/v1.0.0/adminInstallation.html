@@ -228,25 +228,27 @@ oed-web-1       | ℹ ｢atl｣: Time: 24033ms
                 compose so you will need to add them during your edits. It also has the reverse proxy line comment that
                 has since been removed.):
             </p>
-            <code><pre>
-                # Lets docker-compose up work right
-                # If environment variable install_args is not set the it becomes blank without warning user.
-                command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
-                # Use this if you are using a docker-compose that is earlier than version 2 and comment out the one above.
-                # command: ["bash", "./src/scripts/installOED.sh"]
-            </pre></code>
+            <pre><code>
+    # Lets docker-compose up work right
+    # If environment variable install_args is not set the it becomes blank without warning user.
+    command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
+    # Use this if you are using a docker-compose that is earlier than version 2 and comment out the one above.
+    # command: ["bash", "./src/scripts/installOED.sh"]
+            </code></pre>
             <p>Edit this to be:</p>
-            <code><pre>
-                # Lets docker-compose up work right
-                # If environment variable install_args is not set the it becomes blank without warning user.
-                # command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
-                # Use this if you are using a docker-compose that is earlier than version 2 and comment out the one above.
-                command: ["bash", "./src/scripts/installOED.sh"]
-            </pre></code>
+            <pre><code>
+    # Lets docker-compose up work right
+    # If environment variable install_args is not set the it becomes blank without warning user.
+    # command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
+    # Use this if you are using a docker-compose that is earlier than version 2 and comment out the one above.
+    command: ["bash", "./src/scripts/installOED.sh"]
+            </code></pre>
             <p>If you redo the <code>docker compose up</code> then you should now get the expected output described
                 above.</p>
         </li>
-        The <a href="./adminInstallOutput.html">typical output of the install</a> is available.
+    </ol>
+    <p>The <a href="./adminInstallOutput.html">typical output of the install</a> is available.</p>
+    <ol start="7">
         <li>You can now use a web browser to check that OED is properly serving up web pages. Use the web
             address
             <code>oed.myinstition.org</code> where you replace oed.myinstition.org with the name of the server
