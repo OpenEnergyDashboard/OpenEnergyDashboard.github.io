@@ -11,16 +11,22 @@
 
 <body>
 	<div class="navbar">
-		<a href="index.html"> <img id="logo" alt="OED logo" src="images/logo.png" /></a>
+		<a href="index.html"> <img id="logo" alt="OED logo" src="images/logo.png"></a>
 		<a href="index.html">Home</a>
-		<a href="features.html">Features</a>
+		<div class="dropdown">
+			<button class="dropbtn">Features &#x25BC;</button>
+			<div class="dropdown-content">
+				<a href="useAcademic.html">Academic Use</a>
+				<a href="features.html">Features Overview</a>
+			</div>
+		</div>
+		<a href="help/v1.0.0/index.html">OED Help</a>
+		<a href="contact.html">Contact Us</a>
 		<a href="demo.html">Demo</a>
 		<a href="use.html">Use</a>
-		<a href="contact.html">Contact Us</a>
 		<a href="involved.html">Get involved</a>
-		<a href="projectInfo.html">Project info</a>
-		<a href="help/v1.0.0/index.html">OED Help</a>
 		<a href="news.html">News</a>
+		<a href="projectInfo.html">Project info</a>
 		<a href="developer/index.html">Developer Pages</a>
 	</div>
 	<div class="container">{{ content }}</div>
@@ -33,7 +39,8 @@
 		</div>
 		<p>This page is part of the Open Energy Dashboard and is subject to the terms of the Mozilla Public License,
 			v. 2.0. If a copy of the MPL was not distributed with this file, you can obtain one at <a
-				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.</p>
+				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.
+		</p>
 	</footer>
 </body>
 
