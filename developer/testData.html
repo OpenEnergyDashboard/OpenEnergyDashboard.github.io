@@ -826,13 +826,14 @@ title: OED test data
 
 	<h3>Group data</h3>
 	<p>The following table gives groups that are created from the meters above as well as the mathematical meter data
-		described below.</p>
+		described below. All area units are sq. meters and not set/zero if left off.</p>
 	<table>
 		<thead>
 			<tr>
 				<th>Group name</th>
 				<th>Default graphic unit</th>
 				<th>Values for default unit</th>
+				<th>area</th>
 				<th>Included meters</th>
 				<th>Included groups</th>
 				<th>All meters included</th>
@@ -845,6 +846,7 @@ title: OED test data
 				<td>Electric Utility 1-5 + 2-6 kWh</td>
 				<td>kWh</td>
 				<td>3 - 11</td>
+				<td>10</td>
 				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
 				<td>none</td>
 				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
@@ -855,6 +857,7 @@ title: OED test data
 				<td>Electric Utility 1-5 + 2-6 Dollar</td>
 				<td>US Dollar</td>
 				<td>0.345 - 1.265</td>
+				<td>10</td>
 				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
 				<td>none</td>
 				<td>Electric Utility kWh, Electric Utility kWh 2-6</td>
@@ -865,6 +868,7 @@ title: OED test data
 				<td>Natural Gas Dollar Euro</td>
 				<td>Euro</td>
 				<td>0.88 - 4.4</td>
+				<td></td>
 				<td>Natural Gas Dollar</td>
 				<td>none</td>
 				<td>Natural Gas Dollar</td>
@@ -875,6 +879,7 @@ title: OED test data
 				<td>Electric Utility 1-5 + Natural Gas Dollar Euro</td>
 				<td>Euro</td>
 				<td>0.9812 - 4.906</td>
+				<td></td>
 				<td>Electric Utility kWh, Natural Gas Dollar</td>
 				<td>none</td>
 				<td>Electric Utility kWh, Natural Gas Dollar</td>
@@ -885,6 +890,7 @@ title: OED test data
 				<td>Electric Utility 1-5 kWh not displayable</td>
 				<td>kWh</td>
 				<td>1 - 5</td>
+				<td></td>
 				<td>Electric Utility kWh</td>
 				<td>none</td>
 				<td>Electric Utility kWh</td>
@@ -895,6 +901,7 @@ title: OED test data
 				<td>Electric kW + 2-6 kW</td>
 				<td>kW</td>
 				<td>3 - 11</td>
+				<td>100</td>
 				<td>Electric kW, Electric kW 2-6</td>
 				<td>none</td>
 				<td>Electric kW, Electric kW 2-6</td>
@@ -905,6 +912,7 @@ title: OED test data
 				<td>SqSin + SqCos kWh</td>
 				<td>kWh</td>
 				<td>very close to 2.5</td>
+				<td>10</td>
 				<td>testSqSin kWh, testSqCos kWh</td>
 				<td>none</td>
 				<td>testSqSin kWh, testSqCos kWh</td>
@@ -915,6 +923,7 @@ title: OED test data
 				<td>SqSin + SqCos no unit</td>
 				<td>none</td>
 				<td>same as above</td>
+				<td></td>
 				<td>testSqSin kWh, testSqCos kWh</td>
 				<td>none</td>
 				<td>testSqSin kWh, testSqCos kWh</td>
@@ -925,6 +934,7 @@ title: OED test data
 				<td>Sin Amp 1 + 2 kWh</td>
 				<td>kWh</td>
 				<td>sine from 0-3</td>
+				<td>1000</td>
 				<td>Sin Amp 1 kWh, Sin Amp 2 kWh</td>
 				<td>none</td>
 				<td>Sin Amp 1 kWh, Sin Amp 2 kWh</td>
@@ -935,6 +945,7 @@ title: OED test data
 				<td>Sin Amp 2 + 3 kWh</td>
 				<td>kWh</td>
 				<td>sine from 0-5</td>
+				<td>1000</td>
 				<td>Sin Amp 2 kWh, Sin Amp 3 kWh</td>
 				<td>none</td>
 				<td>Sin Amp 2 kWh, Sin Amp 3 kWh</td>
@@ -945,6 +956,7 @@ title: OED test data
 				<td>Sin Amp 1 + (2 - 3) kWh</td>
 				<td>kWh</td>
 				<td>sine from 0-6</td>
+				<td>10000</td>
 				<td>Sin Amp 1 kWh</td>
 				<td>Sin Amp 2 + 3 kWh</td>
 				<td>Sin Amp 1 kWh, Sin Amp 2 kWh, Sin Amp 3 kWh</td>
@@ -955,6 +967,7 @@ title: OED test data
 				<td>Amp 1 + 2 + (1 + 2) + (2 -3) kWh</td>
 				<td>kWh</td>
 				<td>sine from 0-6</td>
+				<td>10000</td>
 				<td>Sin Amp 1 kWh, Sin Amp 2 kWh</td>
 				<td>Sin Amp 1 + 2 kWh, Sin Amp 2 + 3 kWh</td>
 				<td>Sin Amp 1 kWh, Sin Amp 2 kWh, Sin Amp 3 kWh</td>
