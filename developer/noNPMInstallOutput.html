@@ -6,8 +6,8 @@ title: OED quick install
 	<p>If you have previously installed the PostgreSQL database and it can skip installing the node modules then it will
 		be faster and skip a number of steps. Below is typical output for this process. Please note: </p>
 	<ul>
-		<li>This output was created on 24 April 2022 on a Mac. The exact output will vary with machine type and changes
-			to OED. This output was what was shown in the nohup.out file for a VSC install.</li>
+		<li>This output was created on 20 October 2023. The exact output will vary with machine type and changes
+			to OED. This output will be in the nohup.out file for a VSC install.</li>
 		<li>You may also see the log messages from the last time PostgreSQL ran in the earlier parts of the output.
 			These could be short or long lists. They might seem to indicate issues but are not related to this attempt
 			to install OED.</li>
@@ -22,728 +22,295 @@ title: OED quick install
 					extension and choosing "Attach Shell". In the terminal that opens, enter
 					<code>./src/scripts/installOED.sh  >> nohup.out 2>&1 &</code> and hit return. This should cause the
 					OED install to happen where you will see output in the nohup.out file. You can close the remote
-					connection, as usual, to stop OED.</li>
+					connection, as usual, to stop OED.
+				</li>
 			</ul>
 		</li>
 	</ul>
 
-	<h3>VSC output</h3>
-	<p>When the container opens, VSC will open a terminal. It will contain the output from what it does. At the end of
-		the install it will have:</p>
+	<h3>Output</h3>
 	<pre>
-[44 ms] Remote-Containers 0.231.6 in VS Code 1.66.2 (dfd34e8260c270da74b5c2d86d61aee4b6d56977).
-[43 ms] Start: Resolving Remote
-[61 ms] Setting up container for folder or workspace: /Users/steve/OED/OED
-[68 ms] Start: Check Docker is running
-[68 ms] Start: Run: docker version --format {% raw %}{{.Server.APIVersion}}{% endraw %}
-[343 ms] Server API version: 1.41
-[348 ms] Start: Run: docker volume ls -q
-[873 ms] Start: Run: docker ps -q -a --filter label=vsch.local.folder=/Users/steve/OED/OED --filter label=vsch.quality=stable
-[1186 ms] Start: Run: /Applications/Visual Studio Code.app/Contents/MacOS/Electron /Users/steve/.vscode/extensions/ms-vscode-remote.remote-containers-0.231.6/dist/spec-node/devContainersSpecCLI.js up --container-data-folder .vscode-server/data/Machine --container-system-data-folder /var/vscode-server --workspace-folder /Users/steve/OED/OED --workspace-mount-consistency cached --id-label vsch.local.folder=/Users/steve/OED/OED --id-label vsch.quality=stable --log-level debug --config /Users/steve/OED/OED/.devcontainer/devcontainer.json --mount type=volume,source=vscode,target=/vscode,external=true --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root true
-[1481 ms] remote-containers 0.231.6.
-[1481 ms] Start: Resolving Remote
-[1488 ms] Start: Run: docker-compose version --short
-[2788 ms] Start: Run: docker ps -q -a --filter label=com.docker.compose.project=oed --filter label=com.docker.compose.service=web
-[3070 ms] Start: Run: docker inspect --type container c24e0f9ae9c4
-[3517 ms] Start: Run: docker-compose -f /Users/steve/OED/OED/docker-compose.yml -f /Users/steve/OED/OED/.devcontainer/docker-compose.yml config
-[5081 ms] services:
-  database:
-build:
-  context: /Users/steve/OED/OED/containers/database
-environment:
-  PGDATA: /var/lib/postgresql/data/pgdata
-  POSTGRES_PASSWORD: pleaseChange
-volumes:
-- /Users/steve/OED/OED/postgres-data:/var/lib/postgresql/data/pgdata:rw
-  web:
-build:
-  context: /Users/steve/OED/OED
-  dockerfile: ./containers/web/Dockerfile
-command: /bin/sh -c "while sleep 1000; do :; done"
-depends_on:
-  database:
-condition: service_started
-environment:
-  OED_DB_DATABASE: oed
-  OED_DB_HOST: database
-  OED_DB_PASSWORD: opened
-  OED_DB_PORT: '5432'
-  OED_DB_TEST_DATABASE: oed_testing
-  OED_DB_USER: oed
-  OED_LOG_FILE: log.txt
-  OED_MAIL_CREDENTIAL: credential
-  OED_MAIL_FROM: mydomain@example.com
-  OED_MAIL_IDENT: someone@example.com
-  OED_MAIL_METHOD: none
-  OED_MAIL_ORG: My Organization Name
-  OED_MAIL_SMTP: smtp.example.com
-  OED_MAIL_SMTP_PORT: '465'
-  OED_MAIL_TO: someone@example.com
-  OED_PRODUCTION: "no"
-  OED_SERVER_PORT: '3000'
-  OED_SITE_READING_RATE: 00:15:00
-  OED_TEST_SITE_READING_RATE: 00:15:00
-  OED_TOKEN_SECRET: '?'
-links:
-- database
-ports:
-- published: 3000
-  target: 3000
-- published: 9229
-  target: 9229
-volumes:
-- /Users/steve/OED/OED:/usr/src/app:rw
-- /Users/steve/OED/OED:/workspace:cached
-version: '2.1'
-
-[5086 ms] Start: Run: docker events --format {% raw %}{{json .}}{% endraw %} --filter event=start
-[5088 ms] PersistedPath=/var/folders/kr/7wxdvbk15fx5kqh22yvb42w00000gn/T, ContainerHasLabels=true
-[5088 ms] Container was created with these config files: /Users/steve/OED/OED/docker-compose.yml
-[5088 ms] Expected to find a docker-compose file prefixed with docker-compose.devcontainer.containerFeatures, but did not.
-[5088 ms] Generating composeOverrideFile...
-[5099 ms] Preparing to parse declared features and fetch remote features.
-[5099 ms] Detected local feature set. Continuing...
-[5100 ms] Start: Run: docker inspect --type image oed_web
-[5481 ms] local container features stored at: /Users/steve/.vscode/extensions/ms-vscode-remote.remote-containers-0.231.6/dist/node_modules/vscode-dev-containers/container-features
-[5482 ms] Start: Run: tar --no-same-owner -x -f -
-[5536 ms] Start: Run: docker build -t vsc-oed-8e579313c8e30ab25c1b69de3d19da3c-features --build-arg BASE_IMAGE=oed_web --build-arg IMAGE_USER=root /var/folders/kr/7wxdvbk15fx5kqh22yvb42w00000gn/T/vsch/container-features/0.231.6-1650828803370
-[+] Building 42.3s (8/8) FINISHED                                               
- => [internal] load build definition from Dockerfile                       0.2s
- => => transferring dockerfile: 321B                                       0.1s
- => [internal] load .dockerignore                                          0.0s
- => => transferring context: 2B                                            0.0s
- => [internal] load metadata for docker.io/library/oed_web:latest          0.0s
- => [internal] load build context                                          0.1s
- => => transferring context: 263.32kB                                      0.1s
- => CACHED [1/3] FROM docker.io/library/oed_web                            0.0s
- => [2/3] COPY . /tmp/build-features/                                      0.1s
- => [3/3] RUN cd /tmp/build-features/local-cache && chmod +x ./install.s  40.0s
- => exporting to image                                                     1.7s
- => => exporting layers                                                    1.6s
- => => writing image sha256:8930ab469264906f9a888f273540557c9d86bed6573bd  0.0s 
- => => naming to docker.io/library/vsc-oed-8e579313c8e30ab25c1b69de3d19da  0.0s 
-[49258 ms] Writing docker-compose.devcontainer.containerFeatures-1650828847540.yml to /var/folders/kr/7wxdvbk15fx5kqh22yvb42w00000gn/T/docker-compose
-[49261 ms] Start: Run: docker-compose --project-name oed -f /Users/steve/OED/OED/docker-compose.yml -f /Users/steve/OED/OED/.devcontainer/docker-compose.yml -f /var/folders/kr/7wxdvbk15fx5kqh22yvb42w00000gn/T/docker-compose/docker-compose.devcontainer.containerFeatures-1650828847540.yml up -d
-Recreating oed-database-1 ... done
-Recreating oed-web-1      ... done
-[67914 ms] Start: Run: docker ps -q -a --filter label=com.docker.compose.project=oed --filter label=com.docker.compose.service=web
-[68275 ms] Start: Run: docker inspect --type container 37df798dba0b
-[68562 ms] Start: Inspecting container
-[68562 ms] Start: Run: docker inspect --type container 37df798dba0bf2e7807c254908e1c5cc3f8e0bf6a833d43eab8a33cae6d6358c
-[68877 ms] Start: Run in container: /bin/sh
-[68883 ms] Start: Run in container: uname -m
-[69352 ms] x86_64
-[69352 ms] 
-[69353 ms] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
-[69366 ms] PRETTY_NAME="Debian GNU/Linux 10 (buster)"
-NAME="Debian GNU/Linux"
-VERSION_ID="10"
-VERSION="10 (buster)"
-VERSION_CODENAME=buster
-ID=debian
-HOME_URL="https://www.debian.org/"
-SUPPORT_URL="https://www.debian.org/support"
-BUG_REPORT_URL="https://bugs.debian.org/"
-[69366 ms] 
-[69366 ms] Start: Run in container: cat /etc/passwd
-[69373 ms] Start: Run in container: test -f '/var/vscode-server/.patchEtcEnvironmentMarker'
-[69383 ms] 
-[69383 ms] 
-[69383 ms] Exit code 1
-[69384 ms] Start: Run in container: test ! -f '/var/vscode-server/.patchEtcEnvironmentMarker' && set -o noclobber && mkdir -p '/var/vscode-server' && { > '/var/vscode-server/.patchEtcEnvironmentMarker' ; } 2> /dev/null
-[69413 ms] 
-[69413 ms] 
-[69413 ms] Start: Run in container: cat >> /etc/environment <<'etcEnvrionmentEOF'
-[69438 ms] 
-[69439 ms] 
-[69439 ms] Start: Run in container: test -f '/var/vscode-server/.patchEtcProfileMarker'
-[69454 ms] 
-[69454 ms] 
-[69454 ms] Exit code 1
-[69454 ms] Start: Run in container: test ! -f '/var/vscode-server/.patchEtcProfileMarker' && set -o noclobber && mkdir -p '/var/vscode-server' && { > '/var/vscode-server/.patchEtcProfileMarker' ; } 2> /dev/null
-[69475 ms] 
-[69475 ms] 
-[69475 ms] Start: Run in container: sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1${PATH:-\3}/g' /etc/profile || true
-[69503 ms] 
-[69503 ms] 
-[69524 ms] Start: Run: docker inspect --type container 37df798dba0bf2e7807c254908e1c5cc3f8e0bf6a833d43eab8a33cae6d6358c
-[69883 ms] Start: Run: docker-compose version --short
-[70639 ms] Preparing to parse declared features and fetch remote features.
-[70639 ms] Detected local feature set. Continuing...
-[70641 ms] Start: Inspecting container
-[70641 ms] Start: Run: docker inspect --type container 37df798dba0bf2e7807c254908e1c5cc3f8e0bf6a833d43eab8a33cae6d6358c
-[70925 ms] Start: Run in container: /bin/sh
-[70928 ms] Start: Run in container: uname -m
-[71337 ms] x86_64
-[71337 ms] 
-[71338 ms] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
-[71349 ms] PRETTY_NAME="Debian GNU/Linux 10 (buster)"
-NAME="Debian GNU/Linux"
-VERSION_ID="10"
-VERSION="10 (buster)"
-VERSION_CODENAME=buster
-ID=debian
-HOME_URL="https://www.debian.org/"
-SUPPORT_URL="https://www.debian.org/support"
-BUG_REPORT_URL="https://bugs.debian.org/"
-[71350 ms] 
-[71350 ms] Start: Run in container: cat /etc/passwd
-[71357 ms] Start: Updating configuration state
-[71373 ms] Start: Setup shutdown monitor
-[71374 ms] Forking shutdown monitor: /Users/steve/.vscode/extensions/ms-vscode-remote.remote-containers-0.231.6/dist/shutdown/shutdownMonitorProcess /var/folders/kr/7wxdvbk15fx5kqh22yvb42w00000gn/T/vscode-remote-containers-7e6ae697973e43254fdfe7f9608d4dfe0f79f3fb.sock dockerCompose Debug /Users/steve/Library/Application Support/Code/logs/20220422T082345/exthost2/ms-vscode-remote.remote-containers 1650828798282
-[71378 ms] Start: Run in container: test -d /root/.vscode-server
-[71441 ms] 
-[71441 ms] 
-[71441 ms] Exit code 1
-[71443 ms] Start: Run in container: test -d /root/.vscode-remote
-[71457 ms] 
-[71458 ms] 
-[71458 ms] Exit code 1
-[71458 ms] Start: Run in container: test ! -f '/root/.vscode-server/data/Machine/.writeMachineSettingsMarker' && set -o noclobber && mkdir -p '/root/.vscode-server/data/Machine' && { > '/root/.vscode-server/data/Machine/.writeMachineSettingsMarker' ; } 2> /dev/null
-[71492 ms] 
-[71493 ms] 
-[71493 ms] Start: Run in container: cat /root/.vscode-server/data/Machine/settings.json
-[71536 ms] 
-[71538 ms] cat: /root/.vscode-server/data/Machine/settings.json: No such file or directory
-[71538 ms] Exit code 1
-[71539 ms] Start: Run in container: test -d /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977
-[71552 ms] 
-[71553 ms] 
-[71553 ms] Exit code 1
-[71553 ms] Start: Run in container: test -d /vscode/vscode-server/bin/linux-x64/dfd34e8260c270da74b5c2d86d61aee4b6d56977
-[71557 ms] 
-[71558 ms] 
-[71558 ms] Start: Run in container: mkdir -p '/root/.vscode-server/bin' && ln -snf '/vscode/vscode-server/bin/linux-x64/dfd34e8260c270da74b5c2d86d61aee4b6d56977' '/root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977'
-[71592 ms] 
-[71593 ms] 
-[71593 ms] Start: Run in container: touch '/vscode/vscode-server/bin/linux-x64/dfd34e8260c270da74b5c2d86d61aee4b6d56977'
-[71594 ms] Start: Launching Remote-Containers helper.
-[71594 ms] ssh-agent: SSH_AUTH_SOCK in container (/tmp/vscode-ssh-auth-5ecfef974933734974e28599c12abd15ec572247.sock) forwarded to local host (/private/tmp/com.apple.launchd.NzWArIm9u2/Listeners).
-[71595 ms] Start: Run: gpgconf --list-dir agent-extra-socket
-[71617 ms] Start: Run in container: /bin/sh
-[71624 ms] userEnvProbe: loginInteractiveShell (default)
-[71626 ms] userEnvProbe shell: /bin/bash
-[71631 ms] Start: Run in container: cat <<'EOF-/tmp/vscode-remote-containers-5ecfef974933734974e28599c12abd15ec572247.js' >/tmp/vscode-remote-containers-5ecfef974933734974e28599c12abd15ec572247.js
-[71642 ms] 
-[71643 ms] 
-[71644 ms] Start: Run in container: # Test for /root/.ssh/known_hosts and ssh
-[71731 ms] 
-[71732 ms] 
-[71733 ms] Start: Run in container: # Copy /Users/steve/.ssh/known_hosts to /root/.ssh/known_hosts
-[71790 ms] 
-[71790 ms] 
-[71791 ms] Start: Run in container: command -v git >/dev/null 2>&1 && git config --system --replace-all credential.helper '!f() { /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node /tmp/vscode-remote-containers-5ecfef974933734974e28599c12abd15ec572247.js $*; }; f' || true
-[71950 ms] 
-[71951 ms] 
-[71952 ms] Start: Run in container: for pid in `cd /proc && ls -d [0-9]*`; do { echo $pid ; readlink /proc/$pid/cwd ; readlink /proc/$pid/ns/mnt ; cat /proc/$pid/stat | tr "
-[72377 ms] 
-[72378 ms] 
-[72378 ms] Start: Run in container: cat <<'EOF-/tmp/vscode-remote-containers-server-5ecfef974933734974e28599c12abd15ec572247.js' >/tmp/vscode-remote-containers-server-5ecfef974933734974e28599c12abd15ec572247.js_1650828870660
-[72408 ms] Start: Run in container: cat '/root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977' 2>/dev/null || (umask 377 && echo 'e4f75c54-f899-4c78-ae84-7450d4373437' >'/root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977-a87df69a-28dd-42d2-86f1-750987b368a0' && mv -n '/root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977-a87df69a-28dd-42d2-86f1-750987b368a0' '/root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977' && rm -f '/root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977-a87df69a-28dd-42d2-86f1-750987b368a0' && cat '/root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977')
-[72409 ms] 
-[72409 ms] 
-[72452 ms] e4f75c54-f899-4c78-ae84-7450d4373437
-[72453 ms] 
-[72454 ms] Start: Starting VS Code Server
-[72454 ms] Start: Preparing Extensions
-[72454 ms] Start: Run in container: test ! -f '/root/.vscode-server/data/Machine/.installExtensionsMarker' && set -o noclobber && mkdir -p '/root/.vscode-server/data/Machine' && { > '/root/.vscode-server/data/Machine/.installExtensionsMarker' ; } 2> /dev/null
-[72476 ms] 
-[72477 ms] 
-[72479 ms] Extensions cache, install extensions: eamodio.gitlens, streetsidesoftware.code-spell-checker, ms-azuretools.vscode-docker, github.vscode-pull-request-github
-[72479 ms] Start: Run in container: test -d /root/.vscode-server/extensionsCache && ls /root/.vscode-server/extensionsCache || true
-[72525 ms] 
-[72526 ms] 
-[72526 ms] Start: Run in container: test -d /vscode/vscode-server/extensionsCache && ls /vscode/vscode-server/extensionsCache || true
-[72569 ms] dbaeumer.vscode-eslint-2.2.2
-eamodio.gitlens-12.0.6
-github.vscode-pull-request-github-0.40.0
-ms-azuretools.vscode-docker-1.18.0
-ms-azuretools.vscode-docker-1.20.0
-ms-azuretools.vscode-docker-1.22.0
-streetsidesoftware.code-spell-checker-2.1.11
-[72569 ms] 
-[72570 ms] Extensions cache, link in container: eamodio.gitlens-12.0.6, github.vscode-pull-request-github-0.40.0, ms-azuretools.vscode-docker-1.18.0, ms-azuretools.vscode-docker-1.20.0, ms-azuretools.vscode-docker-1.22.0, streetsidesoftware.code-spell-checker-2.1.11
-[72570 ms] Start: Run in container: mkdir -p '/root/.vscode-server/extensionsCache' && ln -s '/vscode/vscode-server/extensionsCache'/* '/root/.vscode-server/extensionsCache' || true
-[72601 ms] 
-[72601 ms] 
-[72602 ms] Start: Run in container: cd /vscode/vscode-server/extensionsCache && touch 'eamodio.gitlens-12.0.6' 'github.vscode-pull-request-github-0.40.0' 'ms-azuretools.vscode-docker-1.18.0' 'ms-azuretools.vscode-docker-1.20.0' 'ms-azuretools.vscode-docker-1.22.0' 'streetsidesoftware.code-spell-checker-2.1.11'
-[72602 ms] Start: Run in container: /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/bin/code-server --log debug --force-disable-user-env --server-data-dir /root/.vscode-server --use-host-proxy --disable-telemetry --accept-server-license-terms --host 127.0.0.1 --port 0 --connection-token-file /root/.vscode-server/data/Machine/.connection-token-dfd34e8260c270da74b5c2d86d61aee4b6d56977 --extensions-download-dir /root/.vscode-server/extensionsCache --install-extension eamodio.gitlens --install-extension streetsidesoftware.code-spell-checker --install-extension ms-azuretools.vscode-docker --install-extension github.vscode-pull-request-github --start-server --disable-websocket-compression
-[72643 ms] 
-[72643 ms] 
-[73102 ms] userEnvProbe PATHs:
-Probe:     '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-Container: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-[73290 ms] *
-* Visual Studio Code Server
-*
-* By using the software, you agree to
-* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
-* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
-*
-[73307 ms] Server bound to 127.0.0.1:44277 (IPv4)
-Extension host agent listening on 44277
-
-[73307 ms] Start: Run in container: echo 44277 >'/root/.vscode-server/data/Machine/.devport-dfd34e8260c270da74b5c2d86d61aee4b6d56977'
-[73311 ms] 
-[73311 ms] 
-[73312 ms] Port forwarding for container port 44277 starts listening on local port.
-[73313 ms] Port forwarding local port 44277 to container port 44277
-[73314 ms] Start: Run: /Applications/Visual Studio Code.app/Contents/MacOS/Electron /Users/steve/.vscode/extensions/ms-vscode-remote.remote-containers-0.231.6/dist/spec-node/devContainersSpecCLI.js run-user-commands --container-data-folder .vscode-server/data/Machine --container-system-data-folder /var/vscode-server --workspace-folder /Users/steve/OED/OED --container-id 37df798dba0bf2e7807c254908e1c5cc3f8e0bf6a833d43eab8a33cae6d6358c --log-level debug --config /Users/steve/OED/OED/.devcontainer/devcontainer.json --default-user-env-probe loginInteractiveShell --skip-non-blocking-commands false --prebuild false --stop-for-personalization true --remote-env SSH_AUTH_SOCK=/tmp/vscode-ssh-auth-5ecfef974933734974e28599c12abd15ec572247.sock --remote-env REMOTE_CONTAINERS_IPC=/tmp/vscode-remote-containers-ipc-5ecfef974933734974e28599c12abd15ec572247.sock --remote-env REMOTE_CONTAINERS=true --mount-workspace-git-root true --terminal-columns 246 --terminal-rows 28
-[73317 ms] 
-
-------------------------
-Published Ports:
-3000/tcp -> 0.0.0.0:3000
-9229/tcp -> 0.0.0.0:9229
-------------------------
-
-[73384 ms] Port forwarding connection from 63707 > 44277 > 44277 in the container.
-[73387 ms] Start: Run in container: /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node -e 
-[74368 ms] remote-containers 0.231.6.
-[74368 ms] Start: Run: docker inspect --type container 37df798dba0bf2e7807c254908e1c5cc3f8e0bf6a833d43eab8a33cae6d6358c
-[74880 ms] Start: Inspecting container
-[74881 ms] Start: Run: docker inspect --type container 37df798dba0bf2e7807c254908e1c5cc3f8e0bf6a833d43eab8a33cae6d6358c
-[75206 ms] Port forwarding 63707 > 44277 > 44277 stderr: Connection established
-[75275 ms] Start: Run in container: /bin/sh
-[75280 ms] Start: Run in container: uname -m
-[75912 ms] x86_64
-[75912 ms] 
-[75912 ms] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
-[75923 ms] PRETTY_NAME="Debian GNU/Linux 10 (buster)"
-NAME="Debian GNU/Linux"
-VERSION_ID="10"
-VERSION="10 (buster)"
-VERSION_CODENAME=buster
-ID=debian
-HOME_URL="https://www.debian.org/"
-SUPPORT_URL="https://www.debian.org/support"
-BUG_REPORT_URL="https://bugs.debian.org/"
-[75924 ms] 
-[75924 ms] Start: Run in container: cat /etc/passwd
-[75946 ms] userEnvProbe: loginInteractiveShell (default)
-[75947 ms] Start: Run in container: mkdir -p '/root/.vscode-server/data/Machine' && CONTENT="$(cat '/root/.vscode-server/data/Machine/.onCreateCommandMarker' 2>/dev/null || echo ENOENT)" && [ "${CONTENT:-2022-04-24T19:34:10.5492447Z}" != '2022-04-24T19:34:10.5492447Z' ] && echo '2022-04-24T19:34:10.5492447Z' > '/root/.vscode-server/data/Machine/.onCreateCommandMarker'
-[75947 ms] userEnvProbe shell: /bin/bash
-[75948 ms] Start: Run in container: /bin/bash -lic echo -n 0b3cfe518551a65fa996e0325d26253f; cat /proc/self/environ; echo -n 0b3cfe518551a65fa996e0325d26253f
-[76070 ms] 
-[76070 ms] 
-[76071 ms] Start: Run in container: mkdir -p '/root/.vscode-server/data/Machine' && CONTENT="$(cat '/root/.vscode-server/data/Machine/.updateContentCommandMarker' 2>/dev/null || echo ENOENT)" && [ "${CONTENT:-2022-04-24T19:34:10.5492447Z}" != '2022-04-24T19:34:10.5492447Z' ] && echo '2022-04-24T19:34:10.5492447Z' > '/root/.vscode-server/data/Machine/.updateContentCommandMarker'
-[76107 ms] 
-[76107 ms] 
-[76107 ms] Start: Run in container: mkdir -p '/root/.vscode-server/data/Machine' && CONTENT="$(cat '/root/.vscode-server/data/Machine/.postCreateCommandMarker' 2>/dev/null || echo ENOENT)" && [ "${CONTENT:-2022-04-24T19:34:10.5492447Z}" != '2022-04-24T19:34:10.5492447Z' ] && echo '2022-04-24T19:34:10.5492447Z' > '/root/.vscode-server/data/Machine/.postCreateCommandMarker'
-[76162 ms] 
-[76162 ms] 
-Running the postCreateCommand from devcontainer.json...
-
-[76405 ms] Installing extensions...
-[76510 ms] [19:34:34] Extension host agent started.
-[76642 ms] Port forwarding connection from 63751 > 44277 > 44277 in the container.
-[76643 ms] Start: Run in container: /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node -e 
-[77362 ms] [19:34:35] ComputeTargetPlatform: linux-x64
-[77378 ms] [19:34:35] [127.0.0.1][718a3622][ManagementConnection] New connection established.
-[77532 ms] userEnvProbe PATHs:
-Probe:     '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-Container: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-[77534 ms] Start: Run in container: /bin/sh -c nohup bash -c '/workspace/src/scripts/installOED.sh &'
-[77770 ms] Port forwarding 63751 > 44277 > 44277 stderr: Connection established
-nohup: ignoring input and appending output to 'nohup.out'
-
-[78452 ms] Start: Run in container: # Test for /root/.gitconfig and git
-[78466 ms] 
-[78466 ms] 
-[78466 ms] Start: Run in container: # Copy /Users/steve/.gitconfig to /root/.gitconfig
-[78509 ms] 
-[78509 ms] 
-[78510 ms] Start: Run in container: command -v git >/dev/null 2>&1 && git config --global --replace-all credential.helper '!f() { /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node /tmp/vscode-remote-containers-5ecfef974933734974e28599c12abd15ec572247.js $*; }; f' || true
-[78648 ms] 
-[78648 ms] 
-[78693 ms] [19:34:36] [127.0.0.1][d5430c58][ExtensionHostConnection] New connection established.
-[78739 ms] [19:34:37] [127.0.0.1][d5430c58][ExtensionHostConnection] <353> Launched Extension Host Process.
-[86043 ms] Installing extension 'streetsidesoftware.code-spell-checker'...
-[86073 ms] [19:34:44] Getting Manifest... streetsidesoftware.code-spell-checker
-[86177 ms] Installing extension 'eamodio.gitlens'...
-[86194 ms] [19:34:44] Getting Manifest... eamodio.gitlens
-[86246 ms] Installing extension 'ms-azuretools.vscode-docker'...
-[86251 ms] [19:34:44] Getting Manifest... ms-azuretools.vscode-docker
-[86283 ms] Installing extension 'github.vscode-pull-request-github'...
-[86285 ms] [19:34:44] Getting Manifest... github.vscode-pull-request-github
-[86654 ms] [19:34:44] Installing extension: eamodio.gitlens
-[86669 ms] [19:34:44] Installing extension: github.vscode-pull-request-github
-[86855 ms] [19:34:45] Installing extension: ms-azuretools.vscode-docker
-[86863 ms] [19:34:45] Installing extension: streetsidesoftware.code-spell-checker
-[89937 ms] [19:34:48] Downloaded extension: eamodio.gitlens /root/.vscode-server/extensionsCache/eamodio.gitlens-12.0.6
-[89982 ms] [19:34:48] Downloaded extension: github.vscode-pull-request-github /root/.vscode-server/extensionsCache/github.vscode-pull-request-github-0.40.0
-[89991 ms] [19:34:48] Downloaded extension: streetsidesoftware.code-spell-checker /root/.vscode-server/extensionsCache/streetsidesoftware.code-spell-checker-2.1.11
-[90124 ms] [19:34:48] Downloaded extension: ms-azuretools.vscode-docker /root/.vscode-server/extensionsCache/ms-azuretools.vscode-docker-1.22.0
-[92040 ms] [19:34:50] Extracted extension to /root/.vscode-server/extensions/.834a6c47-d151-4bea-b46a-f6ed927322d1: github.vscode-pull-request-github
-[92182 ms] [19:34:50] Renamed to /root/.vscode-server/extensions/github.vscode-pull-request-github-0.40.0
-[92286 ms] [19:34:50] Extracting completed. github.vscode-pull-request-github
-[92298 ms] [19:34:50] Extension installed successfully: github.vscode-pull-request-github
-[92349 ms] Extension 'github.vscode-pull-request-github' v0.40.0 was successfully installed.
-[95350 ms] [19:34:53] Extracted extension to /root/.vscode-server/extensions/.90948079-0bc2-404a-8955-bd6da27ffbe9: ms-azuretools.vscode-docker
-[95539 ms] [19:34:53] Renamed to /root/.vscode-server/extensions/ms-azuretools.vscode-docker-1.22.0
-[95589 ms] [19:34:53] Extracting completed. ms-azuretools.vscode-docker
-[95611 ms] [19:34:53] Extension installed successfully: ms-azuretools.vscode-docker
-[95624 ms] Extension 'ms-azuretools.vscode-docker' v1.22.0 was successfully installed.
-[95944 ms] Port forwarding connection from 63789 > 44277 > 44277 in the container.
-[95945 ms] Start: Run in container: /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node -e 
-[98131 ms] Port forwarding 63789 > 44277 > 44277 stderr: Connection established
-[100766 ms] [19:34:59] Extracted extension to /root/.vscode-server/extensions/.28e80662-1dca-4ff0-bcf3-3af7fcead5d4: streetsidesoftware.code-spell-checker
-[100807 ms] [19:34:59] Renamed to /root/.vscode-server/extensions/streetsidesoftware.code-spell-checker-2.1.11
-[100812 ms] [19:34:59] Extracting completed. streetsidesoftware.code-spell-checker
-[100819 ms] [19:34:59] Extension installed successfully: streetsidesoftware.code-spell-checker
-Extension 'streetsidesoftware.code-spell-checker' v2.1.11 was successfully installed.
-[103248 ms] Port forwarding 63789 > 44277 > 44277 stderr: Remote close
-[103316 ms] Port forwarding 63789 > 44277 > 44277 terminated with code 0 and signal null.
-[103767 ms] [19:35:02] Extracted extension to /root/.vscode-server/extensions/.2c4122e7-45fc-413f-83af-747dc35364d0: eamodio.gitlens
-[103817 ms] [19:35:02] Renamed to /root/.vscode-server/extensions/eamodio.gitlens-12.0.6
-[103839 ms] [19:35:02] Extracting completed. eamodio.gitlens
-[103841 ms] [19:35:02] Extension installed successfully: eamodio.gitlens
-[103855 ms] Extension 'eamodio.gitlens' v12.0.6 was successfully installed.
-[105237 ms] Port forwarding 63789 > 44277 > 44277: Local close
-[105238 ms] Port forwarding connection from 63801 > 44277 > 44277 in the container.
-[105238 ms] Start: Run in container: /root/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node -e 
-[106681 ms] Port forwarding 63801 > 44277 > 44277 stderr: Connection established
-[112362 ms] Port forwarding 63801 > 44277 > 44277 stderr: Remote close
-[112425 ms] Port forwarding 63801 > 44277 > 44277 terminated with code 0 and signal null.
-</pre>
-
-	<h3>Output in new terminal opened</h3>
-	<p>In a new terminal labeled "Configuring..." that opens after the initial setup has run you will what is below.
-		Note that if you have run OED previously then the previous output will be before the new output.</p>
-	<pre>
-Running the postCreateCommand from devcontainer.json...
-
-[77534 ms] Start: Run in container: /bin/sh -c nohup bash -c '/workspace/src/scripts/installOED.sh &'
-nohup: ignoring input and appending output to 'nohup.out'
-
-Done. Press any key to close the terminal.
-</pre>
-	<p>As indicated, you can press any key to close this terminal as nothing else will show up in it.
-
-	<h3>Output in nohup.out</h3>
-	<p>After the new terminal is finished, nohup.out will begin to get output from the OED install and then will contain
-		any message from OED or console.log on the server software. At the end of the install it had:</p>
-	<pre>
-
-***** Starting install of OED at Sun Apr 24 15:21:12 CDT 2022 *****
-
-skipping NPM install as requested or because node_modules seems up to date
-Attempting to create database...
-
------start of npm run createdb output-----
-
-> Open-Energy-Dashboard@0.8.0 createdb
-> node ./src/server/services/createDB.js
-
-npm notice 
-npm notice New minor version of npm available! 8.1.2 -> 8.7.0
-npm notice Changelog: <https://github.com/npm/cli/releases/tag/v8.7.0>
-npm notice Run `npm install -g npm@8.7.0` to update!
-npm notice 
------end of npm run createdb output-----
-
-  database creation had no errors so assume schema creation worked.
-
-> Open-Energy-Dashboard@0.8.0 createUser
-> node ./src/server/services/user/createUser.js "test@example.com" "password"
-
-[INFO@2022-04-24T19:35:14.423Z] User created or already exists
-
-User creation had no errors so default user 'test@example.com' with password 'password' should exist
-OED install finished
-Starting OED in development mode
-
-> Open-Energy-Dashboard@0.8.0 start:dev
-> ./node_modules/.bin/nodemon --legacy-watch --inspect=0.0.0.0 ./src/bin/www
-
-
-> Open-Energy-Dashboard@0.8.0 webpack:dev
-> webpack watch --color --progress --mode development
-
-[33m[nodemon] 2.0.15[39m
-[33m[nodemon] to restart at any time, enter `rs`[39m
-[33m[nodemon] watching path(s): src/server/**/* src/bin/**/* src/common/**/*[39m
-[33m[nodemon] watching extensions: js,mjs,json[39m
-[32m[nodemon] starting `node --inspect=0.0.0.0 ./src/bin/www`[39m
-Debugger listening on ws://0.0.0.0:9229/1db2df0a-7883-4ce1-8f10-2d7f0ec87eec
-For help, see: https://nodejs.org/en/docs/inspector
-[INFO@2022-04-24T19:35:45.527Z] Listening on port 3000
-
-&lt;s&gt; [webpack.Progress] 0% 
-
-&lt;s&gt; [webpack.Progress] 1% setup initialize
-&lt;s&gt; [webpack.Progress] 1% setup initialize
-&lt;s&gt; [webpack.Progress] 3% setup watch run
-&lt;s&gt; [webpack.Progress] 3% setup watch run webpack-cli
-&lt;s&gt; [webpack.Progress] 3% setup watch run
-&lt;s&gt; [webpack.Progress] 4% setup normal module factory
-&lt;s&gt; [webpack.Progress] 4% setup normal module factory LodashModuleReplacementPlugin
-&lt;s&gt; [webpack.Progress] 4% setup normal module factory
-&lt;s&gt; [webpack.Progress] 5% setup context module factory
-&lt;s&gt; [webpack.Progress] 5% setup context module factory
-&lt;s&gt; [webpack.Progress] 6% setup before compile
-&lt;s&gt; [webpack.Progress] 6% setup before compile ProgressPlugin
-&lt;s&gt; [webpack.Progress] 6% setup before compile
-&lt;s&gt; [webpack.Progress] 7% setup compile
-&lt;s&gt; [webpack.Progress] 7% setup compile ExternalsPlugin
-&lt;s&gt; [webpack.Progress] 7% setup compile
-&lt;s&gt; [webpack.Progress] 8% setup compilation
-&lt;s&gt; [webpack.Progress] 8% setup compilation ArrayPushCallbackChunkFormatPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation JsonpChunkLoadingPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation StartupChunkDependenciesPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation ImportScriptsChunkLoadingPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation FetchCompileWasmPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation FetchCompileAsyncWasmPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation WorkerPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation SplitChunksPlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation ResolverCachePlugin
-&lt;s&gt; [webpack.Progress] 8% setup compilation
-&lt;s&gt; [webpack.Progress] 9% setup compilation
-&lt;s&gt; [webpack.Progress] 9% setup compilation ProgressPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ProvidePlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ChunkPrefetchPreloadPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ModuleInfoHeaderPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation SourceMapDevToolPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation JavascriptModulesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation JsonModulesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation AssetModulesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation EntryPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RuntimePlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation InferAsyncModulesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation DataUriPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation FileUriPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation CompatibilityPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation HarmonyModulesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation AMDPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RequireJsStuffPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation CommonJsPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation LoaderPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation LoaderPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation NodeStuffPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation APIPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ExportsInfoApiPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation WebpackIsIncludedPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ConstPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation UseStrictPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RequireIncludePlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RequireEnsurePlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RequireContextPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ImportPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation SystemPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation ImportMetaPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation URLPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsFactoryPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsPresetPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsPrinterPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation JavascriptMetaInfoPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation EnsureChunkConditionsPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RemoveEmptyChunksPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation MergeDuplicateChunksPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation SideEffectsFlagPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation FlagDependencyExportsPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation NamedModuleIdsPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation NamedChunkIdsPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation DefinePlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation TemplatedPathPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation RecordIdsPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation WarnCaseSensitiveModulesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation AddBuildDependenciesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation AddBuildDependenciesPlugin
-&lt;s&gt; [webpack.Progress] 9% setup compilation
-&lt;s&gt; [webpack.Progress] 10% building
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 0/0 dependencies 0/0 modules
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/1 dependencies 0/0 modules
-&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/ts-loader/index.js
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/1 dependencies 0/1 modules
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/2 dependencies 0/1 modules
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 4/18 dependencies 0/3 modules
-&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/style-loader/dist/cjs.js
-&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/css-loader/dist/cjs.js
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 9/18 dependencies 0/8 modules
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 13/33 dependencies 0/12 modules
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 14/100 dependencies 0/12 modules
-&lt;s&gt; [webpack.Progress] 10% building import loader ./node_modules/source-map-loader/dist/cjs.js
-&lt;s&gt; [webpack.Progress] 10% building 0/1 entries 68/105 dependencies 0/54 modules
-&lt;s&gt; [webpack.Progress] 13% building 0/1 entries 94/117 dependencies 11/76 modules
-&lt;s&gt; [webpack.Progress] 15% building 0/1 entries 112/200 dependencies 18/78 modules
-&lt;s&gt; [webpack.Progress] 20% building 0/1 entries 200/244 dependencies 34/85 modules
-&lt;s&gt; [webpack.Progress] 21% building 0/1 entries 231/296 dependencies 35/93 modules
-&lt;s&gt; [webpack.Progress] 21% building 0/1 entries 283/322 dependencies 37/113 modules
-&lt;s&gt; [webpack.Progress] 22% building 0/1 entries 296/400 dependencies 41/116 modules
-&lt;s&gt; [webpack.Progress] 23% building 0/1 entries 302/622 dependencies 42/122 modules
-&lt;s&gt; [webpack.Progress] 23% building 0/1 entries 313/649 dependencies 43/133 modules
-&lt;s&gt; [webpack.Progress] 22% building 0/1 entries 400/680 dependencies 43/193 modules
-&lt;s&gt; [webpack.Progress] 19% building 0/1 entries 500/680 dependencies 43/252 modules
-&lt;s&gt; [webpack.Progress] 19% building 0/1 entries 612/700 dependencies 51/287 modules
-&lt;s&gt; [webpack.Progress] 23% building 0/1 entries 800/821 dependencies 75/311 modules
-&lt;s&gt; [webpack.Progress] 32% building 0/1 entries 900/935 dependencies 127/312 modules
-&lt;s&gt; [webpack.Progress] 38% building 0/1 entries 1000/1196 dependencies 165/320 modules
-&lt;s&gt; [webpack.Progress] 38% building 0/1 entries 1100/1202 dependencies 187/365 modules
-&lt;s&gt; [webpack.Progress] 37% building 0/1 entries 1186/1300 dependencies 207/419 modules
-&lt;s&gt; [webpack.Progress] 37% building 0/1 entries 1300/1452 dependencies 220/440 modules
-&lt;s&gt; [webpack.Progress] 35% building 0/1 entries 1429/1500 dependencies 220/483 modules
-&lt;s&gt; [webpack.Progress] 34% building 0/1 entries 1663/1800 dependencies 220/485 modules
-&lt;s&gt; [webpack.Progress] 35% building 0/1 entries 1869/1900 dependencies 227/497 modules
-&lt;s&gt; [webpack.Progress] 39% building 0/1 entries 2100/2241 dependencies 279/516 modules
-&lt;s&gt; [webpack.Progress] 38% building 0/1 entries 2231/2269 dependencies 300/576 modules
-&lt;s&gt; [webpack.Progress] 44% building 0/1 entries 2338/2400 dependencies 367/588 modules
-&lt;s&gt; [webpack.Progress] 44% building 0/1 entries 2389/2439 dependencies 381/600 modules
-&lt;s&gt; [webpack.Progress] 52% building 0/1 entries 2500/2596 dependencies 486/630 modules
-&lt;s&gt; [webpack.Progress] 52% building 0/1 entries 2645/2700 dependencies 522/672 modules
-&lt;s&gt; [webpack.Progress] 52% building 0/1 entries 2700/2739 dependencies 532/688 modules
-&lt;s&gt; [webpack.Progress] 54% building 0/1 entries 2746/2800 dependencies 569/703 modules
-&lt;s&gt; [webpack.Progress] 55% building 0/1 entries 2842/2916 dependencies 600/723 modules
-&lt;s&gt; [webpack.Progress] 55% building 0/1 entries 2900/2943 dependencies 606/740 modules
-&lt;s&gt; [webpack.Progress] 56% building 0/1 entries 2968/3000 dependencies 647/762 modules
-&lt;s&gt; [webpack.Progress] 58% building 0/1 entries 3062/3076 dependencies 700/798 modules
-&lt;s&gt; [webpack.Progress] 57% building 0/1 entries 3190/3200 dependencies 748/865 modules
-&lt;s&gt; [webpack.Progress] 62% building 0/1 entries 3391/3400 dependencies 844/887 modules
-&lt;s&gt; [webpack.Progress] 65% building 1/1 entries 3436/3436 dependencies 899/899 modules
-&lt;s&gt; [webpack.Progress] 65% building
-&lt;s&gt; [webpack.Progress] 69% building finish
-&lt;s&gt; [webpack.Progress] 69% building finish
-&lt;s&gt; [webpack.Progress] 70% sealing finish module graph
-&lt;s&gt; [webpack.Progress] 70% sealing finish module graph ResolverCachePlugin
-&lt;s&gt; [webpack.Progress] 70% sealing finish module graph InferAsyncModulesPlugin
-&lt;s&gt; [webpack.Progress] 70% sealing finish module graph FlagDependencyExportsPlugin
-&lt;s&gt; [webpack.Progress] 70% sealing finish module graph
-&lt;s&gt; [webpack.Progress] 70% sealing plugins
-&lt;s&gt; [webpack.Progress] 70% sealing plugins WarnCaseSensitiveModulesPlugin
-&lt;s&gt; [webpack.Progress] 70% sealing plugins
-&lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization
-&lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization SideEffectsFlagPlugin
-&lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization
-&lt;s&gt; [webpack.Progress] 71% sealing after dependencies optimization
-&lt;s&gt; [webpack.Progress] 71% sealing after dependencies optimization
-&lt;s&gt; [webpack.Progress] 72% sealing chunk graph
-&lt;s&gt; [webpack.Progress] 72% sealing chunk graph
-&lt;s&gt; [webpack.Progress] 73% sealing after chunk graph
-&lt;s&gt; [webpack.Progress] 73% sealing after chunk graph
-&lt;s&gt; [webpack.Progress] 73% sealing optimizing
-&lt;s&gt; [webpack.Progress] 73% sealing optimizing
-&lt;s&gt; [webpack.Progress] 74% sealing module optimization
-&lt;s&gt; [webpack.Progress] 74% sealing module optimization
-&lt;s&gt; [webpack.Progress] 75% sealing after module optimization
-&lt;s&gt; [webpack.Progress] 75% sealing after module optimization
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization EnsureChunkConditionsPlugin
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization RemoveEmptyChunksPlugin
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization MergeDuplicateChunksPlugin
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization SplitChunksPlugin
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization RemoveEmptyChunksPlugin
-&lt;s&gt; [webpack.Progress] 75% sealing chunk optimization
-&lt;s&gt; [webpack.Progress] 76% sealing after chunk optimization
-&lt;s&gt; [webpack.Progress] 76% sealing after chunk optimization
-&lt;s&gt; [webpack.Progress] 77% sealing module and chunk tree optimization
-&lt;s&gt; [webpack.Progress] 77% sealing module and chunk tree optimization
-&lt;s&gt; [webpack.Progress] 77% sealing after module and chunk tree optimization
-&lt;s&gt; [webpack.Progress] 77% sealing after module and chunk tree optimization
-&lt;s&gt; [webpack.Progress] 78% sealing chunk modules optimization
-&lt;s&gt; [webpack.Progress] 78% sealing chunk modules optimization
-&lt;s&gt; [webpack.Progress] 78% sealing after chunk modules optimization
-&lt;s&gt; [webpack.Progress] 78% sealing after chunk modules optimization
-&lt;s&gt; [webpack.Progress] 79% sealing module reviving
-&lt;s&gt; [webpack.Progress] 79% sealing module reviving RecordIdsPlugin
-&lt;s&gt; [webpack.Progress] 79% sealing module reviving
-&lt;s&gt; [webpack.Progress] 80% sealing before module ids
-&lt;s&gt; [webpack.Progress] 80% sealing before module ids
-&lt;s&gt; [webpack.Progress] 80% sealing module ids
-&lt;s&gt; [webpack.Progress] 80% sealing module ids NamedModuleIdsPlugin
-&lt;s&gt; [webpack.Progress] 80% sealing module ids
-&lt;s&gt; [webpack.Progress] 81% sealing module id optimization
-&lt;s&gt; [webpack.Progress] 81% sealing module id optimization
-&lt;s&gt; [webpack.Progress] 82% sealing module id optimization
-&lt;s&gt; [webpack.Progress] 82% sealing module id optimization
-&lt;s&gt; [webpack.Progress] 82% sealing chunk reviving
-&lt;s&gt; [webpack.Progress] 82% sealing chunk reviving RecordIdsPlugin
-&lt;s&gt; [webpack.Progress] 82% sealing chunk reviving
-&lt;s&gt; [webpack.Progress] 83% sealing before chunk ids
-&lt;s&gt; [webpack.Progress] 83% sealing before chunk ids
-&lt;s&gt; [webpack.Progress] 84% sealing chunk ids
-&lt;s&gt; [webpack.Progress] 84% sealing chunk ids NamedChunkIdsPlugin
-&lt;s&gt; [webpack.Progress] 84% sealing chunk ids
-&lt;s&gt; [webpack.Progress] 84% sealing chunk id optimization
-&lt;s&gt; [webpack.Progress] 84% sealing chunk id optimization
-&lt;s&gt; [webpack.Progress] 85% sealing after chunk id optimization
-&lt;s&gt; [webpack.Progress] 85% sealing after chunk id optimization
-&lt;s&gt; [webpack.Progress] 86% sealing record modules
-&lt;s&gt; [webpack.Progress] 86% sealing record modules RecordIdsPlugin
-&lt;s&gt; [webpack.Progress] 86% sealing record modules
-&lt;s&gt; [webpack.Progress] 86% sealing record chunks
-&lt;s&gt; [webpack.Progress] 86% sealing record chunks RecordIdsPlugin
-&lt;s&gt; [webpack.Progress] 86% sealing record chunks
-&lt;s&gt; [webpack.Progress] 87% sealing module hashing
-&lt;s&gt; [webpack.Progress] 87% sealing module hashing
-&lt;s&gt; [webpack.Progress] 87% sealing code generation
-&lt;s&gt; [webpack.Progress] 87% sealing code generation
-&lt;s&gt; [webpack.Progress] 88% sealing runtime requirements
-&lt;s&gt; [webpack.Progress] 88% sealing runtime requirements
-&lt;s&gt; [webpack.Progress] 89% sealing hashing
-&lt;s&gt; [webpack.Progress] 89% sealing hashing
-&lt;s&gt; [webpack.Progress] 89% sealing after hashing
-&lt;s&gt; [webpack.Progress] 89% sealing after hashing
-&lt;s&gt; [webpack.Progress] 90% sealing record hash
-&lt;s&gt; [webpack.Progress] 90% sealing record hash
-&lt;s&gt; [webpack.Progress] 91% sealing module assets processing
-&lt;s&gt; [webpack.Progress] 91% sealing module assets processing
-&lt;s&gt; [webpack.Progress] 91% sealing chunk assets processing
-&lt;s&gt; [webpack.Progress] 91% sealing chunk assets processing
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing ts-loader
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js generate SourceMap
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js generated SourceMap
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js attach SourceMap
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js attached SourceMap
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
-&lt;s&gt; [webpack.Progress] 92% sealing asset processing
-&lt;s&gt; [webpack.Progress] 93% sealing after asset optimization
-&lt;s&gt; [webpack.Progress] 93% sealing after asset optimization
-&lt;s&gt; [webpack.Progress] 93% sealing recording
-&lt;s&gt; [webpack.Progress] 93% sealing recording
-&lt;s&gt; [webpack.Progress] 94% sealing after seal
-&lt;s&gt; [webpack.Progress] 94% sealing after seal
-&lt;s&gt; [webpack.Progress] 95% emitting emit
-&lt;s&gt; [webpack.Progress] 95% emitting emit
-&lt;s&gt; [webpack.Progress] 98% emitting after emit
-&lt;s&gt; [webpack.Progress] 98% emitting after emit SizeLimitsPlugin
-&lt;s&gt; [webpack.Progress] 98% emitting after emit
-&lt;s&gt; [webpack.Progress] 99% done plugins
-&lt;s&gt; [webpack.Progress] 99% done plugins IdleFileCachePlugin
-&lt;s&gt; [webpack.Progress] 99% done plugins
-&lt;s&gt; [webpack.Progress] 99% 
-
-asset [1m[33mbundle.js[39m[22m [1m[33m14.3 MiB[39m[22m [1m[33m[compared for emit][39m[22m [1m[33m[big][39m[22m (name: application) 1 related asset
-orphan modules 92.5 KiB [1m[33m[orphan][39m[22m 54 modules
-cached modules 2.35 KiB [1m[32m[cached][39m[22m 10 modules
-runtime modules 1.67 KiB 7 modules
-modules by path [1m./node_modules/[39m[22m 12.8 MiB 636 modules
-modules by path [1m./src/[39m[22m 791 KiB
-  modules by path [1m./src/client/app/components/[39m[22m 297 KiB 48 modules
-  modules by path [1m./src/client/app/containers/[39m[22m 139 KiB 39 modules
-  modules by path [1m./src/client/app/utils/[39m[22m 108 KiB 24 modules
-  modules by path [1m./src/client/app/actions/*.ts[39m[22m 115 KiB 14 modules
-  modules by path [1m./src/client/app/reducers/*.ts[39m[22m 48 KiB 13 modules
-  modules by path [1m./src/client/app/styles/*.css[39m[22m 10.5 KiB 8 modules
-  modules by path [1m./src/client/app/types/[39m[22m 10.3 KiB
-modules by path [1m./src/client/app/types/redux/*.ts[39m[22m 8.64 KiB 5 modules
-modules by path [1m./src/client/app/types/*.ts[39m[22m 1.66 KiB 3 modules
-webpack 5.62.0 compiled [1m[32msuccessfully[39m[22m in 129543 ms
-&lt;s&gt; [webpack.Progress] 99% cache store build dependencies
-&lt;s&gt; [webpack.Progress] 99% cache store build dependencies IdleFileCachePlugin
-&lt;s&gt; [webpack.Progress] 99% cache store build dependencies
-&lt;s&gt; [webpack.Progress] 99% cache begin idle
-&lt;s&gt; [webpack.Progress] 99% cache begin idle IdleFileCachePlugin
-&lt;s&gt; [webpack.Progress] 99% cache begin idle
-&lt;s&gt; [webpack.Progress] 100% 
-
-***** Finished install of OED at Sun Apr 24 15:23:31 CDT 2022 *****
-
+[+] Building 0.0s (0/0)                                                                                                                                                                                             docker:default
+[+] Running 2/0
+ ✔ Container oed-database-1  Created                                                                                                                                                                                     0.0s 
+ ✔ Container oed-web-1       Created                                                                                                                                                                                     0.0s 
+Attaching to oed-database-1, oed-web-1
+oed-database-1  | 
+oed-database-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+oed-database-1  | 
+oed-web-1       | 
+oed-web-1       | 
+oed-web-1       | ***** Starting install of OED at Fri Oct 20 17:20:04 UTC 2023 *****
+oed-web-1       | 
+oed-web-1       | 
+oed-web-1       | skipping NPM install as requested or because node_modules seems up to date
+oed-web-1       | 
+oed-database-1  | 2023-10-20 17:20:04.454 UTC [1] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+oed-database-1  | 2023-10-20 17:20:04.456 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+oed-database-1  | 2023-10-20 17:20:04.457 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+oed-database-1  | 2023-10-20 17:20:04.462 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+oed-database-1  | 2023-10-20 17:20:04.471 UTC [29] LOG:  database system was shut down at 2023-10-19 18:43:13 UTC
+oed-database-1  | 2023-10-20 17:20:04.496 UTC [1] LOG:  database system is ready to accept connections
+oed-web-1       | Attempting to create database...
+oed-web-1       | 
+oed-web-1       | -----start of npm run createdb output-----
+oed-web-1       | 
+oed-web-1       | > open-energy-dashboard@1.0.0 createdb
+oed-web-1       | > node ./src/server/services/createDB.js
+oed-web-1       | 
+oed-web-1       | -----end of npm run createdb output-----
+oed-web-1       | 
+oed-web-1       |   database creation had no errors so assume schema creation worked.
+oed-web-1       | 
+oed-web-1       | > open-energy-dashboard@1.0.0 createUser
+oed-web-1       | > node ./src/server/services/user/createUser.js test@example.com password
+oed-web-1       | 
+oed-web-1       | [INFO@2023-10-20T17:20:19.545+00:00] User test@example.com existed so not created
+oed-web-1       | 
+oed-web-1       | User creation had no errors so default user 'test@example.com' with password 'password' should exist
+oed-web-1       | Creating developer DB function
+oed-web-1       | 
+oed-web-1       | > open-energy-dashboard@1.0.0 developerdb
+oed-web-1       | > node -e 'require("./src/server/util/developer.js").createShiftReadingsFunction()'
+oed-web-1       | 
+oed-web-1       | OED install finished
+oed-web-1       | Starting OED in development mode
+oed-web-1       | 
+oed-web-1       | > open-energy-dashboard@1.0.0 start:dev
+oed-web-1       | > nodemon --legacy-watch --inspect=0.0.0.0 ./src/bin/www
+oed-web-1       | 
+oed-web-1       | 
+oed-web-1       | > open-energy-dashboard@1.0.0 webpack:dev
+oed-web-1       | > webpack watch --color --progress --mode development
+oed-web-1       | 
+oed-web-1       | [nodemon] 2.0.22
+oed-web-1       | [nodemon] to restart at any time, enter `rs`
+oed-web-1       | [nodemon] watching path(s): src/server/**/* src/bin/**/* src/common/**/*
+oed-web-1       | [nodemon] watching extensions: js,mjs,json
+oed-web-1       | [nodemon] starting `node --inspect=0.0.0.0 ./src/bin/www`
+oed-web-1       | Debugger listening on ws://0.0.0.0:9229/4450d153-6314-4eb6-af17-5b8a00a43f7c
+oed-web-1       | For help, see: https://nodejs.org/en/docs/inspector
+oed-web-1       | [INFO@2023-10-20T17:20:30.828+00:00] Listening on port 3000
+oed-web-1       | 
+oed-web-1       | &lt;s&gt; [webpack.Progress] 3% setup watch run
+oed-web-1       | &lt;s&gt; [webpack.Progress] 3% setup watch run webpack-cli
+oed-web-1       | &lt;s&gt; [webpack.Progress] 3% setup watch run
+oed-web-1       | &lt;s&gt; [webpack.Progress] 4% setup normal module factory
+oed-web-1       | &lt;s&gt; [webpack.Progress] 4% setup normal module factory LodashModuleReplacementPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 4% setup normal module factory
+oed-web-1       | &lt;s&gt; [webpack.Progress] 5% setup context module factory
+oed-web-1       | &lt;s&gt; [webpack.Progress] 5% setup context module factory
+oed-web-1       | &lt;s&gt; [webpack.Progress] 6% setup before compile
+oed-web-1       | &lt;s&gt; [webpack.Progress] 6% setup before compile ProgressPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 6% setup before compile
+oed-web-1       | &lt;s&gt; [webpack.Progress] 7% setup compile
+oed-web-1       | &lt;s&gt; [webpack.Progress] 7% setup compile ExternalsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 7% setup compile
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation ArrayPushCallbackChunkFormatPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation JsonpChunkLoadingPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation StartupChunkDependenciesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation ImportScriptsChunkLoadingPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation FetchCompileWasmPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation FetchCompileAsyncWasmPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation WorkerPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation SplitChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation ResolverCachePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 8% setup compilation
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ProgressPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ProvidePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ChunkPrefetchPreloadPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ModuleInfoHeaderPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation SourceMapDevToolPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation JavascriptModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation JsonModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation AssetModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation EntryPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RuntimePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation InferAsyncModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation DataUriPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation FileUriPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation CompatibilityPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation HarmonyModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation AMDPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RequireJsStuffPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation CommonJsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation LoaderPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation LoaderPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation NodeStuffPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation APIPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ExportsInfoApiPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation WebpackIsIncludedPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ConstPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation UseStrictPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RequireIncludePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RequireEnsurePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RequireContextPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ImportPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RequireContextPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation SystemPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation ImportMetaPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation URLPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsFactoryPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsPresetPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation DefaultStatsPrinterPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation JavascriptMetaInfoPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation EnsureChunkConditionsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RemoveEmptyChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation MergeDuplicateChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation SideEffectsFlagPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation FlagDependencyExportsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation NamedModuleIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation NamedChunkIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation DefinePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation TemplatedPathPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation RecordIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation WarnCaseSensitiveModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation AddBuildDependenciesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation AddBuildDependenciesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 9% setup compilation
+oed-web-1       | &lt;s&gt; [webpack.Progress] 10% building
+oed-web-1       | &lt;s&gt; [webpack.Progress] 10% building 0/1 entries 0/0 dependencies 0/0 modules
+oed-web-1       | &lt;s&gt; [webpack.Progress] 10% building 0/1 entries 1/1 dependencies 0/0 modules
+oed-web-1       | &lt;s&gt; [webpack.Progress] 65% building 1/1 entries 3747/3747 dependencies 1071/1071 modules
+oed-web-1       | &lt;s&gt; [webpack.Progress] 65% building
+oed-web-1       | &lt;s&gt; [webpack.Progress] 69% building finish
+oed-web-1       | &lt;s&gt; [webpack.Progress] 69% building finish
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing finish module graph
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing finish module graph ResolverCachePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing finish module graph InferAsyncModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing finish module graph FlagDependencyExportsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing finish module graph
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing plugins
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing plugins WarnCaseSensitiveModulesPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 70% sealing plugins
+oed-web-1       | &lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization SideEffectsFlagPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 71% sealing dependencies optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 71% sealing after dependencies optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 71% sealing after dependencies optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 72% sealing chunk graph
+oed-web-1       | &lt;s&gt; [webpack.Progress] 72% sealing chunk graph
+oed-web-1       | &lt;s&gt; [webpack.Progress] 73% sealing after chunk graph
+oed-web-1       | &lt;s&gt; [webpack.Progress] 73% sealing after chunk graph
+oed-web-1       | &lt;s&gt; [webpack.Progress] 73% sealing optimizing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 73% sealing optimizing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 74% sealing module optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 74% sealing module optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing after module optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing after module optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization EnsureChunkConditionsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization RemoveEmptyChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization MergeDuplicateChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization SplitChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization RemoveEmptyChunksPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 75% sealing chunk optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 76% sealing after chunk optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 76% sealing after chunk optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 77% sealing module and chunk tree optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 77% sealing module and chunk tree optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 77% sealing after module and chunk tree optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 77% sealing after module and chunk tree optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 78% sealing chunk modules optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 78% sealing chunk modules optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 78% sealing after chunk modules optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 78% sealing after chunk modules optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 79% sealing module reviving
+oed-web-1       | &lt;s&gt; [webpack.Progress] 79% sealing module reviving RecordIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 79% sealing module reviving
+oed-web-1       | &lt;s&gt; [webpack.Progress] 80% sealing before module ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 80% sealing before module ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 80% sealing module ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 80% sealing module ids NamedModuleIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 80% sealing module ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 81% sealing module id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 81% sealing module id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 82% sealing module id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 82% sealing module id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 82% sealing chunk reviving
+oed-web-1       | &lt;s&gt; [webpack.Progress] 82% sealing chunk reviving RecordIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 82% sealing chunk reviving
+oed-web-1       | &lt;s&gt; [webpack.Progress] 83% sealing before chunk ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 83% sealing before chunk ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 84% sealing chunk ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 84% sealing chunk ids NamedChunkIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 84% sealing chunk ids
+oed-web-1       | &lt;s&gt; [webpack.Progress] 84% sealing chunk id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 84% sealing chunk id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 85% sealing after chunk id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 85% sealing after chunk id optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 86% sealing record modules
+oed-web-1       | &lt;s&gt; [webpack.Progress] 86% sealing record modules RecordIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 86% sealing record modules
+oed-web-1       | &lt;s&gt; [webpack.Progress] 86% sealing record chunks
+oed-web-1       | &lt;s&gt; [webpack.Progress] 86% sealing record chunks RecordIdsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 86% sealing record chunks
+oed-web-1       | &lt;s&gt; [webpack.Progress] 87% sealing module hashing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 87% sealing module hashing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 87% sealing code generation
+oed-web-1       | &lt;s&gt; [webpack.Progress] 87% sealing code generation
+oed-web-1       | &lt;s&gt; [webpack.Progress] 88% sealing runtime requirements
+oed-web-1       | &lt;s&gt; [webpack.Progress] 88% sealing runtime requirements
+oed-web-1       | &lt;s&gt; [webpack.Progress] 89% sealing hashing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 89% sealing hashing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 89% sealing after hashing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 89% sealing after hashing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 90% sealing record hash
+oed-web-1       | &lt;s&gt; [webpack.Progress] 90% sealing record hash
+oed-web-1       | &lt;s&gt; [webpack.Progress] 91% sealing module assets processing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 91% sealing module assets processing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 91% sealing chunk assets processing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 91% sealing chunk assets processing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin bundle.js restored cached SourceMap
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 92% sealing asset processing
+oed-web-1       | &lt;s&gt; [webpack.Progress] 93% sealing after asset optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 93% sealing after asset optimization
+oed-web-1       | &lt;s&gt; [webpack.Progress] 93% sealing recording
+oed-web-1       | &lt;s&gt; [webpack.Progress] 93% sealing recording
+oed-web-1       | &lt;s&gt; [webpack.Progress] 94% sealing after seal
+oed-web-1       | &lt;s&gt; [webpack.Progress] 94% sealing after seal
+oed-web-1       | &lt;s&gt; [webpack.Progress] 95% emitting emit
+oed-web-1       | &lt;s&gt; [webpack.Progress] 95% emitting emit
+oed-web-1       | &lt;s&gt; [webpack.Progress] 98% emitting after emit
+oed-web-1       | &lt;s&gt; [webpack.Progress] 98% emitting after emit SizeLimitsPlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 98% emitting after emit
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% done plugins
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% done plugins IdleFileCachePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% done plugins
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% 
+oed-web-1       | 
+oed-web-1       | asset bundle.js 15 MiB [emitted] [big] (name: application) 1 related asset
+oed-web-1       | orphan modules 131 KiB [orphan] 67 modules
+oed-web-1       | runtime modules 2.82 KiB 9 modules
+oed-web-1       | modules by path ./node_modules/ 12.9 MiB 739 modules
+oed-web-1       | modules by path ./src/ 1.15 MiB 172 modules
+oed-web-1       | asset modules 4.4 KiB
+oed-web-1       |   data:image/svg+xml,%3csvg xmlns=%27.. 281 bytes [built] [code generated]
+oed-web-1       |   data:image/svg+xml,%3csvg xmlns=%27.. 279 bytes [built] [code generated]
+oed-web-1       |   data:image/svg+xml,%3csvg xmlns=%27.. 161 bytes [built] [code generated]
+oed-web-1       |   data:image/svg+xml,%3csvg xmlns=%27.. 271 bytes [built] [code generated]
+oed-web-1       |   data:image/svg+xml,%3csvg xmlns=%27.. 181 bytes [built] [code generated]
+oed-web-1       |   data:image/svg+xml,%3csvg xmlns=%27.. 165 bytes [built] [code generated]
+oed-web-1       |   + 10 modules
+oed-web-1       | webpack 5.76.0 compiled successfully in 27406 ms
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% cache store build dependencies
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% cache store build dependencies IdleFileCachePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% cache store build dependencies
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% cache begin idle
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% cache begin idle IdleFileCachePlugin
+oed-web-1       | &lt;s&gt; [webpack.Progress] 99% cache begin idle
+oed-web-1       | &lt;s&gt; [webpack.Progress] 100% 
+oed-web-1       | 
 </pre>
 
 	<h3>Postgres output</h3>
