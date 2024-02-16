@@ -89,3 +89,14 @@ footer {
     height: auto;
     padding-right: 2em;
 }
+
+.contact-container {
+    display: flex;
+}
+
+.box {
+    flex: 1; 
+    border: 1 px solid black;
+    padding: 10 px;
+    margin: 5px;
+}
