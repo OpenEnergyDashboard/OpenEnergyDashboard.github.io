@@ -86,26 +86,23 @@ title: OED dev details
 	<p>There are two ways to access the Postgres database that OED uses. Through the docker container or through pgAdmin
 		<ul>
 			<li>
-				To access the database from the docker container (see <a href="gettingStarted.html#VSCInfo">info on accessing containers)</a>, execute the following command. 
-				<code>psql -U oed</code>. You will now be in the Postgres command line for the OED database. Note that this is the live system so you can make changes that
-				the running application will see (and damage the information too!). It is assumed that you know some SQL and Postgres command line controls if you use this method.
-				One important one is <code>\q</code> which will get you back to the terminal by leaving the Postgres command system.
+				To access the database from the docker container (see <a href="gettingStarted.html#VSCInfo">info on accessing containers)</a>, 
+				execute the following command. <code>psql -U oed</code>. You will now be in the Postgres command line for the OED database. 
+				Note that this is the live system so you can make changes that the running application will see (and damage the information too!). 
+				It is assumed that you know some SQL and Postgres command line controls if you use this method.
+				One important one is <code>\q</code> which will get you back to the terminal by leaving the Postgres 
+				command system.
 			</li>
 			<li>
-				You can also use the pgAdmin utility to access the database. For this method, you need to install pgAdmin on your device. The link to get the latest version is <a href="https://www.pgadmin.org/download/">here</a>.
-				Once you have downloaded and installed the correct version for your Operating System, you need to enable the port for the connection to pgAdmin. This can be done by going to the dockercompose.yml file and 
-				uncommenting the lines <code>ports:</code> and <code>-"5432":"5432"</code>. You should now be able to open pgAdmin and access the database on localhost port 5432. 
+				You can also use the pgAdmin utility to access the database. For this method, you need to install pgAdmin on your device. 
+				The link to get the latest version is <a href="https://www.pgadmin.org/download/">here</a>. Once you have downloaded and 
+				installed the correct version for your Operating System, you need to enable the port for the connection to pgAdmin. 
+				This can be done by going to the dockercompose.yml file and uncommenting the lines <code>ports:</code> and 
+				<code>-"5432":"5432"</code>. You should now be able to open pgAdmin and access the database on localhost port 5432. 
 			</li>
 		</ul>
 	</p>
 
-	<p>You can access the Postgres database that OED uses within the docker container. In the database docker container
-		(see <a href="gettingStarted.html#VSCInfo">info on accessing container</a>) terminal do:
-		<code>psql -U oed</code>. You will now be in the Postgres command line for the OED database. Note this is the
-		live system so you can make changes that the running application will see (and damage the information too!). It
-		is assumed you know some SQL and Postgres command line commands if you are doing this. One important one is
-		<code>\q</code> which will get you back to the terminal by leaving the Postgres command system.
-	</p>
 	<p>There may be times you want to backup/restore the Postgres data for OED. You can do it by</p>
 	<ul>
 		<li>Take a database dump (in the database Docker container terminal) with
