@@ -84,25 +84,44 @@ title: OED dev details
 
 	<h2 id="dbAccess">Accessing the database</h2>
 	<p>There are two ways to access the Postgres database that OED uses. Through the docker container or through pgAdmin
-		<ul>
-			<li>
-				To access the database from the docker container (see <a href="gettingStarted.html#VSCInfo">info on accessing containers)</a>, 
-				execute the following command. <code>psql -U oed</code>. You will now be in the Postgres command line for the OED database. 
-				Note that this is the live system so you can make changes that the running application will see (and damage the information too!). 
-				It is assumed that you know some SQL and Postgres command line controls if you use this method.
-				One important one is <code>\q</code> which will get you back to the terminal by leaving the Postgres 
-				command system.
-			</li>
-			<li>
-				You can also use the pgAdmin utility to access the database. For this method, you need to install pgAdmin on your device. 
-				The link to get the latest version is <a href="https://www.pgadmin.org/download/">here</a>. Once you have downloaded and 
-				installed the correct version for your Operating System, you need to enable the port for the connection to pgAdmin. 
-				This can be done by going to the dockercompose.yml file and uncommenting the lines <code>ports:</code> and 
-				<code>-"5432":"5432"</code>. You should now be able to open pgAdmin and access the database on localhost port 5432. 
-			</li>
-		</ul>
 	</p>
-
+	<ul>
+		<li>
+			To access the database from the docker database container (see <a href="gettingStarted.html#VSCInfo">info on
+				accessing containers)</a>, execute the following command: <code>psql -U oed</code>. You will now be in
+			the Postgres command line for the OED database. It is assumed that you know some SQL and Postgres command
+			line controls if you use this method. One important one is <code>\q</code> which will get you back to the
+			terminal by leaving the Postgres command system.
+		</li>
+		<li>
+			You can also use the pgAdmin utility to access the database. For this method, you need to install pgAdmin on
+			your device. The link to get the latest version is <a href="https://www.pgadmin.org/download/">here</a>.
+			Once you have downloaded and installed the correct version for your operating system, you need to enable the
+			port for the connection to pgAdmin. This can be done by going to the docker-compose.yml file in the main OED
+			directory and uncommenting the lines <code>ports:</code> and <code>-"5432":"5432"</code>. Note you must shut
+			down and restart OED for this to take effect. You should now be able to open pgAdmin and access the database
+			on localhost port 5432 by adding a New Server with these properties: <ul>
+				<li>General tab:</li>
+				<ul>
+					<li>Name: oed (or whatever desired)</li>
+				</ul>
+				<li>Connection tab:</li>
+				<ul>
+					<li>Host name/address: localhost</li>
+					<li>Post: 5432 (should be default)</li>
+					<li>Username: oed</li>
+					<li>password: opened (unless changed in docker-compoe.yml)</li>
+					<li>Save password?: enable if desired to log in again without password</li>
+				</ul>
+			</ul>
+			<p>A screenshot of the setup:</p>
+			<p><img alt="PGAdmin setup" src="./images/pgAdminSetup.png"></p>
+			<p>When Save, it will verify connection and then open up connection if all is correct.</p>
+		</li>
+		</li>
+	</ul>
+	<p>Note that no matter how you access the OED database it is the live system so you can make changes that the
+		running application will see (and damage the information too!). </p>
 	<p>There may be times you want to backup/restore the Postgres data for OED. You can do it by</p>
 	<ul>
 		<li>Take a database dump (in the database Docker container terminal) with
@@ -112,7 +131,8 @@ title: OED dev details
 			<code>docker cp /path/to/dump.sql container_name:/dump.sql</code> and then restoring it into the database
 			with <code>psql -U oed -f /dump.sql</code>. The /path/to/dump.sql is the file with date & time created in
 			the dump step. TODO Note someone should test/see if you really need to put it into the container first and
-			this has not been tested since we went to working in the database container. </li>
+			this has not been tested since we went to working in the database container.
+		</li>
 	</ul>
 
 	<h2 id="singleTest">Rapid testing of a one or a few test(s)</h2>
