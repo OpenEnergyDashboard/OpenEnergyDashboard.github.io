@@ -8,25 +8,25 @@
 #                                                 /____/
 #
 # Title of your website
-title: 'Feeling Responsive'
+title: 'Open Energy Dashboard'
 
 # The slogan describes your website and is used on homepage in <title> and other important places
-slogan: 'A Flexible Theme for Jekyll'
+slogan: 'A Free, Open Source Energy/Resource Dashboard'
 
 # The description is used on homepage and in the footer to quickly describe your website. Use a maximum of 150 characters for SEO-purposes.
-description: '»Feeling Responsive« is a responsive theme for Jekyll based on the fabulous foundation framework with beautiful typography and a bright color palette.'
+description: 'The OED dashboard allows organization to acquire, archive, analyze and display energy/resource usage.'
 
 # The credits show up in the includes/_footer.html – It would be nice of you to leave a link to Phlow or Feeling Responsive as a thank you :)
-credits: '<p>Created with &hearts; by <a href="http://phlow.de/">Phlow</a> with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> based on <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a>.</p>'
+credits: '<p>Created by the OED team using <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> based on <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a>.</p>'
 
 # Main author of the website
 # See > authors.yml
-author: phlow
+author: OED
 
 # This URL is the main address for absolute links. Don't include a slash at the end.
 #
-url: 'https://phlow.github.io'
-baseurl: '/feeling-responsive'
+url: 'https://openenergydashboard.org'
+baseurl: ''
 
 # This is for the editing function in _/includes/improve_content
 # Leave it empty if your site is not on GitHub/GitHub Pages
@@ -38,11 +38,17 @@ improve_content: https://github.com/Phlow/feeling-responsive/edit/gh-pages
 # Example: <img src="{{ site.urlimg }}{{ post.image.title }}" />
 # Markdown-Example for posts ![Image Text]({{ site.urlimg }}image.jpg)
 #
-urlimg: 'https://phlow.github.io/feeling-responsive/images/'
-
+urlimg: '/images/'
 
 # Logo size is 600x80 pixels
 logo: "logo.png"
+logoHelp: "logoHelp.png"
+
+# Collection of help pages so can get links easily.
+collections:
+  helpV1.1.0:
+    output: true # to make jekyll generate html pages
+
 
 # Plugins
 plugins:
@@ -112,7 +118,7 @@ defaults:
       show_meta: false 	# Hide metadata for all pages
       # sidebar:    		# Possible values › left, right › by default there will be no sidebar
       comments: false
-      author: phlow     # Default author for pages
+      author: OED     # Default author for pages
   -
     scope:
       path: ''
@@ -121,7 +127,7 @@ defaults:
       show_meta: true   # Show metadata for all posts
       # sidebar:        # Possible values › left, right › by default there will be no sidebar
       comments: false
-      author: phlow     # Default author for posts
+      author: OED     # Default author for posts
 
 
 
@@ -157,18 +163,18 @@ bing_webmastertools_id          : '0FB4C028ABCF07C908C54386ABD2D97F'
 #   /_/    \__,_/ |___/_/\___/\____/_/ /_/____/   Favicon-Crap: Favicons, Chrome, Android & Apple Touch Buttons
 #                                                 More information » https://mathiasbynens.be/notes/touch-icons
 
-favicon-32x32                        : 'favicon-32x32.png'
-touch-icon-192x192                   : 'touch-icon-192x192.png'
-apple-touch-icon-180x180-precomposed : 'apple-touch-icon-180x180-precomposed.png'
-apple-touch-icon-152x152-precomposed : 'apple-touch-icon-152x152-precomposed.png'
-apple-touch-icon-144x144-precomposed : 'apple-touch-icon-144x144-precomposed.png'
-apple-touch-icon-120x120-precomposed : 'apple-touch-icon-120x120-precomposed.png'
-apple-touch-icon-114x114-precomposed : 'apple-touch-icon-114x114-precomposed.png'
-apple-touch-icon-76x76-precomposed   : 'apple-touch-icon-76x76-precomposed.png'
-apple-touch-icon-72x72-precomposed   : 'apple-touch-icon-72x72-precomposed.png'
-apple-touch-icon-precomposed         : 'apple-touch-icon-precomposed.png'
-msapplication_tileimage              : 'msapplication_tileimage.png'               # Size 144x144
-msapplication_tilecolor              : '#fabb00'
+favicon-32x32                        : 'OEDIcon22x32.png'
+touch-icon-192x192                   : 'OEDIcon192x274.png'
+# apple-touch-icon-180x180-precomposed : 'apple-touch-icon-180x180-precomposed.png'
+# apple-touch-icon-152x152-precomposed : 'apple-touch-icon-152x152-precomposed.png'
+# apple-touch-icon-144x144-precomposed : 'apple-touch-icon-144x144-precomposed.png'
+# apple-touch-icon-120x120-precomposed : 'apple-touch-icon-120x120-precomposed.png'
+# apple-touch-icon-114x114-precomposed : 'apple-touch-icon-114x114-precomposed.png'
+# apple-touch-icon-76x76-precomposed   : 'apple-touch-icon-76x76-precomposed.png'
+# apple-touch-icon-72x72-precomposed   : 'apple-touch-icon-72x72-precomposed.png'
+# apple-touch-icon-precomposed         : 'apple-touch-icon-precomposed.png'
+# msapplication_tileimage              : 'msapplication_tileimage.png'               # Size 144x144
+# msapplication_tilecolor              : '#fabb00'
 
 
 #       ______                __                __
@@ -177,9 +183,9 @@ msapplication_tilecolor              : '#fabb00'
 #    / __/ / /_/ / /__/  __/ /_/ / /_/ / /_/ / ,<
 #   /_/    \__,_/\___/\___/_.___/\____/\____/_/|_|      Facebook-Optimization › http://j.mp/fb_optimize
 
-og_image                             : 'http://images.phlow.de/phlow/phlow_de-logo-512x.png'
-og_locale                            : 'en_EN'
-og_type                              : 'website'
+# og_image                             : 'http://images.phlow.de/phlow/phlow_de-logo-512x.png'
+# og_locale                            : 'en_EN'
+# og_type                              : 'website'
 
 
 #      _____            _       __   __  ___         ___
@@ -191,9 +197,9 @@ og_type                              : 'website'
 #  Open _data/socialmedia.yml to adjust the left and right topbar navigation
 #
 
-socialmedia:
-    twitter   : phlow
-    facebook  : phlow.media
+# socialmedia:
+#     twitter   : phlow
+#     facebook  : phlow.media
 
 
 #        ____  _
