@@ -11,6 +11,7 @@ title: OED technologies
     <p><img src="./images/OEDFrontEndOverview.jpg"
             alt="The flow of OED's source code from source JS, TS, and CSS, through various loaders, into Webpack, out into source maps, back into Webpack, and finally into the final bundle which is served to the client."
             data-canonical-src="https://i.imgur.com/YZFC9xZ.jpg"></p>
+    <p>Note that the diagram is currently out of date. Now, both JavaScript and TypeScript are ran through the standard "TypeScript Loader", while being processed by Webpack. Babel is no longer used.</p>
     <p>After this process, our hundreds of source files and dependencies are converted into a single multi-megabyte file
         which will be transmitted to our users over HTTP. Plugins within Webpack, such as the
         LodashModuleReplacementPlugin, further optimize the size of this bundle.</p>
