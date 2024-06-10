@@ -1,0 +1,28 @@
+{% assign OEDVersion = include.OEDVersion %}
+{% assign helpCollection = "help" | append: {{OEDVersion}} %}
+{% assign helpPage = include.helpPage %}
+
+<div>
+    {% assign helpType = "User" %}
+    <h5>{{helpType}} help</h5>
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Meters/Groups" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Other Features" helpPage=helpPage %}
+
+    {% assign helpType = "Admin" %}
+    <h5>{{helpType}} help</h5>
+    <!-- TODO break into helpCategories -->
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition" helpPage=helpPage %}
+
+    <h5>Help versions for this page</h5>
+    <div style="padding-left: 1em;">
+        {% for item in site.data.helpVersions %}
+        {% assign version = item.version %}
+        <!-- TODO see if can add check if the file exists in other version and skip if not.  -->
+        <a href='../../help{{ version }}/{{page.name | remove: ".html"}}'>{{ version }}</a></br>
+        {% endfor %}
+    </div>
+    Current page is {{OEDVersion}}.
+</div>

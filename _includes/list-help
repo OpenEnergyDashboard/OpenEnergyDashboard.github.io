@@ -1,0 +1,44 @@
+{% comment %}
+*
+* Possible parameter for this loop:
+*
+* › entries
+* › offset
+* › category
+* › tag
+*
+* Example for Category: {% include list-posts entries='3' offset='1' category='design' %}
+*
+* Example for Tag: {% include list-posts entries='5' tag='terminal' %}
+*
+*
+* This loop works like this:
+*
+* 1. First we check if there was given a category for filtering › if include.categories == NULL
+* 2. If no category is given for filtering do a general loop.
+* 3. If a category/tag was given, assign category/tag to the variable category/tag › assign category =
+include.categories
+*
+{% endcomment %}
+
+{% assign helpCollection = include.helpCollection %}
+{% assign helpType = include.helpType %}
+{% assign helpCategory = include.helpCategory %}
+{% assign helpPage = include.helpPage %}
+
+<div style="padding-left: 1em;">
+  <h6>{{helpCategory}}</h6>
+<div style="padding-left: 1em;">
+{% for pageInCollection in site[helpCollection] %}
+  <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
+       This adds a description if it is the help page (vs help sidebar).
+       It will be an empty string if not help page true. -->
+  {% if helpPage == true %}
+    {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
+  {% endif %}
+  {% if pageInCollection.published != false and pageInCollection.helpType == helpType and pageInCollection.helpCategory == helpCategory %}
+    &nbsp;&nbsp;<a href="{{ site.url }}{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
+  {% endif %}
+{% endfor %}
+</div>
+</div>

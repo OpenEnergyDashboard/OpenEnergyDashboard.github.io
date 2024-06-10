@@ -1,0 +1,26 @@
+- title: Home
+  url: "/"
+  side: left
+
+- title: "FEATURES"
+# TODO
+  # url: "/design/"
+  side: left
+  dropdown:
+  - title: "FEATURES BY TYPE"
+    url: "/features/"
+  - title: "FEATURES BY ACADEMIC USE"
+    url: "/useAcademic/"
+ 
+- title: "Documentation"
+  # TODO Have not found an easy way to avoid hard link that must be edited with each new version.
+  url: "/helpV1.1.0/index/"
+  side: left
+ 
+- title: "Search"
+  url: "/search/"
+  side: right
+
+- title: "Contact"
+  url: "/contact/"
+  side: right
