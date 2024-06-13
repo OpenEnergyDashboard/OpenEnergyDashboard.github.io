@@ -1,3 +1,19 @@
+{% comment %}
+*   
+*   This include list all help pages and versions.
+*   If a new type is created then it needs to be added here.
+*   Arguments:
+*       OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
+*       helpPage: true if being placed on a help page and otherwise not so likely for page listing.
+*
+*   Example: {% include help-page OEDVersion=V1.0.0  helpPage=true %}
+*   
+{% endcomment %}
+
+{% comment %}
+Assign local variables from parameters. It is assumed the directory/help collection
+is helpV1.0.0 (for example).
+{% endcomment%}
 {% assign OEDVersion = include.OEDVersion %}
 {% assign helpCollection = "help" | append: {{OEDVersion}} %}
 {% assign helpPage = include.helpPage %}

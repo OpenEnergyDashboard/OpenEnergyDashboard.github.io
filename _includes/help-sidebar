@@ -1,9 +1,22 @@
+{% comment %}
+*   
+*   This include creates the list all help pages and versions for a sidebar on a help page.
+*   Arguments:
+*       OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
+*
+*   Example: {% include help-sidebar OEDVersion=V1.0.0 %}
+*   
+{% endcomment %}
+
+{% comment %}
+Assign local variables from parameters.
+{% endcomment%}
 {% assign OEDVersion = include.OEDVersion %}
-{% assign helpCollection = "help" | append: {{OEDVersion}} %}
 
 <div class="medium-4 medium-push-8 columns" markdown="1">
     <div class="panel radius" markdown="1">
         <div style="list-style: none;" class="side-nav">
+            <!-- Add header since not done elsewhere. -->
             <h4><a href='../index/'>Documentation overview</a></h4>
 
             {% include help-page OEDVersion=OEDVersion helpPage=false %}
