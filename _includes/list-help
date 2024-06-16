@@ -25,11 +25,12 @@ include.categories
 {% assign helpType = include.helpType %}
 {% assign helpCategory = include.helpCategory %}
 {% assign helpPage = include.helpPage %}
+{% assign sortedPages = site[helpCollection]  | sort: "title" %}
 
 <div style="padding-left: 1em;">
   <h6>{{helpCategory}}</h6>
 <div style="padding-left: 1em;">
-{% for pageInCollection in site[helpCollection] %}
+{% for pageInCollection in sortedPages %}
   <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
        This adds a description if it is the help page (vs help sidebar).
        It will be an empty string if not help page true. -->

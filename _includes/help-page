@@ -56,10 +56,10 @@ is helpV1.0.0 (for example).
         </p>
         <p>The help icon
             <!-- Need to override the default size for most images on pages. -->
-            <img alt="help icon" src="./images/helpIcon.png" width="17" height="18" style="min-width:17px; display: inline">
+            <img alt="help icon" src="../images/helpIcon.png" width="17" height="18" style="min-width:17px; display: inline">
             can be clicked within OED to reveal information about the features(s) near the
             <!-- Need to override the default size for most images on pages. -->
-            <img alt="help icon" src="./images/helpIcon.png" width="17" height="18"
+            <img alt="help icon" src="../images/helpIcon.png" width="17" height="18"
                 style="min-width:17px; display: inline">.
             That information generally contains a brief overview and links to help pages directly related to the feature
             being described. This context sensitive help can aid one while working with OED and leads to appropriate help
