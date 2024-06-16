@@ -11,12 +11,17 @@
     url: "/features/"
   - title: "FEATURES BY ACADEMIC USE"
     url: "/useAcademic/"
- 
+  
+# TODO Have not found an easy way to avoid hard link that must be edited with each new version.
 - title: "Documentation"
-  # TODO Have not found an easy way to avoid hard link that must be edited with each new version.
-  url: "/helpV1.1.0/index/"
+  url: "/helpV1.0.0/index/"
   side: left
- 
+  dropdown:
+  - title: "OED VERSION 1.0.0"
+    url: "/helpV1.0.0/index/"
+  - title: "OED VERSION 0.8.0"
+    url: "/helpV0.8.0/index/"
+
 - title: "Search"
   url: "/search/"
   side: right

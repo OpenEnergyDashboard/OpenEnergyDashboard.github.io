@@ -1,13 +1,13 @@
 {% comment %}
-*   
-*   This include list all help pages and versions.
-*   If a new type is created then it needs to be added here.
-*   Arguments:
-*       OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
-*       helpPage: true if being placed on a help page and otherwise not so likely for page listing.
 *
-*   Example: {% include help-page OEDVersion=V1.0.0  helpPage=true %}
-*   
+* This include list all help pages and versions.
+* If a new type is created then it needs to be added here.
+* Arguments:
+* OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
+* helpPage: true if being placed on a help page and otherwise not so likely for page listing.
+*
+* Example: {% include help-page OEDVersion=V1.0.0 helpPage=true %}
+*
 {% endcomment %}
 
 {% comment %}
@@ -23,14 +23,17 @@ is helpV1.0.0 (for example).
     <h5>{{helpType}} help</h5>
     {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
     {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Meters/Groups" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Meters/Groups" helpPage=helpPage
+    %}
     {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Other Features" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Other Features" helpPage=helpPage
+    %}
 
     {% assign helpType = "Admin" %}
     <h5>{{helpType}} help</h5>
     <!-- TODO break into helpCategories -->
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition" helpPage=helpPage %}
+    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition"
+    helpPage=helpPage %}
 
     <h5>Help versions for this page</h5>
     <div style="padding-left: 1em;">
@@ -41,4 +44,29 @@ is helpV1.0.0 (for example).
         {% endfor %}
     </div>
     Current page is {{OEDVersion}}.
+
+    {% if helpPage == true %}
+        <h5>General help information</h5>
+        <p>Note that each version of OED has its own help pages. You will be taken to the latest version on the website and
+            the version of OED you are running when you get help on an OED page. Some help pages do not exist in all
+            versions of OED. For example, a feature may not have existed in earlier versions so there is not help page for
+            that feature. If you select another version and the web browser gives you a "404 File not found" error then this
+            is likely the case. You can use the web browser's back button to return to the page you were on to get back to
+            the help system.
+        </p>
+        <p>The help icon
+            <!-- Need to override the default size for most images on pages. -->
+            <img alt="help icon" src="./images/helpIcon.png" width="17" height="18" style="min-width:17px; display: inline">
+            can be clicked within OED to reveal information about the features(s) near the
+            <!-- Need to override the default size for most images on pages. -->
+            <img alt="help icon" src="./images/helpIcon.png" width="17" height="18"
+                style="min-width:17px; display: inline">.
+            That information generally contains a brief overview and links to help pages directly related to the feature
+            being described. This context sensitive help can aid one while working with OED and leads to appropriate help
+            pages.
+        </p>
+        <p>OED uses JavaScript for many features. You must have JavaScript enabled for the web browser page that contains
+            OED. If JavaScript is not enabled then you will see "OED requires JavaScript to run correctly. Please enable
+            JavaScript." when you load OED into the web browser page.</p>
+    {% endif %}
 </div>

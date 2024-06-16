@@ -48,6 +48,8 @@ logoHelp: "logoHelp.png"
 collections:
   helpV1.1.0:
     output: true # to make jekyll generate html pages
+  helpV1.0.0:
+    output: true # to make jekyll generate html pages
 
 
 # Plugins
