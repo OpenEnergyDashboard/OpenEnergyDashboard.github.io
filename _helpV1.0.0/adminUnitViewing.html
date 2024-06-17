@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin unit viewing
-meta_title: "REPLACE doc"
+title:  Unit Viewing
+meta_title: "Unit Viewing Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Site Management"
+helpDescription : "Describes how to view units."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<p>The admin unit viewing page allows admin users to see all the units on an OED site. It is accessed
 		from

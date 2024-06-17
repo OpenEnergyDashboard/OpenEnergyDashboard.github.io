@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: time
-meta_title: "time doc"
+title: Time
+meta_title: "Time Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Information"
 helpDescription : "Explains how OED deals with time zones."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	<p>If a site only has data in one time zone, then time is easy to understand. This is probably the most common usage

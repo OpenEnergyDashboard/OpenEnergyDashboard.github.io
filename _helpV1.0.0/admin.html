@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: admin
-meta_title: "REPLACE doc"
+title:  Admin Overview
+meta_title: "Admin Overview Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,11 @@ helpType : Admin
 helpCategory : "REPLACE"
 helpDescription : "REPLACE"
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>There are several other admin help pages available:</p>

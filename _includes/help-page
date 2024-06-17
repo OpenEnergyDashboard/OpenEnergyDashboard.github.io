@@ -3,10 +3,10 @@
 * This include list all help pages and versions.
 * If a new type is created then it needs to be added here.
 * Arguments:
-* OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
-* helpPage: true if being placed on a help page and otherwise not so likely for page listing.
+*   OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
+*   helpPage: true if being placed on a help page and otherwise not so likely for page listing.
 *
-* Example: {% include help-page OEDVersion=V1.0.0 helpPage=true %}
+* Example: {% include help-page OEDVersion=V1.0.0 helpType=admin helpPage=true %}
 *
 {% endcomment %}
 
@@ -31,9 +31,16 @@ is helpV1.0.0 (for example).
 
     {% assign helpType = "Admin" %}
     <h5>{{helpType}} help</h5>
-    <!-- TODO break into helpCategories -->
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition"
-    helpPage=helpPage %}
+    {% if page.helpType == "Admin" %}
+        {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition" helpPage=helpPage %}
+        {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
+        {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Management" helpPage=helpPage %}
+        {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Installation" helpPage=helpPage %}
+    {% else %}
+        <div style="padding-left: 1em;">
+            &nbsp;&nbsp;<a href="{{ site.url }}{{ page.url }}../admin/">Admin help</a></br>
+        </div>
+    {% endif %}
 
     <h5>Help versions for this page</h5>
     <div style="padding-left: 1em;">

@@ -1,26 +1,19 @@
 {% comment %}
+*   
+*   This include creates the list of the help pages with the given attributes.
+*   Arguments:
+*     helpCollection: The help collection to display, e.g., helpV1.0.0 in directory _helpV1.0.0.
+*     helpType: "admin" or "user" to control pages filtered/shown.
+*     helpCategory: The type of help pages filter/show.
+*     helpPage: true if being placed on a help page and otherwise not so likely for page listing.
 *
-* Possible parameter for this loop:
-*
-* › entries
-* › offset
-* › category
-* › tag
-*
-* Example for Category: {% include list-posts entries='3' offset='1' category='design' %}
-*
-* Example for Tag: {% include list-posts entries='5' tag='terminal' %}
-*
-*
-* This loop works like this:
-*
-* 1. First we check if there was given a category for filtering › if include.categories == NULL
-* 2. If no category is given for filtering do a general loop.
-* 3. If a category/tag was given, assign category/tag to the variable category/tag › assign category =
-include.categories
-*
+*   Example: {% include list-help helpCollection="helpV1.0.0" helpType="admin" helpCategory="Graphing" helpPage=true %}
+*   
 {% endcomment %}
 
+{% comment %}
+Assign local variables from parameters and sort pages by title.
+{% endcomment%}
 {% assign helpCollection = include.helpCollection %}
 {% assign helpType = include.helpType %}
 {% assign helpCategory = include.helpCategory %}
@@ -29,17 +22,17 @@ include.categories
 
 <div style="padding-left: 1em;">
   <h6>{{helpCategory}}</h6>
-<div style="padding-left: 1em;">
-{% for pageInCollection in sortedPages %}
-  <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
-       This adds a description if it is the help page (vs help sidebar).
-       It will be an empty string if not help page true. -->
-  {% if helpPage == true %}
-    {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
-  {% endif %}
-  {% if pageInCollection.published != false and pageInCollection.helpType == helpType and pageInCollection.helpCategory == helpCategory %}
-    &nbsp;&nbsp;<a href="{{ site.url }}{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
-  {% endif %}
-{% endfor %}
-</div>
+  <div style="padding-left: 1em;">
+    {% for pageInCollection in sortedPages %}
+      <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
+          This adds a description if it is the help page (vs help sidebar).
+          It will be an empty string if not help page true. -->
+      {% if helpPage == true %}
+        {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
+      {% endif %}
+      {% if pageInCollection.published != false and pageInCollection.helpType == helpType and pageInCollection.helpCategory == helpCategory %}
+        &nbsp;&nbsp;<a href="{{ site.url }}{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>

@@ -1,17 +1,18 @@
 ---
 layout: page-fullwidth
-title: admin unit
-meta_title: "REPLACE doc"
+title:  Units & Conversions
+meta_title: "Units & Conversion Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
-navbarShown: false
+helpCategory : "Information"
+helpDescription : "This provides more extensive information about units and conversions in OED and how to set them up for a site."
 ---
-<div>
-    {% include_relative _version %}
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
     <!-- Page content -->
         <p>This page assumes that one has an understanding of the general <a href="../conversionsUnits/">conversion and
             units</a> information. It also uses the <a href="../exampleDescription/">help examples</a>.</p>

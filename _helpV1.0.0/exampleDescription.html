@@ -1,18 +1,18 @@
 ---
 layout: page-fullwidth
-title: examples
-meta_title: "examples doc"
+title: Examples
+meta_title: "Examples Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : User
 helpCategory : "Information"
 helpDescription : "Describes the example data used in the help pages."
-navbarShown: false
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 		<p>The following gives a description of the sample data that was used to create the help examples. It gives both a
 		high-level description and the details. It assumes you understand the ideas and terminology of <a
 			href="../graphingUnits/">units</a>, <a href="../graphingMeters/">meters</a> and <a

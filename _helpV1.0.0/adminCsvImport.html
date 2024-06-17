@@ -1,18 +1,21 @@
 ---
 layout: page-fullwidth
-title: admin csv import
-meta_title: "REPLACE doc"
+title: CSV Import
+meta_title: "CSV import Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Data Acquisition"
+helpDescription : "Describes how to import meters and readings via CSV files."
 ---
-<div>
-    {% include_relative _version %}
-    <!-- Page content -->
-        
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
+    {% include alert info='This feature is also available to people logged in as a user with the CSV role.' %}
+
     <h2 id="overview">Overview</h2>
     <p>The canonical format for OED to acquire information is the vendor neutral CSV (Comma Separated Values) format. It
         is used for both importing meter and reading information. This is the same format used for <a

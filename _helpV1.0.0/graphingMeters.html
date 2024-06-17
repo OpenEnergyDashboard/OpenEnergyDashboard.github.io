@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: meters
-meta_title: "meters doc"
+title: Meters
+meta_title: "Meters Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Graphing"
 helpDescription : "Describes the ideas of meters and how to get them graphed."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	<p>Meters are the lowest level of data in OED. Readings (energy/resource measurements) are associated with a

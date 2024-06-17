@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
 title: eGauge
-meta_title: "REPLACE doc"
+meta_title: "eGauge Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Data Acquisition"
+helpDescription : "Describes acquiring readings from an eGauge meter."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>This page describes how to add eGauge meters to OED so they will be read regularly.</p>

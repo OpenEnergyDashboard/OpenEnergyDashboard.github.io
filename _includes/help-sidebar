@@ -2,9 +2,10 @@
 *   
 *   This include creates the list all help pages and versions for a sidebar on a help page.
 *   Arguments:
-*       OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
+*     OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
+*     helpType: tells if admin or not to control information shown.
 *
-*   Example: {% include help-sidebar OEDVersion=V1.0.0 %}
+*   Example: {% include help-sidebar OEDVersion=V1.0.0 helpType=admin %}
 *   
 {% endcomment %}
 
@@ -12,6 +13,7 @@
 Assign local variables from parameters.
 {% endcomment%}
 {% assign OEDVersion = include.OEDVersion %}
+{% assign helpType = include.helpType %}
 
 <div class="medium-4 medium-push-8 columns" markdown="1">
     <div class="panel radius" markdown="1">
@@ -19,7 +21,7 @@ Assign local variables from parameters.
             <!-- Add header since not done elsewhere. -->
             <h4><a href='../index/'>Documentation overview</a></h4>
 
-            {% include help-page OEDVersion=OEDVersion helpPage=false %}
+            {% include help-page OEDVersion=OEDVersion helpType=helpType helpPage=false %}
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: unit
-meta_title: "unit doc"
+title: Unit
+meta_title: "Unit Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Graphing"
 helpDescription : "Describes the ideas of units and how they impact graphing. "
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	A graphic unit is the units that the user can choose for graphing meter/group data. The unit menu on each graphic

@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin pages
-meta_title: "REPLACE doc"
+title:  Pages
+meta_title: "Pages Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Information"
+helpDescription : "Describes the pages dropdown"
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>In addition to choosing the type of graphic to see, OED maintains several other pages for admins to maintain

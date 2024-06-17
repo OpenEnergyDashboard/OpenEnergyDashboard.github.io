@@ -1,17 +1,18 @@
 ---
 layout: page-fullwidth
-title: admin standard units
-meta_title: "REPLACE doc"
+title:  Standard Units
+meta_title: "Standard Units Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
-navbarShown: false
+helpCategory : "Information"
+helpDescription : "Describes the units and conversions automatically supplied by OED and how to make them available to site users."
 ---
-<div>
-    {% include_relative _version %}
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
     <!-- Page content -->
     <p>The following assumes as you have an understanding of <a href="../conversionsUnits/">general units</a>.</p>
     <h1>OED supplied units</h1>

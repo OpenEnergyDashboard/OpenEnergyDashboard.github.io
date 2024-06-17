@@ -1,1 +1,2 @@
 {% assign OEDVersion = "V1.0.0" %}
+<p>Version {{ OEDVersion }}</p>

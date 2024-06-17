@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin meter creating
-meta_title: "REPLACE doc"
+title:  Meter Creating
+meta_title: "Meter Creating Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Site Management"
+helpDescription : "Describes how to create meters."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>The admin meter creating popup, shown in the following figure, allows admin users to create a new

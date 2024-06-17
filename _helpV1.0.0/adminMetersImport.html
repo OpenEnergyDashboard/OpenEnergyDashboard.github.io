@@ -1,16 +1,18 @@
 ---
 layout: page-fullwidth
-title: admin meter import
-meta_title: "REPLACE doc"
+title:  Meter Import
+meta_title: "Meter Import Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Data Acquisition"
+helpDescription : "Describes adding meters via a CSV file."
 ---
-<div>
-    {% include_relative _version %}
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
     <!-- Page content -->
         
     <h2 id="overview">Overview</h2>

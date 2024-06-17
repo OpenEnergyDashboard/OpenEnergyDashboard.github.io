@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin panel
-meta_title: "REPLACE doc"
+title:  Site Settings
+meta_title: "Site Settings Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Site Management"
+helpDescription : "Describes how to set the site settings and manage users."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>The admin panel page allows admins to change site preferences and control users. It is accessed

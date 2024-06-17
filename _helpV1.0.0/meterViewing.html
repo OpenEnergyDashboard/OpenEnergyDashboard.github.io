@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: meter viewing
-meta_title: "meter viewing doc"
+title: Meter Viewing
+meta_title: "Meter Viewing Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Meters/Groups"
 helpDescription : "Describes the page where you can see details on meters. "
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	<p>Meters are the lowest level of data in OED and central to the system. A meter is generally a device that collects

@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin group
-meta_title: "REPLACE doc"
+title:  Group
+meta_title: "Group Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Site Management"
+helpDescription : "Describes how to view groups."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>The admin group viewing page allows admin users to see all information on groups on an OED site. It is

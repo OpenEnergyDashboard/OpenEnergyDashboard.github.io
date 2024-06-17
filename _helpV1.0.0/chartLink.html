@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: chart link
-meta_title: "chart link doc"
+meta_title: "chart link Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Other Features"
 helpDescription : "Describes how to get a persistent URL for recreating a graphic with a hyperlink."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	<p>There are times when one wants to be able to reproduce the look of an OED graphic. For example, one wants to

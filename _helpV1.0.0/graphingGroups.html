@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: groups
-meta_title: "groups doc"
+title: Groups
+meta_title: "Groups Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Graphing"
 helpDescription : "Describes the ideas of groups and how to get them graphed."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	<p>A group in OED represents the aggregation (sum) of the meters and groups it represents. The following figure

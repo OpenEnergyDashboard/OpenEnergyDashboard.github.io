@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin unit editing
-meta_title: "REPLACE doc"
+title:  Unit Editing
+meta_title: "Unit Editing Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Site Management"
+helpDescription : "Describes how to edit units."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>The admin unit editing popup, shown in the following figure, allows admin users to editing an existing

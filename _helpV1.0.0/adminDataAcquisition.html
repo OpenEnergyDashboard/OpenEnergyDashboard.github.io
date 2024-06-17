@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: data acquisition
-meta_title: "REPLACE doc"
+title: Data Acquisition
+meta_title: "Data Acquisition Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Data Acquisition"
+helpDescription : "Overviews the types of meters supported and how to control them in OED. This includes uploading meters or readings via a CSV file."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<h2 id="overview">Overview</h2>
 	<p>The OED system stores and works with readings. These are normally thought of as meter readings but can come from

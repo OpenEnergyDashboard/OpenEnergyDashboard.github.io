@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
-title: line graphic
-meta_title: "line graphic doc"
+title: Line Graphic
+meta_title: "Line Graphic Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
@@ -9,9 +9,10 @@ helpType : User
 helpCategory : "Graphic"
 helpDescription : "Describes how the line graphic works."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
 	
 	<h2 id="overview">Overview</h2>
 	<p>A line graphic shows each meter and group as a unique line showing usage across time. The

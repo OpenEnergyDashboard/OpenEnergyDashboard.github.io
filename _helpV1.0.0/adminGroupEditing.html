@@ -1,17 +1,19 @@
 ---
 layout: page-fullwidth
-title: admin group editing
-meta_title: "REPLACE doc"
+title:  Group Editing
+meta_title: "Group Editing Doc"
 subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
-helpDescription : "REPLACE"
+helpCategory : "Site Management"
+helpDescription : "Describes how to edit groups."
 ---
-<div>
+<div class="row">
 	{% include_relative _version %}
-	<!-- Page content -->
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+    {% include adminInfo.html %}
 	
 	<p>The admin group editing popup, shown in the following figure, allows admin users to editing an existing
 		group on an OED site. It is accessed from
