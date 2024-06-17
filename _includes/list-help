@@ -18,7 +18,7 @@ Assign local variables from parameters and sort pages by title.
 {% assign helpType = include.helpType %}
 {% assign helpCategory = include.helpCategory %}
 {% assign helpPage = include.helpPage %}
-{% assign sortedPages = site[helpCollection]  | sort: "title" %}
+{% assign sortedPages = site[helpCollection]  | sort_natural: "title" %}
 
 <div style="padding-left: 1em;">
   <h6>{{helpCategory}}</h6>

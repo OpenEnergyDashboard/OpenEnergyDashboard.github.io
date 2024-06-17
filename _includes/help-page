@@ -19,26 +19,33 @@ is helpV1.0.0 (for example).
 {% assign helpPage = include.helpPage %}
 
 <div>
-    {% assign helpType = "User" %}
-    <h5>{{helpType}} help</h5>
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Meters/Groups" helpPage=helpPage
-    %}
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
-    {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Other Features" helpPage=helpPage
-    %}
+    {% if page.helpType == "User" %}
+        {% assign helpType = "User" %}
+        <h5>{{helpType}} help</h5>
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Meters/Groups" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Other Features" helpPage=helpPage %}
+    {% endif %}
 
     {% assign helpType = "Admin" %}
     <h5>{{helpType}} help</h5>
     {% if page.helpType == "Admin" %}
-        {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition" helpPage=helpPage %}
         {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
         {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Management" helpPage=helpPage %}
+        {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition" helpPage=helpPage %}
         {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Installation" helpPage=helpPage %}
     {% else %}
         <div style="padding-left: 1em;">
             &nbsp;&nbsp;<a href="{{ site.url }}{{ page.url }}../admin/">Admin help</a></br>
+        </div>
+    {% endif %}
+
+    {% if page.helpType == "Admin" %}
+        <h5>User help</h5>
+        <div style="padding-left: 1em;">
+            &nbsp;&nbsp;<a href="{{ site.url }}{{ page.url }}../index/">User help</a></br>
         </div>
     {% endif %}
 
@@ -53,27 +60,63 @@ is helpV1.0.0 (for example).
     Current page is {{OEDVersion}}.
 
     {% if helpPage == true %}
-        <h5>General help information</h5>
-        <p>Note that each version of OED has its own help pages. You will be taken to the latest version on the website and
-            the version of OED you are running when you get help on an OED page. Some help pages do not exist in all
-            versions of OED. For example, a feature may not have existed in earlier versions so there is not help page for
-            that feature. If you select another version and the web browser gives you a "404 File not found" error then this
-            is likely the case. You can use the web browser's back button to return to the page you were on to get back to
-            the help system.
-        </p>
-        <p>The help icon
-            <!-- Need to override the default size for most images on pages. -->
-            <img alt="help icon" src="../images/helpIcon.png" width="17" height="18" style="min-width:17px; display: inline">
-            can be clicked within OED to reveal information about the features(s) near the
-            <!-- Need to override the default size for most images on pages. -->
-            <img alt="help icon" src="../images/helpIcon.png" width="17" height="18"
-                style="min-width:17px; display: inline">.
-            That information generally contains a brief overview and links to help pages directly related to the feature
-            being described. This context sensitive help can aid one while working with OED and leads to appropriate help
-            pages.
-        </p>
-        <p>OED uses JavaScript for many features. You must have JavaScript enabled for the web browser page that contains
-            OED. If JavaScript is not enabled then you will see "OED requires JavaScript to run correctly. Please enable
-            JavaScript." when you load OED into the web browser page.</p>
+        {% if page.helpType == "Admin" %}
+            <h5 id="usage">Usage</h5>
+            <p>In order to access any admin features, you must be <a href="optionsMenu.html">logged in</a> as an admin.
+            <p>Once the "Log in" button is clicked, you will be taken to the login page shown in the next figure. Enter your
+                "Email" and "Password" and then click "Submit". If the credentials are correct then the web browser window will
+                take you back to the main OED screen. If there was an issue then a
+                failure popup
+                will briefly appear and you will remain on the login page. If you do not know your admin login credentials then
+                check with the person who set up your OED site. If a site is unable to log in then see the <a
+                    href="../adminInstallation/">admin installation, create user</a> for
+                additional help.</p>
+            <img alt="admin login page" src="../images/login.png">
+            <p>Note this same log in procedure may be used for users with CSV and export logins.</p>
+            
+            <p>The "Log in" button will become "Log out" after a login and can be used if you want to stop being an admin.
+                OED will automatically log you out after a set period of time.</p>
+            <p>The pages linked above have information on what you can do as an admin and how to get to each page.</p>
+            
+            <h5 id="details">Details</h5>
+            <p>When your session times out as an admin, the next action you take will redirect you to the login page or note you
+                have logged out. After you
+                log in you are returned to the main OED page. Then you can click to get back to where you were.</p>
+            <p>OED will warn you if you have unsaved changes from some admin pages. You can choose to "Cancel" which stays on
+                that
+                page but does not save the changes, "Leave" that will leave the page without saving your changes, or "Save
+                all" that will save your changes to the database and leave the page. Any unsaved changes will not be permanent
+                and will not be
+                seen by users of your site. Note that OED can only detect that changes were made and not if you set them back to
+                the original values so you will be warned in this case. Also note that other users will not see changes until
+                they reload OED in the web browser.
+            </p>
+            <p>If admin edits are done around the same time by two different admins (or in different browsers/windows by a
+                single admin) then it is possible the outcome will be unexpected. Admin changes should only be done by one
+                person in one place at a time to avoid any issues.</p>
+        {% else %}
+            <h5>General help information</h5>
+            <p>Note that each version of OED has its own help pages. You will be taken to the latest version on the website and
+                the version of OED you are running when you get help on an OED page. Some help pages do not exist in all
+                versions of OED. For example, a feature may not have existed in earlier versions so there is not help page for
+                that feature. If you select another version and the web browser gives you a "404 File not found" error then this
+                is likely the case. You can use the web browser's back button to return to the page you were on to get back to
+                the help system.
+            </p>
+            <p>The help icon
+                <!-- Need to override the default size for most images on pages. -->
+                <img alt="help icon" src="../images/helpIcon.png" width="17" height="18" style="min-width:17px; display: inline">
+                can be clicked within OED to reveal information about the features(s) near the
+                <!-- Need to override the default size for most images on pages. -->
+                <img alt="help icon" src="../images/helpIcon.png" width="17" height="18"
+                    style="min-width:17px; display: inline">.
+                That information generally contains a brief overview and links to help pages directly related to the feature
+                being described. This context sensitive help can aid one while working with OED and leads to appropriate help
+                pages.
+            </p>
+            <p>OED uses JavaScript for many features. You must have JavaScript enabled for the web browser page that contains
+                OED. If JavaScript is not enabled then you will see "OED requires JavaScript to run correctly. Please enable
+                JavaScript." when you load OED into the web browser page.</p>
+        {% endif %}
     {% endif %}
 </div>

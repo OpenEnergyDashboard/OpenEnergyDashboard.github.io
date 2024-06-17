@@ -6,21 +6,26 @@ subheadline: "OED Documentation"
 breadcrumb: true
 help: true
 helpType : Admin
-helpCategory : "REPLACE"
 helpCategory : "Site Installation"
 helpDescription : "Shows output of an OED production installation."
 ---
-<div>
-    <h1>Production Install Output</h1>
-    <p>When OED is installed for production the output will be similar to what is below (assuming this is the first time
-        running <code>docker compose up</code>). Please note:</p>
-    <ul>
-        <li>This output was created on 20 October 2022 using OED v1.0.0. The exact output will vary with
-            machine type and changes to OED.</li>
-        <li>There are often colors in the output but that is not shown.</li>
-     </ul>
+<div class="row">
+    {% include_relative _version %}
+    {% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+    <div class="medium-8 medium-pull-4 columns" markdown="1">
+        {% include adminInfo.html %}
 
-    <pre>
+        <h1>Production Install Output</h1>
+        <p>When OED is installed for production the output will be similar to what is below (assuming this is the first
+            time
+            running <code>docker compose up</code>). Please note:</p>
+        <ul>
+            <li>This output was created on 20 October 2022 using OED v1.0.0. The exact output will vary with
+                machine type and changes to OED.</li>
+            <li>There are often colors in the output but that is not shown.</li>
+        </ul>
+
+        <pre>
 $ docker compose up
 [+] Building 1.1s (14/14) FINISHED                                                                                                                                                                                               
  => [database internal] load .dockerignore                                                                                                                                                                                  0.0s
@@ -223,4 +228,5 @@ oed-web-1       | &gt; node ./src/bin/www
 oed-web-1       | 
 oed-web-1       | [INFO@2023-10-20T11:22:35.803-05:00] Listening on port 3000
 </pre>
+    </div>
 </div>
