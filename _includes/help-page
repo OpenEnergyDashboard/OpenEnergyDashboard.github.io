@@ -1,10 +1,10 @@
 {% comment %}
 *
-* This include list all help pages and versions.
+* This include list all documentation pages and versions.
 * If a new type is created then it needs to be added here.
 * Arguments:
-*   OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this help.
-*   helpPage: true if being placed on a help page and otherwise not so likely for page listing.
+*   OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this documentation.
+*   helpPage: true if being placed on a documentation page and otherwise not so likely for page listing.
 *
 * Example: {% include help-page OEDVersion=V1.0.0 helpType=admin helpPage=true %}
 *
@@ -21,7 +21,7 @@ is helpV1.0.0 (for example).
 <div>
     {% if page.helpType == "User" %}
         {% assign helpType = "User" %}
-        <h5>{{helpType}} help</h5>
+        <h5>{{helpType}} documentation</h5>
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
@@ -30,7 +30,7 @@ is helpV1.0.0 (for example).
     {% endif %}
 
     {% assign helpType = "Admin" %}
-    <h5>{{helpType}} help</h5>
+    <h5>{{helpType}} documentation</h5>
     {% if page.helpType == "Admin" %}
         {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
         {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Management" helpPage=helpPage %}
@@ -43,13 +43,13 @@ is helpV1.0.0 (for example).
     {% endif %}
 
     {% if page.helpType == "Admin" %}
-        <h5>User help</h5>
+        <h5>User documentation</h5>
         <div style="padding-left: 1em;">
             &nbsp;&nbsp;<a href="{{ site.url }}{{ page.url }}../index/">User help</a></br>
         </div>
     {% endif %}
 
-    <h5>Help versions for this page</h5>
+    <h5>documentation versions for this page</h5>
     <div style="padding-left: 1em;">
         {% for item in site.data.helpVersions %}
         {% assign version = item.version %}
@@ -70,7 +70,7 @@ is helpV1.0.0 (for example).
                 will briefly appear and you will remain on the login page. If you do not know your admin login credentials then
                 check with the person who set up your OED site. If a site is unable to log in then see the <a
                     href="../adminInstallation/">admin installation, create user</a> for
-                additional help.</p>
+                additional documentation.</p>
             <img alt="admin login page" src="../images/login.png">
             <p>Note this same log in procedure may be used for users with CSV and export logins.</p>
             
@@ -95,13 +95,13 @@ is helpV1.0.0 (for example).
                 single admin) then it is possible the outcome will be unexpected. Admin changes should only be done by one
                 person in one place at a time to avoid any issues.</p>
         {% else %}
-            <h5>General help information</h5>
-            <p>Note that each version of OED has its own help pages. You will be taken to the latest version on the website and
-                the version of OED you are running when you get help on an OED page. Some help pages do not exist in all
-                versions of OED. For example, a feature may not have existed in earlier versions so there is not help page for
+            <h5>General documentation information</h5>
+            <p>Note that each version of OED has its own documentation pages. You will be taken to the latest version on the website and
+                the version of OED you are running when you get documentation on an OED page. Some documentation pages do not exist in all
+                versions of OED. For example, a feature may not have existed in earlier versions so there is not documentation page for
                 that feature. If you select another version and the web browser gives you a "404 File not found" error then this
                 is likely the case. You can use the web browser's back button to return to the page you were on to get back to
-                the help system.
+                the documentation system.
             </p>
             <p>The help icon
                 <!-- Need to override the default size for most images on pages. -->
@@ -111,7 +111,7 @@ is helpV1.0.0 (for example).
                 <img alt="help icon" src="../images/helpIcon.png" width="17" height="18"
                     style="min-width:17px; display: inline">.
                 That information generally contains a brief overview and links to help pages directly related to the feature
-                being described. This context sensitive help can aid one while working with OED and leads to appropriate help
+                being described. This context sensitive help can aid one while working with OED and leads to appropriate documentation
                 pages.
             </p>
             <p>OED uses JavaScript for many features. You must have JavaScript enabled for the web browser page that contains

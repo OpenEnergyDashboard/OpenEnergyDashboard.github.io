@@ -1,11 +1,11 @@
 {% comment %}
 *   
-*   This include creates the list of the help pages with the given attributes.
+*   This include creates the list of the documentation pages with the given attributes.
 *   Arguments:
-*     helpCollection: The help collection to display, e.g., helpV1.0.0 in directory _helpV1.0.0.
+*     helpCollection: The documentation collection to display, e.g., helpV1.0.0 in directory _helpV1.0.0.
 *     helpType: "admin" or "user" to control pages filtered/shown.
-*     helpCategory: The type of help pages filter/show.
-*     helpPage: true if being placed on a help page and otherwise not so likely for page listing.
+*     helpCategory: The type of documentation pages filter/show.
+*     helpPage: true if being placed on a documentation page and otherwise not so likely for page listing.
 *
 *   Example: {% include list-help helpCollection="helpV1.0.0" helpType="admin" helpCategory="Graphing" helpPage=true %}
 *   
@@ -25,8 +25,8 @@ Assign local variables from parameters and sort pages by title.
   <div style="padding-left: 1em;">
     {% for pageInCollection in sortedPages %}
       <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
-          This adds a description if it is the help page (vs help sidebar).
-          It will be an empty string if not help page true. -->
+          This adds a description if it is the documentation page (vs documentation sidebar).
+          It will be an empty string if not a documentation page true. -->
       {% if helpPage == true %}
         {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
       {% endif %}

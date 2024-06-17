@@ -9,7 +9,7 @@ title: OED release
 		<li>Announce to the Discord developer channel so everyone can look over the proposed release.</li>
 		<li>Review the Milestone for this release to make sure all issues are complete or reassigned.</li>
 		<li>See if there are any package or security issues that need to be addressed.</li>
-		<li>Prepare the help pages for new release in the OpenEnergyDashboard.github.io repo. These steps assume you
+		<li>Prepare the documentation pages for new release in the OpenEnergyDashboard.github.io repo. These steps assume you
 			have forked this repo onto your own account and are working from that fork (probably in a local clone):</li>
 		<ol>
 			<li>Make sure all changes are done for the previous release and put in the OED repo for the main branch.
@@ -27,13 +27,13 @@ title: OED release
 				left side of the page. Under "Source", use the "Branch" dropdown menu to choose the new branch that you
 				just pushed/published. This should cause you to see this branch when you go to https://&lt;your GitHub
 				ID&gt;.github.io/OpenEnergyDashboard.github.io where you replace <your GitHub ID> with your id.</li>
-			<li>Duplicate the previous release's help directory into the new release directory. For example, copy
+			<li>Duplicate the previous release's documentation directory into the new release directory. For example, copy
 				help/v0.6.0 to help/v0.7.0.</li>
 			<li>Unfortunately, you need to manually update the links to go from the previous release to the new release.
-				In the new help directory (e.g., help/v0.7.0) edit each change listed below to update the version (e.g.,
+				In the new documentation directory (e.g., help/v0.7.0) edit each change listed below to update the version (e.g.,
 				v0.6.0 to v0.7.0) so do the following:</li>
 			<ul>
-				<li>Globally change the help links, e.g. help/v0.6.0 to help/v0.7.0. You can do this in the global
+				<li>Globally change the documentation links, e.g. help/v0.6.0 to help/v0.7.0. You can do this in the global
 					search box in Visual Studio. Note it is important to prefix it with help/ so you don't edit other
 					references to the version.</li>
 				<li>edit _layouts/admin.html to add a line above<br>
