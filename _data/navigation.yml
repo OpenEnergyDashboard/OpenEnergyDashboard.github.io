@@ -1,15 +1,14 @@
-- title: Home
+- title: home
   url: "/"
   side: left
 
-- title: "FEATURES"
-# TODO
-  # url: "/design/"
+- title: "features"
+  url: "/features/"
   side: left
   dropdown:
-  - title: "FEATURES BY TYPE"
+  - title: "features by type"
     url: "/features/"
-  - title: "FEATURES BY ACADEMIC USE"
+  - title: "features by academic use"
     url: "/useAcademic/"
   
 # TODO Have not found an easy way to avoid hard link that must be edited with each new version.
@@ -17,10 +16,25 @@
   url: "/helpV1.0.0/index/"
   side: left
   dropdown:
-  - title: "OED VERSION 1.0.0"
+  - title: "oed version 1.0.0"
     url: "/helpV1.0.0/index/"
-  - title: "OED VERSION 0.8.0"
+  - title: "oed version 0.8.0"
     url: "/helpV0.8.0/index/"
+
+- title: "Live Demo"
+  url: "/demo/"
+  side: left
+
+- title: "info"
+  url: "/news/"
+  side: left
+  dropdown:
+  - title: "using oed"
+    url: "/use/"
+  - title: "news"
+    url: "/news/"
+  - title: "project information pages & license"
+    url: "/projectInfo/"
 
 - title: "Search"
   url: "/search/"
@@ -28,4 +42,12 @@
 
 - title: "Contact"
   url: "/contact/"
+  side: right
+
+- title: "developer docs"
+  url: "/TODO/"
+  side: right
+
+- title: "get involved"
+  url: "/involved/"
   side: right
