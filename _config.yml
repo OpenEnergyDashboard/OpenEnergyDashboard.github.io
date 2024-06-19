@@ -47,6 +47,9 @@ urlimg: '/images/'
 logo: "logo.png"
 logoHelp: "logoHelp.png"
 
+# Latest/current help version
+helpCurrent: "helpV1.0.0"
+
 # Collection of help pages so can get links easily.
 collections:
   helpV1.1.0:

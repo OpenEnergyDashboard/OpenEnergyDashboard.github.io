@@ -1,20 +1,18 @@
 ---
-title: features
-layout : page
 title : "Features"
-meta_title : "Features by Academic Use"
+layout : page
 subheadline : "Features by Academic Use"
-teaser : "This lists the main OED features by sample usage at an academic institution."
+teaser : "This lists the main OED features by sample usage at an academic institution"
 permalink : "/useAcademic/"
 ---
 <div>
 	<p>
 		The OED system has a number of features. This page describes many of them in the context of how they might be
-		used at an academic institution along with links to further documentation. The <a href="features.html">features
+		used at an academic institution along with links to further documentation. The <a href="../features/">features by type
 			page</a> overviews OED's capabilities in terms of each feature rather than uses and shows a number of
 		features not touched on this page. Some people may wish to see
 		a number of these features by using
-		our <a href="demo.html">live demo site</a>. Also note that there are many options for graphics and this page
+		our <a href="{{site.url}}/{{ site.helpCurrent }}/demo/">live demo site</a>. Also note that there are many options for graphics and this page
 		often gives one example. The "Further information" links to the OED documentation web pages provide all the options.</p>
 	<p>The uses and primary features they demonstrate that will be discussed are:</p>
 	<ul>
@@ -39,7 +37,7 @@ permalink : "/useAcademic/"
 		<li>Dining Hall Gas: The gas usage for the Dining Hall.</li>
 		<li>Dining Hall Water: The water usage for the Dining Hall.</li>
 	</ul>
-	<p>These are a subset of the <a href="help/v1.0.0/exampleDescription.html">example data</a> used throughout the OED
+	<p>These are a subset of the <a href="{{site.url}}/{{ site.helpCurrent }}/exampleDescription/">example data</a> used throughout the OED
 		help pages.</p>
 
 	<h2 id="varietyAudiences">Displaying data for a variety of audiences</h2>
@@ -53,10 +51,10 @@ permalink : "/useAcademic/"
 	<p>We will now look at each of these.</p>
 	<p>The following graphic shows the electric usage for each of the three electric meters as a line graph of usage vs.
 		time:</p>
-	<p><img alt="line graphic with three meters" src="images/academicLine.png"></p>
+	<p><img alt="line graphic with three meters" src="{{ site.urlimg }}academicLine.png"></p>
 	<p>The following graphic shows the same usage but as a bar graphic where each bar represents four weeks of usage:
 	</p>
-	<p><img alt="bar graphic with three meters" src="images/academicBar.png"></p>
+	<p><img alt="bar graphic with three meters" src="{{ site.urlimg }}academicBar.png"></p>
 	<p>The following graphic shows the electric usage in Great Dorm 1st Floor & Dining Hall as a map where the circle
 		size indicates relative
 		usage. Great Dorm 2nd Floor Electric could also have been shown but meters for the same building are harder
@@ -64,22 +62,22 @@ permalink : "/useAcademic/"
 		average usage for the last 4 week where the hover shows the exact value for the Dining Hall. All types of
 		graphics support the hover feature.
 	</p>
-	<p><img alt="map graphic with two meters" src="images/academicMap.png"></p>
+	<p><img alt="map graphic with two meters" src="{{ site.urlimg }}academicMap.png"></p>
 	<p>One might wish to see the usage normalized by the size of the building. The following figure shows this for the
 		previous map but any graphic could have this done. The hover shows that the value reduced by a factor of 1,000
 		because that is the area of the building in sq. meters. The figure also presents the fact that the dorm is
 		significantly more energy efficient considering its size because the circle size is much smaller in this figure.
 	</p>
-	<p><img alt="map graphic with three meters normalized by area" src="images/academicMapArea.png"></p>
+	<p><img alt="map graphic with three meters normalized by area" src="{{ site.urlimg }}academicMapArea.png"></p>
 	<p>One may wish to also see data in another unit. The line graphic above is shown in the figure below but for ton
 		of CO<sub>2</sub>. per day. The Great Dorm has zero for its value because it uses solar electricity which is
 		assigned to have no carbon footprint (site chosen value).</p>
-	<p><img alt="line graphic with three meters in CO2 units" src="images/academicMapCO2.png"></p>
-	<p>Further information: <a href="help/v1.0.0/graphType.html">Graphical display of data</a>, <a
-			href="help/v1.0.0/lineGraphic.html">Line Graphic</a>, <a href="help/v1.0.0/barGraphic.html">Bar
-			Graphic</a>, <a href="help/v1.0.0/mapGraphic.html">Map Graphic</a>, <a
-			href="help/v1.0.0/areaNormalization.html">Area normalization</a> and <a
-			href="help/v1.0.0/graphingUnits.html">Graphing units</a>.</p>
+	<p><img alt="line graphic with three meters in CO2 units" src="{{ site.urlimg }}academicMapCO2.png"></p>
+	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/graphType/">Graphical display of data</a>, <a
+			href="{{site.url}}/{{ site.helpCurrent }}/lineGraphic/">Line Graphic</a>, <a href="{{site.url}}/{{ site.helpCurrent }}/barGraphic/">Bar
+			Graphic</a>, <a href="{{site.url}}/{{ site.helpCurrent }}/mapGraphic/">Map Graphic</a>, <a
+			href="{{site.url}}/{{ site.helpCurrent }}/areaNormalization/">Area normalization</a> and <a
+			href="{{site.url}}/{{ site.helpCurrent }}/graphingUnits/">Graphing units</a>.</p>
 
 	<h2 id="buildings">Buildings and campus level data display</h2>
 	<p>An academic institution often wants to show usage for different areas on campus. For example, you might want to
@@ -90,7 +88,7 @@ permalink : "/useAcademic/"
 		Graphically these groups were created as shown in the following figure. The meters are shown in blue and the
 		groups are shown in yellow.
 	</p>
-	<p><img alt="buildings as groups" src="images/academicGroups.png"></p>
+	<p><img alt="buildings as groups" src="{{ site.urlimg }}academicGroups.png"></p>
 	<p>OED allows for creating groups from groups. This can greatly simplify grouping items as
 		they can be built from previous groups. Given this, the Dining Hall group was created as follows:</p>
 	<ol>
@@ -105,8 +103,8 @@ permalink : "/useAcademic/"
 		can be used with any graphic. It is graphed in ton
 		of CO<sub>2</sub>. per hour. The graphic clearly shows that the Great Dorm is generating a lot less
 		CO<sub>2</sub> than the Dining Room.</p>
-	<p><img alt="line graphic with two groups" src="images/academicLineGroup.png"></p>
-	<p>Further information: <a href="help/v1.0.0/graphingGroups.html">Groups</a>.</p>
+	<p><img alt="line graphic with two groups" src="{{ site.urlimg }}academicLineGroup.png"></p>
+	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/graphingGroups/">Groups</a>.</p>
 
 	<h2 id="competition">Energy Competitions</h2>
 	<p>To engage students, some academic institutions use energy competitions. In a common usage, different buildings
@@ -118,8 +116,8 @@ permalink : "/useAcademic/"
 		the building with the
 		greatest decrease is first but one can choose to do the least first or alphabetically. One can include as many
 		items desired on one comparison page (only two shown here).</p>
-	<p><img alt="compare graphic with two buildings" src="images/academicCompare.png"></p>
-	<p>Further information: <a href="help/v1.0.0/compareGraphic.html">Compare Graphic</a>.</p>
+	<p><img alt="compare graphic with two buildings" src="{{ site.urlimg }}academicCompare.png"></p>
+	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/compareGraphic/">Compare Graphic</a>.</p>
 
 	<h2 id="webpages">Including OED in webpages for campus</h2>
 	<p>It is common for an academic institution to want to graphically show energy usage on a website. Someone can
@@ -129,7 +127,7 @@ permalink : "/useAcademic/"
 		What this means is that if you had a link to a compare graphic to show usage for the last week that was created
 		at the start of January, if some used it in the middle of February they would see the same comparisons (such as
 		the two buildings in the example above) but for the current week in February.</p>
-	<p>Further information: <a href="help/v1.0.0/chartLink.html">Chart Links</a>.</p>
+	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/chartLink/">Chart Links</a>.</p>
 
 	<h2 id="internal">Internal usage by facilities, sustainability coordinator</h2>
 	<p>For many reasons, OED normally shows daily points when a line graph is first shown. Seeing this level of detail
@@ -139,12 +137,12 @@ permalink : "/useAcademic/"
 		time frames for each point. OED can display data as daily, hourly or the original meter data. This allows
 		the user to see the data at appropriate time scales depending on need. The figure below shows original meter
 		data for the first week of January 2021 that is every 15 minutes for these meters.</p>
-	<p><img alt="line graphic for one week with original meter data" src="images/academicMeterLevel.png"></p>
+	<p><img alt="line graphic for one week with original meter data" src="{{ site.urlimg }}academicMeterLevel.png"></p>
 	<p>Someone may also wish to see the cost associated with buildings. In the following figure, the cost of the
 		electrical usage for the two
 		buildings is shown on a bar graphic. The fluctuation in cost and the relative cost is easy to see.</p>
-	<p><img alt="cost bar graphic with two buildings" src="images/academicCost.png"></p>
-	<p>Further information: <a href="help/v1.0.0/lineGraphic.html#scrollZoom">Zooming & Scrolling</a>.</p>
+	<p><img alt="cost bar graphic with two buildings" src="{{ site.urlimg }}academicCost.png"></p>
+	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/lineGraphic/#scrollZoom">Zooming & Scrolling</a>.</p>
 
 	<h2 id="courses">Usage for research/courses</h2>
 	<p>When students are investigating energy usage, they often need to work interactively with the data. OED is
@@ -170,6 +168,6 @@ permalink : "/useAcademic/"
 		size, then only users logged in with export privileges can download that data. OED allows sites to create as many users of this type as
 		they want so a site can create a unique one for each person, class or other group. They can also be removed so
 		access times can be limited.</p>
-	<p>Further information: <a href="help/v1.0.0/export.html">Data Export</a> and <a
-			href="help/v1.0.0/adminUser.html">User roles</a>.</p>
+	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/export/">Data Export</a> and <a
+			href="{{site.url}}/{{ site.helpCurrent }}/adminUser.html">User roles</a>.</p>
 </div>
