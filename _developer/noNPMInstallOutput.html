@@ -1,35 +1,52 @@
 ---
-title: OED quick install
+layout: page-fullwidth
+title: No npm or Database Install Output
+meta_title: "No npm/DB Install Output"
+subheadline: "OED Developer Documentation"
+breadcrumb: true
+help: true
+helpType : Developer
+helpCategory : "Further Details"
+helpDescription : "Shows the terminal output of building OED where there the npm install is skipped."
 ---
-<div>
-	<h1>No NPM or Database Install Output</h1>
-	<p>If you have previously installed the PostgreSQL database and it can skip installing the node modules then it will
-		be faster and skip a number of steps. Below is typical output for this process. Please note: </p>
-	<ul>
-		<li>This output was created on 20 October 2023. The exact output will vary with machine type and changes
-			to OED. This output will be in the nohup.out file for a VSC install.</li>
-		<li>You may also see the log messages from the last time PostgreSQL ran in the earlier parts of the output.
-			These could be short or long lists. They might seem to indicate issues but are not related to this attempt
-			to install OED.</li>
-		<li>For unknown reasons, the OED install fails to run at times. Here are two known fixes:
-			<ul>
-				<li>Close the VSC container by clicking on the green "Dev Container" in the VSC info bar and choose
-					"Close Remote Connection". Then go to the VSC Docker Extension, right click on the web/vsc container
-					and choose "Remove". Repeat to remove the database Docker Container. If you reopen the OED workspace
-					in the VSC container it should now work.</li>
-				<li>This will likely get OED to run but you will probably have the same problem next time. Open a
-					terminal in the web/vsc Docker container by right clicking on the that container in the VSC Docker
-					extension and choosing "Attach Shell". In the terminal that opens, enter
-					<code>./src/scripts/installOED.sh  >> nohup.out 2>&1 &</code> and hit return. This should cause the
-					OED install to happen where you will see output in the nohup.out file. You can close the remote
-					connection, as usual, to stop OED.
-				</li>
-			</ul>
-		</li>
-	</ul>
+<div class="row">
+	{% include help-sidebar %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+		{% include developerInfo.html %}
 
-	<h3>Output</h3>
-	<pre>
+		<p>If you have previously installed the PostgreSQL database and it can skip installing the node modules then it
+			will
+			be faster and skip a number of steps. Below is typical output for this process. Please note: </p>
+		<ul>
+			<li>This output was created on 20 October 2023. The exact output will vary with machine type and changes
+				to OED. This output will be in the nohup.out file for a VSC install.</li>
+			<li>You may also see the log messages from the last time PostgreSQL ran in the earlier parts of the output.
+				These could be short or long lists. They might seem to indicate issues but are not related to this
+				attempt
+				to install OED.</li>
+			<li>For unknown reasons, the OED install fails to run at times. Here are two known fixes:
+				<ul>
+					<li>Close the VSC container by clicking on the green "Dev Container" in the VSC info bar and choose
+						"Close Remote Connection". Then go to the VSC Docker Extension, right click on the web/vsc
+						container
+						and choose "Remove". Repeat to remove the database Docker Container. If you reopen the OED
+						workspace
+						in the VSC container it should now work.</li>
+					<li>This will likely get OED to run but you will probably have the same problem next time. Open a
+						terminal in the web/vsc Docker container by right clicking on the that container in the VSC
+						Docker
+						extension and choosing "Attach Shell". In the terminal that opens, enter
+						<code>./src/scripts/installOED.sh  >> nohup.out 2>&1 &</code> and hit return. This should cause
+						the
+						OED install to happen where you will see output in the nohup.out file. You can close the remote
+						connection, as usual, to stop OED.
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h3>Output</h3>
+		<pre>
 [+] Building 0.0s (0/0)                                                                                                                                                                                             docker:default
 [+] Running 2/0
  ✔ Container oed-database-1  Created                                                                                                                                                                                     0.0s 
@@ -313,7 +330,9 @@ oed-web-1       | &lt;s&gt; [webpack.Progress] 100%
 oed-web-1       | 
 </pre>
 
-	<h3>Postgres output</h3>
-	<p>If you right click on the database web container in VSC and select "View Logs", it will open a terminal where you
-		will see the messages from Postgres.</p>
+		<h3>Postgres output</h3>
+		<p>If you right click on the database web container in VSC and select "View Logs", it will open a terminal where
+			you
+			will see the messages from Postgres.</p>
+	</div>
 </div>

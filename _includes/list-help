@@ -18,13 +18,12 @@ Assign local variables from parameters and sort pages by title.
 {% assign helpType = include.helpType %}
 {% assign helpCategory = include.helpCategory %}
 {% assign helpPage = include.helpPage %}
-{% assign sortedPages = site[helpCollection]  | sort_natural: "title" %}
 
 <div style="padding-left: 1em;">
   <h6>{{helpCategory}}</h6>
   <div style="padding-left: 1em;">
-    {% for pageInCollection in sortedPages %}
-      <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
+    {% for pageInCollection in site[helpCollection] %}
+    <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
           This adds a description if it is the documentation page (vs documentation sidebar).
           It will be an empty string if not a documentation page true. -->
       {% if helpPage == true %}

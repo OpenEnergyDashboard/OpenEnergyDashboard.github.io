@@ -3,7 +3,8 @@
 *   This include creates the list all documentation pages and versions for a sidebar on a documentation page.
 *   Arguments:
 *     OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this documentation.
-*     helpType: tells if admin or not to control information shown.
+*                 Not used for developer
+*     helpType: tells if admin, developer or user to control information shown.
 *
 *   Example: {% include help-sidebar OEDVersion=V1.0.0 helpType=admin %}
 *   

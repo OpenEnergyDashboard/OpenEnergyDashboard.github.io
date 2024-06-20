@@ -1,9 +1,14 @@
 <!-- The image at the top varies if regular page or a documentation page. -->
 {% if page.help == true %}
-	{% assign imageUse = site.logoHelp %}
+	{% if page.helpType == "Developer" %}
+		{% assign imageUse = site.logoDeveloper %}
+	{% else %}
+		{% assign imageUse = site.logoHelp %}
+	{% endif %}
 {% else %}
 	{% assign imageUse = site.logo %}
 {% endif %}
+<p>imageUse: {{imageUse}}</p>
 
 {% if page.header == NULL and page.header.image_fullwidth == NULL and page.header.pattern == NULL and page.header.background-color == NULL and page.header.title == NULL %}
 

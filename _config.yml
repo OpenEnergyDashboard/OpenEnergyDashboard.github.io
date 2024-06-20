@@ -46,6 +46,7 @@ urlimg: '/images/'
 # Logo size is 600x80 pixels
 logo: "logo.png"
 logoHelp: "logoHelp.png"
+logoDeveloper: "logoDeveloper.png"
 
 # Latest/current help version
 helpCurrent: "helpV1.0.0"
@@ -56,6 +57,16 @@ collections:
     output: true # to make jekyll generate html pages
   helpV1.0.0:
     output: true # to make jekyll generate html pages
+    sort_by: title
+    order:
+      - index.html
+      - admin.html
+  developer:
+    output: true # to make jekyll generate html pages
+    sort_by: title
+    order:
+      - index.html
+      - gettingStarted.html
 
 
 # Plugins

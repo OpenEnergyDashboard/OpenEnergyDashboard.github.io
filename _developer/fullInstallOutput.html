@@ -1,28 +1,44 @@
 ---
-title: OED full install
+layout: page-fullwidth
+title: Full Install Output
+meta_title: "Full Install Output"
+subheadline: "OED Developer Documentation"
+breadcrumb: true
+help: true
+helpType : Developer
+helpCategory : "Further Details"
+helpDescription : "Shows the terminal output of building OED for the first time."
 ---
-<div>
-	<h1>Full Install Output</h1>
-	<p>When you install OED without already having a database or node modules, it does all the steps. Below is typical
-		output for this process. This output is shown in the nohup.out file for a VSC install or in the terminal when
-		doing
-		<code>docker compose up</code>. Please note:
-	</p>
-	<ul>
-		<li>The exact output will vary with machine type and changes to OED. This output was created on Windows 11 using
-			WSL 2 in October 2023 outside VSC. The string "oed" reflects that it is in a directory with that
-			name and one's output would change accordingly.</li>
-		<li>The lines starting with "oed-database |" would be elsewhere when using the VSC OED container. One
-			can see the output from the database install by right clicking on the database Docker container in the VSC
-			Docker extension and choosing "Show Logs".</li>
-		<li>The output and information in <a href="noNPMInstallOutput.html">install output without redoing database or
-				npm install</a> is similar to what will happen here.</li>
-		<li>For unknown reasons, the OED install fails to run at times in VSC. See the <a
-				href="noNPMInstallOutput.html">no npm install output</a> to see the known solution.</li>
-	</ul>
+<div class="row">
+	{% include help-sidebar %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+		{% include developerInfo.html %}
 
-	<h3>nohup.out output</h3>
-	<pre>
+		<p>When you install OED without already having a database or node modules, it does all the steps. Below is
+			typical
+			output for this process. This output is shown in the nohup.out file for a VSC install or in the terminal
+			when
+			doing
+			<code>docker compose up</code>. Please note:
+		</p>
+		<ul>
+			<li>The exact output will vary with machine type and changes to OED. This output was created on Windows
+				11 using
+				WSL 2 in October 2023 outside VSC. The string "oed" reflects that it is in a directory with that
+				name and one's output would change accordingly.</li>
+			<li>The lines starting with "oed-database |" would be elsewhere when using the VSC OED container. One
+				can see the output from the database install by right clicking on the database Docker container in
+				the VSC
+				Docker extension and choosing "Show Logs".</li>
+			<li>The output and information in <a href="noNPMInstallOutput.html">install output without redoing
+					database or
+					npm install</a> is similar to what will happen here.</li>
+			<li>For unknown reasons, the OED install fails to run at times in VSC. See the <a
+					href="noNPMInstallOutput.html">no npm install output</a> to see the known solution.</li>
+		</ul>
+
+		<h3>nohup.out output</h3>
+		<pre>
 [+] Building 3.2s (14/14) FINISHED                                                                                                                                                              docker:default
 => [database internal] load .dockerignore                                                                                                                                                                0.0s
 => => transferring context: 2B                                                                                                                                                                           0.0s
@@ -474,4 +490,5 @@ oed-web       |   data:image/svg+xml,%3csvg xmlns=%27.. 165 bytes [built] [code 
 oed-web       |   + 10 modules
 oed-web       | webpack 5.76.3 compiled successfully in 29752 ms
 </pre>
+	</div>
 </div>
