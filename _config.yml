@@ -52,6 +52,7 @@ logoDeveloper: "logoDeveloper.png"
 helpCurrent: "helpV1.0.0"
 
 # Collection of help pages so can get links easily.
+# TODO The sort_by does not seem to work. It seems to sort by file name.
 collections:
   helpV1.1.0:
     output: true # to make jekyll generate html pages
@@ -67,7 +68,7 @@ collections:
     order:
       - index.html
       - gettingStarted.html
-
+      - wslSteps.html
 
 # Plugins
 plugins:
