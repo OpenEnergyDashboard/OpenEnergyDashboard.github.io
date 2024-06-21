@@ -11,8 +11,13 @@
 
 {% capture widget_image %}{% if include.widget.image contains 'http' %}{{ include.widget.image }}{% else %}{{ site.urlimg }}{{ include.widget.image }}{% endif %}{% endcapture %}
 
-
-<div class="medium-4 columns frontpage-widget">
+<!-- TODO Try to adjust boxes so looks better. Unsure where medium controlled. -->
+ <!-- border-box includes the padding & border so it does not go over the grid size. Adding margin: 2px; would be nice but then it takes up more
+      space than the grid.
+	  The height is a hack to force the height so the grid allows boxes across the page. The boxes must have the same height in a row. It also
+	  was made a little smaller to remove the spacing at the bottom below the button. Decided to make all the boxes the same size but could pass
+	  a value such to set the height and vary by row. -->
+<div class="medium-4 columns frontpage-widget" style="box-sizing: border-box; height: 375px; padding: 15px; border: 10px ridge black; background-color: rgb(150, 210, 245)">
 	{% if include.widget.video %}
 		{{ include.widget.video }}
 	{% elsif widget_url == empty %}
@@ -25,5 +30,6 @@
 	<h2 class="font-size-h3 t10">{{ include.widget.title }}</h2>
 
 	{% if include.widget.text != empty %}<p>{{ include.widget.text }}</p>{% endif %}
-	{% if widget_url != empty %}<p><a class="button tiny radius" href="{{ widget_url }}">{{ site.data.language.more }}</a></p>{% endif %}
+	<!-- TODO Want less space at bottom of box. margin:0 helps a little but not much. See above for temporary hack. -->
+	{% if widget_url != empty %}<p style="margin: 0;"><a class="button tiny radius" href="{{ widget_url }}">{{ site.data.language.more }}</a></p>{% endif %}
 </div>

@@ -12,37 +12,26 @@ format: frontpage
 
 {% comment %}
 *
-* First check, if widget is empty or not by checking if there is a title
+* First, if there is content, spit it out.
+*
+{% endcomment %}
+
+<div class="row">
+    {{ content }}
+</div><!-- /.row -->
+
+
+{% comment %}
+*
+* First check, if widget is empty or not by checking if there is any elements
 *
 {% endcomment %}
 <div class="row t60">
-	{% if page.widget1.image or page.widget1.video or page.widget1.title %}
-		{% include _frontpage-widget.html widget=page.widget1 %}
-	{% endif %}
-
-	{% if page.widget2.image or page.widget2.video or page.widget2.title %}
-		{% include _frontpage-widget.html widget=page.widget2 %}
-	{% endif %}
-
-	{% if page.widget3.image or page.widget3.video or page.widget3.title %}
-		{% include _frontpage-widget.html widget=page.widget3 %}
-	{% endif %}
-
-	{% if page.widget4.image or page.widget4.video or page.widget4.title %}
-		{% include _frontpage-widget.html widget=page.widget4 %}
-	{% endif %}
-
-	{% if page.widget5.image or page.widget5.video or page.widget5.title %}
-		{% include _frontpage-widget.html widget=page.widget5 %}
-	{% endif %}
-
-	{% if page.widget6.image or page.widget6.video or page.widget6.title %}
-		{% include _frontpage-widget.html widget=page.widget6 %}
-	{% endif %}
-
-	{% if page.widget7.image or page.widget7.video or page.widget7.title %}
-		{% include _frontpage-widget.html widget=page.widget7 %}
-	{% endif %}
+    {% for widget in page.widgets %}
+        {% if widget.image or widget.video or widget.title %}
+            {% include _frontpage-widget.html widget=widget %}
+        {% endif %}
+    {% endfor %}
 </div><!-- /.row -->
 
 
@@ -114,14 +103,3 @@ format: frontpage
         </div><!-- /.medium-7.columns -->
     </div><!-- /.row -->
 {% endunless %}
-
-
-{% comment %}
-*
-* Finally, if there is content, spit it out.
-*
-{% endcomment %}
-
-<div class="row">
-    {{ content }}
-</div><!-- /.row -->

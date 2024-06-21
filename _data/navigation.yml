@@ -21,20 +21,32 @@
   - title: "oed version 0.8.0"
     url: "/helpV0.8.0/index/"
 
-- title: "Live Demo"
-  url: "/demo/"
+# - title: "Live Demo"
+#   url: "/demo/"
+#   side: left
+
+- title: "Adopting"
+  url: "/use/"
   side: left
 
 - title: "info"
   url: "/news/"
   side: left
   dropdown:
-  - title: "using oed"
-    url: "/use/"
   - title: "news"
     url: "/news/"
+  - title: "project principles"
+    url: "/principles/"
+  - title: "free & maintained"
+    url: "/free/"
+  - title: "mission"
+    url: "/mission/"
+  - title: "why exists"
+    url: "/why/"
   - title: "project information pages & license"
     url: "/projectInfo/"
+  - title: "why OED name, logo & some history"
+    url: "/name/"
 
 - title: "Search"
   url: "/search/"
@@ -51,3 +63,8 @@
 - title: "get involved"
   url: "/involved/"
   side: right
+  dropdown:
+  - title: "becoming a developer"
+    url: "/internship/"
+  - title: "student experience"
+    url: "/studentExperience/"
