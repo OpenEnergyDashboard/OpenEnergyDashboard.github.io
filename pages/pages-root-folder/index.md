@@ -15,7 +15,9 @@ widgets:
     url: '/features/'
     text: 'OED is a feature rich, easy to use dashboard with many graphics for site visitors.'
     # TODO plays after leave window.
-    video: '<a href="#" data-reveal-id="videoModal"><img src="/images/siteFeatures.png" alt=""/></a>'
+    # This is not the normal pattern for an image but cannot put in Liquid variables.
+    # Actual video defined below.
+    video: '<a href="#" data-reveal-id="videoModal"><img src="images/siteFeatures.png" alt=""/></a>'
 # TODO add when demo site available
 # - widget:
   #   title: "OED Demo site"
@@ -87,17 +89,17 @@ homepage: true
       <td colspan="2" style="text-align: center;"><h2>About OED</h2></td>
     </tr>
     <tr>
-      <td><img alt="OED logo" src="{{site.urlimg}}/OEDUprightClear.png"></td>
+      <td><img alt="OED logo" src="{{site.urlimg}}OEDUprightClear.png"></td>
       <td><p>The Open Energy Dashboard (OED) is a free, open source project that provides a web-based application to display energy information in a web browser. It was designed from the ground up to be portable so that is can be used at many organizations. The links at the top of this page will take you to other pages that describe specific aspects of this project including its features.</p></td>
     </tr>
   </tbody>
 </table>
 
-<!-- TODO Here for rreference. Remove when video done. -->
-<!-- <div id="videoModal" class="reveal-modal large" data-reveal="">
+<!-- This defines the actaul video to show. -->
+<div id="videoModal" class="reveal-modal large" data-reveal="">
   <video width="900" height="600" controls preload="none">
     <source src="{{ site.urlimg }}siteFeatures.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   <a class="close-reveal-modal">&#215;</a>
-</div> -->
+</div>

@@ -5,6 +5,7 @@
 #
 # Start development with › $ jekyll serve --config _config.yml,_config_dev.yml
 
+# Jekyll does this now when serve but leave.
 url: 		'http://localhost:4000'
 baseurl: 	''
 urlimg: 	'http://localhost:4000/images/'
