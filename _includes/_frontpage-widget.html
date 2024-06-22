@@ -9,7 +9,8 @@
 
 {% capture widget_url %}{% if include.widget.url == NULL %}{% elsif include.widget.url contains 'http' %}{{ include.widget.url }}{% else %}{{ site.url }}{{ site.baseurl }}{{ include.widget.url }}{% endif %}{% endcapture %}
 
-{% capture widget_image %}{% if include.widget.image contains 'http' %}{{ include.widget.image }}{% else %}{{ site.urlimg }}{{ include.widget.image }}{% endif %}{% endcapture %}
+<!-- Changed so does not use default URL if image empty. -->
+{% capture widget_image %}{% if include.widget.image contains 'http' %}{{ include.widget.image }}{% elsif include.widget.image %}{{ site.urlimg }}{{ include.widget.image }}{% endif %}{% endcapture %}
 
 <!-- border-box includes the padding & border so it does not go over the grid size. Adding margin: 2px; would be nice but then it takes up more
       space than the grid.
@@ -21,7 +22,9 @@
 		{{ include.widget.video }}
 	{% elsif widget_url == empty %}
 		{% if widget_image != empty %}<img src="{{ widget_image }}" alt="" />{% endif %}
-	{% else %}
+	<!-- Don't require any in OED so changed else to elsif -->
+	{% elsif widget_image != empty %}
+	<p>100: {{widget_image}}</p>
 		<a href="{{ widget_url }}">
 			{% if widget_image != empty %}<img src="{{ widget_image }}" alt="" />{% endif %}
 		</a>

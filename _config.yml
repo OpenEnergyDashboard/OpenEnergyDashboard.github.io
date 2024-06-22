@@ -18,7 +18,7 @@ description: 'The OED dashboard allows organization to acquire, archive, analyze
 
 # The credits show up in the includes/_footer.html – It would be nice of you to leave a link to Phlow or Feeling Responsive as a thank you :)
 credits: '<p>Created by the OED team using <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> based on 
-<a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a>. This page is part of the Open Energy Dashboard 
+<a href="https://phlow.github.io/feeling-responsive/">Feeling Responsive</a>. This page is part of the Open Energy Dashboard 
 and is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, 
 you can obtain one at <a href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.</p>'
 

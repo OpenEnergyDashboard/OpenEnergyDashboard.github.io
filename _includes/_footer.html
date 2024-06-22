@@ -13,7 +13,7 @@
 
             <p class="shadow-black">
               {{ site.description }}
-              <a href="{{ site.url }}{{ site.baseurl }}/info/">{{ site.data.language.more }}</a>
+              <a href="{{ site.url }}{{ site.baseurl }}/features/">{{ site.data.language.more }}</a>
             </p>
           </div><!-- /.large-6.columns -->
 
@@ -27,7 +27,9 @@
 
               <ul class="no-bullet shadow-black">
               {% for service_item in site.data.services %}
-                {% if service_item.url contains 'http' %}{% assign domain = '' %}{% else %}{% capture domain %}{{ site.url }}{{ site.baseurl }}{% endcapture %}{% endif %}
+              <p>service_item: {{service_item}}</p>
+              <!-- Add / at end of capture string to avoid redirect issue. -->
+                {% if service_item.url contains 'http' %}{% assign domain = '' %}{% else %}{% capture domain %}{{ site.url }}{{ site.baseurl }}/{% endcapture %}{% endif %}
                   <li {% if service_item.class %}class="{{ service_item.class }}" {% endif %}>
                     <a href="{{ domain }}{{ service_item.url }}" {% if service_item.url contains 'http' %}target="_blank" {% endif %} title="{{ service_item.title }}">{{ service_item.name }}</a>
                   </li>

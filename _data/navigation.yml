@@ -18,8 +18,8 @@
   dropdown:
   - title: "oed version 1.0.0"
     url: "/helpV1.0.0/index/"
-  - title: "oed version 0.8.0"
-    url: "/helpV0.8.0/index/"
+  # - title: "oed version 0.8.0"
+  #   url: "/helpV0.8.0/index/"
 
 # - title: "Live Demo"
 #   url: "/demo/"
