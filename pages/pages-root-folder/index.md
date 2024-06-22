@@ -89,7 +89,7 @@ homepage: true
       <td colspan="2" style="text-align: center;"><h2>About OED</h2></td>
     </tr>
     <tr>
-      <td><img alt="OED logo" src="{{site.urlimg}}OEDUprightClear.png"></td>
+      <td><img alt="OED logo" src="{{ site.urlimg }}OEDUprightClear.png"></td>
       <td><p>The Open Energy Dashboard (OED) is a free, open source project that provides a web-based application to display energy information in a web browser. It was designed from the ground up to be portable so that is can be used at many organizations. The links at the top of this page will take you to other pages that describe specific aspects of this project including its features.</p></td>
     </tr>
   </tbody>

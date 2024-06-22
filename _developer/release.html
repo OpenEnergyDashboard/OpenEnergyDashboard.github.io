@@ -67,17 +67,17 @@ helpDescription: "Discusses how to create an OED release."
 						other
 						references to the version.</li>
 					<li>edit _layouts/admin.html to add a line above<br>
-						&lt;a href="../v0.6.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.6.0
+						&lt;a href="../v0.6.0/{% raw %}{{ page.name }}{% endraw %}"&gt;OED version 0.6.0
 						Help&lt;/a&gt;<br>
 						so it now has the line<br>
-						&lt;a href="../v0.7.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.7.0
+						&lt;a href="../v0.7.0/{% raw %}{{ page.name }}{% endraw %}"&gt;OED version 0.7.0
 						Help&lt;/a&gt;<br>
 					</li>
 					<li>Similarly, edit _layouts/help.html, to add a line above<br>
-						&lt;a href="../v0.6.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.6.0
+						&lt;a href="../v0.6.0/{% raw %}{{ page.name }}{% endraw %}"&gt;OED version 0.6.0
 						Help&lt;/a&gt;<br>
 						so it now has the line<br>
-						&lt;a href="../v0.7.0/{% raw %}{{page.name}}{% endraw %}"&gt;OED version 0.7.0
+						&lt;a href="../v0.7.0/{% raw %}{{ page.name }}{% endraw %}"&gt;OED version 0.7.0
 						Help&lt;/a&gt;<br>
 					</li>
 					<li>Edit help/v0.7.0/_version.html to update the version shown, e.g., 0.6.0 to 0.7.0.</li>
@@ -140,11 +140,11 @@ helpDescription: "Discusses how to create an OED release."
 				browsers.
 			</li>
 			<li>Verify the upgrade from a previous version works using the directions on the latest version of the
-				<a href="{{site.url}}/{{site.helpCurrent}}/adminUpgrading/">Admin
+				<a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/adminUpgrading/">Admin
 					Upgrading</a> help page. This normally means starting from the previous version on a server. If
 				not
 				already
-				there see the <a href="{{site.url}}/{{site.helpCurrent}}/adminInstallation/">Admin Installation</a>
+				there see the <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/adminInstallation/">Admin Installation</a>
 				help page on
 				doing this
 				where you will need to load in test data, add

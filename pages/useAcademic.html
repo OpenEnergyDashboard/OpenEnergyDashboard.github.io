@@ -3,16 +3,18 @@ title: "Features"
 layout: page
 subheadline: "Features by Academic Use"
 teaser: "This lists the main OED features by sample usage at an academic institution"
+header:
+  image_fullwidth: headerFrontpage.png
 permalink: "/useAcademic/"
 ---
 <div>
 	<p>
 		The OED system has a number of features. This page describes many of them in the context of how they might be
-		used at an academic institution along with links to further documentation. The <a href="../features/">features by type
+		used at an academic institution along with links to further documentation. The <a href="{{ site.url }}{{ site.baseurl }}/features/">features by type
 			page</a> overviews OED's capabilities in terms of each feature rather than uses and shows a number of
 		features not touched on this page. Some people may wish to see
 		a number of these features by using
-		our <a href="{{site.url}}/{{ site.helpCurrent }}/demo/">live demo site</a>. Also note that there are many options for graphics and this page
+		our <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/demo/">live demo site</a>. Also note that there are many options for graphics and this page
 		often gives one example. The "Further information" links to the OED documentation web pages provide all the options.</p>
 	<p>The uses and primary features they demonstrate that will be discussed are:</p>
 	<ul>
@@ -37,10 +39,10 @@ permalink: "/useAcademic/"
 		<li>Dining Hall Gas: The gas usage for the Dining Hall.</li>
 		<li>Dining Hall Water: The water usage for the Dining Hall.</li>
 	</ul>
-	<p>These are a subset of the <a href="{{site.url}}/{{ site.helpCurrent }}/exampleDescription/">example data</a> used throughout the OED
+	<p>These are a subset of the <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/exampleDescription/">example data</a> used throughout the OED
 		help pages.</p>
 
-	<h2 id="varietyAudiences">Displaying data for a variety of audiences</h2>
+	<h3 id="varietyAudiences">Displaying data for a variety of audiences</h3>
 	<p>Different people want to see energy usage in different ways. A classic use of an energy dashboard is to show
 		graphics of usage such as</p>
 	<ul>
@@ -73,13 +75,13 @@ permalink: "/useAcademic/"
 		of CO<sub>2</sub>. per day. The Great Dorm has zero for its value because it uses solar electricity which is
 		assigned to have no carbon footprint (site chosen value).</p>
 	<p><img alt="line graphic with three meters in CO2 units" src="{{ site.urlimg }}academicMapCO2.png"></p>
-	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/graphType/">Graphical display of data</a>, <a
-			href="{{site.url}}/{{ site.helpCurrent }}/lineGraphic/">Line Graphic</a>, <a href="{{site.url}}/{{ site.helpCurrent }}/barGraphic/">Bar
-			Graphic</a>, <a href="{{site.url}}/{{ site.helpCurrent }}/mapGraphic/">Map Graphic</a>, <a
-			href="{{site.url}}/{{ site.helpCurrent }}/areaNormalization/">Area normalization</a> and <a
-			href="{{site.url}}/{{ site.helpCurrent }}/graphingUnits/">Graphing units</a>.</p>
+	<p>Further information: <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphType/">Graphical display of data</a>, <a
+			href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/lineGraphic/">Line Graphic</a>, <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/barGraphic/">Bar
+			Graphic</a>, <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/mapGraphic/">Map Graphic</a>, <a
+			href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/areaNormalization/">Area normalization</a> and <a
+			href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphingUnits/">Graphing units</a>.</p>
 
-	<h2 id="buildings">Buildings and campus level data display</h2>
+	<h3 id="buildings">Buildings and campus level data display</h3>
 	<p>An academic institution often wants to show usage for different areas on campus. For example, you might want to
 		show the
 		total usage for all residential buildings. OED can aggregate (sum) any combination of meters via its group
@@ -104,9 +106,9 @@ permalink: "/useAcademic/"
 		of CO<sub>2</sub>. per hour. The graphic clearly shows that the Great Dorm is generating a lot less
 		CO<sub>2</sub> than the Dining Room.</p>
 	<p><img alt="line graphic with two groups" src="{{ site.urlimg }}academicLineGroup.png"></p>
-	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/graphingGroups/">Groups</a>.</p>
+	<p>Further information: <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphingGroups/">Groups</a>.</p>
 
-	<h2 id="competition">Energy Competitions</h2>
+	<h3 id="competition">Energy Competitions</h3>
 	<p>To engage students, some academic institutions use energy competitions. In a common usage, different buildings
 		complete to
 		see which ones can reduce its usage the most. The comparison graphic in OED supports this type of competition.
@@ -117,9 +119,9 @@ permalink: "/useAcademic/"
 		greatest decrease is first but one can choose to do the least first or alphabetically. One can include as many
 		items desired on one comparison page (only two shown here).</p>
 	<p><img alt="compare graphic with two buildings" src="{{ site.urlimg }}academicCompare.png"></p>
-	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/compareGraphic/">Compare Graphic</a>.</p>
+	<p>Further information: <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/compareGraphic/">Compare Graphic</a>.</p>
 
-	<h2 id="webpages">Including OED in webpages for campus</h2>
+	<h3 id="webpages">Including OED in webpages for campus</h3>
 	<p>It is common for an academic institution to want to graphically show energy usage on a website. Someone can
 		create any graphic view they wish and then click the "Toggle chart link" button to reveal a web address (URL).
 		That web address can be reused anywhere (web page, email link, etc.) and it will recreate the OED graphic
@@ -127,9 +129,9 @@ permalink: "/useAcademic/"
 		What this means is that if you had a link to a compare graphic to show usage for the last week that was created
 		at the start of January, if some used it in the middle of February they would see the same comparisons (such as
 		the two buildings in the example above) but for the current week in February.</p>
-	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/chartLink/">Chart Links</a>.</p>
+	<p>Further information: <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/chartLink/">Chart Links</a>.</p>
 
-	<h2 id="internal">Internal usage by facilities, sustainability coordinator</h2>
+	<h3 id="internal">Internal usage by facilities, sustainability coordinator</h3>
 	<p>For many reasons, OED normally shows daily points when a line graph is first shown. Seeing this level of detail
 		on energy usage is often sufficient for most users. Some users, such as energy managers and sustainability
 		coordinators, may wish to see usage on shorter time scales to investigate interesting usage patterns. OED allows
@@ -142,9 +144,9 @@ permalink: "/useAcademic/"
 		electrical usage for the two
 		buildings is shown on a bar graphic. The fluctuation in cost and the relative cost is easy to see.</p>
 	<p><img alt="cost bar graphic with two buildings" src="{{ site.urlimg }}academicCost.png"></p>
-	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/lineGraphic/#scrollZoom">Zooming & Scrolling</a>.</p>
+	<p>Further information: <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/lineGraphic/#scrollZoom">Zooming & Scrolling</a>.</p>
 
-	<h2 id="courses">Usage for research/courses</h2>
+	<h3 id="courses">Usage for research/courses</h3>
 	<p>When students are investigating energy usage, they often need to work interactively with the data. OED is
 		somewhat unique in that it allows users to interactively choose what information to display including the
 		meters, groups, time frame, units and frequency of points. OED uses a sophisticated program so that any user choice is
@@ -168,6 +170,6 @@ permalink: "/useAcademic/"
 		size, then only users logged in with export privileges can download that data. OED allows sites to create as many users of this type as
 		they want so a site can create a unique one for each person, class or other group. They can also be removed so
 		access times can be limited.</p>
-	<p>Further information: <a href="{{site.url}}/{{ site.helpCurrent }}/export/">Data Export</a> and <a
-			href="{{site.url}}/{{ site.helpCurrent }}/adminUser.html">User roles</a>.</p>
+	<p>Further information: <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/export/">Data Export</a> and <a
+			href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/adminUser.html">User roles</a>.</p>
 </div>

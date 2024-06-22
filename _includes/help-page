@@ -15,7 +15,7 @@ Assign local variables from parameters. It is assumed the directory/help collect
 is helpV1.0.0 (for example).
 {% endcomment%}
 {% assign OEDVersion = include.OEDVersion %}
-{% assign helpCollection = "help" | append: {{OEDVersion}} %}
+{% assign helpCollection = "help" | append: {{ OEDVersion }} %}
 {% assign helpPage = include.helpPage %}
 
 {% assign developerCollection = "developer" %}
@@ -23,7 +23,7 @@ is helpV1.0.0 (for example).
 <div>
     {% if page.helpType == "User" %}
         {% assign helpType = "User" %}
-        <h5>{{helpType}} documentation</h5>
+        <h5>{{ helpType }} documentation</h5>
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
@@ -33,7 +33,7 @@ is helpV1.0.0 (for example).
 
     {% if page.helpType == "User" or page.helpType == "Admin" %}
         {% assign helpType = "Admin" %}
-        <h5>{{helpType}} documentation</h5>
+        <h5>{{ helpType }} documentation</h5>
         {% if page.helpType == "Admin" %}
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Management" helpPage=helpPage %}
@@ -48,7 +48,7 @@ is helpV1.0.0 (for example).
 
     {% if page.helpType == "Developer" %}
         {% assign helpType = "Developer" %}
-        <h5>{{helpType}} documentation</h5>
+        <h5>{{ helpType }} documentation</h5>
         {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
         {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Starting" helpPage=helpPage %}
         {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Codebase Info" helpPage=helpPage %}
@@ -69,15 +69,15 @@ is helpV1.0.0 (for example).
             {% for item in site.data.helpVersions %}
             {% assign version = item.version %}
             <!-- TODO see if can add check if the file exists in other version and skip if not.  -->
-            <a href='../../help{{ version }}/{{page.name | remove: ".html"}}'>{{ version }}</a></br>
+            <a href='../../help{{ version }}/{{ page.name | remove: ".html"}}'>{{ version }}</a></br>
             {% endfor %}
         </div>
-        Current page is {{OEDVersion}}.
+        Current page is {{ OEDVersion }}.
 
         {% if helpPage == true %}
             {% if page.helpType == "Admin" %}
                 <h5 id="usage">Usage</h5>
-                <p>In order to access any admin features, you must be <a href="optionsMenu.html">logged in</a> as an admin.
+                <p>In order to access any admin features, you must be <a href="./optionsMenu/">logged in</a> as an admin.
                 <p>Once the "Log in" button is clicked, you will be taken to the login page shown in the next figure. Enter your
                     "Email" and "Password" and then click "Submit". If the credentials are correct then the web browser window will
                     take you back to the main OED screen. If there was an issue then a

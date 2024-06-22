@@ -3,15 +3,17 @@ layout: page
 title: "Features"
 subheadline: "Features by Type"
 teaser: "This lists the main OED features by their type"
+header:
+  image_fullwidth: headerFrontpage.png
 permalink: "/features/"
 ---
 <div>
 	<p>
 		The OED system has a number of features. This page gives a brief description of the feature along with a link to
-		the documentation pages with more information and pictures. The <a href="/useAcademic/">academic uses example page</a>
+		the documentation pages with more information and pictures. The <a href="{{ site.url }}{{ site.baseurl }}//useAcademic/">academic uses example page</a>
 		shows many of these features but focusing on how they might be used. Some people may wish to see a number of
 		these features by using
-		our <a href="/demo/">live demo site</a>.</p>
+		our <a href="{{ site.url }}{{ site.baseurl }}//demo/">live demo site</a>.</p>
 	<p>OED acquires, permanently stores and analyzes data it receives. While this is important in allowing OED to have
 		the features on this page, it is not normally visible to the user and is not discussed here. If you are
 		interested in how OED
@@ -19,12 +21,12 @@ permalink: "/features/"
 	<ul>
 		<li>OED has two types of items it displays in graphical representations of the data:
 			<ul>
-				<li><a href="{{site.url}}/{{ site.helpCurrent }}/graphingMeters/">Meters</a>. A meter is generally a hardware device that
+				<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphingMeters/">Meters</a>. A meter is generally a hardware device that
 					provides
 					information on usage. For example, it might measure electrical usage or water consumption in a
 					building. OED aids the OED administrator in adding new meters and lets you control them via web
 					interfaces.</li>
-				<li><a href="{{site.url}}/{{ site.helpCurrent }}/graphingGroups/">Groups</a>. A group represents the sum of data from other
+				<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphingGroups/">Groups</a>. A group represents the sum of data from other
 					meters
 					or groups. For example, you could have a group with all the electrical meters for your organization
 					to get total electrical usage. This allows sites to combine data however they want. For example, a
@@ -37,11 +39,11 @@ permalink: "/features/"
 					help (or paying someone to do it). This is a unique and powerful feature of OED.</li>
 			</ul>
 		</li>
-		<li><a href="{{site.url}}/{{ site.helpCurrent }}/graphType/">Graphical display of data</a>. OED currently provides four unique views
+		<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphType/">Graphical display of data</a>. OED currently provides four unique views
 			of the
 			data. In each view you can pick any meters or groups you want to include.
 			<ul>
-				<li><a href="{{site.url}}/{{ site.helpCurrent }}/lineGraphic/">Line Graphic</a>. Each meter/group is represented by a
+				<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/lineGraphic/">Line Graphic</a>. Each meter/group is represented by a
 					line graph of usage versus time where you can control the time frame shown. An example is shown in
 					the
 					next figure where "Great Dorm 1st Floor Electric" and "Great Dorm 2nd Floor Electric" meters and
@@ -53,7 +55,7 @@ permalink: "/features/"
 			</ul>
 			<p><img alt="line graphic with two meters and a group of those meters in kWh"
 					src="{{ site.urlimg }}lineGraphickWhDaily.png"></p>
-			<p>One can choose any compatible <a href="{{site.url}}/{{ site.helpCurrent }}/graphingUnits/">graphing unit</a> to display the
+			<p>One can choose any compatible <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/graphingUnits/">graphing unit</a> to display the
 				data.
 				In the following figure, the same data is displayed as cost in U.S. dollars. OED supports virtually any
 				unit including CO<sub>2</sub>, weight, volume, temperature, power (kW, etc.) where new units can be
@@ -82,7 +84,7 @@ permalink: "/features/"
 			<p>OED will give the highest quality (shortest time between points) for each meter that it can given the
 				date range of the graphic.</p>
 			<ul>
-				<li><a href="{{site.url}}/{{ site.helpCurrent }}/barGraphic/">Bar Graphic</a>. Each meter/group is represented by a
+				<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/barGraphic/">Bar Graphic</a>. Each meter/group is represented by a
 					series of bars over the total time chosen showing the total usage over the chosen number of days for
 					each
 					bar. An example of four weeks is shown in the next figure for the same meters/group for the line
@@ -97,7 +99,7 @@ permalink: "/features/"
 				between 1 to 365 days if those are not desired. You can also stack the bars rather than having them next
 				to each other for each date range shown.</p>
 			<ul>
-				<li><a href="{{site.url}}/{{ site.helpCurrent }}/compareGraphic/">Compare Graphic</a>. Each meter/group is represented by
+				<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/compareGraphic/">Compare Graphic</a>. Each meter/group is represented by
 					its own
 					bar group comparing the current usage to the previous usage over day, week or four weeks. OED
 					supports sorting the graphs alphabetically and by how much they improved between the current and
@@ -114,7 +116,7 @@ permalink: "/features/"
 			<p><img alt="compare graphic with two meters and a group of those meters for 1 week"
 					src="{{ site.urlimg }}compareGraphickWhWeek.png"></p>
 			<ul>
-				<li><a href="{{site.url}}/{{ site.helpCurrent }}/mapGraphic/">Map Graphic</a>. Each meter/group is represented by a
+				<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/mapGraphic/">Map Graphic</a>. Each meter/group is represented by a
 					circle on a map where the size of the circle represents usage per day for the range selected (day,
 					week, 4 weeks). This representation is useful in
 					getting a visual sense of how much energy different areas (often buildings) of an organization use.
@@ -130,7 +132,7 @@ permalink: "/features/"
 			</ul>
 			<p><img alt="map graphic of 4 buildings" src="{{ site.urlimg }}mapGraphickWh4Weeks.png"></p>
 		</li>
-		<li><a href=" {{site.url}}/{{ site.helpCurrent }}/areaNormalization/">Area normalization</a>. Because the area covered by a meter or
+		<li><a href=" {{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/areaNormalization/">Area normalization</a>. Because the area covered by a meter or
 			group can vary
 			greatly, the absolute usage can be misleading. To help, OED allows for normalizing the usage by the area
 			represented. The following figure shows the electrical usage in BTU (showing you can display in any
@@ -150,7 +152,7 @@ permalink: "/features/"
 	</p>
 	<p>One can normalize by either sq. meters or sq. feet independent of the area unit for a meter/group.</p>
 	<ul>
-		<li><a href=" {{site.url}}/{{ site.helpCurrent }}/export/">Data Export</a>. You can export the data of the line and bar graphics
+		<li><a href=" {{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/export/">Data Export</a>. You can export the data of the line and bar graphics
 			which
 			includes all meters and groups for the specified time frame of the graphic. This means you can use OED to
 			inspect the data, including its ability to sum data into groups, and if you decide you would like to work on
@@ -159,13 +161,13 @@ permalink: "/features/"
 			data dump. OED feels you should always have easy access to your data
 			from the web pages. After all, it is your data. OED believes in being open in many ways.
 		</li>
-		<li><a href="{{site.url}}/{{ site.helpCurrent }}/hideOptions/">Hiding Options</a>. OED is designed to work on any reasonable device
+		<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/hideOptions/">Hiding Options</a>. OED is designed to work on any reasonable device
 			from a
 			cell
 			phone to large monitor. If you are on a small screen or a monitor that is not interactive, you might want to
 			only have the graphics on the screen. You can hide the options normally shown on the page so they are docked
 			in the top, left corner where popup menu gives access to all the OED controls that were docked.</li>
-		<li><a href="{{site.url}}/{{ site.helpCurrent }}/chartLink/">Chart Links</a>. Sometimes you want to post a specific graphic from OED
+		<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/chartLink/">Chart Links</a>. Sometimes you want to post a specific graphic from OED
 			so others
 			can easily see it. For example, you might want to have a link on your website to let the public easily see
 			how you are reducing your energy usage. You also might want to easily get back a graphic that is interesting
@@ -174,15 +176,15 @@ permalink: "/features/"
 			graphic is reproduced, you are in a full featured version of OED so you can continue to interact with the
 			system as you wish. To support public monitors without interaction, the link has an option to hide the
 			menus.</li>
-		<li><a href="{{site.url}}/{{ site.helpCurrent }}/meterViewing/">Meter</a> and <a href="{{site.url}}/{{ site.helpCurrent }}/groupViewing/">Group</a>
+		<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/meterViewing/">Meter</a> and <a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/groupViewing/">Group</a>
 			Viewing. There is
 			a page to see details on meters and another for groups. This allows users to see information about the data
 			they are graphing. If you are an administrator of the site then you can use these pages to create new groups
 			and edit the
 			information for a meter or group.</li>
-		<li><a href="{{site.url}}/{{ site.helpCurrent }}/tooltip/">Tooltip help</a>. OED has help throughout the web pages to give users
+		<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/tooltip/">Tooltip help</a>. OED has help throughout the web pages to give users
 			context sensitive help that is linked to the OED documentation web pages.</li>
-		<li><a href="{{site.url}}/{{ site.helpCurrent }}/admin/">Admin pages</a>. OED believes that a non-IT person should be able to set up
+		<li><a href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/admin/">Admin pages</a>. OED believes that a non-IT person should be able to set up
 			a site
 			and control the site with just a web browser. OED provides web pages to control many aspects including
 			meter, group, unit, conversion and map creation and editings, site language, default graphic shown and the

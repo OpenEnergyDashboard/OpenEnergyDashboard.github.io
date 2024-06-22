@@ -57,7 +57,7 @@ logo: "logo.png"
 logoHelp: "logoHelp.png"
 logoDeveloper: "logoDeveloper.png"
 
-# Latest/current help version
+# Latest/current help version. Must update for each new version.
 helpCurrent: "helpV1.0.0"
 
 # Collection of help pages so can get links easily.

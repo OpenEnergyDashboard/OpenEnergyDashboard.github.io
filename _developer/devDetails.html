@@ -119,7 +119,7 @@ helpDescription: "More detailed information that developers may find useful."
 			webpack to start the rebuild.</p>
 		<p>In several cases, developers on Windows have reported not having the code rebuild on save. It turned out
 			that the
-			code was not on the WSL/Linux partition (generally under /home). As described in <a href="wslSteps.html">WSL
+			code was not on the WSL/Linux partition (generally under /home). As described in <a href="../wslSteps/">WSL
 				on
 				Windows</a>, it is important to do this properly.</p>
 
@@ -130,7 +130,7 @@ helpDescription: "More detailed information that developers may find useful."
 		<ul>
 			<li>
 				To access the database from the docker database container (see <a
-					href="gettingStarted.html#VSCInfo">info on
+					href="../gettingStarted/#VSCInfo">info on
 					accessing containers)</a>, execute the following command: <code>psql -U oed</code>. You will now
 				be in
 				the Postgres command line for the OED database. It is assumed that you know some SQL and Postgres
@@ -196,7 +196,7 @@ helpDescription: "More detailed information that developers may find useful."
 			run testing (or you want to focus on one test at a time that fails). Running all the tests is much
 			slower than
 			running a single test file. Thus, to run a single test, in the web/vsc docker container (see <a
-				href="gettingStarted.html#VSCInfo">info on accessing container</a>) do:<br>
+				href="../gettingStarted/#VSCInfo">info on accessing container</a>) do:<br>
 			<code>npm run testsome &lt;first test&gt; [&lt;second test&gt;] </code><br> where you replace &lt; xxxx
 			test&gt;
 			with the path to the test file you want to run and [ ] indicates this is optional and you can repeat as
@@ -293,11 +293,11 @@ helpDescription: "More detailed information that developers may find useful."
 
 		<h2 id="environment">OED environment variables</h2>
 		<p>If you want to know about the environment variables that control OED then see the <a
-				href="./environment.html">environment page</a>.</p>
+				href="../environment/">environment page</a>.</p>
 
 		<h2 id="scripts">OED Scripts</h2>
 		<p>OED has a number of scripts that are run via commands in the package.json file. A complete listing with
-			descriptions is on the <a href="npm.html">NPM script</a> page.</p>
+			descriptions is on the <a href="../npm/">NPM script</a> page.</p>
 
 		<h2 id="migrate">Migrating OED</h2>
 		<p>The script <code>src/scripts/updateOED.sh</code> should update all dependencies and migrate the OED
@@ -453,7 +453,7 @@ type SomePropsWithIntl = SomeProps &amp; InjectedIntlProps;
 			current versions of OED software. The <code>keep_node_modules</code> parameter was left for backward
 			compatibility and in the unlikely case where a developer wishes to use it. As expected, the steps and
 			output is
-			different when there is no node module installation as seen in <a href="noNPMInstallOutput.html">skipping
+			different when there is no node module installation as seen in <a href="../noNPMInstallOutput/">skipping
 				NPM
 				install output</a>.
 		</p>
