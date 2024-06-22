@@ -41,7 +41,7 @@ is helpV1.0.0 (for example).
             {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Installation" helpPage=helpPage %}
         {% elsif page.helpType == "User" %}
             <div style="padding-left: 1em;">
-                <a href="{{ site.url }}{{ page.url }}../admin/">Admin help</a></br>
+                <a href="{{ site.url }}{{ site.baseurl }}/{{ page.url }}../admin/">Admin help</a></br>
             </div>
         {% endif %}
     {% endif %}
@@ -59,7 +59,7 @@ is helpV1.0.0 (for example).
     {% if page.helpType == "Admin" %}
         <h5>User documentation</h5>
         <div style="padding-left: 1em;">
-            <a href="{{ site.url }}{{ page.url }}../index/">User help</a></br>
+            <a href="{{ site.url }}{{ site.baseurl }}/{{ page.url }}../index/">User help</a></br>
         </div>
     {% endif %}
 

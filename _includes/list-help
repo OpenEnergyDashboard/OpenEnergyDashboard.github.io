@@ -31,7 +31,7 @@ Assign local variables from parameters and sort pages by title.
         {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
       {% endif %}
       {% if pageInCollection.published != false and pageInCollection.helpType == helpType and pageInCollection.helpCategory == helpCategory %}
-        <a href="{{ site.url }}{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
+        <a href="{{ site.url }}{{ site.baseurl }}/{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
       {% endif %}
     {% endfor %}
   </div>
