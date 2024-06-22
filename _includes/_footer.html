@@ -27,7 +27,6 @@
 
               <ul class="no-bullet shadow-black">
               {% for service_item in site.data.services %}
-              <p>service_item: {{service_item}}</p>
               <!-- Add / at end of capture string to avoid redirect issue. -->
                 {% if service_item.url contains 'http' %}{% assign domain = '' %}{% else %}{% capture domain %}{{ site.url }}{{ site.baseurl }}/{% endcapture %}{% endif %}
                   <li {% if service_item.class %}class="{{ service_item.class }}" {% endif %}>
