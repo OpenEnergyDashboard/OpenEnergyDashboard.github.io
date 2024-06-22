@@ -15,7 +15,7 @@ Assign local variables from parameters. It is assumed the directory/help collect
 is helpV1.0.0 (for example).
 {% endcomment%}
 {% assign OEDVersion = include.OEDVersion %}
-{% assign helpCollection = "help" | append: {{ OEDVersion }} %}
+{% assign helpCollection = "help" | append: OEDVersion %}
 {% assign helpPage = include.helpPage %}
 
 {% assign developerCollection = "developer" %}
