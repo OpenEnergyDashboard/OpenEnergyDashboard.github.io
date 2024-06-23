@@ -59,7 +59,7 @@ is helpV1.0.0 (for example).
     {% if page.helpType == "Admin" %}
         <h5>User documentation</h5>
         <div style="padding-left: 1em;">
-            <a href="{{ site.url }}{{ site.baseurl }}/{{ page.url }}../index/">User help</a></br>
+            <a href="{{ site.url }}{{ site.baseurl }}/{{ page.url }}../user/">User help</a></br>
         </div>
     {% endif %}
 
@@ -69,7 +69,7 @@ is helpV1.0.0 (for example).
             {% for item in site.data.helpVersions %}
             {% assign version = item.version %}
             <!-- TODO see if can add check if the file exists in other version and skip if not.  -->
-            <a href='../../help{{ version }}/{{ page.name | remove: ".html"}}'>{{ version }}</a></br>
+            <a href='../../help{{ version }}/{{ page.name | remove: ".html"}}/'>{{ version }}</a></br>
             {% endfor %}
         </div>
         Current page is {{ OEDVersion }}.

@@ -20,7 +20,12 @@ Assign local variables from parameters.
     <div class="panel radius" markdown="1">
         <div style="list-style: none;" class="side-nav">
             <!-- Add header since not done elsewhere. -->
-            <h4><a href='../index/'>Documentation overview</a></h4>
+            {% if page.helpType == "Admin" %}
+                {% assign overviewLink = "admin" %}
+            {% else %}
+                {% assign overviewLink = "user" %}
+            {% endif %}
+            <h4><a href='../{{ overviewLink }}/'>Documentation overview</a></h4>
 
             {% include help-page OEDVersion=OEDVersion helpType=helpType helpPage=false %}
         </div>

@@ -13,11 +13,11 @@
   
 # TODO Have not found an easy way to avoid hard link that must be edited with each new version.
 - title: "Documentation"
-  url: "/helpV1.0.0/index/"
+  url: "/helpV1.0.0/user/"
   side: left
   dropdown:
   - title: "oed version 1.0.0"
-    url: "/helpV1.0.0/index/"
+    url: "/helpV1.0.0/user/"
   # - title: "oed version 0.8.0"
   #   url: "/helpV0.8.0/index/"
 
@@ -57,7 +57,7 @@
   side: right
 
 - title: "developer docs"
-  url: "/developer/index/"
+  url: "/developer/developer/"
   side: right
 
 - title: "get involved"
