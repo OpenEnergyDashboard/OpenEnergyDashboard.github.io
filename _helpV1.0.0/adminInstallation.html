@@ -17,7 +17,7 @@ details on maintaining a site."
         {% include adminInfo.html %}
 
         <p>This describes the installation of an OED site for production use. If one is a developer, you likely want to
-            follow the directions on the <a href="/developer/gettingStarted/">getting started</a> page.</p>
+            follow the directions on the <a href="{{ site.url }}{{ site.baseurl }}/developer/gettingStarted/">getting started</a> page.</p>
 
         <h2>Requirements</h2>
         <p>OED uses Unix, including Linux, features to work and run Docker. Most sites have servers running Unix/Linux
@@ -32,7 +32,7 @@ details on maintaining a site."
             one has Windows 10/11 Home then one can use WSL 2 to enable Linux and then install Docker. Once Docker is
             installed and working, one can follow the direction given here since they only depend on Docker/docker
             compose.
-            The beginning of the <a href="/developer/wslSteps/">WSL page</a> has details on WSL and Docker
+            The beginning of the <a href="{{ site.url }}{{ site.baseurl }}/developer/wslSteps/">WSL page</a> has details on WSL and Docker
             installation on Windows 10/11 Home.</p>
         <p>OED is installed using the Docker containerization tool. This allows it to be isolated from the rest of the
             system, and makes updates easier to perform, since the dependencies are all taken care of through the
@@ -425,7 +425,7 @@ Password: passwordYouChoose
                 site can display data. </li>
             <li><a href="../adminOedUnits/">Standard units and conversions</a>. Discusses the units and conversions
                 provided by OED and making more of them visible to the user.</li>
-            <li><a href="../adminUser/">Users</a>. To create additional user logins and manage them.</li>
+            <li><a href="../adminUsers/">Users</a>. To create additional user logins and manage them.</li>
             <li><a href="../admin/">Admin features</a>. Discusses the range of actions that admins can take and the
                 related documentation pages. There are many OED features other than the ones linked directly above.</li>
         </ul>
@@ -433,10 +433,10 @@ Password: passwordYouChoose
         <h1>Other information</h1>
         <p>Though less likely, one may want to consult:</p>
         <ul>
-            <li><a href="/developer/environment/">Environment variable</a> page about all the OED
+            <li><a href="{{ site.url }}{{ site.baseurl }}/developer/environment/">Environment variable</a> page about all the OED
                 environment
                 variables.</li>
-            <li><a href="/developer/npm/">NPM script</a> page about the available scripts to support the OED
+            <li><a href="{{ site.url }}{{ site.baseurl }}/developer/npm/">NPM script</a> page about the available scripts to support the OED
                 setup.</li>
         </ul>
 
