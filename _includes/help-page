@@ -77,7 +77,7 @@ is helpV1.0.0 (for example).
         {% if helpPage == true %}
             {% if page.helpType == "Admin" %}
                 <h5 id="usage">Usage</h5>
-                <p>In order to access any admin features, you must be <a href="./optionsMenu/">logged in</a> as an admin.
+                <p>In order to access any admin features, you must be <a href="../optionsMenu/">logged in</a> as an admin.
                 <p>Once the "Log in" button is clicked, you will be taken to the login page shown in the next figure. Enter your
                     "Email" and "Password" and then click "Submit". If the credentials are correct then the web browser window will
                     take you back to the main OED screen. If there was an issue then a
