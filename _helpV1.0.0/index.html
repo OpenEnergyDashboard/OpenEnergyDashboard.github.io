@@ -1,14 +1,8 @@
 ---
-layout: page-fullwidth
-title: "Documentation Overview"
-meta_title: "Overview Doc"
-subheadline: "OED Documentation"
-breadcrumb: true
-help: true
-helpType: User
-helpCategory: "Information"
-helpDescription: "Overview of user documentation pages."
+layout: redirect
+sitemap: false
+permalink: /:collection/
+# Need to change for each version
+# TODO It would be nice if could use a variable as above for permalink or in redirect.html but could not get to work.
+redirect_to:  /helpV1.0.0/user/
 ---
-{% include_relative _version %}
-
-{% include help-page OEDVersion=OEDVersion helpPage=true %}
