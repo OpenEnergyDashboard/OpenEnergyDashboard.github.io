@@ -22,6 +22,8 @@ Assign local variables from parameters.
             <!-- Add header since not done elsewhere. -->
             {% if page.helpType == "Admin" %}
                 {% assign overviewLink = "admin" %}
+            {% elsif page.helpType == "Developer" %}
+                {% assign overviewLink = "developer" %}
             {% else %}
                 {% assign overviewLink = "user" %}
             {% endif %}
