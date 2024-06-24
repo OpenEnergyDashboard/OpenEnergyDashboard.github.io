@@ -17,7 +17,7 @@ helpDescription: "Describes adding meters via a CSV file."
 
         <h2 id="overview">Overview</h2>
         <p>This page describes the process of importing meters into OED via a CSV file. See the <a
-                href="adminCsvImport.html">general CSV import</a> page for an overview and information common to all CSV
+                href="../adminCsvImport/">general CSV import</a> page for an overview and information common to all CSV
             imports.</p>
 
         <h2 id="usage">Usage</h2>
@@ -30,7 +30,7 @@ helpDescription: "Describes adding meters via a CSV file."
         <h3>Required and optional information</h3>
         <ul>
             <li>The user name and password is required in the direct file upload as described on the <a
-                    href="adminCsvImport.html">general CSV import</a> page. It is automatically provided on the web page
+                    href="../adminCsvImport/">general CSV import</a> page. It is automatically provided on the web page
                 upload since you are logged in.</li>
             <li><i>CSV file ("Choose File" button on web page; <code>csvFile</code> parameter on direct file
                     upload)</i>:
@@ -64,10 +64,10 @@ helpDescription: "Describes adding meters via a CSV file."
             name,ipaddress,enabled,displayable,type,timezone,gps,identifier,note,area,cumulative,reset,reset start,reset
             end,gap,variation,duplicates,timesort,end only,reading,start time,end time<br>
             More information on the first set of columns/values are described on the <a
-                href="adminMeterViewing.html">admin
+                href="../adminMeterViewing/">admin
                 meter viewing</a>
             page and the later ones are the meter defaults for reading input and described on the <a
-                href="adminReadingsImport.html">admin reading import</a> page.<br>
+                href="../adminReadingsImport/">admin reading import</a> page.<br>
             Each following line should contain the values for one meter. Most values can be skipped where the default
             value
             for OED will be used. A brief description of each value is in the following table:
@@ -213,10 +213,10 @@ helpDescription: "Describes adding meters via a CSV file."
             -3.4. The quotes are added when such a CSV is saved to make it clear that the comma is not a new column.
             Most
             values that are optional and unspecified so the
-            default values are used. This <a href="files/meters.csv" download>meters.csv</a> was loaded
+            default values are used. This <a href="../files/meters.csv" download>meters.csv</a> was loaded
             using the curl command of:<br>
             <code>curl https://myoedserver.come:3000/api/csv/meters -X POST -F 'headerRow=true' -F 'gzip=false' -F 'email=csvuser@myorg.com' -F 'password=csvuserpassword' -F 'csvfile=@meters.csv'</code><br>
-            assuming the shown URL, user email and password. (See <a href="adminReadingsImport.html#sampleFiles">admin
+            assuming the shown URL, user email and password. (See <a href="../adminReadingsImport/#sampleFiles">admin
                 reading sample files</a> for more information on URL, email and password.) You need to reload the OED
             web
             page so your browser is aware of the new meters but you will get an empty graphic if used since they don't
@@ -269,7 +269,7 @@ helpDescription: "Describes adding meters via a CSV file."
             recheck for new meters when doing graphing. If you add new meters, there are two ways to get them to be
             available for graphing:</p>
         <ol>
-            <li>You can visit the <a href="./adminMeterViewing.html">Meters viewing page</a> if logged in as an admin.
+            <li>You can visit the <a href="../adminMeterViewing/">Meters viewing page</a> if logged in as an admin.
                 This
                 page works directly with meter information and
                 it does recheck for updates. Once this is done, any new meters will also be available for graphing. This

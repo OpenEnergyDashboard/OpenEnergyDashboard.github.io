@@ -17,7 +17,7 @@ details on maintaining a site."
         {% include adminInfo.html %}
 
         <p>This describes the installation of an OED site for production use. If you are a developer, you likely want to
-            follow the directions on the <a href="../../developer/gettingStarted.html">getting started</a> page.</p>
+            follow the directions on the <a href="{{ site.url }}{{ site.baseurl }}/developer/gettingStarted/">getting started</a> page.</p>
 
         <h2>Requirements</h2>
         <p>OED uses Unix, including Linux, features to work. Mac-OS X is based on Unix and Docker can be installed
@@ -34,7 +34,7 @@ details on maintaining a site."
             Linux
             and then install Docker. Once you
             have Docker installed and working, you can follow the direction given here since they only depend on
-            Docker/docker compose. The beginning of the <a href="../../developer/wslSteps.html">WSL page</a> has details
+            Docker/docker compose. The beginning of the <a href="{{ site.url }}{{ site.baseurl }}/developer/wslSteps/">WSL page</a> has details
             on
             WSL and Docker
             installation on Windows 10 Home.</p>
@@ -279,12 +279,12 @@ web_1       | [INFO@2021-09-23T20:52:14.190Z] Listening on port 3000
                 <p>If you redo the <code>docker compose up</code> then you should now get the expected output described
                     above.</p>
             </li>
-            <p>The <a href="./adminInstallOutput.html">typical output of the install</a> is available.</p>
+            <p>The <a href="../adminInstallOutput/">typical output of the install</a> is available.</p>
             <li>You can now use a web browser to check that OED is properly serving up web pages. Use the web
                 address
                 <code>oed.myinstition.org</code> where you replace oed.myinstition.org with the name of the server
                 where you installed OED. If all is working properly you will see the main OED page (see <a
-                    href="./graphType.html">Graph Type</a> help page for an image of what it will look like). You won't
+                    href="../graphType/">Graph Type</a> help page for an image of what it will look like). You won't
                 be
                 able to
                 graph any data until you have OED acquire meter data. If you did not do the mapping of 80:3000
@@ -323,7 +323,7 @@ Password: passwordYouChoose
                     this
                     terminal any more so you can close it to hide the information or usually type <code>clear</code> to
                     remove it from what is shown in the terminal.</p>
-                <p>You should now log in to make sure this account works. <a href="./admin.html">Logging in</a>
+                <p>You should now log in to make sure this account works. <a href="../admin/">Logging in</a>
                     directions
                     are available but basically you click the "Log in" button in the top, right of the OED website and
                     then
@@ -417,7 +417,7 @@ Password: passwordYouChoose
                     you want from the previous step.</li>
             </ol>
             <li>You will want to get meter data into OED so the site can display data. See the <a
-                    href="adminDataAcquisition.html">data acquisition</a> page for more information on doing this.
+                    href="../adminDataAcquisition/">data acquisition</a> page for more information on doing this.
             </li>
         </ol>
 
@@ -429,16 +429,16 @@ Password: passwordYouChoose
             on the <a href="https://github.com/OpenEnergyDashboard/OED/releases" rel="noopener noreferrer">OED GitHub
                 release page</a>. If you see a newer version that you want to upgrade to then consult the directions on
             the
-            <a href="adminUpgrading.html">OED Upgrading page</a>.
+            <a href="../adminUpgrading/">OED Upgrading page</a>.
         </p>
 
         <h1>Other information</h1>
         <p>Though less likely, you may want to consult:</p>
         <ul>
-            <li><a href="../../developer/environment.html">Environment variable</a> page about all the OED
+            <li><a href="{{ site.url }}{{ site.baseurl }}/developer/environment/">Environment variable</a> page about all the OED
                 environment
                 variables.</li>
-            <li><a href="../../developer/npm.html">NPM script</a> page about the available scripts to support the OED
+            <li><a href="{{ site.url }}{{ site.baseurl }}/developer/npm/">NPM script</a> page about the available scripts to support the OED
                 setup.</li>
         </ul>
 

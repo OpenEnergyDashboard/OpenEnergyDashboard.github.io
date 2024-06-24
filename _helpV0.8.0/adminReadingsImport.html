@@ -17,7 +17,7 @@ helpDescription: "Describes how to import readings via CSV files."
 
         <h2 id="overview">Overview</h2>
         <p>This page describes the process of importing readings into OED via a CSV file. See the <a
-                href="adminCsvImport.html">general CSV import</a> page for an overview and information common to all CSV
+                href="../adminCsvImport/">general CSV import</a> page for an overview and information common to all CSV
             imports.</p>
 
         <h2 id="usage">Usage</h2>
@@ -34,12 +34,12 @@ helpDescription: "Describes how to import readings via CSV files."
             which should be the default value if none was ever supplied. If a parameter is not supplied in a direct file
             upload then it defaults to the meter value. The check boxes at the end of the page above do not have meter
             default values and use the OED default value if not supplied. See the <a
-                href="adminMetersImport.html">meters
+                href="../adminMetersImport/">meters
                 CSV
                 import</a> page for the default values. The required and optional information is:</p>
         <ul>
             <li>The user name and password is required in the direct file upload as described on the <a
-                    href="adminCsvImport.html">general CSV import</a> page. It is automatically provided on the web page
+                    href="../adminCsvImport/">general CSV import</a> page. It is automatically provided on the web page
                 upload since you are logged in.</li>
             <li><i>Meter name ("Meter name" input box on web page; <code>meterName</code> parameter on direct file
                     upload)</i>: This specifies which meter the readings should be added to. Note this is the meter name
@@ -163,7 +163,7 @@ helpDescription: "Describes how to import readings via CSV files."
                 the
                 readings are processed so it will exist even if the readings are later reject. The default value
                 is "false". Also note that new meters are not immediately visible when graphing. This and a solution is
-                described <a href="./adminMetersImport.html#newMeter">here</a>.</li>
+                described <a href="../adminMetersImport/#newMeter">here</a>.</li>
             <li><i>Is CSV file in gzip format ("Gzip" checked if true on web page; <code>gzip</code> parameter on direct
                     file upload)</i>: Note this is the Gnu zip format and not a standard .zip file format. The default
                 value
@@ -282,7 +282,7 @@ helpDescription: "Describes how to import readings via CSV files."
         <p>Below are the lines for a CSV readings import file with a header row where end only is false and the data is
             not
             cumulative. It will import three readings with values of 24, 48 and 72 for 1-3 June 2021. Note that the end
-            date/time is at midnight of the next day. (This <a href="files/regAsc.csv" download>regAsc.csv</a> was
+            date/time is at midnight of the next day. (This <a href="../files/regAsc.csv" download>regAsc.csv</a> was
             loaded
             using the curl parameters of
             <code>-F 'headerRow=true' -F 'gzip=false'</code>.)
@@ -298,7 +298,7 @@ helpDescription: "Describes how to import readings via CSV files."
             cumulative. The readings are the same as the last one but OED will drop the first ever reading for end only
             data
             (assuming the meter does not already exist) with an appropriate error message returned by OED. (This <a
-                href="files/regAscEndonly.csv" download>regAscEndonly.csv</a> was loaded
+                href="../files/regAscEndonly.csv" download>regAscEndonly.csv</a> was loaded
             using the curl parameters of
             <code>-F 'endOnly=true' -F 'headerRow=true' -F 'gzip=false'</code>.)
         </p>
@@ -323,7 +323,7 @@ helpDescription: "Describes how to import readings via CSV files."
             Note you get a warning returned by OED since the first reading is before the last upload for this meter but
             this
             does not change the outcome.
-            (This <a href="files/regAscUpdate.csv" download>regAscUpdate.csv</a> was loaded
+            (This <a href="../files/regAscUpdate.csv" download>regAscUpdate.csv</a> was loaded
             using the curl parameters of
             <code>-F 'update=true' -F 'headerRow=true' -F 'gzip=false'</code> where you reuse the same meter name that
             was
@@ -340,7 +340,7 @@ helpDescription: "Describes how to import readings via CSV files."
             cumulative. The readings are the same as regAscEndonly since the first ever reading must be dropped and OED
             returns an error message about that.
             The second row is calculated by OED to be 72 - 24 = 48 and the third as 144 - 72 =
-            72. (This <a href="files/cumAsc.csv" download>cumAsc.csv</a> was loaded
+            72. (This <a href="../files/cumAsc.csv" download>cumAsc.csv</a> was loaded
             using the curl parameters of
             <code>-F 'cumulative=true' -F 'gzip=false'</code>.)
         </p>
@@ -358,7 +358,7 @@ helpDescription: "Describes how to import readings via CSV files."
             Note the request could set the reset time start and end to be
             close to midnight (23:55 & 00:05 if must be within 5 minutes of midnight) if you want to avoid OED assuming
             a
-            reset at another time is okay. (This <a href="files/cumAscReset.csv" download>cumAscReset.csv</a> was loaded
+            reset at another time is okay. (This <a href="../files/cumAscReset.csv" download>cumAscReset.csv</a> was loaded
             using the curl parameters of
             <code>-F 'cumulative=true' -F 'cumulativeReset=true' -F 'headerRow=true' -F 'gzip=false'</code>.)
         </p>
@@ -377,7 +377,7 @@ helpDescription: "Describes how to import readings via CSV files."
             rows.
             An example without cumulative is not shown but it would be similar but have reading values of 72, 48 & 24
             for
-            rows 2-4 (but here the first reading of 24 would not be dropped). (This <a href="files/cumDsc.csv"
+            rows 2-4 (but here the first reading of 24 would not be dropped). (This <a href="../files/cumDsc.csv"
                 download>cumDsc.csv</a> was loaded
             using the curl parameters of
             <code>-F 'cumulative=true' -F 'timeSort=decreasing' -F 'headerRow=true' -F 'gzip=false'</code>.)
@@ -392,7 +392,7 @@ helpDescription: "Describes how to import readings via CSV files."
             cumulative, time sort is "decreasing". The readings are the same as the one above. This again shows that you
             can
             use many possibilities in combination where here it is both cumulative and end only. (This <a
-                href="files/cumDscEndonly.csv" download>cumDscEndonly.csv</a> was loaded
+                href="../files/cumDscEndonly.csv" download>cumDscEndonly.csv</a> was loaded
             using the curl parameters of
             <code>-F 'endOnly=true' -F 'cumulative=true' -F 'timeSort=decreasing' -F 'headerRow=true' -F 'gzip=false'</code>.)
         </p>
@@ -405,7 +405,7 @@ helpDescription: "Describes how to import readings via CSV files."
         <p>Below are the lines for a CSV readings import file with a header row where end only is false, the data is
             cumulative and duplication is 3. The readings are the same as the one above where
             each line is duplicated three
-            times. (This <a href="files/cumAscDuplication.csv" download>cumAscDuplication.csv</a> was loaded
+            times. (This <a href="../files/cumAscDuplication.csv" download>cumAscDuplication.csv</a> was loaded
             using the curl parameters of
             <code>-F 'cumulative=true' -F 'duplications=3' -F 'headerRow=true' -F 'gzip=false'</code>.)
         </p>
@@ -615,7 +615,7 @@ helpDescription: "Describes how to import readings via CSV files."
             when
             a meter is first
             created concerning what the previous reading will be. As described on the <a
-                href="adminMetersImport.html">CSV
+                href="../adminMetersImport/">CSV
                 meter import</a> page, OED sets the previous reading to have start/end dates/times of 1970-01-01
             00:00:00
             and a reading of zero. This should make it the case that this is well before any actual meter reading and
@@ -637,7 +637,7 @@ helpDescription: "Describes how to import readings via CSV files."
             rejected (all readings) because OED does not update the previous reading in this case (to avoid mistakes).
             Thus, the previous reading stays as what it was before the upload of this CSV. This can be fixed by
             addressing the issue(s) with the CSV and uploading again before the next CSV upload of later data. As noted
-            on the <a href="adminCsvImport.html">general CSV import</a> page, OED returns messages to let you know that
+            on the <a href="../adminCsvImport/">general CSV import</a> page, OED returns messages to let you know that
             an issue occurred and direct file upload will return an error code.</p>
 
         <h3 id=valueShown>Reading value in CSV vs what is seen in OED</h3>
