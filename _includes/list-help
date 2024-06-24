@@ -23,15 +23,16 @@ Assign local variables from parameters and sort pages by title.
   <h6>{{ helpCategory }}</h6>
   <div style="padding-left: 1em;">
     <!-- TODO check that this actually is looping as desired across collections. -->
-    {% for pageInCollection in site[helpCollection] %}
     <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
           This adds a description if it is the documentation page (vs documentation sidebar).
-          It will be an empty string if not a documentation page true. -->
+          It will be an empty string if not a documentation page true.
+          Comment for first part of for but here so not repeated many times in _site files. -->
+    {% for pageInCollection in site[helpCollection] %}
       {% if helpPage == true %}
         {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
       {% endif %}
       {% if pageInCollection.published != false and pageInCollection.helpType == helpType and pageInCollection.helpCategory == helpCategory %}
-        <a href="{{ site.url }}{{ site.baseurl }}/{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
+        <a href="{{ site.url }}{{ site.baseurl }}{{ pageInCollection.url }}">{{ pageInCollection.title }}</a>{{ helpDescription }}</br>
       {% endif %}
     {% endfor %}
   </div>
