@@ -11,15 +11,19 @@
   - title: "features by academic use"
     url: "/useAcademic/"
   
-# TODO Have not found an easy way to avoid hard link that must be edited with each new version.
+# Help Version: update title version and add new version to dropdown.
 - title: "Documentation"
   url: "/helpV1.0.0/user/"
   side: left
   dropdown:
   - title: "oed version 1.0.0"
     url: "/helpV1.0.0/user/"
-  # - title: "oed version 0.8.0"
-  #   url: "/helpV0.8.0/index/"
+  - title: "oed version 0.8.0"
+    url: "/helpV0.8.0/index/"
+  - title: "oed version 0.7.0"
+    url: "/helpV0.7.0/index/"
+  - title: "oed version 0.6.0"
+    url: "/helpV0.6.0/index/"
 
 # - title: "Live Demo"
 #   url: "/demo/"
