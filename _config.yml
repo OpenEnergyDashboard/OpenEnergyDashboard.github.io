@@ -57,32 +57,35 @@ logo: "logo.png"
 logoHelp: "logoHelp.png"
 logoDeveloper: "logoDeveloper.png"
 
+# Unfortunately, having periods in the collection name causes issues when trying to
+# access so replace . with _.
+
 # Latest/current help version. Must update for each new version.
-helpCurrent: "helpV1.0.0"
+helpCurrent: "helpV1_0_0"
 
 # Collection of help pages so can get links easily.
 # TODO The sort_by does not seem to work. It seems to sort by file name.
 collections:
 # Help Version: add new item for the new help collection. Normally copy of old one.
-  helpV1.0.0:
+  helpV1_0_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:
       - user.html
       - admin.html
-  helpV0.8.0:
+  helpV0_8_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:
       - user.html
       - admin.html
-  helpV0.7.0:
+  helpV0_7_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:
       - user.html
       - admin.html
-  helpV0.6.0:
+  helpV0_6_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:

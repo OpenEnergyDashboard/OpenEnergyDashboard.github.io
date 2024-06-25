@@ -1,7 +1,7 @@
 <!-- Help Version: update version -->
-{% assign OEDVersion = "V0.7.0" %}
+{% assign OEDVersion = "V1.0.0" %}
 <p>Version {{ OEDVersion }}</p>
-{% assign currentVersion = site.helpCurrent | replace: "help", "" %}
+{% assign currentVersion = site.helpCurrent | replace: "help", "" | replace: "_", "." %}
 {% if OEDVersion != currentVersion %}
     {% assign link = site.url | append: site.baseurl | append: "/" | append: site.helpCurrent | append: "/" | append: page.name | replace: ".html", "/" %}
     {% assign msg = "The latest version of this documentation is <a href='" | append: link | append: "'>" | append: currentVersion | append: "</a>" %}

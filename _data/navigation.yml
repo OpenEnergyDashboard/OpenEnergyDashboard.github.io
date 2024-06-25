@@ -10,20 +10,21 @@
     url: "/features/"
   - title: "features by academic use"
     url: "/useAcademic/"
-  
+
+# _ not . as noted in config.
 # Help Version: update title version and add new version to dropdown.
 - title: "Documentation"
-  url: "/helpV1.0.0/user/"
+  url: "/helpV1_0_0/user/"
   side: left
   dropdown:
   - title: "oed version 1.0.0"
-    url: "/helpV1.0.0/user/"
+    url: "/helpV1_0_0/user/"
   - title: "oed version 0.8.0"
-    url: "/helpV0.8.0/user/"
+    url: "/helpV0_8_0/user/"
   - title: "oed version 0.7.0"
-    url: "/helpV0.7.0/user/"
+    url: "/helpV0_7_0/user/"
   - title: "oed version 0.6.0"
-    url: "/helpV0.6.0/user/"
+    url: "/helpV0_6_0/user/"
 
 # - title: "Live Demo"
 #   url: "/demo/"

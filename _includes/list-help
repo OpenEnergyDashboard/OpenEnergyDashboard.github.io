@@ -2,12 +2,12 @@
 *   
 *   This include creates the list of the documentation pages with the given attributes.
 *   Arguments:
-*     helpCollection: The documentation collection to display, e.g., helpV1.0.0 in directory _helpV1.0.0.
+*     helpCollection: The documentation collection to display, e.g., helpV1_0_0 in directory _helpV1_0_0.
 *     helpType: "admin" or "user" to control pages filtered/shown.
 *     helpCategory: The type of documentation pages filter/show.
 *     helpPage: true if being placed on a documentation page and otherwise not so likely for page listing.
 *
-*   Example: {% include list-help helpCollection="helpV1.0.0" helpType="admin" helpCategory="Graphing" helpPage=true %}
+*   Example: {% include list-help helpCollection="helpV1_0_0" helpType="admin" helpCategory="Graphing" helpPage=true %}
 *   
 {% endcomment %}
 
@@ -22,12 +22,11 @@ Assign local variables from parameters and sort pages by title.
 <div style="padding-left: 1em;">
   <h6>{{ helpCategory }}</h6>
   <div style="padding-left: 1em;">
-    <!-- TODO check that this actually is looping as desired across collections. -->
     <!-- Cannot nest if with for so do for every page but ignored if not a link to show. 
           This adds a description if it is the documentation page (vs documentation sidebar).
           It will be an empty string if not a documentation page true.
           Comment for first part of for but here so not repeated many times in _site files. -->
-    {% for pageInCollection in site[helpCollection] %}
+    {% for pageInCollection in site.[helpCollection] %}
       {% if helpPage == true %}
         {% assign helpDescription = ": " | append: pageInCollection.helpDescription %}
       {% endif %}

@@ -30,7 +30,7 @@ widgets:
   - widget:
     title: "Documentation"
     # Warning: This must be updated for each release!!
-    url: '/helpV1.0.0/user/'
+    url: '/helpV1_0_0/user/'
     text: 'OED maintains extensive documentation for users and site administrators that is also linked by help icons in the dashboard.'
   - widget:
     title: "Using OED"

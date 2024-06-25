@@ -12,10 +12,12 @@
 
 {% comment %}
 Assign local variables from parameters. It is assumed the directory/help collection
-is helpV1.0.0 (for example).
+is helpV1_0_0 (for example).
 {% endcomment%}
 {% assign OEDVersion = include.OEDVersion %}
-{% assign helpCollection = "help" | append: OEDVersion %}
+<!-- As noted in config, use _ not . in collection names. -->
+{% assign helpVersion = OEDVersion | replace: ".", "_" %}
+{% assign helpCollection = "help" | append: helpVersion %}
 {% assign helpPage = include.helpPage %}
 
 {% assign developerCollection = "developer" %}
@@ -64,15 +66,26 @@ is helpV1.0.0 (for example).
     {% endif %}
 
     {% if page.helpType == "User" or page.helpType == "Admin" %}
-        <h5>documentation versions for this page</h5>
+        <h5>Documentation versions for this page</h5>
         <div style="padding-left: 1em;">
+            <!-- The following loops over all help version, determines if the one for this page is the loop version
+                 and the puts the label based on that. If page and loop version differs then it loops over the
+                 loop version to see if the file is in the collection and only gives a link if it is. -->
             {% for item in site.data.helpVersions %}
-            {% assign version = item.version %}
-            <!-- TODO see if can add check if the file exists in other version and skip if not.  -->
-            <a href='../../help{{ version }}/{{ page.name | remove: ".html"}}/'>{{ version }}</a></br>
+                {% assign helpVersionUsing = item.version %}
+                {% if helpVersionUsing == helpVersion %}
+                    {{OEDVersion}} (current page)</br>
+                {% else %}
+                    {% assign helpCollectionUsing = "help" | append: helpVersionUsing %}
+                    {% assign helpTargetLink = "/" | append: helpCollectionUsing | append: "/" | append: page.name | remove: ".html" | append: "/" %}
+                    {% for item in site.[helpCollectionUsing] %}
+                        {% if item.url contains helpTargetLink %}
+                            <a href="../..{{ helpTargetLink }}">{{ helpVersionUsing | replace: "_", "." }}</a></br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </div>
-        Current page is {{ OEDVersion }}.
 
         {% if helpPage == true %}
             {% if page.helpType == "Admin" %}
