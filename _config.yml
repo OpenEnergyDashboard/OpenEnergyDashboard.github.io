@@ -145,8 +145,6 @@ compress_html:
   comments: ["<!-- ", " -->"]
   endings: all
   profile: false
-  ignore:
-    envs: [development]
 
 
 #

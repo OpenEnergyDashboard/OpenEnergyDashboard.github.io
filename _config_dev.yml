@@ -10,6 +10,15 @@ url: 		'http://localhost:4000'
 baseurl: 	''
 urlimg: 	'http://localhost:4000/images/'
 
+# Add the ignore for development so can see comments and easier to read files.
+# According to https://jekyllrb.com/docs/configuration/environments/ you can
+# use: JEKYLL_ENV=production jekyll build
+# to override when creating but it did not seem to work and others reported
+# issues when building with a system and currently using bundle.
+compress_html:
+  ignore:
+    envs: [development]
+
 # See › https://github.com/jekyll/jekyll-gist#disabling-noscript-support
 gist:
   noscript: false
