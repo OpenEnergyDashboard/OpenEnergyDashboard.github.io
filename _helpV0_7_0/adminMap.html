@@ -57,8 +57,7 @@ helpDescription: "Describes how to create, edit & view maps."
 		<p>If you click on the "Maps" button in the top, right of the main OED screen you will go to the maps page shown
 			below. This shows the page when no maps are on the site. Click the blue "Create a Map" button to begin the
 			process of uploading a map.</p>
-		<img alt="admin map page without maps" src="../images/OEDAdminMapViewingEmpty.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map page without maps" src="../images/OEDAdminMapViewingEmpty.png">
 		<p>You should now be on the page shown below. Click on the "Browse ..." button (highlighted with a blue box) to
 			open
 			a standard web browser pop up to select a file. Choose the graphical image of your map. Note the image can
@@ -72,7 +71,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			immediately below (labeled "Define a name for the map:") to name your map. Note this is the name that a user
 			will see (it can be edited later). In this example, "Happy Place" was used. When
 			you are ready, click the "Save and continue" button to complete this step.</p>
-		<img alt="admin map loading page" src="../images/OEDAdminLoadMap.png" style="width: 75vw; min-width: 700px;">
+		<img alt="admin map loading page" src="../images/OEDAdminLoadMap.png">
 		<p>You should then see the confirmation popup shown below. The exact look differs depending on your web browser.
 			It
 			may or may not show the URL and it will definitely differ from localhost:3000 (special URL for development).
@@ -94,8 +93,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			pick up the "+" where the cursor was located.) This point was chosen since we assume that in a real
 			situation we
 			knew the GPS coordinate for the top, right corner of the "Swimming Pool" building in the image.</p>
-		<img alt="admin map calibration point entry" src="../images/OEDAdminMapCalibrationStepOne.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map calibration point entry" src="../images/OEDAdminMapCalibrationStepOne.png">
 		<p>As shown in the figure above, when that point was clicked, a message appeared below the map (inside the blue
 			box
 			used for highlighting) that says "input GPS coordinate that corresponds to the point: x: 277, y: 461
@@ -111,8 +109,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			entered
 			is inside the blue box used for highlighting as shown in the next figure.
 		</p>
-		<img alt="admin map GPS entry for a calibration point" src="../images/OEDAdminMapCalibrationStepTwo.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map GPS entry for a calibration point" src="../images/OEDAdminMapCalibrationStepTwo.png">
 		<p>Once complete, you click the "Submit" button below the box for GPS (inside the blue box used for
 			highlighting).
 			This leads to the figure below. The text at the bottom of the web browser window, "result: Need more points"
@@ -126,8 +123,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			to
 			be chosen.
 		</p>
-		<img alt="admin map showing need more calibration points" src="../images/OEDAdminMapCalibrationStepThree.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map showing need more calibration points" src="../images/OEDAdminMapCalibrationStepThree.png">
 		<p>You now need to repeat the steps above to enter more calibration points. You can click anywhere on the map
 			where
 			you know the GPS coordinates. It is okay to click more than once to replace the point clicked with a new one
@@ -141,7 +137,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			the
 			overall calibration result (inside the blue box used for highlighting in the figure below).</p>
 		<img alt="admin map showing result of current calibration points"
-			src="../images/OEDAdminMapCalibrationStepFour.png" style="width: 75vw; min-width: 700px;">
+			src="../images/OEDAdminMapCalibrationStepFour.png">
 		<p>In this example, the result is "result: x: 1.202% y: 0.25%" (inside the blue box used for highlighting in the
 			figure above). (Note the points used were deliberately shifted a little bit so a small error is shown.) If
 			you
@@ -160,8 +156,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			verify
 			that items are showing up in the correct places before you reveal the map to users. Note you can recalibrate
 			a map from this page.</p>
-		<img alt="admin map viewing page after calibration" src="../images/OEDAdminMapViewingAfterCalibration.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map viewing page after calibration" src="../images/OEDAdminMapViewingAfterCalibration.png">
 		<p>Once you set the GPS of meters, you can see their values on the map. (See the <a href="../mapGraphic/">map
 				graphing</a> page for more information.) If you find that the circles are not showing up at the desired
 			points, then see the section on <a href="#circlePlacementIssues">circle placement issues</a> below.</p>
@@ -207,14 +202,12 @@ helpDescription: "Describes how to create, edit & view maps."
 			be directly on "Play Place" and "Theater" you get the following. As seen, they have moved a little to the
 			more
 			accurate calibration above but are in the correct general place.</p>
-		<img alt="admin map small calibration error result" src="../images/OEDAdminMapResultOne.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map small calibration error result" src="../images/OEDAdminMapResultOne.png">
 		<p>If we change so that
 			the each value is +/- 0.001 as done above then the result is much worse. The result is "result: x: 76.423%,
 			y:
 			31.293%". The result of mapping is shown in the next figure where there are much more noticeable shifts.</p>
-		<img alt="admin map larger calibration error result" src="../images/OEDAdminMapResultTwo.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map larger calibration error result" src="../images/OEDAdminMapResultTwo.png">
 		<p>If we increased the change even further then the circles would shift even more and might eventually be off
 			the
 			map. When placement is poor, you need to recalibrate the map.</p>
@@ -226,8 +219,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			result of "result: x: 0%, y: 0%" and the graphic shown next. Here the "Play Place" meter is no longer on the
 			map.
 		</p>
-		<img alt="admin map larger shift in one direction but no error" src="../images/OEDAdminMapResultThree.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map larger shift in one direction but no error" src="../images/OEDAdminMapResultThree.png">
 		<p>There are many possible reasons that the calibration might be off and we discuss several now. First, it is
 			easy
 			to type in the wrong value for a point. If this happens then correctly reentering the calibration values
@@ -274,8 +266,7 @@ helpDescription: "Describes how to create, edit & view maps."
 			(40.00429, -87.99926) and this worked fairly well as shown in the next figure. We could have done some more
 			adjustment to slightly shift the "Play Place" circle if we wanted.
 		</p>
-		<img alt="admin map larger calibration error fixed result" src="../images/OEDAdminMapCalibrationFixed.png"
-			style="width: 75vw; min-width: 700px;">
+		<img alt="admin map larger calibration error fixed result" src="../images/OEDAdminMapCalibrationFixed.png">
 		<p>One thing to note is that this process is only done once when a new map is loaded. After that, any user will
 			see
 			the correct result. Also, once you move one point on the map it becomes clearer the amount needed for other
