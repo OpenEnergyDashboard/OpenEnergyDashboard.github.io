@@ -151,3 +151,12 @@ $highlight-name-tag: #000080;
 $highlight-text-whitespace: #bbbbbb;
 $highlight-literal-string-regex: #009926;
 $highlight-literal-string-symbol: #990073;
+
+
+/* links
+------------------------------------------------------------------- */
+$link-unvisited: #0921e2;
+$link-visited: #071582;
+$link-hover: darken( $link-unvisited, 10% );
+$link-focus: lighten( $link-unvisited, 20% );
+$link-active: darken( $link-unvisited, 20% );
