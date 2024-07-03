@@ -33,10 +33,13 @@
 	<h2 class="font-size-h3 t10">{{ include.widget.title }}</h2>
 
 	{% if include.widget.text != empty %}<p>{{ include.widget.text }}</p>{% endif %}
-	<!-- TODO Want less space at bottom of box. margin:0 helps a little but not much. See above for temporary hack. -->
 	{% if widget_url != empty %}
+		{% if include.widget.url contains 'http' %}
+			{% assign external = 'target="_blank"' %}
+		{% endif %}
+		<!-- TODO Want less space at bottom of box. margin:0 helps a little but not much. See above for temporary hack. -->
 		<p style="margin: 0;">
-			<a class="button tiny radius" href="{{ widget_url }}">
+			<a class="button tiny radius" href="{{ widget_url }}" {{external}}>
 			{% if include.widget.more %}
 				{{ include.widget.more}}
 			{% else %}
