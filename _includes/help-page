@@ -78,8 +78,8 @@ is helpV1_0_0 (for example).
                 {% else %}
                     {% assign helpCollectionUsing = "help" | append: helpVersionUsing %}
                     {% assign helpTargetLink = "/" | append: helpCollectionUsing | append: "/" | append: page.name | remove: ".html" | append: "/" %}
-                    {% for item in site.[helpCollectionUsing] %}
-                        {% if item.url contains helpTargetLink %}
+                    {% for itemTwo in site.[helpCollectionUsing] %}
+                        {% if itemTwo.url contains helpTargetLink %}
                             <a href="../..{{ helpTargetLink }}">{{ helpVersionUsing | replace: "_", "." }}</a></br>
                         {% endif %}
                     {% endfor %}
