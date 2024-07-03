@@ -73,24 +73,44 @@ collections:
     order:
       - user.html
       - admin.html
+      # kluge since want all graphing together.
+      - barGraphic.html
+      - compareGraphic.html
+      - lineGraphic.html
+      - mapGraphic.html
   helpV0_8_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:
       - user.html
       - admin.html
+      # kluge since want all graphing together.
+      - barGraphic.html
+      - compareGraphic.html
+      - lineGraphic.html
+      - mapGraphic.html
   helpV0_7_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:
       - user.html
       - admin.html
+      # kluge since want all graphing together.
+      - barGraphic.html
+      - compareGraphic.html
+      - lineGraphic.html
+      - mapGraphic.html
   helpV0_6_0:
     output: true # to make jekyll generate html pages
     sort_by: title
     order:
       - user.html
       - admin.html
+      # kluge since want all graphing together.
+      - barGraphic.html
+      - compareGraphic.html
+      - lineGraphic.html
+      - mapGraphic.html
   developer:
     output: true # to make jekyll generate html pages
     sort_by: title
@@ -98,6 +118,8 @@ collections:
       - developer.html
       - gettingStarted.html
       - wslSteps.html
+      - codeOrganization.html
+      - devDetails.html
 
 # Plugins
 plugins:
