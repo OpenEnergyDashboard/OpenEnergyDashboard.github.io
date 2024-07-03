@@ -18,7 +18,6 @@
 </head>
 <body>
   {% capture redirectUrl %}{% if page.redirect_to contains 'http' %}{{ page.redirect_to }}{% else %}{{ site.url }}{{ site.baseurl }}{{ page.redirect_to }}{% endif %}{% endcapture %}
-  <p>redirectUrl</p>
     <h1>Redirecting...</h1>
       {{ site.data.language.if_you_are_not_redirected_automatically }} <a href="{{ redirectUrl }}">{{ site.data.language.click_here }}</a>.
       <script>location='{{ redirectUrl }}'</script>
