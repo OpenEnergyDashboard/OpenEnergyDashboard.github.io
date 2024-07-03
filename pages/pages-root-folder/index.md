@@ -18,7 +18,7 @@ widgets:
     # This is not the normal pattern for an image but cannot put in Liquid variables.
     # Actual video defined below.
     video: '<a href="#" data-reveal-id="videoModal"><img src="images/siteFeatures.png" alt=""/></a>'
-    height: 375px
+    height: 400px
 # TODO add when demo site available
 # - widget:
   #   title: "OED Demo site"
@@ -28,13 +28,13 @@ widgets:
     title: "OED Principles"
     url: '/principles/'
     text: 'What OED strives for and why that makes us a great and easy to use dashboard.'
-    height: 375px
+    height: 400px
   - widget:
     title: "Documentation"
     # Warning: This must be updated for each release!!
     url: '/helpV1_0_0/user/'
     text: 'OED maintains extensive documentation for users and site administrators that is also linked by help icons in the dashboard.'
-    height: 375px
+    height: 400px
   - widget:
     title: "Using OED"
     url: '/use/'
