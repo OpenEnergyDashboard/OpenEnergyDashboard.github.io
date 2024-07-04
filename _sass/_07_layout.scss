@@ -90,15 +90,21 @@ body.video cite { color: #fff; }
     margin-top: 10px;
 }
 
+// Made height/margin-top smaller for what wanted and half on small screen.
+
 /* Masthead › small-only
 ------------------------------------------------------------------- */
 
+// Wanted to keep logo even on small screen so disable.
 @media #{$small-only} {
+    // #logo img {
+        // display: none;
+    // }
     #logo img {
-        display: none;
+        margin-top: 30px;
     }
     #masthead {
-        height: 200px;
+        height: 100px;
     }
     #masthead-with-pattern {
         padding: 15px 0;
@@ -111,8 +117,11 @@ body.video cite { color: #fff; }
         padding: 30px 0;
         font-size: rem-calc(36);
     }
-    #masthead-no-image-header {
-        display: none;
+    // #masthead-no-image-header {
+    //     display: none;
+    // }
+    #masthead-no-image-header #logo img {
+        margin-top: 35px;
     }
 }
 
@@ -125,7 +134,7 @@ body.video cite { color: #fff; }
         margin-top: 60px;
     }
     #masthead {
-        height: 280px;
+        height: 200px;
     }
     #masthead-with-pattern {
         padding: 20px 0;
@@ -137,6 +146,9 @@ body.video cite { color: #fff; }
         padding: 60px 0;
         height: 300px;
     }
+    #masthead-no-image-header #logo img {
+        margin-top: 20px;
+    }
 }
 
 
@@ -145,10 +157,10 @@ body.video cite { color: #fff; }
 
 @media #{$large-only} {
     #logo img {
-        margin-top: 80px;
+        margin-top: 60px;
     }
     #masthead {
-        height: 310px;
+        height: 200px;
     }
     #masthead-with-pattern {
         padding: 30px 0;
@@ -168,10 +180,10 @@ body.video cite { color: #fff; }
 
 @media #{$xlarge-up} {
     #logo img {
-        margin-top: 110px;
+        margin-top: 60px;
     }
     #masthead {
-        height: 380px;
+        height: 200px;
     }
     #masthead-with-pattern {
         padding: 45px 0;
