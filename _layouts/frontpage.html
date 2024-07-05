@@ -21,19 +21,20 @@ format: frontpage
 </div><!-- /.row -->
 
 
-{% comment %}
-*
-* First check, if widget is empty or not by checking if there is any elements
-*
-{% endcomment %}
-<div class="row t60">
-    {% for widget in page.widgets %}
-        {% if widget.image or widget.video or widget.title %}
-            {% include _frontpage-widget.html widget=widget %}
-        {% endif %}
-    {% endfor %}
-</div><!-- /.row -->
-
+<!-- Loops over all widgets to add to page after content. It does three widgets per row. -->
+{% for widget in page.widgets %}
+    <!-- itemInRow is what item number this is in the row starting at 0. -->
+    {% assign itemInRow = forloop.index0 | modulo: 3 %}
+    {% if itemInRow == 0 %}
+        <!-- First item in row so start the row. Make it so all items are the same height. -->
+        <div class="row" data-equalizer>
+    {% endif %}
+    {% include _frontpage-widget.html widget=widget %}
+    {% if itemInRow == 2 or forloop.last %}
+        <!-- If the last item in the row or the last overall item then end the row. -->
+        </div>
+    {% endif %}
+{% endfor %}
 
 
 {% comment %}

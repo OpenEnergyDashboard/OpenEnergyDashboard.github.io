@@ -34,3 +34,11 @@ sass:
 
 # Disable when not in production
 google_analytics_tracking_id: false
+
+# Development error checking.
+liquid:
+  # The next two are causing errors so commented out.
+  # TODO figure this out sometime. Note the strict_variable error is unclear what's up.
+  # error_mode: strict
+  # strict_variables: true
+  strict_filters: true

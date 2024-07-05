@@ -12,14 +12,15 @@
 <!-- Changed so does not use default URL if image empty. -->
 {% capture widget_image %}{% if include.widget.image contains 'http' %}{{ include.widget.image }}{% elsif include.widget.image %}{{ site.urlimg }}{{ include.widget.image }}{% endif %}{% endcapture %}
 
-{% capture widget_height %}{% if include.widget.height %}{{ include.widget.height }} {% else %}375px{% endif %}{% endcapture %}
-
 <!-- border-box includes the padding & border so it does not go over the grid size. Adding margin: 2px; would be nice but then it takes up more
-      space than the grid.
-	  The height is a hack to force the height so the grid allows boxes across the page. The boxes must have the same height in a row. It also
-	  was made a little smaller to remove the spacing at the bottom below the button. Decided to make all the boxes the same size but could pass
-	  a value such to set the height and vary by row. -->
-<div class="medium-4 columns frontpage-widget" style="box-sizing: border-box; height: {{widget_height}}; padding: 15px; border: 10px ridge black; background-color: rgb(150, 210, 245)">
+      space than the grid. If in Foundation 6 then could set to more columns to adust better.
+	  The panel leaves space between the rows.
+	  The equalizer keeps them all the same height.
+	  If small screen then it becomes a single column by default and that is okay.
+	  Considered adjusting the number of columns per row based on width of the row, e.g. size. but used JS and was more complex so did
+	  not do this. See https://stackoverflow.com/questions/17414070/detect-foundation-small-large-usage-in-javascript but maybe easier
+	  way in the future. -->
+<div class="medium-4 columns panel" data-equalizer-watch style="box-sizing: border-box; padding: 15px; border: 15px ridge black; background-color: rgb(150, 210, 245)">
 	{% if include.widget.video %}
 		{{ include.widget.video }}
 	{% elsif widget_url == empty %}

@@ -18,7 +18,6 @@ widgets:
     # This is not the normal pattern for an image but cannot put in Liquid variables.
     # Actual video defined below.
     video: '<a href="#" data-reveal-id="videoModal"><img src="images/siteFeatures.png" alt=""/></a>'
-    height: 400px
 # TODO add when demo site available
 # - widget:
   #   title: "OED Demo site"
@@ -28,48 +27,39 @@ widgets:
     title: "OED Principles"
     url: '/principles/'
     text: 'What OED strives for and why that makes us a great and easy to use dashboard.'
-    height: 400px
   - widget:
     title: "Documentation"
     # Warning: This must be updated for each release!!
     url: '/helpV1_0_0/user/'
     text: 'OED maintains extensive documentation for users and site administrators that is also linked by help icons in the dashboard.'
-    height: 400px
   - widget:
     title: "Using OED"
     url: '/use/'
     text: 'Learn about what it takes to become an OED site and information if you are an OED site.'
-    height: 225px
   - widget:
     title: "OED: Free and Maintained"
     url: '/free/'
     text: 'How OED is free but also maintained.'
-    height: 225px
   - widget:
     title: "OED Mission"
     url: '/mission/'
     text: "Learn about OED's mission to help the world and educate students."
-    height: 225px
   - widget:
     title: "Why OED Exists?"
     url: '/why/'
     text: 'Learn why OED exists and how the project works.'
-    height: 200px
   - widget:
     title: "News"
     url: '/news/'
     text: 'Learn about important information as OED moves forward.'
-    height: 200px
   - widget:
     title: "Why is the name OED?"
     url: '/name/'
     text: 'Learn why OED has its name, logo and a little history.'
-    height: 200px
   - widget:
     title: "OED listens"
     url: '/contact/'
     text: 'Do you want to discuss issues you are having, ideas, needs, using OED, contributing or anything else then we welcome you reaching out to the project.'
-    height: 250px
 
 #
 # Use the call for action to show a button on the frontpage
