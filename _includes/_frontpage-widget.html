@@ -12,6 +12,11 @@
 <!-- Changed so does not use default URL if image empty. -->
 {% capture widget_image %}{% if include.widget.image contains 'http' %}{{ include.widget.image }}{% elsif include.widget.image %}{{ site.urlimg }}{{ include.widget.image }}{% endif %}{% endcapture %}
 
+<!-- Makes widgets in row all the same size. -->
+{% unless include.noEqualize == true %}
+    {% assign dataEqualizerWatch = "data-equalizer-watch" %}
+{% endunless %}
+
 <!-- border-box includes the padding & border so it does not go over the grid size. Adding margin: 2px; would be nice but then it takes up more
       space than the grid. If in Foundation 6 then could set to more columns to adust better.
 	  The panel leaves space between the rows.
@@ -20,7 +25,7 @@
 	  Considered adjusting the number of columns per row based on width of the row, e.g. size. but used JS and was more complex so did
 	  not do this. See https://stackoverflow.com/questions/17414070/detect-foundation-small-large-usage-in-javascript but maybe easier
 	  way in the future. -->
-<div class="medium-4 columns panel" data-equalizer-watch style="box-sizing: border-box; padding: 15px; border: 15px ridge black; background-color: rgb(150, 210, 245)">
+<div class="medium-4 columns panel" {{dataEqualizerWatch}} style="box-sizing: border-box; padding: 15px; border: 15px ridge black; background-color: rgb(150, 210, 245)">
 	{% if include.widget.video %}
 		{{ include.widget.video }}
 	{% elsif widget_url == empty %}
