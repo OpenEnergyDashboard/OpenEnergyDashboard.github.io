@@ -97,8 +97,8 @@ homepage: true
 </table>
 
 <!-- This defines the actaul video to show. -->
-<div id="videoModal" class="reveal-modal large" data-reveal="">
-  <video width="900" height="600" controls preload="none">
+<div id="videoModal" class="reveal-modal medium" data-reveal="">
+  <video width="900" height="600" controls>
     <source src="{{ site.urlimg }}siteFeatures.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
