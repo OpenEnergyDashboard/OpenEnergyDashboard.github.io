@@ -8,9 +8,13 @@
 </script>
 
 <form id="search" onsubmit="google_search(); return false;">
+	<h4>The following uses Google search of the OED website. After you enter the search term you will be taken to a new
+		window/tab to show any search results. OED does not control the privacy settings of this search nor the results
+		shown. It is provided for your use/convenience.</h4>
 	<input type="text" id="google-search" placeholder="{{ site.data.language.enter_search_term }}">
 </form>
 <noscript>
-	Search <a href="https://www.google.com/search?q=site:{{ google_search_site | cgi_escape }}" target="_blank">Google</a> for:
+	Search <a href="https://www.google.com/search?q=site:{{ google_search_site | cgi_escape }}"
+		target="_blank">Google</a> for:
 	<pre><code>search-term site:{{ google_search_site }}</code></pre>
 </noscript>
