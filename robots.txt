@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://openenergydashboard.org/sitemap.xml
