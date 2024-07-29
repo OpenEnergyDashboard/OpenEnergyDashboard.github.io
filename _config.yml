@@ -31,10 +31,10 @@ author: OED
 # See below how urlimg does not follow this pattern but I'll use it for links since
 # the rest of the code does.
 # fix for live site
-# url: 'https://openenergydashboard.org'
-# baseurl: ''
-url: 'https://<testing GitHub Name/ID>.github.io'
-baseurl: '/OpenEnergyDashboard.github.io'
+url: 'https://openenergydashboard.org'
+baseurl: ''
+# url: 'https://<testing GitHub Name/ID>.github.io'
+# baseurl: '/OpenEnergyDashboard.github.io'
 
 # This URL points directly to the images directory making
 # things easier to link to images in posts and templates. It needs a slash at the end.
@@ -45,8 +45,8 @@ baseurl: '/OpenEnergyDashboard.github.io'
 # Note this is not consistent with using baseurl above as it is used directly. Also,
 # there is a trailing / unlike urls but live with it.
 # fix for live site
-# urlimg: 'https://openenergydashboard.org/images/'
-urlimg: 'https://huss.github.io/OpenEnergyDashboard.github.io/images/'
+urlimg: 'https://openenergydashboard.org/images/'
+# urlimg: 'https://<testing GitHub Name/ID>.github.io/OpenEnergyDashboard.github.io/images/'
 
 # This is for the editing function in _/includes/improve_content
 # Leave it empty if your site is not on GitHub/GitHub Pages
