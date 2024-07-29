@@ -1,47 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-
+---
+layout: compress
+---
+<!doctype html>
+<html class="no-js" lang="{% if site.language == nil %}en{% else %}{{ site.language }}{% endif %}">
 <head>
-	<title>{{ page.title }}</title>
-	<!-- link to main stylesheet -->
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	{% include _head.html %}
 </head>
+<body id="top-of-page" class="{{ layout.format }}">
+	{% unless page.skip_boilerplate %}
+	{% include _navigation.html %}
+	{% endunless %}
 
-<body>
-	<div class="navbar">
-		<a href="index.html"> <img id="logo" alt="OED logo" src="images/logo.png"></a>
-		<a href="index.html">Home</a>
-		<div class="dropdown">
-			<button class="dropbtn">Features &#x25BC;</button>
-			<div class="dropdown-content">
-				<a href="useAcademic.html">Academic Use</a>
-				<a href="features.html">Features Overview</a>
-			</div>
-		</div>
-		<a href="help/v1.0.0/index.html">OED Help</a>
-		<a href="contact.html">Contact Us</a>
-		<a href="demo.html">Demo</a>
-		<a href="use.html">Use</a>
-		<a href="involved.html">Get involved</a>
-		<a href="news.html">News</a>
-		<a href="projectInfo.html">Project info</a>
-		<a href="developer/index.html">Developer Pages</a>
-	</div>
-	<div class="container">{{ content }}</div>
-	<!-- /.container -->
-	<footer>
-		<div class="navbar">
-			<a href="mailto:info@OpenEnergyDashboard.org">Email</a>
-			<a href="https://github.com/OpenEnergyDashboard/OED" target="_blank" rel="noopener noreferrer">GitHub
-				Repository</a>
-		</div>
-		<p>This page is part of the Open Energy Dashboard and is subject to the terms of the Mozilla Public License,
-			v. 2.0. If a copy of the MPL was not distributed with this file, you can obtain one at <a
-				href="https://www.mozilla.org/en-US/MPL/2.0/" rel="nofollow">https://www.mozilla.org/en-US/MPL/2.0/</a>.
-		</p>
-	</footer>
+	{% include _masthead.html %}
+	{{ content }}
+
+	{% unless page.skip_boilerplate %}
+	{% include _footer.html %}
+	{% endunless %}
+
+	{% include _footer_scripts.html %}
 </body>
-
 </html>

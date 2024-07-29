@@ -1,0 +1,42 @@
+---
+layout: page-fullwidth
+title: Login
+meta_title: "Login Doc"
+subheadline: "OED Documentation"
+breadcrumb: true
+help: true
+helpType: User
+helpCategory: "Other Features"
+helpDescription: "Describes log in/out."
+---
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+
+		<h2 id="overview">Overview</h2>
+		<p>Special users of an OED site need to login to access those features. This page describes how to do that.</p>
+
+		<h2 id="usage">Usage</h2>
+		<p>Click the "Log in" button on the top,
+			right side of the OED web browser window (highlighted with blue box in next figure).</p>
+		<img alt="admin login button" src="../images/OEDAdminLoginButton.png">
+		<p>Once the "Log in" button is clicked, you will be taken to the login page shown in the next figure. Enter your
+		"Email" and "Password" and then click "Submit". If the credentials are correct then the web browser window will
+		take you back to the main OED screen. If there was an issue then a failure popup
+		will briefly appear and you will remain on the login page. If you do not know your admin login credentials then
+		check with the person who set up your OED site.</p>
+		<img alt="admin login page" src="../images/login.png">
+		<p>The button will become "Log out"" if you are already logged in and
+		OED will automatically log one out after a set period of time.</p>
+		<p>Note you can click the "Log out"
+			button in the
+			top, right if you want to stop being a special user.
+			OED will automatically log you out after a set period of time.</p>
+	
+		<h2 id="details">Details</h2>
+		<p>When your session times out as, the next action you take will redirect you to the login page or note you
+			have logged out. After you
+			log in you are returned to the main OED page. Then you can click to get back to where you were.</p>
+	</div>
+</div>

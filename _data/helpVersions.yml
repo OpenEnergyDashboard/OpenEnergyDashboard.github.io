@@ -1,0 +1,6 @@
+# Help Version: Add for each new one here_
+# Note it is important that the order of the site.data.helpVersions is newest to oldest.
+- version: "V1_0_0"
+- version: "V0_8_0"
+- version: "V0_7_0"
+- version: "V0_6_0"

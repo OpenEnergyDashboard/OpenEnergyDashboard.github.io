@@ -1,0 +1,75 @@
+- title: home
+  url: "/"
+  side: left
+
+- title: "features"
+  url: "/features/"
+  side: left
+  dropdown:
+  - title: "features by type"
+    url: "/features/"
+  - title: "features by academic use"
+    url: "/useAcademic/"
+
+# _ not . as noted in config.
+# Help Version: update title version and add new version to dropdown.
+- title: "Documentation"
+  url: "/helpV1_0_0/user/"
+  side: left
+  dropdown:
+  - title: "oed version 1.0.0"
+    url: "/helpV1_0_0/user/"
+  - title: "oed version 0.8.0"
+    url: "/helpV0_8_0/user/"
+  - title: "oed version 0.7.0"
+    url: "/helpV0_7_0/user/"
+  - title: "oed version 0.6.0"
+    url: "/helpV0_6_0/user/"
+
+# - title: "Live Demo"
+#   url: "/demo/"
+#   side: left
+
+- title: "Adopting"
+  url: "/use/"
+  side: left
+
+- title: "info"
+  url: "/news/"
+  side: left
+  dropdown:
+  - title: "news"
+    url: "/news/"
+  - title: "project principles"
+    url: "/principles/"
+  - title: "free & maintained"
+    url: "/free/"
+  - title: "mission"
+    url: "/mission/"
+  - title: "why exists"
+    url: "/why/"
+  - title: "project information pages & license"
+    url: "/projectInfo/"
+  - title: "why OED name, logo & some history"
+    url: "/name/"
+
+- title: "Search"
+  url: "/search/"
+  side: right
+
+- title: "Contact"
+  url: "/contact/"
+  side: right
+
+- title: "developer docs"
+  url: "/developer/developer/"
+  side: right
+
+- title: "get involved"
+  url: "/involved/"
+  side: right
+  dropdown:
+  - title: "becoming a developer"
+    url: "/internship/"
+  - title: "student experience"
+    url: "/studentExperience/"
