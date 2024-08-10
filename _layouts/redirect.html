@@ -1,0 +1,25 @@
+---
+# This layout is used to redirect pages, if you moved them.
+# Use the following settings in front matter:
+# 
+# layout: redirect
+# sitemap: false
+# permalink: /old-location/
+# redirect_to:  /new-location/
+# 
+# Idea and Code by: http://codingtips.kanishkkunal.in/about/
+---
+{% capture redirectUrl %}{% if page.redirect_to contains 'http' %}{{ page.redirect_to }}{% else %}{{ site.url }}{{ site.baseurl }}{{ page.redirect_to }}{% endif %}{% endcapture %}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="canonical" href="{{ redirectUrl }}"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="refresh" content="0;url={{ redirectUrl }}" />
+</head>
+<body>
+    <h1>Redirecting...</h1>
+      {{ site.data.language.if_you_are_not_redirected_automatically }} <a href="{{ redirectUrl }}">{{ site.data.language.click_here }}</a>.
+      <script>location='{{ redirectUrl }}'</script>
+</body>
+</html>

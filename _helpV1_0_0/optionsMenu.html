@@ -1,0 +1,63 @@
+---
+layout: page-fullwidth
+title: Options Menu
+meta_title: "Options Menu Doc"
+subheadline: "OED Documentation"
+breadcrumb: true
+help: true
+helpType: User
+helpCategory: "Other Features"
+helpDescription: "Describes language choices, hide/show options and log in/out and choosing them."
+---
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+
+		<h2 id="overview">Overview</h2>
+		<p>OED allows one to control the displayed language, hide options and log in/out.</p>
+
+		<h2 id="usage">Usage</h2>
+		<p>The options are accessed by the "Options" dropdown menu in the top, right corner of the web
+			browser window (highlighted with a blue
+			box) as shown in the followings figure:</p>
+		<img alt="dropdown for OED options" src="../images/options.png">
+		<p>The page options are given next with a brief description. The provided link goes to another documentation page with
+			extensive information on each page.</p>
+		<ul>
+			<li><a href="../language/">Language</a>. Allows one to change the displayed language.</li>
+			<li><a href="../hideOptions/">Hide/Show options</a>. Allows one to hide the options on the left side of OED
+				graphic pages to save space. The option changes to show if they are already hidden. This is not
+				available if
+				OED has detected a small web browser window size and already hidden the options.</li>
+			<li>Log in. Allows one with a user name and password to access special parts of the site. It is
+				not used by a general user. It will become "Log out"" if you are already logged in and
+				OED will automatically log one out after a set period of time.
+				Once the "Log in" button is clicked, you will be taken to the login page shown in the next figure. Enter your
+                "Email" and "Password" and then click "Submit". If the credentials are correct then the web browser window will
+                take you back to the main OED screen. If there was an issue then a failure popup
+                will briefly appear and you will remain on the login page. If you do not know your admin login credentials then
+                check with the person who set up your OED site. If a site is unable to log in with any admin user then see the <a
+                href="../adminInstallation/">admin installation, create user</a> for additional documentation.</p>
+                <img alt="admin login page" src="../images/login.png">
+ 			<li>Help. Opens this documentation page.</li>
+		</ul>
+
+		<h2 id="details">Details</h2>
+		<p>When your session times out as, the next action you take will redirect you to the login page or note you
+			have logged out. After you
+			log in you are returned to the main OED page. Then you can click to get back to where you were.</p>
+		<p>OED will warn you if you have unsaved changes from some admin pages. You can choose to "Cancel" which stays on
+			that
+			page but does not save the changes, "Leave" that will leave the page without saving your changes, or "Save
+			all" that will save your changes to the database and leave the page. Any unsaved changes will not be permanent
+			and will not be
+			seen by users of your site. Note that OED can only detect that changes were made and not if you set them back to
+			the original values so you will be warned in this case. Also note that other users will not see changes until
+			they reload OED in the web browser.
+		</p>
+		<p>If admin edits are done around the same time by two different admins (or in different browsers/windows by a
+			single admin) then it is possible the outcome will be unexpected. Admin changes should only be done by one
+			person in one place at a time to avoid any issues.</p>
+</div>
+</div>

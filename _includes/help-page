@@ -1,0 +1,121 @@
+{% comment %}
+*
+* This include list all documentation pages and versions.
+* If a new type is created then it needs to be added here.
+* Arguments:
+*   OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this documentation.
+*   helpPage: true if being placed on a documentation page and otherwise not so likely for page listing.
+*
+* Example: {% include help-page OEDVersion=V1.0.0 helpType=admin helpPage=true %}
+*
+{% endcomment %}
+
+{% comment %}
+Assign local variables from parameters. It is assumed the directory/help collection
+is helpV1_0_0 (for example).
+{% endcomment%}
+{% assign OEDVersion = include.OEDVersion %}
+<!-- As noted in config, use _ not . in collection names. -->
+{% assign helpVersion = OEDVersion | replace: ".", "_" %}
+{% assign helpCollection = "help" | append: helpVersion %}
+{% assign helpPage = include.helpPage %}
+
+{% assign developerCollection = "developer" %}
+
+<div>
+    {% if page.helpType == "User" %}
+        {% assign helpType = "User" %}
+        <h5>{{ helpType }} documentation</h5>
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Navigation" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Graphing" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Meters/Groups" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Other Features" helpPage=helpPage %}
+    {% endif %}
+
+    {% if page.helpType == "User" or page.helpType == "Admin" %}
+        {% assign helpType = "Admin" %}
+        <h5>{{ helpType }} documentation</h5>
+        {% if page.helpType == "Admin" %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Management" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Data Acquisition" helpPage=helpPage %}
+            {% include list-help helpCollection=helpCollection helpType=helpType helpCategory="Site Installation" helpPage=helpPage %}
+        {% elsif page.helpType == "User" %}
+            <div style="padding-left: 1em;">
+                <a href="{{ site.url }}{{ site.baseurl }}{{ page.url }}../admin/">Admin help</a></br>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% if page.helpType == "Developer" %}
+        {% assign helpType = "Developer" %}
+        <h5>{{ helpType }} documentation</h5>
+        {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Information" helpPage=helpPage %}
+        {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Starting" helpPage=helpPage %}
+        {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Codebase Info" helpPage=helpPage %}
+        {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Further Details" helpPage=helpPage %}
+        {% include list-help helpCollection=developerCollection helpType=helpType helpCategory="Version Release" helpPage=helpPage %}
+    {% endif %}
+
+    {% if page.helpType == "Admin" %}
+        <h5>User documentation</h5>
+        <div style="padding-left: 1em;">
+            <a href="{{ site.url }}{{ site.baseurl }}{{ page.url }}../user/">User help</a></br>
+        </div>
+    {% endif %}
+
+    {% if page.helpType == "User" or page.helpType == "Admin" %}
+        <h5>Documentation versions for this page</h5>
+        <div style="padding-left: 1em;">
+            <!-- The following loops over all help version, determines if the one for this page is the loop version
+                 and the puts the label based on that. If page and loop version differs then it loops over the
+                 loop version to see if the file is in the collection and only gives a link if it is. -->
+            {% for item in site.data.helpVersions %}
+                {% assign helpVersionUsing = item.version %}
+                {% if helpVersionUsing == helpVersion %}
+                    {{OEDVersion}} (current page)</br>
+                {% else %}
+                    {% assign helpCollectionUsing = "help" | append: helpVersionUsing %}
+                    {% assign helpTargetLink = "/" | append: helpCollectionUsing | append: "/" | append: page.name | remove: ".html" | append: "/" %}
+                    {% for itemTwo in site.[helpCollectionUsing] %}
+                        {% if itemTwo.url contains helpTargetLink %}
+                            <a href="../..{{ helpTargetLink }}">{{ helpVersionUsing | replace: "_", "." }}</a></br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if helpPage == true %}
+            {% if page.helpType == "Admin" %}
+                <h5 id="usage">Usage</h5>
+                <p>In order to access any admin features, you must be <a href="../optionsMenu/">logged in</a> as an admin.
+                    Note this same log in procedure may be used for users with CSV, export and other logins.</p>
+            {% else %}
+                <h5>General documentation information</h5>
+                <p>Note that each version of OED has its own documentation pages. You will be taken to the latest version on the website and
+                    the version of OED you are running when you get documentation on an OED page. Some documentation pages do not exist in all
+                    versions of OED. For example, a feature may not have existed in earlier versions so there is not documentation page for
+                    that feature. If you select another version and the web browser gives you a "404 File not found" error then this
+                    is likely the case. You can use the web browser's back button to return to the page you were on to get back to
+                    the documentation system.
+                </p>
+                <p>The help icon
+                    <!-- Need to override the default size for most images on pages. -->
+                    <img alt="help icon" src="../images/helpIcon.png" width="17" height="18" style="min-width:17px; display: inline">
+                    can be clicked within OED to reveal information about the features(s) near the
+                    <!-- Need to override the default size for most images on pages. -->
+                    <img alt="help icon" src="../images/helpIcon.png" width="17" height="18"
+                        style="min-width:17px; display: inline">.
+                    That information generally contains a brief overview and links to help pages directly related to the feature
+                    being described. This context sensitive help can aid one while working with OED and leads to appropriate documentation
+                    pages.
+                </p>
+                <p>OED uses JavaScript for many features. You must have JavaScript enabled for the web browser page that contains
+                    OED. If JavaScript is not enabled then you will see "OED requires JavaScript to run correctly. Please enable
+                    JavaScript." when you load OED into the web browser page.</p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</div>

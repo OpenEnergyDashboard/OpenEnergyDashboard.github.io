@@ -1,0 +1,48 @@
+---
+layout: page-fullwidth
+title: Meter Viewing
+meta_title: "Meter Viewing Doc"
+subheadline: "OED Documentation"
+breadcrumb: true
+help: true
+helpType: User
+helpCategory: "Meters/Groups"
+helpDescription: "Describes the page where you can see details on meters. "
+---
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+
+		<h2 id="overview">Overview</h2>
+		<p>Meters are the lowest level of data in OED and central to the system. A meter is generally a device that
+			collects
+			data on resource usage. So that one can understand about the
+			meters
+			available, OED maintains the meter page to give details.</p>
+
+		<h2 id="usage">Usage</h2>
+		<p>Clicking on "Meters" (in blue rectangle in the following figure) under the <a href="../pageChoices/">Pages
+				dropdown</a> will go to the meters page. Once done, you will see what is in the next figure but note
+			that "Meters" is
+			grayed out since it was already selected.</p>
+		<img alt="meters page" src="../images/metersPage.png">
+		<p>Each meter is shown on its own card with the following information:</p>
+		<ol>
+			<li>Meter name: This is the name of the meter shown when <a href="../graphingMeters/">graphing
+					meters</a>. It is at the top of each card in blue. The cards are arranged from left to right and top
+				to
+				bottom alphabetically by the meter name.</li>
+			<li>Unit: This indicates the unit that the meter collects in. This is related but different than the <a
+					href="../graphingUnits/">graphing unit</a> used. Some information on the meter unit is given on the
+				<a href="../exampleDescription/">documentation example</a> page.</li>
+			<li>Default Graphic Unit: This tells the <a href="../graphingUnits/">graphing unit</a> used if one is not
+				already selected before this meter is chosen. </li>
+		</ol>
+
+		<h2 id="details">Details</h2>
+		<p>Admins can see other details about meters as explained on the <a href="../adminMeterViewing/">admin
+				meters</a>
+				documentation page.</p>
+	</div>
+</div>

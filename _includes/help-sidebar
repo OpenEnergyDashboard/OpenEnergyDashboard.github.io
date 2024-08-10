@@ -1,0 +1,35 @@
+{% comment %}
+*   
+*   This include creates the list all documentation pages and versions for a sidebar on a documentation page.
+*   Arguments:
+*     OEDVersion: OED version, e.g., V1.0.0 and this corresponds to the directory name used for this documentation.
+*                 Not used for developer
+*     helpType: tells if admin, developer or user to control information shown.
+*
+*   Example: {% include help-sidebar OEDVersion=V1.0.0 helpType=admin %}
+*   
+{% endcomment %}
+
+{% comment %}
+Assign local variables from parameters.
+{% endcomment%}
+{% assign OEDVersion = include.OEDVersion %}
+{% assign helpType = include.helpType %}
+
+<div class="medium-4 medium-push-8 columns" markdown="1">
+    <div class="panel radius" markdown="1">
+        <div style="list-style: none;" class="side-nav">
+            <!-- Add header since not done elsewhere. -->
+            {% if page.helpType == "Admin" %}
+                {% assign overviewLink = "admin" %}
+            {% elsif page.helpType == "Developer" %}
+                {% assign overviewLink = "developer" %}
+            {% else %}
+                {% assign overviewLink = "user" %}
+            {% endif %}
+            <h4><a href='../{{ overviewLink }}/'>Documentation overview</a></h4>
+
+            {% include help-page OEDVersion=OEDVersion helpType=helpType helpPage=false %}
+        </div>
+    </div>
+</div>

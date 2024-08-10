@@ -1,0 +1,57 @@
+{% comment %}
+*
+*   First the include captures the url and image in a
+*   separate variable to make the code better readable.
+*
+*   These variables are widget_url and widget_image
+*
+{% endcomment %}
+
+{% capture widget_url %}{% if include.widget.url == NULL %}{% elsif include.widget.url contains 'http' %}{{ include.widget.url }}{% else %}{{ site.url }}{{ site.baseurl }}{{ include.widget.url }}{% endif %}{% endcapture %}
+
+<!-- Changed so does not use default URL if image empty. -->
+{% capture widget_image %}{% if include.widget.image contains 'http' %}{{ include.widget.image }}{% elsif include.widget.image %}{{ site.urlimg }}{{ include.widget.image }}{% endif %}{% endcapture %}
+
+<!-- Makes widgets in row all the same size. -->
+{% unless include.noEqualize == true %}
+    {% assign dataEqualizerWatch = "data-equalizer-watch" %}
+{% endunless %}
+
+<!-- border-box includes the padding & border so it does not go over the grid size. Adding margin: 2px; would be nice but then it takes up more
+      space than the grid. If in Foundation 6 then could set to more columns to adust better.
+	  The panel leaves space between the rows.
+	  The equalizer keeps them all the same height.
+	  If small screen then it becomes a single column by default and that is okay.
+	  Considered adjusting the number of columns per row based on width of the row, e.g. size. but used JS and was more complex so did
+	  not do this. See https://stackoverflow.com/questions/17414070/detect-foundation-small-large-usage-in-javascript but maybe easier
+	  way in the future. -->
+<div class="medium-4 columns panel" {{dataEqualizerWatch}} style="box-sizing: border-box; padding: 15px; border: 15px ridge black; background-color: rgb(150, 210, 245)">
+	{% if include.widget.video %}
+		{{ include.widget.video }}
+	{% elsif widget_url == empty %}
+		{% if widget_image != empty %}<img src="{{ widget_image }}" alt="" />{% endif %}
+	<!-- Don't require any in OED so changed else to elsif -->
+	{% elsif widget_image != empty %}
+		<a href="{{ widget_url }}">
+			{% if widget_image != empty %}<img src="{{ widget_image }}" alt="" />{% endif %}
+		</a>
+	{% endif %}
+	<h2 class="font-size-h3 t10">{{ include.widget.title }}</h2>
+
+	{% if include.widget.text != empty %}<p>{{ include.widget.text }}</p>{% endif %}
+	{% if widget_url != empty %}
+		{% if include.widget.url contains 'http' %}
+			{% assign external = 'target="_blank"' %}
+		{% endif %}
+		<!-- TODO Want less space at bottom of box. margin:0 helps a little but not much. See above for temporary hack. -->
+		<p style="margin: 0;">
+			<a class="button tiny radius" href="{{ widget_url }}" {{external}}>
+			{% if include.widget.more %}
+				{{ include.widget.more}}
+			{% else %}
+				{{ site.data.language.more }}
+			{% endif %}
+			</a>
+		</p>
+	{% endif %}
+</div>

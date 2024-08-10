@@ -1,0 +1,57 @@
+---
+layout: page-fullwidth
+title: Pages
+meta_title: "Pages Doc"
+subheadline: "OED Documentation"
+breadcrumb: true
+help: true
+helpType: Admin
+helpCategory: "Information"
+helpDescription: "Describes the pages dropdown"
+---
+<div class="row">
+	{% include_relative _version %}
+	{% include help-sidebar OEDVersion=OEDVersion helpType=admin %}
+	<div class="medium-8 medium-pull-4 columns" markdown="1">
+		{% include adminInfo.html %}
+
+		<h2 id="overview">Overview</h2>
+		<p>In addition to choosing the type of graphic to see, OED maintains several other pages for admins to maintain
+			OED.</p>
+
+		<h2 id="usage">Usage</h2>
+		<p>There are several pages available to admin users that are accessed by the "Pages" dropdown menu in the top,
+			right
+			corner of the web
+			browser window (highlighted with a blue
+			box) as shown in the followings figure:</p>
+		<img alt="dropdown to navigate to OED pages" src="../images/adminPageChoices.png">
+		<p>The dropdown choices are given next with a brief description where the provided link goes to another documentation
+			page
+			with
+			extensive information on that page.</p>
+		<ul>
+			<li><a href="../adminConversionViewing/">Conversions</a>. This shows details on each conversion along with
+				the
+				ability to edit or create a new one.</li>
+			<li><a href="../adminCsvImport/">CSV</a>. This allows for upload of a CSV file with meters or readings.
+			</li>
+			<li><a href="../adminGroupViewing/">Groups</a>. This shows details on each group along with the
+				ability to edit or create a new one.</li>
+			<li><a href="../adminMapViewing/">Maps</a>. This shows details on each map along with the
+				ability to edit or create a new one.</li>
+			<li><a href="../adminMeterViewing/">Meters</a>. This shows details on each meter along with the
+				ability to edit or create a new one.</li>
+			<li><a href="../adminUnitViewing/">Units</a>. This shows details on each unit along with the
+				ability to edit or create a new one.</li>
+			<li><a href="../adminPreferences/">Admin Panel</a>. This shows details on site preferences and users along
+				with
+				the
+				ability to modify them.</li>
+			<li>Help. Opens this documentation page.</li>
+		</ul>
+
+		<h2 id="details">Details</h2>
+		<p>None</p>
+	</div>
+</div>

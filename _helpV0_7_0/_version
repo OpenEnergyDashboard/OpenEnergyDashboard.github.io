@@ -1,0 +1,59 @@
+<!-- Help Version: update version -->
+{% assign OEDVersion = "V0.7.0" %}
+{% assign OEDVersionUnderscore = OEDVersion | replace: ".", "_" %}
+<p>Version {{ OEDVersion }}</p>
+{% assign currentVersion = site.helpCurrent | replace: "help", "" | replace: "_", "." %}
+{% if OEDVersion != currentVersion %}
+    <!-- Only give a newer version if it exists.
+        The following loops over all help version, determines if the one for this page is the loop version
+        and the puts the label based on that as long as it has not reached the current page version.
+        If page and loop version differs then it loops over the
+        loop version to see if the file is in the collection and only gives a link if it is.
+        Note it is important that the order of the site.data.helpVersions is newest to oldest. -->
+    {% for item in site.data.helpVersions %}
+        {% assign helpVersionUsing = item.version %}
+        {% if helpVersionUsing == OEDVersionUnderscore %}
+            <!-- Reached the current version so no newer one. -->
+             {% assign atCurrentVersion = true %}
+            {% break %}
+        {% else %}
+            {% assign helpCollectionUsing = "help" | append: helpVersionUsing %}
+            {% assign helpTargetLink = "/" | append: helpCollectionUsing | append: "/" | append: page.name | remove: ".html" | append: "/" %}
+            {% for itemTwo in site.[helpCollectionUsing] %}
+                {% if itemTwo.url contains helpTargetLink %}
+                    <!-- Found a version to use so note and stop looking since want latest one. -->
+                    {% assign currentHelpVersion = item %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+         {% endif %}
+         {% if currentHelpVersion %}
+            <!-- The break in the else above only gets out of the inner for loop so
+                break again if found a version to use. -->
+             {% break %}
+         {% endif %}
+    {% endfor %}
+    {% if currentHelpVersion or atCurrentVersion %}
+        <!-- There is a newer version of the page or it is at the current version. -->
+        {% if currentHelpVersion %}
+            <!-- Warn that newer version of page. -->
+            {% assign currentHelpVersionDot = currentHelpVersion.version | replace: "_", "." %}
+            {% assign link = site.url | append: site.baseurl | append: "/help" | append: currentHelpVersion.version | append: "/" | append: page.name | replace: ".html", "/" %}
+            {% assign msg = "The latest version of this page is <a href='" | append: link | append: "'>" | append: currentHelpVersionDot | append: "</a>." %}
+        {% endif %}
+        {% if  currentVersion != currentHelpVersionDot or atCurrentVersion %}
+            <!-- The latest of this page is not the latest help so add index of latest help.
+                This means this page does not exist in the latest version of help. -->
+            {% if page.helpType == "Admin" %}
+                {% assign targetPage = "/admin/" %}
+            {% else %}
+                {% assign targetPage = "/user/" %}
+            {% endif %}
+            {% assign msgAppend = " The latest version of the documentation is <a href='" | append: site.url | append: site.baseurl | append: "/" | append: site.helpCurrent | append: targetPage | append: "'>" | append: currentVersion | append: "</a>."  %}
+        {% endif %}
+    {% endif %}
+    {% assign msg = msg | append: msgAppend %}
+    {% if msg %}
+        {% include alert info=msg %}
+    {% endif %}
+{% endif %}

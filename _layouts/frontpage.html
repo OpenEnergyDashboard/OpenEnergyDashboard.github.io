@@ -1,0 +1,111 @@
+---
+layout: default
+format: frontpage
+---
+<div id="header-home">
+    <div class="row">
+        <div class="small-12 columns">
+        </div><!-- /.medium-4.columns -->
+    </div><!-- /.row -->
+</div><!-- /#header-home -->
+
+
+{% comment %}
+*
+* First, if there is content, spit it out.
+*
+{% endcomment %}
+
+<div class="row">
+    {{ content }}
+</div><!-- /.row -->
+
+<!-- Makes widgets in same row the same size if noEqualize is not true. -->
+{% unless page.noEqualize == true %}
+    {% assign dataEqualizer = "data-equalizer" %}
+{% endunless %}
+
+<!-- Loops over all widgets to add to page after content. It does three widgets per row. -->
+{% for widget in page.widgets %}
+    <!-- itemInRow is what item number this is in the row starting at 0. -->
+    {% assign itemInRow = forloop.index0 | modulo: 3 %}
+    {% if itemInRow == 0 %}
+        <!-- First item in row so start the row. Make it so all items are the same height
+         if dataEqualizer set above. -->
+        <div class="row" {{dataEqualizer}}>
+    {% endif %}
+    {% include _frontpage-widget.html widget=widget noEqualize=page.noEqualize %}
+    {% if itemInRow == 2 or forloop.last %}
+        <!-- If the last item in the row or the last overall item then end the row. -->
+        </div>
+    {% endif %}
+{% endfor %}
+
+
+{% comment %}
+*
+* First check, if there is a call for action-button
+*
+{% endcomment %}
+{% if page.callforaction.url contains 'http' %}
+{% assign url = '' %}
+{% else %}
+{% capture url %}{{ site.url }}{{ site.baseurl }}{% endcapture %}
+{% endif %}
+{% if page.callforaction %}
+    <div class="row t60 b60">
+        <div class="small-12 text-center columns">
+            <a class="button large radius {{ page.callforaction.style }}" href="{{ url }}{{ page.callforaction.url }}"{% if page.callforaction.url contains 'http' %} target="_blank" {% endif %}>{{ page.callforaction.text }}</a>
+        </div><!-- /.small-12.columns -->
+    </div><!-- /.row -->
+{% endif %}
+
+
+
+{% comment %}
+*
+* First check, if there are any posts at all
+*
+{% endcomment %}
+
+{% unless site.posts == empty %}
+    <div class="row t30 b20 homepage">
+        <div class="small-12 columns">
+            {% for post in site.posts limit:1 %}
+            {% if post.image.homepage %}
+            <p>
+                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="{{ post.title | escape_once }}"><img width="970" src="{{ site.urlimg }}{{ post.image.homepage }}" alt="{{ page.title | escape_once }}"></a>
+            </p>
+
+            {% if post.image.caption_url and post.image.caption %}
+            <p class="text-right caption">
+                <a href="{{ post.image.caption_url }}">{{ post.image.caption }}</a>
+            </p>
+            {% endif %}
+            {% else post.image.homepage == NULL %}
+            <h2>{{ site.data.language.new_blog_entries }}</h2>
+            {% endif %}
+            {% endfor %}
+        </div><!-- /.small-12.columns -->
+    </div><!-- /.row -->
+
+
+    <div class="row">
+        <div class="medium-6 columns">
+            {% for post in site.posts limit:1 %}
+            {% if post.subheadline %}<p class="subheadline">{{ post.subheadline }}</p>{% endif %}
+            <h2><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+            <p>
+                {% if post.meta_description %}{{ post.meta_description | strip_html | escape }}{% else post.teaser %}{{ post.teaser | strip_html | escape }}{% endif %}
+                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="Read {{ post.title | escape_once }}"><strong>{{ site.data.language.read_more }}</strong></a>
+            </p>
+            {% endfor %}
+        </div><!-- /.medium-5.columns -->
+
+
+        <div class="medium-6 columns">
+            <p><strong>{{ site.data.language.more_articles }}</strong></p>
+            {% include list-posts entries='4' offset='1' %}
+        </div><!-- /.medium-7.columns -->
+    </div><!-- /.row -->
+{% endunless %}
