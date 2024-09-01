@@ -14,308 +14,477 @@ helpDescription: "How to begin coding development with OED."
     <div class="medium-8 medium-pull-4 columns" markdown="1">
         {% include developerInfo.html %}
 
-        <p>The following steps should get you ready to contribute to OED in a fairly short period of time. Please know
-            that
-            we are here to help you so use the link at the bottom of the page to email/message us with any issues.</p>
+        {% comment %}
+        It does not seem possible to have Liquid tags in an alert so the URL does not have the usual {{ site.url }}{{
+        site.baseurl }} in it.
+        {% endcomment %}
+        {% include alert info='OED appreciates that there is a lot of information and details on this page. They were
+        developed from the experience of many developers. It is normally the case that developers that carefully follow
+        the directions have no issues and can quickly and readily get OED working. If one does this and still have
+        issues
+        then please <a href="/contact/">contact us</a>.' %}
 
-        <h3>Prerequisites</h3>
+        <p>This page has the following main sections:</p>
         <ol>
-            <li>First, we strongly encourage you to contact the OED project as a potential developer. You can join our
-                Discord channel with this <a href="https://discord.com/invite/zP6nHVspet">Discord invite link</a> or <a
-                    href="{{ site.url }}{{ site.baseurl }}/contact/">contact us</a>. That way we know about you and can
-                help
-                you select tasks that will be interesting to you and also benefit the project.</li>
-            <li>Before you can submit work to OED, you need to sign the <a href="../cla/">Contributor's License
-                    Agreement</a>.</li>
-            <li>The OED project resides on <a href="https://github.com/" rel="noopener noreferrer">GitHub</a> so you
-                need a
-                login to contribute to the project.</li>
-            <li>If you are using Windows 10+ then you will probably want to use the Windows Subsystem for Linux (WSL)
-                that
-                allows Docker to run on Windows. Please see this page for the steps you need to follow <a
-                    href="../wslSteps/">these extra steps</a>. Installing WSL before Docker is helpful with the setup.
-                <strong>Please be sure to see the information on the WSL page (link earlier in this bullet) about using
-                    the
-                    Linux filesystem for OED and running Visual Studio Code under WSL if you are using Windows. You need
-                    to
-                    read this even if you already had WSL and/or Visual Studio Code.</strong>
-            </li>
-            <li>OED uses the Docker container system to run the software so you need to <a
-                    href="https://www.docker.com/products/docker-desktop/" rel="noopener noreferrer">download</a> and
-                install
-                Docker. (You need both Docker and docker compose but you generally get those together during the
-                install.)
-                There are paid subscriptions but your non-commercial work on the OSS OED project does not require a paid
-                subscription. This has the advantage that our configuration files for Docker can get any needed software
-                and
-                also means we do not modify your normal system since the setup is in a separate container that does not
-                impact other programs on your computer. Note that Docker should run on all OSes (Linux, Mac OS X,
-                Windows -
-                see above for information on using WSL on Windows) so you should be able to use it.</li>
-            <li>You are welcome to use any IDE for code development. Having said that, most OED developers use <a
-                    href="https://code.visualstudio.com/" rel="noopener noreferrer">Visual Studio Code</a> (VSC). The
-                OED
-                repository contains the .devcontainer folder that allows VSC to automatically launch and set up the
-                needed
-                Docker containers. There are a number of advantages to this system including that it puts in the
-                extensions
-                that OED thinks are valuable, gives a guaranteed environment to work with OED and avoids you having to
-                separately install OED. Thus, you are encouraged to <a
-                    href="https://code.visualstudio.com/Download">install
-                    VSC</a> (if you don't already have it. The directions for working outside VSC follow the ones for
-                VSC.
-                <ul>
-                    <li>Once you have VSC installed, you need to add one extension to it so you can work with the OED
-                        container. Click on the Extensions manager icon on the far left of the VSC window (<img
-                            alt="VSC Extension icon" src="../images/VSCExtensions.png">), search for "Remote Development"
-                        and
-                        install it. You will get several Extensions included with this one.</li>
-                </ul>
-            <li>OED uses the fork model for development. (There are many descriptions of this process on the web but
-                GitHub
-                ones include a <a href="https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project"
-                    rel="noopener noreferrer">general one</a> and one with <a
-                    href="https://docs.github.com/get-started/quickstart/fork-a-repo" rel="noopener noreferrer">more
-                    operational details</a>.) This means you need to go to the main OED GitHub page (after login to
-                GitHub),
-                fork the project onto your own GitHub account and then clone the forked copy onto you own development
-                machine to work on the code base. You can place the clone anywhere you want on your machine but please
-                note
-                what is stated on the WSL page linked above about where it should go on WSL. Note the clone will place
-                all
-                the files inside a new directory named OED unless you put a "." at the end of the <code>git clone</code>
-                command. This model has the advantage that you can commit and push to your account without needing write
-                permission on the main OED project repository. There are <a href="../pr/">separate directions</a> of
-                the
-                steps for creating a pull request to integrate your code into OED. </li>
+            <li><a href="#prerequisites">Prerequisites</a>: Steps/information needed before starting installation
+                including the <a href="#cla">Contributors License Agreement</a> and <a href="#windowsOS">Windows OS
+                    considerations</a>.</li>
+            <li><a href="#github">GitHub</a>: Using GitHub to get the OED repository (and a link for how to create pull
+                requests).</li>
+            <li><a href="#docker">Docker</a>: Getting Docker used for OED installation.</li>
+            <li><a href="#ide">IDE</a>: The development IDE, esp. VSC.</li>
+            <li><a href="#terminalInstall">Install and run OED in a terminal</a>: This is the current recommended way to
+                run OED.</li>
+            <li><a href="#usingOED">Using OED</a>: Using OED in a web browser and verifying it works correctly.</li>
+            <li><a href="#VSCExtentions">OED Recommended VSC extensions</a></li>
+            <li><a href="#OEDDockerTerminal">Using an OED Docker terminal</a>: How to run OED commands and access the
+                Docker containers.</li>
+            <li><a href="#DockerInfo">Getting OED Docker information</a></li>
+            <li><a href="#testData">OED test data</a>: Loading standard developer data into OED.</li>
+            <li><a href="#technologies">Technologies OED uses</a></li>
+            <li><a href="#multiauthor">Multi-author work</a>: Suggestions on how teams can properly acknowledge group
+                work.</li>
+            <li><a href="#issues">Issues</a>: What to do if one has issues.</li>
+            <li><a href="#VSCInstall">Install and run OED in a VSC container</a>: Another way to run OED (not the
+                currently recommended one).</li>
+            <li><a href="#help">Getting help</a></li>
         </ol>
 
-        <h3>Installing OED in Visual Studio Code</h3>
-        <ol>
-            <li>Make sure you have Docker running on your system so OED can use it to get running.</li>
-            <li>Assuming you are using VSC, you will do the following (steps to setup outside VSC are below):
-                <ol>
-                    <li>Open the cloned OED repository that is on your local machine in VSC by doing File -> Open
-                        Folder...
-                        You need to open the main OED folder that was created when you cloned OED. It has the README.md
-                        file, the src/ directory, the package.json file and lots of other files. </li>
-                    <li>Typically, VSC will ask if you want to reopen the folder in a container by showing this
-                        message:<br>
-                        <img alt="VSC container msg" src="../images/VSCContainerMsg.png"
-                            style="width: 25vw; min-width: 200px;">
-                        <p>You can click the button "Reopen in Container". You will often see a popup in VSC that
-                            indicate
-                            you can click to see the log:</p> <img alt="VSC container msg" src="../images/VSCDevLog.png"
-                            style="width: 25vw; min-width: 200px;">
-                        <p>The first time OED installs it can take a while where the time depends on the speed of your
-                            machine and internet connection (to get the needed npm packages). You can see the output of
-                            the
-                            install and anything OED outputs to the console by looking at the file nohup.out that will
-                            be
-                            created in your main OED directory. If you open this in VSC it should update with new lines
-                            at
-                            the bottom as they are added. See <a href="../fullInstallOutput/">full install output</a>
-                            or <a href="../noNPMInstallOutput/">install without Postgres or npm install output</a> to
-                            see a
-                            typical install output and for information if something goes wrong.</p>
-                        <p>If VSC does not automatically ask to open in a container, you can click the "Remote
-                            Container"
-                            icon (<img alt="VSC Remote Container icon" src="../images/VSCRemoteIcon.png" width="32"
-                                height="26" style="min-width:32px; display: inline">) that is normally in the bottom,
-                            left of the VSC
-                            window and select "Reopen in Container" for the menu that appears. </p>
-                        <p>Once OED is running you should be able to see the web and database Docker containers. See <a
-                                href="#VSCInfo">Useful VSC information</a> for more info on doing this.</p>
-                        <p>You can shut down the OED VSC container by clicking the green icon for the Remote Container
-                            and
-                            selecting "Close Remote Container"</p>
-                    </li>
-                </ol>
-        </ol>
+        {% include alert info='These directions refer to a terminal. This is sometimes called a shell.' %}
 
-        <h3>Using OED</h3>
-        <ol>
-            <li>Once you have OED installed and running, you will want to open it in a web browser. It should not matter
-                which one you use. Enter the address:<code>localhost:3000</code> and load the page. "localhost"
-                indicates
-                the page is being served up from your machine and "3000" is the default port that OED uses to accept web
-                connections. If all went well, you will see the main OED web page that looks something like:</li>
-            <p><img alt="OED Main Page" src="../images/startupMainPage.png" /></p>
-            <p>If you see that then the basic OED install worked and your system is properly serving up the OED web
-                system.</p>
-            </li>
-            <li>Though not common, it is possible for the OED web system to run without starting the underlying database
-                system. To verify that the database is running properly, you should <a
-                    href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/optionsMenu/">log into OED</a> as the admin. The username and password were
-                shown during the install process. By default they are:<br> email: test@example.com<br> password:
-                password<br> Yes, the password really is password but remember it is running on your local machine in a
-                container so it should not be accessible to others. If it fails you should see a message appear briefly
-                in
-                the top, right corner of the page. If this happens, please follow the <a href="#sendConsole">steps
-                    below</a>
-                to email us the output in your terminal. </li>
-            <li>If all went well, you now have a fully running development version of OED that can be used to begin
-                coding.
-                Congratulations!</li>
-        </ol>
+        {% include alert info='These directions refer to changing to the main OED directory. This is the directory with
+        the <code>CODE_OF_CONDUCT.md</code> and other files. To do this in a Unix/Linux terminal use
+        <code>cd &lt;directory with cloned OED&gt;</code>. One needs to replace
+        <code>&lt;directory with cloned OED&gt;</code> with the location of the cloned copy of OED. Some people find it
+        easiest to locate that directory using the file manager on their OS and then use that information to get to the
+        needed directory. As an example, one might do <code>cd /home/username/projects/OED</code> if one cloned OED in
+        the <code>/home/username/projects/</code> directory and used <code>git clone</code> without a . (period) at the
+        end.' %}
 
-        <h3>OED test data</h3>
-        <p>When you install OED, it does not have any data. An actual site would connect up meters to gather data. For
-            a developer, we have standard test data you can use. The <a href="../testData/">OED test data</a> page has
-            information and directions for doing this. We suggest you load up the data now so you can try any features
-            you want in OED. Note that an advantage of this test data is that it is the same for all developers so
-            people should be able to reproduce what you mention if you have a question or issue.
+        <p>The following steps should get one ready to contribute to OED in a fairly short period of time. Please know
+            that OED is here to help so see the <a href="#help">help section</a> at the bottom of the page if one
+            need it.
         </p>
 
-        <h3>Technologies OED uses</h3>
-        <p>OED uses a number of technologies. You may want further information on these and some are provided on the <a
-                href="../learningTechnologies/">OED technologies page</a>. We welcome your input on other areas you
-            would like
-            to know about or other resources you find valuable. Note that you can work on parts of OED without knowing
-            many of the technologies in any depth. For example, you can work on database queries without knowing about
-            the front-end. Thus, many developers begin in areas they know or want to learn first and focus on that
+        <h3 id="prerequisites">Prerequisites</h3>
+
+        <h4>Stay in contact with the OED project</h4>
+        <p>We strongly encourage anyone to contact the OED project as a potential developer. Visit our <a
+                href="{{ site.url }}{{ site.baseurl }}/contact/">contact us</a> page to join our Discord channel or
+            reach our contact form. Doing this lets us know about you and OED can help you select tasks that will be
+            interesting to you and also benefit the project.</p>
+
+        <h4 id="cla">Contributor License Agreement</h4>
+        <p>Before one can submit work to OED, one needs to sign the <a href="../cla/">Contributor's License
+                Agreement</a>.</p>
+
+        <h4 id="windowsOS">Windows OS</h4>
+        <p>If one is using Windows OS (version 10+) then one will want to use the Windows Subsystem for Linux (WSL)
+            that allows Docker to run on Windows.</p>
+
+        {% include alert windowsOS='Information for Windows OS developers will be displayed as shown here. It is
+        important and generally necessary for success to follow the steps/information given in these items.' %}
+
+        {% include alert windowsOS='Make sure ones WSL is fully installed correctly, following <a
+            href="https://learn.microsoft.com/en-us/windows/wsl/install" rel="noopener noreferrer">these steps</a>. One
+        should <strong>not</strong> use WSL-1. Installing WSL before Docker is helpful with the setup.' %}
+
+        {% include alert windowsOS='These directions refer to Ubuntu since it is the most common Linux used with WSL and
+        OED. However, any version of Linux should work similarly. If one does not care about the version of Ubuntu used,
+        OED suggests the latest LTS (Long Term Support) version as that is very stable and supported. Other version
+        should work fine.' %}
+
+        <h3 id="github">GitHub</h3>
+        <p>The OED project resides on <a href="https://github.com/" rel="noopener noreferrer">GitHub</a> so one
+            needs a login to contribute to the project.</p>
+        <p>OED uses the fork model for development. (There are many descriptions on the web of this process if one is
+            not familiar with it. The GitHub ones include a <a
+                href="https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project"
+                rel="noopener noreferrer">general one</a> and one with <a
+                href="https://docs.github.com/get-started/quickstart/fork-a-repo" rel="noopener noreferrer">more
+                operational details</a>.) The basic steps are:</p>
+        <ol>
+            <li>If not already logged into ones GitHub account then do that.</li>
+            <li>Go to the <a href="https://github.com/OpenEnergyDashboard/OED">main OED GitHub page</a> where the OED
+                code resides.</li>
+            <li>Fork the OED project onto ones own GitHub account by clicking the <img alt="GitHub Fork button"
+                    src="../images/forkButton.png">. After this completes, one should have a copy of the OED repository
+                on
+                ones own GitHub account.</li>
+            <li>Clone the OED repository onto ones own development machine. The URL for cloning can be found by going to
+                ones GitHub page, going to ones OED repository (the one forked), and clicking on the green "Code" drop
+                down (<img alt="GitHub clone URL" src="../images/cloneURL.png">). Note the clone will place all the
+                files inside a new directory named OED unless one put a . (period) at the end of the
+                <code>git clone</code> command, i.e.,
+                <code>git clone &lt;web location of ones OED GitHub fork&gt; .</code> where one replaces
+                <code>&lt;web location of ones OED GitHub fork&gt;</code> with the actual location of one's OED fork.
+            </li>
+        </ol>
+        {% include alert warning='If one clones from the OED GitHub page rather than the clone from ones account of the
+        forked version then one will not be able to easily push ones changes since one cannot write to the OED
+        repository. This should be avoided.' %}
+        {% comment %}
+        Could not get either html or markdown lists to work inside an alert so doing manually.
+        {% endcomment %}
+        {% include alert windowsOS='When using WSL, it is critical that one places the clone of OED on the Ubuntu file
+        partition. Due to differences in how files are stored between Windows OS and Ubuntu, esp. the line ending
+        character(s), failure to do this will lead to issues where code changes will not automatically be updated in the
+        OED code bundle. This is consistent with the best practices given in the <a
+            href="https://docs.docker.com/desktop/wsl/best-practices/" rel="noopener noreferrer">Docker WSL
+            information</a> (at least when this was written). The following steps will properly do this:
+        <br>1. Open an Ubuntu terminal. One can search for "Ubuntu" from the Windows "Start" menu.<br><img
+            alt="getting to Ubuntu terminal" src="../images/ubuntu.png"><br>This should open a terminal
+        within the Ubuntu WSL system.
+        <br>2. As desired, create a directory for the OED clone and <code>cd</code> to it. Note one can skip this
+        and adding the . (period) at the end of the <code>git clone</code> if one is okay with it in the OED
+        directory under the home directory of ones Ubuntu account.
+        <br>3. Clone OED as described at the start of this step.' %}
+        <p>This model has the advantage that one can commit and push to their account without needing write
+            permission on the main OED project repository.</p>
+        <p>There are <a href="../pr/">separate directions</a> of the steps for
+            creating a pull request to integrate ones code into OED.</p>
+
+        <h3 id="docker">Docker</h3>
+        <p>OED uses the Docker container system to run the software so one needs to <a
+                href="https://www.docker.com/products/docker-desktop/" rel="noopener noreferrer">download</a> and
+            install Docker. (One needs both Docker and docker compose but one generally gets those together during the
+            install.) There are paid subscriptions but ones non-commercial work on the Open Source Software OED project
+            does not require a paid subscription. This has the advantage that our configuration files for Docker can get
+            any needed software and also means OED does not modify ones normal system since the setup is in a separate
+            container that does not impact other programs on ones computer. Note that Docker should run on all OSes so
+            one should be able to use it.</p>
+        {% include alert info='One must have Docker running to be able to start OED. If it is not running then one will
+        get error messages. One example is <code>bash: /usr/bin/docker: No such file or directory</code> but others
+        happen. Note that if one runs within the VSC container then it may automatically try to start Docker.' %}
+        {% include alert windowsOS='Make sure Docker is correctly configured to work with WSL following <a
+            href="https://docs.docker.com/desktop/wsl/" rel="noopener noreferrer">these steps</a>.' %}
+
+        <h3 id="ide">IDE (often VSC)</h3>
+        <p>One is are welcome to use any IDE for code development. Having said that, most OED developers use <a
+                href="https://code.visualstudio.com/" rel="noopener noreferrer">Visual Studio Code</a> (VSC).</p>
+
+        <h4>tabs vs spaces</h4>
+        <p>OED expects all coding files to use tabs and not spaces for indenting. The rationale is each developer can
+            choose how many spaces to use for each tab. If one uses the <a href="#VSCExtentions">ESLint VSC
+                extension</a> then it should note any violations. The following may be useful to VSC users:</p>
+        <ul>
+            <li>One can tell if VSC is using spaces or tabs by looking at the information at the bottom of the VSC
+                window.
+                This highlights that VSC is usings spaces: <img alt="VSC spaces info"
+                    src="../images/VSCSpacesTabs.png" />.</li>
+            <li>Onme can switch between spaces and tabs by clicking the spaces information shown above and select
+                "Indent
+                Using Tabs" as highlighted here: <br><img alt="VSC spaces to tabs for indent"
+                    src="../images/VSCIndentTabs.png" /> </li>
+            <li>To convert the existing spaces to tabs, click the spaces information shown above and select "Convert
+                Indentation to Tabs" as highlighted here: <br><img alt="VSC convert spaces to tabs for indent"
+                    src="../images/VSCConvertTabs.png" /> </li>
+            <li>These VSC setting may help with controlling indentation: <br><img alt="VSC indent settings"
+                    src="../images/VSCIndentSettings.png" /> </li>
+        </ul>
+
+        {% include alert windowsOS='It is important one opens the OED directory in VSC within WSL. While it is fine to
+        use the VSC command <code>WSL: Open Folder in WSL...</code>, it can be difficult to get to the Ubuntu
+        partition the first time. It is often easier to do the following:
+        <br>1. Open an Ubuntu terminal. One can search for "Ubuntu" from the Windows "Start" menu.<br><img
+            alt="getting to Ubuntu terminal" src="../images/ubuntu.png"><br>This should open a terminal
+        within the Ubuntu WSL system.
+        <br>2. Go to the directory with the main OED file.
+        <br>3. Enter <code>code .</code> and hit enter/return. This should start VSC on ones Windows OS system in the
+        main OED directory as a normal window using the WSL system. Note the first time Linux may need to install VSC
+        for use with Ubuntu; this normally happens automatically on Ubuntu. Note one should probably <a
+            href="#ide">install VSC</a> on Windows before doing this.
+        <br>If this worked correctly, one will see "[WSL: Ubuntu]" in the VSC "File Explorer" as
+        seen here:
+        <br><img alt="WSL indicated in VSC File Explorer" src="../images/VSCWSL.png">.
+        <br>After opening the first time, one should be able to start VSC directly in Windows using the normal icon and
+        have this directory in the recently used ones. One can repeat these steps for a new clone or if the directory is
+        not shown in the recently opened ones. If one ever has a folder open outside WSL but it is actually on WSL then
+        one can use the command to reopen in WSL (sometimes VSC will suggest one do that). It is very important that VSC
+        show it is using WSL as in the figure
+        above.' %}
+
+        <h3 id="terminalInstall">Install and run OED in a terminal</h3>
+        {% comment %}
+        Could not get <p> to work correctly so using manual breaks.
+            {% endcomment %}
+            {% include alert warning='The OED repository contains the files necessary to automatically start OED in a
+            VSC Docker container. Note this is a different container from the two Docker containers that OED uses to
+            run. While this has some advantages as given below in the <a href="#VSCInstall">section on running with the
+                OED VSC container</a>, OED developers are currently experiencing failures when doing this. Given this,
+            OED developers are encouraged to install/run OED as described in this section rather than using the VSC
+            Docker container. Note this method generally starts up faster and uses less CPU/memory on ones computer.
+            <br>After opening the OED directory in VSC, VSC will typically ask if one wants to reopen the folder
+            in a container by showing this message: <br><img alt="VSC container msg" src="../images/VSCContainerMsg.png"
+                style="width: 25vw; min-width: 200px;"> <br>To avoid opening in the VSC Docker container, click to close
+            this alert. If one does not want to see this again, click the "Don\'t Show Again..." button.' %}
+
+        <p>While there is <a href="../devDetails/">further information</a> on more advanced options for doing this, the
+            initial install can be done by following these steps:</p>
+        <ol>
+            {% include alert windowsOS='It is best that the terminal be in WSL/Ubuntu. If one followed the directions
+            above to get VSC in WSL then the terminal opened in VSC will be in WSL/Ubuntu.' %}
+            {% include alert info='One should not close this terminal until OED is shut down because it will receive all
+            OED server message that can be valuable.' %}
+            <li>Open a terminal on ones computer. It is fine to use a terminal within VSC. In the terminal do the
+                following:
+                <ol>
+                    {% include alert info='If one opened the terminal within VSC while in the main OED directory then it
+                    will normally already be in the main OED directory and not need the next step. If not, one will need
+                    to switch to that directory.' %}
+                    <li><code>cd "main OED directory"</code></li>
+
+                    {% include alert warning='In the past, some developers have used npm or other commands to start OED.
+                    OED recommends against doing this as it can cause issues with running and developing OED.' %}
+
+                    <li><code>docker compose up</code>
+                        {% include alert info='Note that on some systems (mostly some Linux systems), depending on how
+                        one installed Docker, one may get a permission error so one will need to do:
+                        <code>sudo docker compose up</code> which runs the process with root privileges. If this is the
+                        case then one needs to do sudo before all docker commands on thieir system or address this more
+                        globally.' %}
+                        This will run the entire OED install process.
+                        <br>Depending on the speed of ones machine and internet connection, this may take a few minutes.
+                        It should go faster after the first install. One will see a lot of output in the terminal where
+                        one started OED about installing the database (Postgres), getting needed packages (<strong>this
+                            can take a while so one may not see output for a while</strong>) and starting up the web
+                        system. Toward the end of the output one should see two items: <ul>
+                            <li><code>web-1       | webpack 5.76.3 compiled successfully in 975 ms</code> where the
+                                exact
+                                information may vary. What is important is it says <code>successfully</code>. If it has
+                                a failure message then something went wrong. </li>
+                            <li><code>web-1       | &lt;s&gt; [webpack.Progress] 100%</code>. One will see a number of
+                                other lines with less than 100%. This final line indicates the build is done and the OED
+                                web server is ready to accept requests from a web browser.</li> {% include alert
+                            warning='If one makes a web request before this line appears then one may get a connection
+                            denied, the old version (if making code changes) or an improper web page. Note the OED
+                            Docker containers will be started/running before OED can accept web connections.' %}
+                    </li>
+                </ol>
+            </li>
+            <li>To stop OED, go to the terminal where OED was started and enter a <strong>single ^c</strong> (control
+                and letter c). If a second ^c is entered then it will force stop OED and there is a chance the container
+                will not be properly cleaned up so it is advised not to do this. If one cannot find the terminal where
+                OED was started (may it was accidentally closed), then open another terminal as one did to start OED (in
+                correct directory) and do <code>docker compose down</code>. A final option, if none of these work, is to
+                stop the container within Docker.</li>
+            <li>The developer pages often refer to output from OED. It will shown in the terminal where OED was started.
+            </li>
+        </ol>
+
+        <h3 id="usingOED">Using OED</h3>
+        <ol>
+            <li>Once OED is installed and running, one will want to open it in a web browser. It should not matter
+                which one is used. Enter the address:<code>localhost:3000</code> and load the page. "localhost"
+                indicates the page is being served up from ones machine and "3000" is the default port that OED uses to
+                accept web connections. If all went well, one will see the main OED web page that looks something like:
+            </li>
+            <p><img alt="OED Main Page" src="../images/startupMainPage.png" /></p>
+            If one see this then the basic OED install worked and their system is properly serving up the OED web
+            system.
+            </li>
+            <li>Though not common, it is possible for the OED web system to run without starting the underlying database
+                system. To verify that the database is running properly, one should <a
+                    href="{{ site.url }}{{ site.baseurl }}/{{ site.helpCurrent }}/optionsMenu/">log into OED</a> as the
+                admin. The username and password were shown during the install process. By default they are:<br> email:
+                test<br> password: password<br> Yes, the password really is password but remember it is running on ones
+                local machine in a container so it should not be accessible to others. If it fails one should see a
+                message appear briefly in the top, right corner of the page. If this happens, please follow the <a
+                    href="#sendConsole">steps below</a> to contact us and include any output in the terminal. </li>
+            <li>If all went well, one now has a fully running development version of OED that can be used to begin
+                coding. Congratulations!</li>
+        </ol>
+
+        <h3 id="VSCExtentions">OED Recommended VSC extensions</h3>
+        <p>VSC has several extensions OED thinks are valuable. OED recommends that developers consider using them. These
+            are automatically included in the OED VSC
+            container.</p>
+        <ul>
+            <li>Docker: Allows one to work with Docker directly in VSC with many features of the Docker Desktop. Once
+                installed it can be accessed by clicking the Docker icon (<img alt="VSC container msg"
+                    src="../images/dockerIcon.png">).</li>
+            <li>GitLens — Git supercharged: This shows detailed information on Git commits, who made changes, file
+                history and more. It makes working with Git inside VSC much nicer.</li>
+            <li>ESLint: This checks that ones code is in a valid structure and format as generally used and required by
+                OED. The automated OED checks on pull request submission will run similar tests so this helps avoid
+                issues.</li>
+            <li>Code Spell Checker: It will help one avoid spelling mistakes that lead to pull request comments as OED
+                expects correct spelling.</li>
+            <li>GitHub Pull Request: It lets one work with GitHub within VSC including creating, commenting on and
+                working with pull requests all with VSC features.</li>
+        </ul>
+        <p>These can easily be installed (or see if it already is installed) using the VSC Extensions (<img
+                alt="VSC Extension icon" src="../images/VSCExtensions.png">).</p>
+
+        <h3 id="OEDDockerTerminal">Using an OED Docker terminal</h3>
+        {% include alert warning='Running a terminal in the OED Docker containers differs from running in a standard
+        terminal on ones machine, including opening a terminal from the VSC "terminal" menu. The reason is that the OED
+        Docker terminal has the full OED environment. If one runs outside the OED Docker container terminals then the
+        result may be unpredictable.' %}
+        {% include alert info='One can only attach a terminal to the OED Docker container if OED is running' %}
+        <p>The developer web pages assume one assesses a terminal inside of the Docker container. There are two main
+            ways of doing this:</p>
+        <ul>
+            <li>If one is using VSC with the Docker extension (<img alt="VSC container msg"
+                    src="../images/dockerIcon.png">) then one can use it (see <a href="#docker">here</a> for
+                info). Right click on the desired OED Docker container and select "Attach Shell" as shown next: <br><img
+                    alt="VSC Docker shell" src="../images/VSCDockerShell.png"> <br>One normally gets a prompt similar to
+                <code>root@20124d33c2c7:/usr/src/app#</code>.
+            </li>
+            <li>Using the Docker Desktop, go to containers, and use the drop down menu (three vertical dots) on the OED
+                container to "Open in terminal" as shown next: <br><img alt="Docker Desktop shell"
+                    src="../images/DockerDesktopShell.png"> <br>One normally gets a prompt similar to <code>#</code>.
+            </li>
+        </ul>
+        {% include alert info='The terminal in the OED Docker container runs as root. This allows the developer to make
+        any desired change but also allows one to change/damage the OED information. Care should be used.' %}
+
+        <h3 id="DockerInfo">Getting OED Docker information</h3>
+        <ul>
+            {% include alert info='The following assumes one has the VSC Docker extension as <a
+                href="#VSCExtentions">described above</a>. Similar information is available via the Docker Desktop.' %}
+            <li>It should show information on all the Docker images/containers one has. The containers that are
+                currently running have a green triangle next to them. One can get the following choices by right
+                clicking on a container: <ul>
+                    <li>View Logs: The web container will not show much since the OED output is in the terminal used to
+                        start oed (or in nohup.out if using the OED VSC container). The database one will show messages
+                        from PostgreSQL. These open a new terminal that one can remove with the trash can icon.</li>
+                    <li>Attach Shell: This puts one in a shell within the container that is using the OED environment
+                        (see <a href="#OEDDockerTerminal"> for more info.</a>). <ul>
+                            <li>In the shell inside the database container one can do: <code>psql -U oed</code> to open the
+                                Postgres command line. This will allow one to look at the live OED database. One can
+                                also see the OED startup files for the database with
+                                <code>ls docker-entrypoint-initdb.d.</code>
+                            </li>
+                            <li>In the shell inside the web container, one can look at the environment variables or do
+                                other Linux operation. One can run any script in package.json, e.g.,
+                                <code>npm run check</code>. One can see all the running processes with
+                                <code>ps -aux</code>.
+                            </li>
+                        </ul>
+                    <li>Inspect: Opens a JSON file that gives detailed information on the container that can be useful
+                        for debugging issues.</li>
+                    <li>Open in Browser: For the web container, this will go to localhost:3000.</li>
+                    <li>Stop, Remove: Stop or remove the container where stop is useful if something does not shut down
+                        properly. </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3 id="testData">OED test data</h3>
+        <p>When one installs OED, it does not have any data. An actual site would connect up meters to gather data. For
+            a developer, OED has standard test data one can use. The <a href="../testData/">OED test data</a> page has
+            information and directions for doing this. OED suggests one loads up the data now so one can try any features
+            desired in OED. Note that an advantage of this test data is that it is the same for all developers so
+            people should be able to reproduce what one mentions if one has a question or issue.
+        </p>
+
+        <h3 id="technologies">Technologies OED uses</h3>
+        <p>OED uses a number of technologies. One may want further information on these and some are provided on the <a
+                href="../learningTechnologies/">OED technologies page</a>. OED welcomes input on other areas people would
+            like to know about or other resources one finds valuable. Note that one can work on parts of OED without
+            knowing many of the technologies in any depth. For example, one can work on database queries without knowing
+            about the front-end. Thus, many developers begin in areas they know or want to learn first and focus on that
             needed information. Having said that, almost the entire code base is in JavaScript/TypeScript so a basic
             understanding of that is usually needed to get started.</p>
 
-        <h3>OED GitHub Information areas</h3>
-        <p>There are two areas on our GitHub repo that are worth noting. First, the <a
+        <!-- <h3>OED GitHub Information areas</h3>
+        <p>There are two areas on the OED GitHub repo that are worth noting. First, the <a
                 href="https://github.com/OpenEnergyDashboard/OED/discussions" rel="noopener noreferrer">discussion
                 board</a>
-            has several areas including one for developers. You are encouraged to subscribe to this discussion by
+            has several areas including one for developers. Everyone is encouraged to subscribe to this discussion by
             clicking
             the button on the right side of the page with this discussion group. Second, the <a
                 href="https://github.com/OpenEnergyDashboard/OED/projects?type=beta"
                 rel="noopener noreferrer">projects</a>
             have an overview of the status of work and major initiatives.</p>
         <h3>Choosing OED work to do</h3>
-        <p>The <a href="../work/">What to Work on in OED</a> page can help you figure out what to do.</p>
+        <p>The <a href="../work/">What to Work on in OED</a> page can help one figure out what to do.</p> -->
 
-        <h3>Multi-author work</h3>
-        <p>It is common for a team to work on OED together. If you are doing this and want to give another person
+        <h3 id="multiauthor">Multi-author work</h3>
+        <p>It is common for a team to work on OED together. If one is doing this and want to give another person
             acknowledgement on a commit, then see <a
                 href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors"
                 rel="noopener noreferrer">GitHub info on multiple authors</a>. </p>
 
-        <h3>Issues</h3>
-        <p id="sendConsole">If you have any issues please copy all the output from your nohup.out (or the terminal
-            outside
-            Visual Studio Code) and send it and a message by <a href="{{ site.url }}{{ site.baseurl }}/contact/">contacting us</a>. We will look
-            it
+        <h3 id="issues">Issues</h3>
+        <p id="sendConsole">If anyone has any issues please copy the current output from the terminal used to
+            start OED (or nohup.out if using the VSC OED container) and forward it along with any other information to
+            the OED project by <a href="{{ site.url }}{{ site.baseurl }}/contact/">contacting us</a>. We will look it
             over and get back to you. We try to do that quickly. It is also fine to send a message to the developer
-            Discord
-            channel to seek answers.</p>
+            Discord channel to seek answers.</p>
 
-        <h3 id="VSCInfo">Useful VSC information</h3>
-        <ul>
-            <li>The VSC container you are working in has the Docker extension included. You can access it by clicking
-                the
-                whale with squares over it icon (<img alt="VSC container msg" src="../images/dockerIcon.png">) on the far
-                left
-                side of the VSC window (default location). It
-                should show information on all the Docker images/containers you have. The containers that are currently
-                running have a green triangle next to them. You can get the following choices by right clicking on a
-                container:
-                <ul>
-                    <li>View Logs: The web container (prefixed with “vsc-”) will not show much since the OED output is
-                        in
-                        nohup.out. The database one will show messages from PostgreSQL. These open a new terminal that
-                        you
-                        can remove with the trash can icon.</li>
-                    <li>Attach Shell: This puts you in a shell within the container that is using the OED environment.
-                        It is
-                        important to recognize this is not the same as opening a shell on your machine that runs in your
-                        local environment. You are strongly encouraged to run all your OED terminal commands in the
-                        container so you get the OED environment. For example, it will use the version of node or npm
-                        that
-                        OED expects.
-                        <ul>
-                            <li>In the shell inside the database you can do: “psql -U oed” to open the Postgres
-                                command line. This will allow you to look at the live OED database. You can also see the
-                                OED
-                                startup files for the database with: ls docker-entrypoint-initdb.d.</li>
-                        </ul>
-                    <li>In the shell inside the web container, you can look at the environment variables or do other
-                        Linux
-                        operation. You can run any script in package.json, e.g., npm run check. You can see all the
-                        running
-                        processes with “ps -aux”.</li>
-                    <li>Inspect: Opens a JSON file that gives detailed information on the container that can be useful
-                        for
-                        debugging
-                        issues.</li>
-                    <li>Open in Browser: For the web container, this will go to localhost:3000.</li>
-                    <li>Stop, Remove: Stop or remove the container where stop is useful if something does not shut down
-                        properly.
-                    </li>
-                </ul>
-            </li>
-            <li>The VSC container also include several extensions OED thinks are valuable:
-                <ul>
-                    <li>GitLens: This shows detailed information on Git commits, who made changes, file history and
-                        more. It
-                        makes working with Git inside VSC much nicer.</li>
-                    <li>Code Spell Checker: It will help you avoid spelling mistakes.</li>
-                    <li>GitHub Pull Request: It lets you work with GitHub within VSC including creating, commenting on
-                        and
-                        working with pull requests all with VSC features.</li>
-                    <li>Docker was discussed above.</li>
-                </ul>
-            </li>
-        </ul>
+        <h3 id="VSCInstall">Install and run OED in a VSC container</h3>
 
-        <h3>Install OED outside of Visual Studio Code</h3>
+        {% include alert warning='This method has the advantages that one does not have to open a terminal or get all
+        the recommended VSC extensions. However, developers have been having issues/failures with this method of running
+        OED. Furthermore, this method generally starts up slower, uses more CPU/memory on ones computer and is harder to
+        see OED developer messages. Given this, it should only be used when desired/necessary and the method of running
+        in a terminal (<a href="#terminalInstall">described here</a>) is normally recommended. See the section on <a
+            href="#OEDVSCIssues">OED VSC issues</a> for more information.' %}
 
-        <p>While there is <a href="../devDetails/">further information</a> on more advanced options for doing this, the
-            initial install can be done by following these steps:</p>
+        {% include alert warning='If the last install of OED was from <a href="#terminalInstall">the terminal</a> then
+        it is critical that the two OED containers are remove. The steps are part of the information in the <a
+            href="#OEDVSCIssues">OED VSC issues section</a>. Note the same steps must be followed if going from the OED
+        VSC Docker container to using a terminal install.' %}
+
+        {% include alert info='This only works if one uses VSC as ones IDE. One needs to have the "Remote Development"
+        VSC extension for this to work. Click on the Extensions manager icon on the far left of the VSC window (<img
+            alt="VSC Extension icon" src="../images/VSCExtensions.png">) to see if one has it. If not, search for
+        "Remote Development" and install it. One will get several Extensions included with this one.' %}
+
+        <p>The OED repository contains the <code>.devcontainer</code> folder that allows VSC to automatically launch and
+            set up the needed Docker containers. Here are the directions:</p>
+        <p>This assumes one has opened the main OED directory in VSC as described above. </p>
+        <p>Typically, VSC will ask to reopen the folder in a container by showing this message:</p> <img
+            alt="VSC container msg" src="../images/VSCContainerMsg.png" style="width: 25vw; min-width: 200px;">
+        <p>One can click the button "Reopen in Container". One will often see a popup in VSC that indicate one can click
+            to see the log:</p> <img alt="VSC container msg" src="../images/VSCDevLog.png"
+            style="width: 25vw; min-width: 200px;">
+        <p>The first time OED installs it can take a while where the time depends on the speed of ones machine and
+            internet connection (to get the needed npm packages). One can see the output of the install and anything OED
+            outputs to the console by looking at the file <code>nohup.out</code> that will be created in ones main OED
+            directory. If one opens this in VSC it should update with new lines at the bottom as they are added. See <a
+                href="../fullInstallOutput/">full install output</a> or <a href="../noNPMInstallOutput/">install without
+                Postgres or npm install output</a> to see a typical install output and for information if something goes
+            wrong.</p>
+        {% include alert warning='If one waits a while (depends on machine speed but normally not more than 5-10 minute)
+        and doesn\'t see the install output in <code>nohup.out</code> then something is likely wrong. Note if there is no
+        <code>nohup.out</code> file then the install did not work. See below on possible issues and solutions. OED
+        starts new output from an install with a line such as
+        <code>web-1       | ***** Starting install of OED at Sat Aug 31 21:18:28 UTC 2024 *****</code>. Searching from
+        the bottom of the file for <code>****</code> and going upward should find the latest install output.' %} {%
+        include alert info='If VSC does not automatically ask to open in a container, one can click the "Remote
+        Container" icon (<img alt="VSC Remote Container icon" src="../images/VSCRemoteIcon.png" width="32" height="26"
+            style="min-width:32px; display: inline">) that is normally in the bottom, left of the VSC window and select
+        "Reopen in Container" for the menu that appears.' %}
+        <p>Once OED is running one should be able to see the web and database Docker containers running via Docker
+            (either the VSC extension or the desktop). See <a href="#DockerInfo">Docker information</a> for more
+            info on doing this. </p>
+        <p>One can shut down the OED VSC container by clicking the green icon for the Remote Container and selecting
+            "Close Remote Container".</p>
+        <p>All output from the OED server will show in the <code>nohup.out</code> file located in the main OED
+            directory. The latest information is at the bottom.</p>
+
+        <h4 id="OEDVSCIssues">OED VSC issues</h4>
+        <p>As mentioned above, developers are experiencing issues using this system. These mostly revolve around the
+            install failing. When this happens, it is often fixed by doing the following:</p>
         <ol>
-            <li>Open a terminal on your computer (it is the "command prompt" on some Windows systems). It is fine to use
-                a
-                terminal within VSC. In the terminal do the following: <ol>
-                    <li><code>cd "directory with cloned OED"</code>. You need to replace "directory with cloned OED"
-                        with
-                        the location of the cloned copy of OED. This is where the "README.md" and other main OED files
-                        are
-                        located. Some people find it easiest to locate that directory using the file manager on their OS
-                        and
-                        then use that information to get to the needed directory. As an example, you might
-                        do <code>cd /home/username/projects/OED</code> if you cloned OED in the /home/username/projects/
-                        directory. </li>
-                    <li><code>docker compose up</code><br>This will run the entire OED install process. Note that on
-                        some
-                        systems (mostly some Linux systems), depending on how you installed Docker, you may get a
-                        permission
-                        error so you will need to do:<br><code>sudo docker compose up</code><br>which runs the process
-                        with
-                        root privileges. If this is the case then you need to do sudo before all docker commands on your
-                        system.<br> Depending on the speed of your machine and internet connection, this can take a few
-                        to
-                        ten minutes. It should go faster after the first install. You will see a lot of output about
-                        installing the database (Postgres), getting needed packages (<strong>this can take a while so
-                            you
-                            may not see output for a while</strong>) and starting up the web system. When you see the
-                        line:<br> + 2073 hidden modules<br> where the actual number will likely be different then OED
-                        should
-                        be running normally unless there was an error in the output. </li>
-                </ol>
-            </li>
-            <li>The developer web pages assume you assess a terminal inside of the Docker container. Normally you can do
-                this by going to the Docker icon for your running Docker and selecting the "Dashboard". Then look for
-                your
-                running OED container in the list. There should be an icon to the right that gives a "CLI". Clicking it
-                should get you a command line interface for either the web or database container that OED uses. You can
-                do
-                other operations to control container through the same interface. You can also do this within VSC with
-                the
-                Docker extension even though you started OED outside VSC.</li>
-            <li>The developer pages often refer to output from OED. This goes to the nohup.out file with Visual Studio
-                Code.
-                When installed outside of VSC it will come to the terminal where you started OED, even in a terminal
-                opened
-                in VSC to install OED.</li>
+            <li>Exiting the OED VSC Docker container by clicking the green icon for the Remote Container and selecting
+                "Close Remote Container".</li>
+            <li>Normally the OED Docker containers will not be running but stop them using Docker <a
+                    href="#DockerInfo">as described above</a>.</li>
+            <li>Remove both OED Docker containers (web and database) but <strong>not the images</strong> <a
+                    href="#DockerInfo">as described above</a>.</li>
+            <li>Try restarting OED by reopening the OED VSC container as described above.</li>
         </ol>
+        {% include alert info='If one rebuilds the VSC container too soon after a build failure then it may fail again.
+        Normally the time taken for the steps above avoids this. However, if the rebuild is being done right away then
+        it is best to wait a few seconds before attempting.' %}
 
-        <h3>Getting help</h3>
-        <p>If you want help or have questions about running OED, then see the <a href="{{ site.url }}{{ site.baseurl }}/">website</a> or
-            the documentation pages and contact information in the links on this page.</p>
+        <h3 id="help">Getting help</h3>
+        <p>If anyone wants help or have questions about running OED, then see the <a
+                href="{{ site.url }}{{ site.baseurl }}/">website</a> or the documentation pages and contact information
+            in the links on this page.</p>
     </div>
 </div>
