@@ -119,9 +119,7 @@ helpDescription: "More detailed information that developers may find useful."
 			webpack to start the rebuild.</p>
 		<p>In several cases, developers on Windows have reported not having the code rebuild on save. It turned out
 			that the
-			code was not on the WSL/Linux partition (generally under /home). As described in <a href="../wslSteps/">WSL
-				on
-				Windows</a>, it is important to do this properly.</p>
+			code was not on the WSL/Linux partition (generally under /home). As described in the <a href="../gettingStarted/">developer first steps page</a>, it is important to do this properly.</p>
 
 		<h2 id="dbAccess">Accessing the database</h2>
 		<p>There are two ways to access the Postgres database that OED uses. Through the docker container or through
@@ -130,7 +128,7 @@ helpDescription: "More detailed information that developers may find useful."
 		<ul>
 			<li>
 				To access the database from the docker database container (see <a
-					href="../gettingStarted/#VSCInfo">info on
+					href="../gettingStarted/#DockerInfo">info on
 					accessing containers)</a>, execute the following command: <code>psql -U oed</code>. You will now
 				be in
 				the Postgres command line for the OED database. It is assumed that you know some SQL and Postgres
@@ -196,7 +194,7 @@ helpDescription: "More detailed information that developers may find useful."
 			run testing (or you want to focus on one test at a time that fails). Running all the tests is much
 			slower than
 			running a single test file. Thus, to run a single test, in the web/vsc docker container (see <a
-				href="../gettingStarted/#VSCInfo">info on accessing container</a>) do:<br>
+				href="../gettingStarted/#DockerInfo">info on accessing container</a>) do:<br>
 			<code>npm run testsome &lt;first test&gt; [&lt;second test&gt;] </code><br> where you replace &lt; xxxx
 			test&gt;
 			with the path to the test file you want to run and [ ] indicates this is optional and you can repeat as

@@ -88,7 +88,13 @@
     border-color: scale-color($grey-2, $lightness: -14%);
     color: $grey-12;
   }
-
+  .alert-box.windowsOS {
+    @include alert-style(darkblue);
+  }
+  .alert-box.windowsOS::before {
+    content: "Windows OS Information";
+    color: $ci-4;
+  }
 
 
 /* Button
